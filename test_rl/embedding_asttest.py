@@ -124,3 +124,4 @@ for a in assertions:
     traverse_z3_expr_onlyleaf(a)
     # traverse(a)
 print(list_type)
+print(solver.to_smt2())

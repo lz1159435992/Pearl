@@ -60,6 +60,8 @@ class LSTMHistorySummarizationModule(HistorySummarizationModule):
         if action is None:
             action = self.default_action
         assert isinstance(action, torch.Tensor)
+        print('++++++++++++++++++++++')
+        print(action)
         action = action.clone().detach().float().view((1, self.action_dim))
         observation_action_pair = torch.cat((action, observation.view(1, -1)), dim=-1)
 
