@@ -252,11 +252,9 @@ def run_episode(
     num_risky_sa = 0
     while not done:
         action = agent.act(exploit=exploit)
-<<<<<<< HEAD
         print("查看action++++++++++++++++++")
         print(action)
-=======
->>>>>>> acd8d5edab04f718ae531c81ff33cbadac0121b4
+
         action = (
             action.cpu() if isinstance(action, torch.Tensor) else action
         )  # action can be int sometimes

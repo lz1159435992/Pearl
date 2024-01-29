@@ -109,7 +109,8 @@ class TensorBasedReplayBuffer(ReplayBuffer):
     ) -> Tuple[Optional[torch.Tensor], Optional[torch.Tensor]]:
         if self._is_action_continuous or max_number_actions is None:
             return (None, None)
-
+        print('++++++++++++++++++++++++++++++++++++++')
+        print(type(available_action_space))
         assert isinstance(available_action_space, DiscreteActionSpace)
 
         available_actions_tensor_with_padding = torch.zeros(
