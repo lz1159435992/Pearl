@@ -43,6 +43,9 @@ class LinearBandit(ContextualBanditBase):
         feature_dim: int,
         exploration_module: Optional[ExplorationModule] = None,
         l2_reg_lambda: float = 1.0,
+        gamma: float = 1.0,
+        apply_discounting_interval: float = 0.0,  # discounting will be applied after this many
+        # observations (weighted) are processed. set to 0 to disable
         training_rounds: int = 100,
         batch_size: int = 128,
         action_representation_module: Optional[ActionRepresentationModule] = None,
@@ -55,23 +58,51 @@ class LinearBandit(ContextualBanditBase):
             action_representation_module=action_representation_module,
         )
         self.model = LinearRegression(
-            feature_dim=feature_dim, l2_reg_lambda=l2_reg_lambda
+            feature_dim=feature_dim, l2_reg_lambda=l2_reg_lambda, gamma=gamma
         )
+        self.apply_discounting_interval = apply_discounting_interval
+        self.last_sum_weight_when_discounted = 0.0
+
+    def _maybe_apply_discounting(self) -> None:
+        """
+        Check if it's time to apply discounting and do so if it's time.
+        Discounting is applied after every N data points (weighted) are processed.
+
+        `self.last_sum_weight_when_discounted` stores the data point counter when discounting was
+            last applied.
+        `self.model._sum_weight.item()` is the current data point counter
+        """
+        if (self.apply_discounting_interval > 0) and (
+            self.model._sum_weight.item() - self.last_sum_weight_when_discounted
+            >= self.apply_discounting_interval
+        ):
+            self.model.apply_discounting()
+            self.last_sum_weight_when_discounted = self.model._sum_weight.item()
 
     def learn_batch(self, batch: TransitionBatch) -> Dict[str, Any]:
         """
         A <- A + x*x.t
         b <- b + r*x
         """
+        expected_values = batch.reward
+        batch_weight = (
+            batch.weight
+            if batch.weight is not None
+            else torch.ones_like(expected_values)
+        )
         x = torch.cat([batch.state, batch.action], dim=1)
-        assert batch.weight is not None
         self.model.learn_batch(
             x=x,
             y=batch.reward,
             weight=batch.weight,
         )
-        current_values = self.model(x)
-        return {"current_values": current_values.mean().item()}
+        self._maybe_apply_discounting()
+        predicted_values = self.model(x)
+        return {
+            "label": expected_values,
+            "prediction": predicted_values,
+            "weight": batch_weight,
+        }
 
     # pyre-fixme[14]: `act` overrides method defined in `ContextualBanditBase`
     #  inconsistently.

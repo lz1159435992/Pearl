@@ -18,6 +18,7 @@ from pearl.api.action_space import ActionSpace
 from pearl.history_summarization_modules.history_summarization_module import (
     SubjectiveState,
 )
+from pearl.neural_networks.common.utils import LOSS_TYPES
 from pearl.neural_networks.contextual_bandit.neural_linear_regression import (
     NeuralLinearRegression,
 )
@@ -25,7 +26,6 @@ from pearl.policy_learners.contextual_bandits.contextual_bandit_base import (
     ContextualBanditBase,
     DEFAULT_ACTION_SPACE,
 )
-from pearl.policy_learners.contextual_bandits.neural_bandit import LOSS_TYPES
 from pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration import (
     UCBExploration,
 )
@@ -50,6 +50,9 @@ class NeuralLinearBandit(ContextualBanditBase):
     Here _deep_represent_layers can be treated as featuer processing,
     and then processed features are fed into a linear regression layer to output predicted score.
     For example : features --> neural networks --> LinUCB --> UCB score
+
+    The implementation of LinearBandit refers to https://arxiv.org/pdf/1003.0146.pdf
+    The implementation of NeuralLinearBandit refers to https://arxiv.org/pdf/2012.01780.pdf
     """
 
     def __init__(
@@ -62,8 +65,10 @@ class NeuralLinearBandit(ContextualBanditBase):
         batch_size: int = 128,
         learning_rate: float = 0.0003,
         l2_reg_lambda_linear: float = 1.0,
+        gamma: float = 1.0,
+        apply_discounting_interval: float = 0.0,  # set to 0 to disable
         state_features_only: bool = False,
-        loss_type: str = "mse",  # one of the LOSS_TYPES names, e.g., mse, mae, xentropy
+        loss_type: str = "mse",  # one of the LOSS_TYPES names: [mse, mae, cross_entropy]
         output_activation_name: str = "linear",
         use_batch_norm: bool = False,
         use_layer_norm: bool = False,
@@ -71,6 +76,7 @@ class NeuralLinearBandit(ContextualBanditBase):
         last_activation: Optional[str] = None,
         dropout_ratio: float = 0.0,
         use_skip_connections: bool = False,
+        nn_e2e: bool = True,
     ) -> None:
         assert (
             len(hidden_dims) >= 1
@@ -86,6 +92,7 @@ class NeuralLinearBandit(ContextualBanditBase):
             feature_dim=feature_dim,
             hidden_dims=hidden_dims,
             l2_reg_lambda_linear=l2_reg_lambda_linear,
+            gamma=gamma,
             output_activation_name=output_activation_name,
             use_batch_norm=use_batch_norm,
             use_layer_norm=use_layer_norm,
@@ -93,12 +100,34 @@ class NeuralLinearBandit(ContextualBanditBase):
             last_activation=last_activation,
             dropout_ratio=dropout_ratio,
             use_skip_connections=use_skip_connections,
+            nn_e2e=nn_e2e,
         )
         self._optimizer: torch.optim.Optimizer = optim.AdamW(
             self.model.parameters(), lr=learning_rate, amsgrad=True
         )
         self._state_features_only = state_features_only
         self.loss_type = loss_type
+        self.apply_discounting_interval = apply_discounting_interval
+        self.last_sum_weight_when_discounted = 0.0
+
+    def _maybe_apply_discounting(self) -> None:
+        """
+        Check if it's time to apply discounting and do so if it's time.
+        Discounting is applied after every N data points (weighted) are processed.
+
+        `self.last_sum_weight_when_discounted` stores the data point counter when discounting was
+            last applied.
+        `self.model._linear_regression_layer._sum_weight.item()` is the current data point counter
+        """
+        if (self.apply_discounting_interval > 0) and (
+            self.model._linear_regression_layer._sum_weight.item()
+            - self.last_sum_weight_when_discounted
+            >= self.apply_discounting_interval
+        ):
+            self.model._linear_regression_layer.apply_discounting()
+            self.last_sum_weight_when_discounted = (
+                self.model._linear_regression_layer._sum_weight.item()
+            )
 
     @property
     def optimizer(self) -> torch.optim.Optimizer:
@@ -114,7 +143,11 @@ class NeuralLinearBandit(ContextualBanditBase):
         model_ret = self.model.forward_with_intermediate_values(input_features)
         predicted_values = model_ret["pred_label"]
         expected_values = batch.reward
-        batch_weight = batch.weight
+        batch_weight = (
+            batch.weight
+            if batch.weight is not None
+            else torch.ones_like(expected_values)
+        )
 
         # criterion = mae, mse, Xentropy
         # Xentropy loss apply Sigmoid, MSE or MAE apply Identiy
@@ -124,8 +157,14 @@ class NeuralLinearBandit(ContextualBanditBase):
             assert torch.all(predicted_values >= 0) and torch.all(predicted_values <= 1)
             assert isinstance(self.model.output_activation, torch.nn.Sigmoid)
 
-        # TODO: handle weight in NN training by computing weighted loss
-        loss = criterion(predicted_values.view(expected_values.shape), expected_values)
+        # don't reduce the loss, so that we can calculate weighted loss
+        loss = criterion(
+            predicted_values.view(expected_values.shape),
+            expected_values,
+            reduction="none",
+        )
+        assert loss.shape == batch_weight.shape
+        loss = (loss * batch_weight).sum() / batch_weight.sum()  # weighted average loss
 
         # Optimize the NN via backpropagation
         self._optimizer.zero_grad()
@@ -137,9 +176,12 @@ class NeuralLinearBandit(ContextualBanditBase):
             expected_values,
             batch_weight,
         )
+        self._maybe_apply_discounting()
         return {
-            "mlp_loss": loss.item(),
-            "current_values": predicted_values.mean().item(),
+            "label": expected_values,
+            "prediction": predicted_values,
+            "weight": batch_weight,
+            "loss": loss.detach(),
         }
 
     def act(

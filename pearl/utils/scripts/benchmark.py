@@ -25,21 +25,38 @@ from pearl.pearl_agent import PearlAgent
 from pearl.utils.functional_utils.experimentation.set_seed import set_seed
 
 from pearl.utils.functional_utils.train_and_eval.online_learning import online_learning
-from pearl.utils.scripts.benchmark_config import (  # noqa
-    benchmark_acrobot_v1_part_1,  # noqa
-    benchmark_acrobot_v1_part_2,  # noqa
-    benchmark_ant_v4,  # noqa
-    benchmark_cartpole_v1_part_1,  # noqa
-    benchmark_cartpole_v1_part_2,  # noqa
-    benchmark_halfcheetah_v4,  # noqa
-    benchmark_hopper_v4,  # noqa
+from pearl.utils.scripts.benchmark_config import (  # noqa: F401
+    benchmark_acrobot_v1_part_1,
+    benchmark_acrobot_v1_part_2,
+    benchmark_ant_v4,
+    benchmark_cartpole_v1_part_1,
+    benchmark_cartpole_v1_part_2,
+    benchmark_halfcheetah_v4,
+    benchmark_hopper_v4,
     benchmark_pendulum_v1_lstm,
-    benchmark_walker2d_v4,  # noqa
+    benchmark_walker2d_v4,  # noqa: F401
     get_env,
+    rccsac_ant,
+    rccsac_half_cheetah,
+    rccsac_hopper,
+    rccsac_walker,
+    rcddpg_ant,
+    rcddpg_half_cheetah,
+    rcddpg_hopper,
+    rcddpg_walker,
+    rctd3_ant,
+    rctd3_half_cheetah,
+    rctd3_hopper,
+    rctd3_walker,
     test_dynamic_action_space,
 )
 
 warnings.filterwarnings("ignore")
+attr_to_title = {
+    "return": "return",
+    "return_cost": "cummulative cost",
+    "risk_sa": "risk_sa",
+}
 
 
 def run(experiments) -> None:
@@ -230,6 +247,7 @@ def generate_plots(experiments, attributes) -> None:
 
 def generate_one_plot(experiment, attributes):
     """Generating learning curves for all tested methods in one environment."""
+    plt.rcParams.update({"font.size": 15})
     env_name = experiment["env_name"]
     exp_name = experiment["exp_name"]
     num_runs = experiment["num_runs"]
@@ -262,12 +280,14 @@ def generate_one_plot(experiment, attributes):
                     mean + std_error,
                     alpha=0.2,
                 )
-        plt.title(env_name)
+        plt.title(env_name.replace("_", "-"))
+        plt.ticklabel_format(style="sci", axis="y", scilimits=(0, 0))
+        plt.ticklabel_format(style="sci", axis="x", scilimits=(0, 0))
         if "num_steps" in experiment:
             plt.xlabel("Steps")
         else:
             plt.xlabel("Episodes")
-        plt.ylabel(attr)
+        plt.ylabel(attr_to_title[attr])
         plt.legend()
         plt.savefig(f"outputs/{exp_name}_{env_name}_{attr}.png")
         plt.close()
@@ -325,7 +345,7 @@ if __name__ == "__main__":
     # run(rccsac_ant)
     # generate_plots(rccsac_ant, ["return", "return_cost"])
     # run(rccsac_half_cheetah)
-    # generate_plot(rccsac_half_cheetah, ["return", "return_cost"])
+    # generate_plots(rccsac_half_cheetah, ["return", "return_cost"])
     # run(rccsac_hopper)
     # generate_plots(rccsac_hopper, ["return", "return_cost"])
     # run(rccsac_walker)
