@@ -8,7 +8,6 @@
 from typing import Any, Dict, List, Optional
 
 import torch
-import torch.nn as nn
 from pearl.action_representation_modules.action_representation_module import (
     ActionRepresentationModule,
 )
@@ -19,6 +18,7 @@ from pearl.api.action_space import ActionSpace
 from pearl.history_summarization_modules.history_summarization_module import (
     SubjectiveState,
 )
+from pearl.neural_networks.common.utils import LOSS_TYPES
 from pearl.neural_networks.common.value_networks import VanillaValueNetwork
 from pearl.policy_learners.contextual_bandits.contextual_bandit_base import (
     ContextualBanditBase,
@@ -33,21 +33,6 @@ from pearl.utils.functional_utils.learning.action_utils import (
 )
 from pearl.utils.instantiations.spaces.discrete_action import DiscreteActionSpace
 from torch import optim
-
-LOSS_TYPES = {
-    "mse": torch.nn.functional.mse_loss,
-    "mae": torch.nn.functional.l1_loss,
-    "cross_entropy": torch.nn.functional.binary_cross_entropy,
-}  # loss func for neural bandits algorithms
-
-ACTIVATION_MAP = {
-    "tanh": nn.Tanh,
-    "relu": nn.ReLU,
-    "leaky_relu": nn.LeakyReLU,
-    "linear": nn.Identity,
-    "sigmoid": nn.Sigmoid,
-    "softplus": nn.Softplus,
-}
 
 
 class NeuralBandit(ContextualBanditBase):
@@ -88,23 +73,41 @@ class NeuralBandit(ContextualBanditBase):
         self.loss_type = loss_type
 
     def learn_batch(self, batch: TransitionBatch) -> Dict[str, Any]:
+        expected_values = batch.reward
+        batch_weight = (
+            batch.weight
+            if batch.weight is not None
+            else torch.ones_like(expected_values)
+        )
         if self._state_features_only:
             input_features = batch.state
         else:
             input_features = torch.cat([batch.state, batch.action], dim=1)
 
         # forward pass
-        current_values = self.model(input_features)
-        expected_values = batch.reward
+        predicted_values = self.model(input_features)
 
         criterion = LOSS_TYPES[self.loss_type]
-        loss = criterion(current_values.view(expected_values.shape), expected_values)
+
+        # don't reduce the loss, so that we can calculate weighted loss
+        loss = criterion(
+            predicted_values.view(expected_values.shape),
+            expected_values,
+            reduction="none",
+        )
+        assert loss.shape == batch_weight.shape
+        loss = (loss * batch_weight).sum() / batch_weight.sum()  # weighted average loss
 
         # Backward pass + optimizer step
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()
-        return {"loss": loss.item()}
+        return {
+            "label": expected_values,
+            "prediction": predicted_values,
+            "weight": batch_weight,
+            "loss": loss.detach(),
+        }
 
     def act(
         self,

@@ -15,17 +15,17 @@ from pearl.action_representation_modules.one_hot_action_representation_module im
 from pearl.history_summarization_modules.lstm_history_summarization_module import (
     LSTMHistorySummarizationModule,
 )
-from pearl.neural_networks.common.value_networks import (
-    DuelingQValueNetwork,
-    EnsembleQValueNetwork,
-    VanillaQValueNetwork,
-    VanillaValueNetwork,
-)
+from pearl.neural_networks.common.value_networks import VanillaValueNetwork
 from pearl.neural_networks.sequential_decision_making.actor_networks import (
     DynamicActionActorNetwork,
     GaussianActorNetwork,
     VanillaActorNetwork,
     VanillaContinuousActorNetwork,
+)
+from pearl.neural_networks.sequential_decision_making.q_value_networks import (
+    DuelingQValueNetwork,
+    EnsembleQValueNetwork,
+    VanillaQValueNetwork,
 )
 from pearl.policy_learners.exploration_modules.common.epsilon_greedy_exploration import (  # noqa E501
     EGreedyExploration,
@@ -784,7 +784,7 @@ RCTD3_method_const_0_8["name"] = "RCTD3 $\\alpha$=0.8"
 RCTD3_method_const_0_8["safety_module_args"]["constraint_value"] = 0.8
 
 RCCSAC_method_const_0_2 = {
-    "name": "RCContinuousSAC $\\alpha$=0.2",
+    "name": "RCCSAC $\\alpha$=0.2",
     "policy_learner": ContinuousSoftActorCritic,
     "policy_learner_args": {
         "actor_hidden_dims": [256, 256],
@@ -995,7 +995,7 @@ rctd3_walker = [
             RCTD3_method_const_0_1,
             RCTD3_method_const_0_2,
             RCTD3_method_const_0_4,
-            RCTD3_method_const_0_8,
+            # RCTD3_method_const_0_8,
             TD3_method,
         ],
         "device_id": 3,
@@ -1018,7 +1018,7 @@ rcddpg_walker = [
             RCDDPG_method_const_0_1,
             RCDDPG_method_const_0_2,
             RCDDPG_method_const_0_4,
-            RCDDPG_method_const_0_8,
+            # RCDDPG_method_const_0_8,
             DDPG_method,
         ],
         "device_id": 3,
@@ -1041,7 +1041,7 @@ rccsac_walker = [
             RCCSAC_method_const_0_1,
             RCCSAC_method_const_0_2,
             RCCSAC_method_const_0_4,
-            RCCSAC_method_const_0_8,
+            # RCCSAC_method_const_0_8,
             CSAC_method,
         ],
         "device_id": 3,
@@ -1065,7 +1065,7 @@ rcddpg_hopper = [
             RCDDPG_method_const_0_1,
             RCDDPG_method_const_0_2,
             RCDDPG_method_const_0_4,
-            RCDDPG_method_const_0_8,
+            # RCDDPG_method_const_0_8,
             DDPG_method,
         ],
         "device_id": 2,
@@ -1088,7 +1088,7 @@ rctd3_hopper = [
             RCTD3_method_const_0_1,
             RCTD3_method_const_0_2,
             RCTD3_method_const_0_4,
-            RCTD3_method_const_0_8,
+            # RCTD3_method_const_0_8,
             TD3_method,
         ],
         "device_id": 2,
@@ -1111,7 +1111,7 @@ rccsac_hopper = [
             RCCSAC_method_const_0_1,
             RCCSAC_method_const_0_2,
             RCCSAC_method_const_0_4,
-            RCCSAC_method_const_0_8,
+            # RCCSAC_method_const_0_8,
             CSAC_method,
         ],
         "device_id": 2,
@@ -1135,7 +1135,7 @@ rctd3_ant = [
             RCTD3_method_const_0_1,
             RCTD3_method_const_0_2,
             RCTD3_method_const_0_4,
-            RCTD3_method_const_0_8,
+            # RCTD3_method_const_0_8,
             TD3_method,
         ],
         "device_id": 0,
@@ -1158,7 +1158,7 @@ rcddpg_ant = [
             RCDDPG_method_const_0_1,
             RCDDPG_method_const_0_2,
             RCDDPG_method_const_0_4,
-            RCDDPG_method_const_0_8,
+            # RCDDPG_method_const_0_8,
             DDPG_method,
         ],
         "device_id": 0,
@@ -1181,7 +1181,7 @@ rccsac_ant = [
             RCCSAC_method_const_0_1,
             RCCSAC_method_const_0_2,
             RCCSAC_method_const_0_4,
-            RCCSAC_method_const_0_8,
+            # RCCSAC_method_const_0_8,
             CSAC_method,
         ],
         "device_id": 0,
@@ -1204,7 +1204,7 @@ rctd3_half_cheetah = [
             RCTD3_method_const_0_1,
             RCTD3_method_const_0_2,
             RCTD3_method_const_0_4,
-            RCTD3_method_const_0_8,
+            # RCTD3_method_const_0_8,
             TD3_method,
         ],
         "device_id": 1,
@@ -1228,7 +1228,7 @@ rcddpg_half_cheetah = [
             RCDDPG_method_const_0_1,
             RCDDPG_method_const_0_2,
             RCDDPG_method_const_0_4,
-            RCDDPG_method_const_0_8,
+            # RCDDPG_method_const_0_8,
             DDPG_method,
         ],
         "device_id": 1,
@@ -1251,7 +1251,7 @@ rccsac_half_cheetah = [
             RCCSAC_method_const_0_1,
             RCCSAC_method_const_0_2,
             RCCSAC_method_const_0_4,
-            RCCSAC_method_const_0_8,
+            # RCCSAC_method_const_0_8,
             CSAC_method,
         ],
         "device_id": 1,
