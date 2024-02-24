@@ -40,7 +40,7 @@ def visit(expr):
             visit(child)
 # predictor = Predictor('KNN')
 
-file_path = '/home/lz/baidudisk/smt/gnu_angr.tar.gz/single_test/arch/arch15998'
+file_path = '/home/nju/Downloads/smt/buzybox_angr.tar.gz/single_test/klogd/klogd899238'
 with open(file_path, 'r') as file:
     # 读取文件所有内容到一个字符串
     smtlib_str = file.read()
