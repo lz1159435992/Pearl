@@ -174,69 +174,70 @@ def solve(filepath,timeout):
         #skip this file
     elif '/home/yy/Downloads/smt/gnu_angr.tar.gz/single_test/sort/sort32539' in file_path:
         print('hint')
-test_path = []
-# directory = '/home/yy/Downloads/smt/buzybox_angr.tar.gz/single_test'
-# test_path.append(directory)
-directory = '/home/yy/Downloads/smt/gnu_angr.tar.gz/single_test'
-test_path.append(directory)
-directory = '/home/yy/Downloads/smt/gnu_KLEE/klee_bk/single_test'
-test_path.append(directory)
-directory = '/home/yy/Downloads/smt/smt-comp/QF_BV'
-test_path.append(directory)
+if __name__ == '__main__':
+    test_path = []
+    # directory = '/home/yy/Downloads/smt/buzybox_angr.tar.gz/single_test'
+    # test_path.append(directory)
+    directory = '/home/yy/Downloads/smt/gnu_angr.tar.gz/single_test'
+    test_path.append(directory)
+    directory = '/home/yy/Downloads/smt/gnu_KLEE/klee_bk/single_test'
+    test_path.append(directory)
+    directory = '/home/yy/Downloads/smt/smt-comp/QF_BV'
+    test_path.append(directory)
 
 
-# 遍历目录
-for directory in test_path:
-    path = []
-    for dirpath, dirnames, filenames in os.walk(directory):
-        for filename in filenames:
-            # 构造完整的文件路径
-            file_path = os.path.join(dirpath, filename)
-            print(file_path)  # 或者进行其他操作
-            if '/home/yy/Downloads/smt/gnu_angr.tar.gz/single_test/sort/sort32539' in file_path:
-                print('hint')
-            try:
-                with open(file_path, 'r') as file:
-                    # 读取文件所有内容到一个字符串
-                    smtlib_str = file.read()
-            # 解析字符串
+    # 遍历目录
+    for directory in test_path:
+        path = []
+        for dirpath, dirnames, filenames in os.walk(directory):
+            for filename in filenames:
+                # 构造完整的文件路径
+                file_path = os.path.join(dirpath, filename)
+                print(file_path)  # 或者进行其他操作
+                if '/home/yy/Downloads/smt/gnu_angr.tar.gz/single_test/sort/sort32539' in file_path:
+                    print('hint')
                 try:
-                    # 将JSON字符串转换为字典
-                    dict_obj = json.loads(smtlib_str)
-                    # print("转换后的字典：", dict_obj)
-                except json.JSONDecodeError as e:
-                    print("解析错误：", e)
-                #
+                    with open(file_path, 'r') as file:
+                        # 读取文件所有内容到一个字符串
+                        smtlib_str = file.read()
+                # 解析字符串
+                    try:
+                        # 将JSON字符串转换为字典
+                        dict_obj = json.loads(smtlib_str)
+                        # print("转换后的字典：", dict_obj)
+                    except json.JSONDecodeError as e:
+                        print("解析错误：", e)
+                    #
 
-                # smtlib_str = dict_obj['script']
-                # print(dict_obj)
-                if 'time' in dict_obj.keys() and 'solving_time_dic' in dict_obj.keys():
-                    if float(dict_obj['time']) > 300 or float(dict_obj['solving_time_dic']['z3'][0]) > 300:
-                        path.append(file_path)
-                        solve(file_path,3000000)
+                    # smtlib_str = dict_obj['script']
+                    # print(dict_obj)
+                    if 'time' in dict_obj.keys() and 'solving_time_dic' in dict_obj.keys():
+                        if float(dict_obj['time']) > 300 or float(dict_obj['solving_time_dic']['z3'][0]) > 300:
+                            path.append(file_path)
+                            solve(file_path,3000000)
+                        else:
+                            solve(file_path, 30000)
+                    elif 'time' in dict_obj.keys():
+                        if float(dict_obj['time']) > 300:
+                            path.append(file_path)
+                            solve(file_path,3000000)
+                        else:
+                            solve(file_path, 30000)
+                    elif 'solving_time_dic' in dict_obj.keys():
+                        if float(dict_obj['solving_time_dic']) > 300:
+                            path.append(file_path)
+                            solve(file_path,3000000)
+                        else:
+                            solve(file_path, 30000)
                     else:
                         solve(file_path, 30000)
-                elif 'time' in dict_obj.keys():
-                    if float(dict_obj['time']) > 300:
-                        path.append(file_path)
-                        solve(file_path,3000000)
-                    else:
-                        solve(file_path, 30000)
-                elif 'solving_time_dic' in dict_obj.keys():
-                    if float(dict_obj['solving_time_dic']) > 300:
-                        path.append(file_path)
-                        solve(file_path,3000000)
-                    else:
-                        solve(file_path, 30000)
-                else:
-                    solve(file_path, 30000)
-                # print(smtlib_str)
-            except e:
-                print('导入文件错误')
-            # with open('time.txt', 'w') as file:
-            #     for s in path:
-            #         # 写入字符串并添加换行符
-            #         file.write(s + '\n')
+                    # print(smtlib_str)
+                except e:
+                    print('导入文件错误')
+                # with open('time.txt', 'w') as file:
+                #     for s in path:
+                #         # 写入字符串并添加换行符
+                #         file.write(s + '\n')
 
 
 
