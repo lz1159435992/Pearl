@@ -46,7 +46,9 @@ def visit(expr):
             visit(child)
 # predictor = Predictor('KNN')
 
-file_path = '/home/lz/baidudisk/smt/gnu_angr.tar.gz/single_test/arch/arch15998'
+# file_path = '/home/lz/baidudisk/smt/gnu_angr.tar.gz/single_test/arch/arch15998'
+file_path = '/home/lz/baidudisk/smt/buzybox_angr.tar.gz/single_test/readahead/readahead651389'
+file_path = '/home/lz/baidudisk/smt/gnu_angr.tar.gz/single_test/who/who202348'
 with open(file_path, 'r') as file:
     # 读取文件所有内容到一个字符串
     smtlib_str = file.read()
