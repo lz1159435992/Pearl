@@ -5,7 +5,7 @@
 # LICENSE file in the root directory of this source tree.
 #
 # pyre-ignore-all-errors
-
+import json
 import random
 from abc import ABC
 
@@ -33,7 +33,7 @@ from pearl.api.action_result import ActionResult
 from pearl.api.environment import Environment
 from pearl.utils.instantiations.spaces.discrete_action import DiscreteActionSpace
 
-sys.path.append('/home/lz/PycharmProjects/Pearl/test_rl')
+sys.path.append('/home/nju/PycharmProjects/Pearl/test_rl')
 NODE_TYPE_ENUM = {
     "Variable-Int": 0,  # 布尔表达式
     "Variable-Real": 1,  # 算术表达式
@@ -50,6 +50,16 @@ EDGE_TYPE_ENUM = {
     # 根据需求可以添加更多边的类型
 }
 
+# duqu shuzhi zidian
+with open('test_script/dict_value.txt', 'r') as value_file:
+    # 璇诲彇鏂囦欢鎵€鏈夊唴瀹瑰埌涓€涓瓧绗︿覆
+    str = value_file.read()
+try:
+    # 灏咼SON瀛楃涓茶浆鎹负瀛楀吀
+    dict_value = json.loads(str)
+    # print("杞崲鍚庣殑瀛楀吀锛?, dict_obj)
+except json.JSONDecodeError as e:
+    print('failed', e)
 
 class CustomEnvironment(Environment):
     def __init__(self, model, encoder, decoder, graph_builder, num_vars, num_consts):
@@ -631,10 +641,13 @@ class ConstraintSimplificationEnv_v3(Environment):
         # # node_embed = embedding_util.glorot_uniform(graph2vec.node_feat)
         # node_embed = Parameter(graph2vec.node_feat)
         # self.state = self.encoder(node_embed)
-        variables = set()
-        for a in self.z3ast:
-            visit(a, variables)
-        self.variables = list(variables)
+
+        # variables = set()
+        # for a in self.z3ast:
+        #     visit(a, variables)
+        # self.variables = list(variables)
+
+        self.variables = extract_variables_from_smt2_content(self.smtlib_str)
         # 之后要修改成变量+常量
         # for i in range(len(self.variables)):
         #     self.actions.append(torch.tensor(i))
@@ -642,7 +655,9 @@ class ConstraintSimplificationEnv_v3(Environment):
         # tensor = torch.arange(-10000, 10001)
         #笛卡尔积
         self.actions_v = self.strings_to_onehot(self.variables)
-        self.actions = get_actions(self.actions_v, torch.arange(-100, 100))
+
+
+        self.actions = get_actions(self.actions_v, torch.arange(0, len(dict_value)-1))
 
         self.actions.to(device)
         # self.variables = {index: item for index, item in enumerate(self.variables)}
@@ -670,12 +685,8 @@ class ConstraintSimplificationEnv_v3(Environment):
             self.used_variables.append(variable_pred)
             self.concrete_count += 1
             # 数值这部分需要修改
-            # min_int32 = -2147483648
-            # max_int32 = 2147483647
-            #
-            # # 生成一个随机的32位整数
-            # random_int = random.randint(min_int32, max_int32)
-            selected_int = action_n.item()
+
+            selected_int = int(dict_value[action_n.item])
             self.counterexamples_list[-1].append([variable_pred, selected_int])
 
             solver = Solver()
@@ -871,3 +882,28 @@ def get_actions(tensor_2d, tensor_1d):
     device = torch.device("cpu")
     result.to(device)
     return result
+def extract_variables_from_smt2_content(content):
+    """
+    从 SMT2 格式的字符串内容中提取变量名。
+
+    参数:
+    - content: SMT2 格式的字符串内容。
+
+    返回:
+    - 变量名列表。
+    """
+    # 用于匹配 `(declare-fun ...)` 语句中的变量名的正则表达式
+    variable_pattern = re.compile(r'\(declare-fun\s+([^ ]+)')
+
+    # 存储提取的变量名
+    variables = []
+
+    # 按行分割字符串并迭代每一行
+    for line in content.splitlines():
+        # 在每一行中查找匹配的变量名
+        match = variable_pattern.search(line)
+        if match:
+            # 如果找到匹配项，则将变量名添加到列表中
+            variables.append(match.group(1))
+
+    return set(variables)
