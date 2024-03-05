@@ -57,6 +57,9 @@ class Predictor:
         except (KeyError,IndexError) as e:
             print(e)
             return 0
+        print('*************************************************')
+        for i in self.x:
+            print(i)
         self.x = np.array(dataset[-1].feature).reshape(-1, 300)
         pred = model.predict(self.x)[0]
         return pred

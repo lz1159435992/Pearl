@@ -47,6 +47,10 @@ if __name__ == '__main__':
                 for a in assertions:
                     solver.add(a)
                 result, model, time_taken = solve_and_measure_time(solver, timeout)
+                print(key)
+                print(result)
+                print(model)
+                print(time_taken)
                 result_list = []
                 # if result == sat:
                 #     result = 'sat'
@@ -59,9 +63,9 @@ if __name__ == '__main__':
                 result_list.append(timeout)
                 result_list.append(model)
                 result_dict_2[key] = result_list
-                with open('result_dict.txt', 'w') as file:
+                with open('result_dict_2.txt', 'w') as file:
                     # 使用json.dump()将字典保存到文件
-                    json.dump(result_dict, file, indent=4)
+                    json.dump(result_dict_2, file, indent=4)
 
 # conn = sqlite3.connect(db_path)
 
