@@ -22,7 +22,6 @@ def extract_variables_from_smt2_content(content):
     """
     # 用于匹配 `(declare-fun ...)` 语句中的变量名的正则表达式
     variable_pattern = re.compile(r'\(declare-fun\s+([^ ]+)')
-
     # 存储提取的变量名
     variables = []
 
