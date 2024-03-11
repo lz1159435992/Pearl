@@ -63,9 +63,20 @@ if __name__ == '__main__':
                 result_list.append(timeout)
                 result_list.append(model)
                 result_dict_2[key] = result_list
-                with open('result_dict_2.txt', 'w') as file:
+                with open('result_dict.txt', 'w') as file:
                     # 使用json.dump()将字典保存到文件
-                    json.dump(result_dict_2, file, indent=4)
+                    json.dump(result_dict, file, indent=4)
+def search_script_2():
+    db_path = 'result_dictionary.db'
+    table_name = 'result_dictionary'
+    result_dict = fetch_data_as_dict(db_path, table_name)
+    for key, value in result_dict.items():
+        list1 = json.loads(value)
+        if list1[0] == "sat":
+            if list1[1] > 20:
+                print(key,value)
+if __name__ == '__main__':
+    search_script_2()
 
 # conn = sqlite3.connect(db_path)
 

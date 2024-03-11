@@ -1,0 +1,4617 @@
+current_time:2024-02-25 16:07:29
+file:solve_time:5.726s
+current_time:2024-02-25 16:08:00
+file:solve_time:6.359s
+current_time:2024-02-25 16:08:34
+file:solve_time:8.625s
+current_time:2024-02-25 16:09:03
+file:solve_time:5.055s
+current_time:2024-02-25 16:09:33
+file:solve_time:5.572s
+current_time:2024-02-25 16:10:03
+file:solve_time:4.592s
+current_time:2024-02-25 16:10:33
+file:solve_time:4.605s
+current_time:2024-02-25 16:11:01
+file:solve_time:2.799s
+current_time:2024-02-25 16:11:31
+file:solve_time:5.832s
+current_time:2024-02-25 16:12:03
+file:solve_time:6.276s
+current_time:2024-02-25 16:12:35
+file:solve_time:7.168s
+current_time:2024-02-25 16:13:08
+file:solve_time:8.811s
+current_time:2024-02-25 16:13:37
+file:solve_time:3.99s
+current_time:2024-02-25 16:14:10
+file:solve_time:7.63s
+current_time:2024-02-25 16:14:41
+file:solve_time:5.22s
+current_time:2024-02-25 16:15:12
+file:solve_time:5.044s
+current_time:2024-02-25 16:15:46
+file:solve_time:9.409s
+current_time:2024-02-25 16:16:18
+file:solve_time:7.422s
+current_time:2024-02-25 16:16:47
+file:solve_time:5.079s
+current_time:2024-02-25 16:41:28
+file:solve_time:5.63s
+current_time:2024-02-25 16:41:59
+file:solve_time:6.32s
+current_time:2024-02-25 16:42:31
+file:solve_time:8.31s
+current_time:2024-02-25 16:43:01
+file:solve_time:5.013s
+current_time:2024-02-25 16:43:31
+file:solve_time:5.47s
+current_time:2024-02-25 16:43:59
+file:solve_time:4.461s
+current_time:2024-02-25 16:44:28
+file:solve_time:4.475s
+current_time:2024-02-25 16:44:55
+file:solve_time:2.757s
+current_time:2024-02-25 16:45:25
+file:solve_time:5.735s
+current_time:2024-02-25 16:45:55
+file:solve_time:6.191s
+current_time:2024-02-25 16:46:27
+file:solve_time:7.059s
+current_time:2024-02-25 16:47:00
+file:solve_time:8.706s
+current_time:2024-02-25 16:47:29
+file:solve_time:4.045s
+current_time:2024-02-25 16:48:01
+file:solve_time:7.345s
+current_time:2024-02-25 16:48:31
+file:solve_time:4.888s
+current_time:2024-02-25 16:49:00
+file:solve_time:4.878s
+current_time:2024-02-25 16:49:34
+file:solve_time:9.192s
+current_time:2024-02-25 16:50:06
+file:solve_time:7.638s
+current_time:2024-02-25 16:50:36
+file:solve_time:5.262s
+current_time:2024-02-25 16:51:07
+file:solve_time:5.335s
+current_time:2024-02-25 16:51:40
+file:solve_time:6.789s
+current_time:2024-02-25 16:52:09
+file:solve_time:5.13s
+current_time:2024-02-25 16:52:40
+file:solve_time:6.57s
+current_time:2024-02-25 16:53:10
+file:solve_time:5.304s
+current_time:2024-02-25 16:53:40
+file:solve_time:4.698s
+current_time:2024-02-25 16:54:13
+file:solve_time:8.084s
+current_time:2024-02-25 16:54:43
+file:solve_time:5.958s
+current_time:2024-02-25 16:55:13
+file:solve_time:5.485s
+current_time:2024-02-25 16:55:43
+file:solve_time:4.476s
+current_time:2024-02-25 16:56:14
+file:solve_time:6.111s
+current_time:2024-02-25 16:56:46
+file:solve_time:7.218s
+current_time:2024-02-25 16:57:16
+file:solve_time:5.977s
+current_time:2024-02-25 16:57:47
+file:solve_time:6.433s
+current_time:2024-02-25 16:58:20
+file:solve_time:7.836s
+current_time:2024-02-25 16:58:49
+file:solve_time:4.958s
+current_time:2024-02-25 16:59:23
+file:solve_time:6.63s
+current_time:2024-02-25 16:59:52
+file:solve_time:4.62s
+current_time:2024-02-25 17:00:26
+file:solve_time:9.262s
+current_time:2024-02-25 17:00:59
+file:solve_time:7.868s
+current_time:2024-02-25 17:01:30
+file:solve_time:6.555s
+current_time:2024-02-25 17:02:03
+file:solve_time:8.108s
+current_time:2024-02-25 17:02:36
+file:solve_time:5.872s
+current_time:2024-02-25 17:03:07
+file:solve_time:6.644s
+current_time:2024-02-25 17:03:39
+file:solve_time:6.058s
+current_time:2024-02-25 17:04:11
+file:solve_time:5.799s
+current_time:2024-02-25 17:04:43
+file:solve_time:7.245s
+current_time:2024-02-25 17:05:14
+file:solve_time:5.605s
+current_time:2024-02-25 17:05:45
+file:solve_time:6.11s
+current_time:2024-02-25 17:06:17
+file:solve_time:7.015s
+current_time:2024-02-25 17:06:48
+file:solve_time:5.562s
+current_time:2024-02-25 17:07:21
+file:solve_time:7.968s
+current_time:2024-02-25 17:07:55
+file:solve_time:8.005s
+current_time:2024-02-25 17:08:25
+file:solve_time:5.404s
+current_time:2024-02-25 17:08:58
+file:solve_time:7.833s
+current_time:2024-02-25 17:09:32
+file:solve_time:7.605s
+current_time:2024-02-25 17:10:02
+file:solve_time:5.818s
+current_time:2024-02-25 17:10:35
+file:solve_time:6.075s
+current_time:2024-02-25 17:11:07
+file:solve_time:5.977s
+current_time:2024-02-25 17:11:40
+file:solve_time:5.859s
+current_time:2024-02-25 17:12:11
+file:solve_time:6.289s
+current_time:2024-02-25 17:12:43
+file:solve_time:6.089s
+current_time:2024-02-25 17:13:14
+file:solve_time:5.062s
+current_time:2024-02-25 17:13:45
+file:solve_time:6.443s
+current_time:2024-02-25 17:14:48
+file:solve_time:1.11s
+current_time:2024-02-25 17:14:53
+file:solve_time:1.21s
+current_time:2024-02-25 17:14:55
+file:solve_time:0.647s
+current_time:2024-02-25 17:15:02
+file:solve_time:5.619s
+current_time:2024-02-25 17:15:07
+file:solve_time:3.747s
+current_time:2024-02-25 17:15:15
+file:solve_time:5.722s
+current_time:2024-02-25 17:15:24
+file:solve_time:7.499s
+current_time:2024-02-25 17:15:27
+file:solve_time:1.522s
+current_time:2024-02-25 17:15:30
+file:solve_time:1.342s
+current_time:2024-02-25 17:15:34
+file:solve_time:2.485s
+current_time:2024-02-25 17:15:38
+file:solve_time:2.804s
+current_time:2024-02-25 17:15:44
+file:solve_time:3.676s
+current_time:2024-02-25 17:15:49
+file:solve_time:3.468s
+current_time:2024-02-25 17:15:51
+file:solve_time:0.505s
+current_time:2024-02-25 17:15:53
+file:solve_time:1.032s
+current_time:2024-02-25 17:15:58
+file:solve_time:1.895s
+current_time:2024-02-25 17:16:01
+file:solve_time:0.717s
+current_time:2024-02-25 17:16:10
+file:solve_time:7.59s
+current_time:2024-02-25 17:16:14
+file:solve_time:1.292s
+current_time:2024-02-25 17:16:17
+file:solve_time:0.789s
+current_time:2024-02-25 17:16:20
+file:solve_time:1.646s
+current_time:2024-02-25 17:16:29
+file:solve_time:7.298s
+current_time:2024-02-25 17:16:35
+file:solve_time:4.926s
+current_time:2024-02-25 17:16:43
+file:solve_time:4.926s
+current_time:2024-02-25 17:16:49
+file:solve_time:4.172s
+current_time:2024-02-25 17:16:54
+file:solve_time:2.924s
+current_time:2024-02-25 17:16:56
+file:solve_time:1.213s
+current_time:2024-02-25 17:16:59
+file:solve_time:0.791s
+current_time:2024-02-25 17:17:02
+file:solve_time:2.097s
+current_time:2024-02-25 17:17:05
+file:solve_time:0.736s
+current_time:2024-02-25 17:17:08
+file:solve_time:1.844s
+current_time:2024-02-25 17:17:11
+file:solve_time:0.83s
+current_time:2024-02-25 17:17:13
+file:solve_time:0.893s
+current_time:2024-02-25 17:17:25
+file:solve_time:10.556s
+current_time:2024-02-25 17:17:28
+file:solve_time:1.167s
+current_time:2024-02-25 17:17:32
+file:solve_time:0.434s
+current_time:2024-02-25 17:17:34
+file:solve_time:1.257s
+current_time:2024-02-25 17:17:38
+file:solve_time:0.436s
+current_time:2024-02-25 17:17:40
+file:solve_time:0.646s
+current_time:2024-02-25 17:17:43
+file:solve_time:1.085s
+current_time:2024-02-25 17:17:45
+file:solve_time:0.52s
+current_time:2024-02-25 17:17:57
+file:solve_time:10.745s
+current_time:2024-02-25 17:18:03
+file:solve_time:3.555s
+current_time:2024-02-25 17:18:06
+file:solve_time:1.755s
+current_time:2024-02-25 17:18:08
+file:solve_time:0.679s
+current_time:2024-02-25 17:18:12
+file:solve_time:2.105s
+current_time:2024-02-25 17:18:15
+file:solve_time:1.259s
+current_time:2024-02-25 17:18:17
+file:solve_time:0.873s
+current_time:2024-02-25 17:18:19
+file:solve_time:0.837s
+current_time:2024-02-25 17:18:21
+file:solve_time:0.493s
+current_time:2024-02-25 17:18:24
+file:solve_time:0.667s
+current_time:2024-02-25 17:18:26
+file:solve_time:0.446s
+current_time:2024-02-25 17:18:30
+file:solve_time:3.305s
+current_time:2024-02-25 17:18:33
+file:solve_time:0.739s
+current_time:2024-02-25 17:18:35
+file:solve_time:0.682s
+current_time:2024-02-25 17:18:37
+file:solve_time:0.704s
+current_time:2024-02-25 17:18:42
+file:solve_time:2.866s
+current_time:2024-02-25 17:18:46
+file:solve_time:2.658s
+current_time:2024-02-25 17:18:50
+file:solve_time:0.916s
+current_time:2024-02-25 17:19:04
+file:solve_time:12.588s
+current_time:2024-02-25 17:19:12
+file:solve_time:6.164s
+current_time:2024-02-25 17:19:14
+file:solve_time:0.613s
+current_time:2024-02-25 17:19:18
+file:solve_time:1.451s
+current_time:2024-02-25 17:19:21
+file:solve_time:1.481s
+current_time:2024-02-25 17:19:25
+file:solve_time:1.775s
+current_time:2024-02-25 17:19:28
+file:solve_time:1.3s
+current_time:2024-02-25 17:19:32
+file:solve_time:2.682s
+current_time:2024-02-25 17:19:36
+file:solve_time:1.603s
+current_time:2024-02-25 17:19:41
+file:solve_time:3.215s
+current_time:2024-02-25 17:19:45
+file:solve_time:2.007s
+current_time:2024-02-25 17:19:47
+file:solve_time:1.185s
+current_time:2024-02-25 17:19:51
+file:solve_time:1.666s
+current_time:2024-02-25 17:19:53
+file:solve_time:0.524s
+current_time:2024-02-25 17:20:11
+file:solve_time:16.452s
+current_time:2024-02-25 17:20:13
+file:solve_time:1.081s
+current_time:2024-02-25 17:20:19
+file:solve_time:3.636s
+current_time:2024-02-25 17:20:22
+file:solve_time:2.099s
+current_time:2024-02-25 17:20:30
+file:solve_time:6.07s
+current_time:2024-02-25 17:20:33
+file:solve_time:2.036s
+current_time:2024-02-25 17:20:36
+file:solve_time:1.003s
+current_time:2024-02-25 17:20:39
+file:solve_time:1.062s
+current_time:2024-02-25 17:20:45
+file:solve_time:4.565s
+current_time:2024-02-25 17:20:49
+file:solve_time:2.988s
+current_time:2024-02-25 17:20:53
+file:solve_time:2.289s
+current_time:2024-02-25 17:20:58
+file:solve_time:3.548s
+current_time:2024-02-25 17:21:02
+file:solve_time:2.11s
+current_time:2024-02-25 17:21:07
+file:solve_time:3.688s
+current_time:2024-02-25 17:21:10
+file:solve_time:1.586s
+current_time:2024-02-25 17:21:16
+file:solve_time:4.339s
+current_time:2024-02-25 17:21:18
+file:solve_time:0.783s
+current_time:2024-02-25 17:21:23
+file:solve_time:2.923s
+current_time:2024-02-25 17:21:28
+file:solve_time:4.19s
+current_time:2024-02-25 17:21:30
+file:solve_time:0.623s
+current_time:2024-02-25 17:21:36
+file:solve_time:3.722s
+current_time:2024-02-25 17:21:38
+file:solve_time:0.853s
+current_time:2024-02-25 17:21:40
+file:solve_time:0.862s
+current_time:2024-02-25 17:21:44
+file:solve_time:2.234s
+current_time:2024-02-25 17:21:51
+file:solve_time:4.936s
+current_time:2024-02-25 17:21:54
+file:solve_time:0.586s
+current_time:2024-02-25 17:21:57
+file:solve_time:1.322s
+current_time:2024-02-25 17:22:00
+file:solve_time:1.342s
+current_time:2024-02-25 17:22:03
+file:solve_time:1.139s
+current_time:2024-02-25 17:22:08
+file:solve_time:3.706s
+current_time:2024-02-25 17:22:20
+file:solve_time:10.846s
+current_time:2024-02-25 17:22:22
+file:solve_time:0.548s
+current_time:2024-02-25 17:22:28
+file:solve_time:4.18s
+current_time:2024-02-25 17:22:32
+file:solve_time:2.178s
+current_time:2024-02-25 17:22:35
+file:solve_time:0.585s
+current_time:2024-02-25 17:22:38
+file:solve_time:1.331s
+current_time:2024-02-25 17:22:40
+file:solve_time:0.472s
+current_time:2024-02-25 17:22:43
+file:solve_time:1.69s
+current_time:2024-02-25 17:22:46
+file:solve_time:0.876s
+current_time:2024-02-25 17:22:49
+file:solve_time:1.878s
+current_time:2024-02-25 17:22:53
+file:solve_time:0.621s
+current_time:2024-02-25 17:23:03
+file:solve_time:8.551s
+current_time:2024-02-25 17:23:06
+file:solve_time:1.273s
+current_time:2024-02-25 17:23:13
+file:solve_time:5.903s
+current_time:2024-02-25 17:23:19
+file:solve_time:4.246s
+current_time:2024-02-25 17:23:21
+file:solve_time:0.983s
+current_time:2024-02-25 17:23:27
+file:solve_time:4.272s
+current_time:2024-02-25 17:23:29
+file:solve_time:0.82s
+current_time:2024-02-25 17:23:33
+file:solve_time:1.875s
+current_time:2024-02-25 17:23:37
+file:solve_time:0.696s
+current_time:2024-02-25 17:23:39
+file:solve_time:0.591s
+current_time:2024-02-25 17:23:43
+file:solve_time:2.742s
+current_time:2024-02-25 17:23:45
+file:solve_time:0.495s
+current_time:2024-02-25 17:23:50
+file:solve_time:3.788s
+current_time:2024-02-25 17:23:53
+file:solve_time:0.668s
+current_time:2024-02-25 17:23:55
+file:solve_time:0.653s
+current_time:2024-02-25 17:23:59
+file:solve_time:1.241s
+current_time:2024-02-25 17:24:03
+file:solve_time:2.192s
+current_time:2024-02-25 17:24:09
+file:solve_time:4.497s
+current_time:2024-02-25 17:24:12
+file:solve_time:2.068s
+current_time:2024-02-25 17:24:15
+file:solve_time:1.187s
+current_time:2024-02-25 17:24:19
+file:solve_time:1.283s
+current_time:2024-02-25 17:24:30
+file:solve_time:9.524s
+current_time:2024-02-25 17:24:41
+file:solve_time:8.766s
+current_time:2024-02-25 17:24:44
+file:solve_time:2.055s
+current_time:2024-02-25 17:24:46
+file:solve_time:0.626s
+current_time:2024-02-25 17:24:49
+file:solve_time:1.533s
+current_time:2024-02-25 17:24:55
+file:solve_time:3.865s
+current_time:2024-02-25 17:25:00
+file:solve_time:3.562s
+current_time:2024-02-25 17:25:05
+file:solve_time:2.277s
+current_time:2024-02-25 17:25:14
+file:solve_time:6.834s
+current_time:2024-02-25 17:25:27
+file:solve_time:11.494s
+current_time:2024-02-25 17:25:32
+file:solve_time:3.768s
+current_time:2024-02-25 17:25:34
+file:solve_time:0.637s
+current_time:2024-02-25 17:25:42
+file:solve_time:5.993s
+current_time:2024-02-25 17:25:44
+file:solve_time:0.556s
+current_time:2024-02-25 17:25:49
+file:solve_time:4.262s
+current_time:2024-02-25 17:25:58
+file:solve_time:7.082s
+current_time:2024-02-25 17:26:04
+file:solve_time:4.137s
+current_time:2024-02-25 17:26:08
+file:solve_time:2.553s
+current_time:2024-02-25 17:26:13
+file:solve_time:1.759s
+current_time:2024-02-25 17:26:18
+file:solve_time:3.777s
+current_time:2024-02-25 17:26:25
+file:solve_time:5.765s
+current_time:2024-02-25 17:26:27
+file:solve_time:0.574s
+current_time:2024-02-25 17:26:29
+file:solve_time:0.515s
+current_time:2024-02-25 17:26:32
+file:solve_time:1.244s
+current_time:2024-02-25 17:26:34
+file:solve_time:0.577s
+current_time:2024-02-25 17:26:37
+file:solve_time:0.907s
+current_time:2024-02-25 17:26:44
+file:solve_time:6.201s
+current_time:2024-02-25 17:26:48
+file:solve_time:1.989s
+current_time:2024-02-25 17:26:53
+file:solve_time:3.661s
+current_time:2024-02-25 17:26:55
+file:solve_time:0.601s
+current_time:2024-02-25 17:27:12
+file:solve_time:15.488s
+current_time:2024-02-25 17:27:19
+file:solve_time:3.439s
+current_time:2024-02-25 17:27:24
+file:solve_time:3.671s
+current_time:2024-02-25 17:27:26
+file:solve_time:0.736s
+current_time:2024-02-25 17:27:28
+file:solve_time:0.506s
+current_time:2024-02-25 17:27:32
+file:solve_time:2.214s
+current_time:2024-02-25 17:27:36
+file:solve_time:2.425s
+current_time:2024-02-25 17:27:41
+file:solve_time:3.418s
+current_time:2024-02-25 17:27:43
+file:solve_time:0.572s
+current_time:2024-02-25 17:27:49
+file:solve_time:4.25s
+current_time:2024-02-25 17:27:51
+file:solve_time:0.811s
+current_time:2024-02-25 17:27:54
+file:solve_time:1.185s
+current_time:2024-02-25 17:28:00
+file:solve_time:4.963s
+current_time:2024-02-25 17:28:04
+file:solve_time:2.941s
+current_time:2024-02-25 17:28:07
+file:solve_time:1.367s
+current_time:2024-02-25 17:28:12
+file:solve_time:2.622s
+current_time:2024-02-25 17:28:18
+file:solve_time:4.445s
+current_time:2024-02-25 17:28:22
+file:solve_time:2.678s
+current_time:2024-02-25 17:28:24
+file:solve_time:0.675s
+current_time:2024-02-25 17:28:29
+file:solve_time:3.173s
+current_time:2024-02-25 17:28:31
+file:solve_time:0.566s
+current_time:2024-02-25 17:28:33
+file:solve_time:0.95s
+current_time:2024-02-25 17:28:38
+file:solve_time:3.204s
+current_time:2024-02-25 17:28:46
+file:solve_time:6.48s
+current_time:2024-02-25 17:28:49
+file:solve_time:1.91s
+current_time:2024-02-25 17:28:52
+file:solve_time:1.233s
+current_time:2024-02-25 17:28:54
+file:solve_time:0.861s
+current_time:2024-02-25 17:29:01
+file:solve_time:4.772s
+current_time:2024-02-25 17:29:05
+file:solve_time:3.116s
+current_time:2024-02-25 17:29:11
+file:solve_time:3.765s
+current_time:2024-02-25 17:29:13
+file:solve_time:0.607s
+current_time:2024-02-25 17:29:16
+file:solve_time:0.722s
+current_time:2024-02-25 17:29:23
+file:solve_time:4.803s
+current_time:2024-02-25 17:29:25
+file:solve_time:0.822s
+current_time:2024-02-25 17:29:32
+file:solve_time:5.257s
+current_time:2024-02-25 17:29:35
+file:solve_time:1.215s
+current_time:2024-02-25 17:29:46
+file:solve_time:7.686s
+current_time:2024-02-25 17:29:48
+file:solve_time:0.836s
+current_time:2024-02-25 17:29:51
+file:solve_time:1.139s
+current_time:2024-02-25 17:29:53
+file:solve_time:0.525s
+current_time:2024-02-25 17:29:55
+file:solve_time:1.135s
+current_time:2024-02-25 17:29:57
+file:solve_time:0.57s
+current_time:2024-02-25 17:30:10
+file:solve_time:10.995s
+current_time:2024-02-25 17:30:18
+file:solve_time:7.018s
+current_time:2024-02-25 17:30:21
+file:solve_time:0.627s
+current_time:2024-02-25 17:30:24
+file:solve_time:1.333s
+current_time:2024-02-25 17:30:27
+file:solve_time:1.466s
+current_time:2024-02-25 17:30:33
+file:solve_time:4.249s
+current_time:2024-02-25 17:30:38
+file:solve_time:2.681s
+current_time:2024-02-25 17:30:42
+file:solve_time:0.876s
+current_time:2024-02-25 17:30:44
+file:solve_time:0.513s
+current_time:2024-02-25 17:30:54
+file:solve_time:7.724s
+current_time:2024-02-25 17:30:57
+file:solve_time:0.489s
+current_time:2024-02-25 17:30:59
+file:solve_time:0.709s
+current_time:2024-02-25 17:31:02
+file:solve_time:1.019s
+current_time:2024-02-25 17:31:05
+file:solve_time:1.185s
+current_time:2024-02-25 17:31:10
+file:solve_time:4.275s
+current_time:2024-02-25 17:31:13
+file:solve_time:1.022s
+current_time:2024-02-25 17:31:16
+file:solve_time:1.673s
+current_time:2024-02-25 17:31:20
+file:solve_time:2.428s
+current_time:2024-02-25 17:31:22
+file:solve_time:0.69s
+current_time:2024-02-25 17:31:25
+file:solve_time:0.604s
+current_time:2024-02-25 17:31:27
+file:solve_time:0.882s
+current_time:2024-02-25 17:31:31
+file:solve_time:1.262s
+current_time:2024-02-25 17:31:34
+file:solve_time:1.019s
+current_time:2024-02-25 17:31:36
+file:solve_time:1.025s
+current_time:2024-02-25 17:31:41
+file:solve_time:2.029s
+current_time:2024-02-25 17:31:46
+file:solve_time:1.278s
+current_time:2024-02-25 17:31:49
+file:solve_time:1.487s
+current_time:2024-02-25 17:31:52
+file:solve_time:1.474s
+current_time:2024-02-25 17:31:55
+file:solve_time:1.674s
+current_time:2024-02-25 17:31:58
+file:solve_time:0.897s
+current_time:2024-02-25 17:32:00
+file:solve_time:1.183s
+current_time:2024-02-25 17:32:07
+file:solve_time:4.557s
+current_time:2024-02-25 17:32:10
+file:solve_time:1.808s
+current_time:2024-02-25 17:32:12
+file:solve_time:1.074s
+current_time:2024-02-25 17:32:21
+file:solve_time:6.989s
+current_time:2024-02-25 17:32:24
+file:solve_time:1.143s
+current_time:2024-02-25 17:32:29
+file:solve_time:3.367s
+current_time:2024-02-25 17:32:34
+file:solve_time:3.631s
+current_time:2024-02-25 17:32:37
+file:solve_time:2.013s
+current_time:2024-02-25 17:32:40
+file:solve_time:1.092s
+current_time:2024-02-25 17:32:42
+file:solve_time:1.038s
+current_time:2024-02-25 17:32:45
+file:solve_time:0.647s
+current_time:2024-02-25 17:32:47
+file:solve_time:1.018s
+current_time:2024-02-25 17:32:51
+file:solve_time:2.466s
+current_time:2024-02-25 17:32:53
+file:solve_time:0.576s
+current_time:2024-02-25 17:33:01
+file:solve_time:5.969s
+current_time:2024-02-25 17:33:05
+file:solve_time:2.928s
+current_time:2024-02-25 17:33:08
+file:solve_time:1.136s
+current_time:2024-02-25 17:33:11
+file:solve_time:1.582s
+current_time:2024-02-25 17:33:13
+file:solve_time:0.697s
+current_time:2024-02-25 17:33:16
+file:solve_time:0.857s
+current_time:2024-02-25 17:33:19
+file:solve_time:1.643s
+current_time:2024-02-25 17:33:27
+file:solve_time:6.164s
+current_time:2024-02-25 17:33:31
+file:solve_time:2.923s
+current_time:2024-02-25 17:33:34
+file:solve_time:1.259s
+current_time:2024-02-25 17:33:42
+file:solve_time:6.087s
+current_time:2024-02-25 17:33:46
+file:solve_time:1.668s
+current_time:2024-02-25 17:33:51
+file:solve_time:3.354s
+current_time:2024-02-25 17:33:54
+file:solve_time:1.105s
+current_time:2024-02-25 17:33:56
+file:solve_time:0.703s
+current_time:2024-02-25 17:34:02
+file:solve_time:2.64s
+current_time:2024-02-25 17:34:07
+file:solve_time:1.558s
+current_time:2024-02-25 17:34:14
+file:solve_time:5.962s
+current_time:2024-02-25 17:34:17
+file:solve_time:0.978s
+current_time:2024-02-25 17:34:19
+file:solve_time:0.642s
+current_time:2024-02-25 17:34:25
+file:solve_time:4.146s
+current_time:2024-02-25 17:34:27
+file:solve_time:0.564s
+current_time:2024-02-25 17:34:29
+file:solve_time:0.522s
+current_time:2024-02-25 17:34:34
+file:solve_time:3.649s
+current_time:2024-02-25 17:34:36
+file:solve_time:0.637s
+current_time:2024-02-25 17:34:41
+file:solve_time:1.492s
+current_time:2024-02-25 17:34:43
+file:solve_time:0.617s
+current_time:2024-02-25 17:34:46
+file:solve_time:1.058s
+current_time:2024-02-25 17:34:53
+file:solve_time:6.362s
+current_time:2024-02-25 17:34:57
+file:solve_time:2.331s
+current_time:2024-02-25 17:34:59
+file:solve_time:0.643s
+current_time:2024-02-25 17:35:02
+file:solve_time:1.122s
+current_time:2024-02-25 17:35:06
+file:solve_time:0.514s
+current_time:2024-02-25 17:35:11
+file:solve_time:1.975s
+current_time:2024-02-25 17:35:13
+file:solve_time:0.562s
+current_time:2024-02-25 17:35:30
+file:solve_time:15.444s
+current_time:2024-02-25 17:35:40
+file:solve_time:8.276s
+current_time:2024-02-25 17:35:44
+file:solve_time:1.903s
+current_time:2024-02-25 17:35:46
+file:solve_time:1.204s
+current_time:2024-02-25 17:35:53
+file:solve_time:5.479s
+current_time:2024-02-25 17:35:56
+file:solve_time:1.035s
+current_time:2024-02-25 17:35:59
+file:solve_time:1.598s
+current_time:2024-02-25 17:36:02
+file:solve_time:1.063s
+current_time:2024-02-25 17:36:04
+file:solve_time:0.963s
+current_time:2024-02-25 17:36:09
+file:solve_time:3.519s
+current_time:2024-02-25 17:36:12
+file:solve_time:0.648s
+current_time:2024-02-25 17:36:14
+file:solve_time:1.142s
+current_time:2024-02-25 17:36:19
+file:solve_time:2.73s
+current_time:2024-02-25 17:36:21
+file:solve_time:0.698s
+current_time:2024-02-25 17:36:25
+file:solve_time:0.588s
+current_time:2024-02-25 17:36:41
+file:solve_time:14.94s
+current_time:2024-02-25 17:36:45
+file:solve_time:1.838s
+current_time:2024-02-25 17:36:47
+file:solve_time:0.569s
+current_time:2024-02-25 17:36:52
+file:solve_time:3.987s
+current_time:2024-02-25 17:36:55
+file:solve_time:0.926s
+current_time:2024-02-25 17:36:59
+file:solve_time:2.114s
+current_time:2024-02-25 17:37:02
+file:solve_time:1.732s
+current_time:2024-02-25 17:37:07
+file:solve_time:3.003s
+current_time:2024-02-25 17:37:11
+file:solve_time:1.13s
+current_time:2024-02-25 17:37:14
+file:solve_time:1.651s
+current_time:2024-02-25 17:37:17
+file:solve_time:1.14s
+current_time:2024-02-25 17:37:21
+file:solve_time:2.894s
+current_time:2024-02-25 17:37:23
+file:solve_time:0.579s
+current_time:2024-02-25 17:37:30
+file:solve_time:5.047s
+current_time:2024-02-25 17:37:46
+file:solve_time:14.001s
+current_time:2024-02-25 17:37:51
+file:solve_time:3.52s
+current_time:2024-02-25 17:37:54
+file:solve_time:2.205s
+current_time:2024-02-25 17:38:01
+file:solve_time:3.606s
+current_time:2024-02-25 17:38:05
+file:solve_time:2.244s
+current_time:2024-02-25 17:38:08
+file:solve_time:0.849s
+current_time:2024-02-25 17:38:12
+file:solve_time:3.197s
+current_time:2024-02-25 17:38:16
+file:solve_time:1.706s
+current_time:2024-02-25 17:38:19
+file:solve_time:1.463s
+current_time:2024-02-25 17:38:21
+file:solve_time:0.542s
+current_time:2024-02-25 17:38:29
+file:solve_time:6.551s
+current_time:2024-02-25 17:38:38
+file:solve_time:5.409s
+current_time:2024-02-25 17:38:43
+file:solve_time:3.68s
+current_time:2024-02-25 17:38:46
+file:solve_time:1.177s
+current_time:2024-02-25 17:38:51
+file:solve_time:1.903s
+current_time:2024-02-25 17:38:58
+file:solve_time:5.666s
+current_time:2024-02-25 17:39:02
+file:solve_time:2.74s
+current_time:2024-02-25 17:39:05
+file:solve_time:1.264s
+current_time:2024-02-25 17:39:10
+file:solve_time:3.405s
+current_time:2024-02-25 17:39:13
+file:solve_time:1.528s
+current_time:2024-02-25 17:39:16
+file:solve_time:1.141s
+current_time:2024-02-25 17:39:19
+file:solve_time:1.229s
+current_time:2024-02-25 17:39:23
+file:solve_time:2.688s
+current_time:2024-02-25 17:39:28
+file:solve_time:2.544s
+current_time:2024-02-25 17:39:31
+file:solve_time:1.518s
+current_time:2024-02-25 17:39:36
+file:solve_time:2.965s
+current_time:2024-02-25 17:39:38
+file:solve_time:0.711s
+current_time:2024-02-25 17:39:41
+file:solve_time:0.744s
+current_time:2024-02-25 17:39:44
+file:solve_time:1.809s
+current_time:2024-02-25 17:39:46
+file:solve_time:0.64s
+current_time:2024-02-25 17:39:55
+file:solve_time:7.672s
+current_time:2024-02-25 17:40:03
+file:solve_time:5.925s
+current_time:2024-02-25 17:40:12
+file:solve_time:8.078s
+current_time:2024-02-25 17:40:17
+file:solve_time:2.87s
+current_time:2024-02-25 17:40:19
+file:solve_time:0.737s
+current_time:2024-02-25 17:40:22
+file:solve_time:1.509s
+current_time:2024-02-25 17:40:26
+file:solve_time:2.36s
+current_time:2024-02-25 17:40:29
+file:solve_time:1.082s
+current_time:2024-02-25 17:40:31
+file:solve_time:0.582s
+current_time:2024-02-25 17:40:34
+file:solve_time:1.52s
+current_time:2024-02-25 17:40:40
+file:solve_time:4.421s
+current_time:2024-02-25 17:40:46
+file:solve_time:2.477s
+current_time:2024-02-25 17:40:50
+file:solve_time:2.341s
+current_time:2024-02-25 17:40:53
+file:solve_time:2.03s
+current_time:2024-02-25 17:40:59
+file:solve_time:3.793s
+current_time:2024-02-25 17:41:06
+file:solve_time:5.748s
+current_time:2024-02-25 17:41:09
+file:solve_time:1.566s
+current_time:2024-02-25 17:41:22
+file:solve_time:11.673s
+current_time:2024-02-25 17:41:25
+file:solve_time:0.646s
+current_time:2024-02-25 17:41:28
+file:solve_time:1.532s
+current_time:2024-02-25 17:41:31
+file:solve_time:2.116s
+current_time:2024-02-25 17:41:33
+file:solve_time:0.621s
+current_time:2024-02-25 17:41:36
+file:solve_time:0.995s
+current_time:2024-02-25 17:41:40
+file:solve_time:2.277s
+current_time:2024-02-25 17:41:44
+file:solve_time:2.641s
+current_time:2024-02-25 17:41:46
+file:solve_time:0.61s
+current_time:2024-02-25 17:41:50
+file:solve_time:2.645s
+current_time:2024-02-25 17:41:53
+file:solve_time:0.636s
+current_time:2024-02-25 17:41:56
+file:solve_time:1.404s
+current_time:2024-02-25 17:41:58
+file:solve_time:0.733s
+current_time:2024-02-25 17:42:02
+file:solve_time:2.306s
+current_time:2024-02-25 17:42:04
+file:solve_time:0.486s
+current_time:2024-02-25 17:42:06
+file:solve_time:0.609s
+current_time:2024-02-25 17:42:08
+file:solve_time:0.879s
+current_time:2024-02-25 17:42:22
+file:solve_time:12.114s
+current_time:2024-02-25 17:42:24
+file:solve_time:0.624s
+current_time:2024-02-25 17:42:27
+file:solve_time:0.709s
+current_time:2024-02-25 17:42:30
+file:solve_time:1.487s
+current_time:2024-02-25 17:42:32
+file:solve_time:1.363s
+current_time:2024-02-25 17:42:37
+file:solve_time:2.9s
+current_time:2024-02-25 17:42:40
+file:solve_time:1.897s
+current_time:2024-02-25 17:42:46
+file:solve_time:3.726s
+current_time:2024-02-25 17:42:55
+file:solve_time:7.541s
+current_time:2024-02-25 17:43:03
+file:solve_time:6.352s
+current_time:2024-02-25 17:43:05
+file:solve_time:0.821s
+current_time:2024-02-25 17:43:08
+file:solve_time:1.578s
+current_time:2024-02-25 17:43:12
+file:solve_time:2.193s
+current_time:2024-02-25 17:43:19
+file:solve_time:5.482s
+current_time:2024-02-25 17:43:22
+file:solve_time:1.418s
+current_time:2024-02-25 17:43:29
+file:solve_time:5.208s
+current_time:2024-02-25 17:43:34
+file:solve_time:3.608s
+current_time:2024-02-25 17:43:39
+file:solve_time:3.117s
+current_time:2024-02-25 17:43:42
+file:solve_time:1.376s
+current_time:2024-02-25 17:43:44
+file:solve_time:0.609s
+current_time:2024-02-25 17:43:49
+file:solve_time:3.467s
+current_time:2024-02-25 17:43:51
+file:solve_time:1.028s
+current_time:2024-02-25 17:43:57
+file:solve_time:3.607s
+current_time:2024-02-25 17:44:02
+file:solve_time:1.831s
+current_time:2024-02-25 17:44:05
+file:solve_time:1.683s
+current_time:2024-02-25 17:44:08
+file:solve_time:1.188s
+current_time:2024-02-25 17:44:17
+file:solve_time:8.245s
+current_time:2024-02-25 17:44:20
+file:solve_time:1.233s
+current_time:2024-02-25 17:44:23
+file:solve_time:1.32s
+current_time:2024-02-25 17:44:32
+file:solve_time:7.349s
+current_time:2024-02-25 17:44:39
+file:solve_time:4.763s
+current_time:2024-02-25 17:44:41
+file:solve_time:1.212s
+current_time:2024-02-25 17:44:44
+file:solve_time:0.957s
+current_time:2024-02-25 17:44:47
+file:solve_time:1.632s
+current_time:2024-02-25 17:44:50
+file:solve_time:0.81s
+current_time:2024-02-25 17:44:52
+file:solve_time:1.065s
+current_time:2024-02-25 17:45:01
+file:solve_time:7.543s
+current_time:2024-02-25 17:45:10
+file:solve_time:7.33s
+current_time:2024-02-25 17:45:13
+file:solve_time:0.802s
+current_time:2024-02-25 17:45:16
+file:solve_time:1.983s
+current_time:2024-02-25 17:45:19
+file:solve_time:0.986s
+current_time:2024-02-25 17:45:21
+file:solve_time:0.811s
+current_time:2024-02-25 17:45:31
+file:solve_time:8.525s
+current_time:2024-02-25 17:45:35
+file:solve_time:2.554s
+current_time:2024-02-25 17:45:38
+file:solve_time:1.235s
+current_time:2024-02-25 17:45:41
+file:solve_time:1.177s
+current_time:2024-02-25 17:45:48
+file:solve_time:5.641s
+current_time:2024-02-25 17:45:50
+file:solve_time:0.745s
+current_time:2024-02-25 17:45:52
+file:solve_time:0.545s
+current_time:2024-02-25 17:45:57
+file:solve_time:3.028s
+current_time:2024-02-25 17:46:04
+file:solve_time:5.562s
+current_time:2024-02-25 17:46:07
+file:solve_time:1.163s
+current_time:2024-02-25 17:46:09
+file:solve_time:0.686s
+current_time:2024-02-25 17:46:13
+file:solve_time:2.356s
+current_time:2024-02-25 17:46:20
+file:solve_time:4.959s
+current_time:2024-02-25 17:46:22
+file:solve_time:0.801s
+current_time:2024-02-25 17:46:26
+file:solve_time:2.017s
+current_time:2024-02-25 17:46:28
+file:solve_time:0.491s
+current_time:2024-02-25 17:46:36
+file:solve_time:6.977s
+current_time:2024-02-25 17:46:39
+file:solve_time:1.032s
+current_time:2024-02-25 17:46:41
+file:solve_time:1.085s
+current_time:2024-02-25 17:46:44
+file:solve_time:1.253s
+current_time:2024-02-25 17:46:51
+file:solve_time:5.547s
+current_time:2024-02-25 17:47:02
+file:solve_time:9.229s
+current_time:2024-02-25 17:47:05
+file:solve_time:1.542s
+current_time:2024-02-25 17:47:08
+file:solve_time:0.973s
+current_time:2024-02-25 17:47:11
+file:solve_time:2.038s
+current_time:2024-02-25 17:47:14
+file:solve_time:1.108s
+current_time:2024-02-25 17:47:16
+file:solve_time:0.646s
+current_time:2024-02-25 17:47:21
+file:solve_time:2.837s
+current_time:2024-02-25 17:47:29
+file:solve_time:6.825s
+current_time:2024-02-25 17:47:34
+file:solve_time:3.002s
+current_time:2024-02-25 17:47:36
+file:solve_time:0.611s
+current_time:2024-02-25 17:47:38
+file:solve_time:1.127s
+current_time:2024-02-25 17:47:43
+file:solve_time:3.104s
+current_time:2024-02-25 17:47:48
+file:solve_time:3.439s
+current_time:2024-02-25 17:47:51
+file:solve_time:1.484s
+current_time:2024-02-25 17:47:58
+file:solve_time:3.856s
+current_time:2024-02-25 17:48:07
+file:solve_time:7.505s
+current_time:2024-02-25 17:48:11
+file:solve_time:1.781s
+current_time:2024-02-25 17:48:15
+file:solve_time:3.33s
+current_time:2024-02-25 17:48:26
+file:solve_time:8.652s
+current_time:2024-02-25 17:48:30
+file:solve_time:2.5s
+current_time:2024-02-25 17:48:33
+file:solve_time:1.521s
+current_time:2024-02-25 17:48:44
+file:solve_time:9.517s
+current_time:2024-02-25 17:48:55
+file:solve_time:9.807s
+current_time:2024-02-25 17:48:59
+file:solve_time:1.954s
+current_time:2024-02-25 17:49:05
+file:solve_time:4.268s
+current_time:2024-02-25 17:49:11
+file:solve_time:4.098s
+current_time:2024-02-25 17:49:16
+file:solve_time:2.787s
+current_time:2024-02-25 17:49:25
+file:solve_time:7.275s
+current_time:2024-02-25 17:49:30
+file:solve_time:1.621s
+current_time:2024-02-25 17:49:33
+file:solve_time:1.053s
+current_time:2024-02-25 17:49:42
+file:solve_time:7.472s
+current_time:2024-02-25 17:49:46
+file:solve_time:2.716s
+current_time:2024-02-25 17:49:51
+file:solve_time:3.441s
+current_time:2024-02-25 17:49:54
+file:solve_time:1.734s
+current_time:2024-02-25 17:50:02
+file:solve_time:6.636s
+current_time:2024-02-25 17:50:11
+file:solve_time:6.585s
+current_time:2024-02-25 17:50:17
+file:solve_time:5.247s
+current_time:2024-02-25 17:50:20
+file:solve_time:1.316s
+current_time:2024-02-25 17:50:23
+file:solve_time:0.914s
+current_time:2024-02-25 17:50:26
+file:solve_time:1.678s
+current_time:2024-02-25 17:50:30
+file:solve_time:2.302s
+current_time:2024-02-25 17:50:34
+file:solve_time:2.423s
+current_time:2024-02-25 17:50:36
+file:solve_time:0.601s
+current_time:2024-02-25 17:50:40
+file:solve_time:2.454s
+current_time:2024-02-25 17:50:44
+file:solve_time:2.903s
+current_time:2024-02-25 17:50:48
+file:solve_time:2.337s
+current_time:2024-02-25 17:50:52
+file:solve_time:2.295s
+current_time:2024-02-25 17:50:55
+file:solve_time:1.221s
+current_time:2024-02-25 17:51:01
+file:solve_time:3.939s
+current_time:2024-02-25 17:51:03
+file:solve_time:0.897s
+current_time:2024-02-25 17:51:06
+file:solve_time:1.31s
+current_time:2024-02-25 17:51:08
+file:solve_time:0.719s
+current_time:2024-02-25 17:51:11
+file:solve_time:1.08s
+current_time:2024-02-25 17:51:13
+file:solve_time:0.741s
+current_time:2024-02-25 17:51:24
+file:solve_time:8.743s
+current_time:2024-02-25 17:51:28
+file:solve_time:2.772s
+current_time:2024-02-25 17:51:32
+file:solve_time:1.923s
+current_time:2024-02-25 17:51:34
+file:solve_time:1.313s
+current_time:2024-02-25 17:51:46
+file:solve_time:10.234s
+current_time:2024-02-25 17:51:53
+file:solve_time:5.332s
+current_time:2024-02-25 17:51:58
+file:solve_time:3.21s
+current_time:2024-02-25 17:52:03
+file:solve_time:3.776s
+current_time:2024-02-25 17:52:08
+file:solve_time:1.872s
+current_time:2024-02-25 17:52:14
+file:solve_time:4.418s
+current_time:2024-02-25 17:52:21
+file:solve_time:5.413s
+current_time:2024-02-25 17:52:23
+file:solve_time:0.633s
+current_time:2024-02-25 17:52:27
+file:solve_time:2.243s
+current_time:2024-02-25 17:52:29
+file:solve_time:0.573s
+current_time:2024-02-25 17:52:32
+file:solve_time:0.549s
+current_time:2024-02-25 17:52:34
+file:solve_time:0.898s
+current_time:2024-02-25 17:52:41
+file:solve_time:4.953s
+current_time:2024-02-25 17:52:46
+file:solve_time:3.475s
+current_time:2024-02-25 17:52:54
+file:solve_time:6.377s
+current_time:2024-02-25 17:52:58
+file:solve_time:2.5s
+current_time:2024-02-25 17:53:01
+file:solve_time:1.412s
+current_time:2024-02-25 17:53:05
+file:solve_time:2.821s
+current_time:2024-02-25 17:53:11
+file:solve_time:3.88s
+current_time:2024-02-25 17:53:13
+file:solve_time:0.773s
+current_time:2024-02-25 17:53:20
+file:solve_time:3.443s
+current_time:2024-02-25 17:53:23
+file:solve_time:1.593s
+current_time:2024-02-25 17:53:26
+file:solve_time:1.458s
+current_time:2024-02-25 17:53:38
+file:solve_time:9.716s
+current_time:2024-02-25 17:53:41
+file:solve_time:2.058s
+current_time:2024-02-25 17:53:45
+file:solve_time:0.635s
+current_time:2024-02-25 17:53:50
+file:solve_time:3.533s
+current_time:2024-02-25 17:53:52
+file:solve_time:0.812s
+current_time:2024-02-25 17:53:57
+file:solve_time:3.05s
+current_time:2024-02-25 17:54:01
+file:solve_time:2.179s
+current_time:2024-02-25 17:54:03
+file:solve_time:1.354s
+current_time:2024-02-25 17:54:08
+file:solve_time:2.598s
+current_time:2024-02-25 17:54:11
+file:solve_time:1.795s
+current_time:2024-02-25 17:54:16
+file:solve_time:3.63s
+current_time:2024-02-25 17:54:31
+file:solve_time:13.14s
+current_time:2024-02-25 17:54:33
+file:solve_time:0.744s
+current_time:2024-02-25 17:54:40
+file:solve_time:4.93s
+current_time:2024-02-25 17:54:49
+file:solve_time:5.766s
+current_time:2024-02-25 17:54:52
+file:solve_time:1.518s
+current_time:2024-02-25 17:54:55
+file:solve_time:0.958s
+current_time:2024-02-25 17:54:58
+file:solve_time:1.551s
+current_time:2024-02-25 17:55:05
+file:solve_time:5.393s
+current_time:2024-02-25 17:55:09
+file:solve_time:2.422s
+current_time:2024-02-25 17:55:22
+file:solve_time:10.772s
+current_time:2024-02-25 17:55:25
+file:solve_time:1.528s
+current_time:2024-02-25 17:55:29
+file:solve_time:0.635s
+current_time:2024-02-25 17:55:31
+file:solve_time:0.724s
+current_time:2024-02-25 17:55:41
+file:solve_time:8.415s
+current_time:2024-02-25 17:55:43
+file:solve_time:0.718s
+current_time:2024-02-25 17:55:48
+file:solve_time:3.125s
+current_time:2024-02-25 17:55:52
+file:solve_time:2.268s
+current_time:2024-02-25 17:55:54
+file:solve_time:0.664s
+current_time:2024-02-25 17:55:57
+file:solve_time:0.584s
+current_time:2024-02-25 17:56:03
+file:solve_time:4.879s
+current_time:2024-02-25 17:56:10
+file:solve_time:5.414s
+current_time:2024-02-25 17:56:15
+file:solve_time:3.274s
+current_time:2024-02-25 17:56:18
+file:solve_time:1.864s
+current_time:2024-02-25 17:56:22
+file:solve_time:2.53s
+current_time:2024-02-25 17:56:27
+file:solve_time:3.261s
+current_time:2024-02-25 17:56:39
+file:solve_time:8.663s
+current_time:2024-02-25 17:56:46
+file:solve_time:5.329s
+current_time:2024-02-25 17:56:51
+file:solve_time:3.166s
+current_time:2024-02-25 17:56:55
+file:solve_time:2.309s
+current_time:2024-02-25 17:56:59
+file:solve_time:3.091s
+current_time:2024-02-25 17:57:03
+file:solve_time:2.462s
+current_time:2024-02-25 17:57:07
+file:solve_time:2.36s
+current_time:2024-02-25 17:57:13
+file:solve_time:4.535s
+current_time:2024-02-25 17:57:22
+file:solve_time:5.224s
+current_time:2024-02-25 17:57:28
+file:solve_time:4.978s
+current_time:2024-02-25 17:57:31
+file:solve_time:0.77s
+current_time:2024-02-25 17:57:33
+file:solve_time:0.586s
+current_time:2024-02-25 17:57:37
+file:solve_time:2.717s
+current_time:2024-02-25 17:57:41
+file:solve_time:2.074s
+current_time:2024-02-25 17:57:43
+file:solve_time:0.694s
+current_time:2024-02-25 17:57:48
+file:solve_time:3.525s
+current_time:2024-02-25 17:57:55
+file:solve_time:5.694s
+current_time:2024-02-25 17:57:58
+file:solve_time:0.894s
+current_time:2024-02-25 17:58:00
+file:solve_time:0.668s
+current_time:2024-02-25 17:58:07
+file:solve_time:5.738s
+current_time:2024-02-25 17:58:12
+file:solve_time:3.222s
+current_time:2024-02-25 17:58:17
+file:solve_time:1.857s
+current_time:2024-02-25 17:58:19
+file:solve_time:0.638s
+current_time:2024-02-25 17:58:24
+file:solve_time:2.788s
+current_time:2024-02-25 17:58:29
+file:solve_time:4.234s
+current_time:2024-02-25 17:58:32
+file:solve_time:0.911s
+current_time:2024-02-25 17:58:38
+file:solve_time:4.512s
+current_time:2024-02-25 17:58:44
+file:solve_time:4.575s
+current_time:2024-02-25 17:58:46
+file:solve_time:0.594s
+current_time:2024-02-25 17:58:49
+file:solve_time:0.713s
+current_time:2024-02-25 17:58:57
+file:solve_time:7.41s
+current_time:2024-02-25 17:59:02
+file:solve_time:3.305s
+current_time:2024-02-25 17:59:12
+file:solve_time:7.926s
+current_time:2024-02-25 17:59:14
+file:solve_time:0.561s
+current_time:2024-02-25 17:59:16
+file:solve_time:0.897s
+current_time:2024-02-25 17:59:20
+file:solve_time:2.476s
+current_time:2024-02-25 17:59:23
+file:solve_time:1.414s
+current_time:2024-02-25 17:59:26
+file:solve_time:1.11s
+current_time:2024-02-25 17:59:33
+file:solve_time:4.92s
+current_time:2024-02-25 17:59:42
+file:solve_time:7.378s
+current_time:2024-02-25 17:59:53
+file:solve_time:7.644s
+current_time:2024-02-25 17:59:56
+file:solve_time:1.833s
+current_time:2024-02-25 18:00:02
+file:solve_time:3.886s
+current_time:2024-02-25 18:00:04
+file:solve_time:0.577s
+current_time:2024-02-25 18:00:06
+file:solve_time:0.879s
+current_time:2024-02-25 18:00:09
+file:solve_time:0.879s
+current_time:2024-02-25 18:00:15
+file:solve_time:4.288s
+current_time:2024-02-25 18:00:18
+file:solve_time:2.109s
+current_time:2024-02-25 18:00:22
+file:solve_time:0.617s
+current_time:2024-02-25 18:00:30
+file:solve_time:6.969s
+current_time:2024-02-25 18:00:33
+file:solve_time:0.984s
+current_time:2024-02-25 18:00:39
+file:solve_time:4.448s
+current_time:2024-02-25 18:00:42
+file:solve_time:1.072s
+current_time:2024-02-25 18:00:45
+file:solve_time:1.842s
+current_time:2024-02-25 18:00:56
+file:solve_time:8.896s
+current_time:2024-02-25 18:00:59
+file:solve_time:0.953s
+current_time:2024-02-25 18:01:05
+file:solve_time:5.071s
+current_time:2024-02-25 18:01:08
+file:solve_time:1.043s
+current_time:2024-02-25 18:01:11
+file:solve_time:1.759s
+current_time:2024-02-25 18:01:19
+file:solve_time:5.758s
+current_time:2024-02-25 18:01:22
+file:solve_time:0.793s
+current_time:2024-02-25 18:01:25
+file:solve_time:0.686s
+current_time:2024-02-25 18:01:31
+file:solve_time:4.241s
+current_time:2024-02-25 18:01:37
+file:solve_time:4.637s
+current_time:2024-02-25 18:01:43
+file:solve_time:4.694s
+current_time:2024-02-25 18:01:51
+file:solve_time:6.265s
+current_time:2024-02-25 18:01:55
+file:solve_time:0.798s
+current_time:2024-02-25 18:01:58
+file:solve_time:1.187s
+current_time:2024-02-25 18:02:00
+file:solve_time:1.293s
+current_time:2024-02-25 18:02:03
+file:solve_time:1.054s
+current_time:2024-02-25 18:02:06
+file:solve_time:1.54s
+current_time:2024-02-25 18:02:09
+file:solve_time:1.14s
+current_time:2024-02-25 18:02:16
+file:solve_time:5.812s
+current_time:2024-02-25 18:02:18
+file:solve_time:0.616s
+current_time:2024-02-25 18:02:39
+file:solve_time:19.247s
+current_time:2024-02-25 18:02:44
+file:solve_time:3.066s
+current_time:2024-02-25 18:02:51
+file:solve_time:4.438s
+current_time:2024-02-25 18:02:54
+file:solve_time:1.049s
+current_time:2024-02-25 18:02:58
+file:solve_time:2.969s
+current_time:2024-02-25 18:03:04
+file:solve_time:3.704s
+current_time:2024-02-25 18:03:08
+file:solve_time:2.816s
+current_time:2024-02-25 18:03:16
+file:solve_time:4.126s
+current_time:2024-02-25 18:03:19
+file:solve_time:1.418s
+current_time:2024-02-25 18:03:23
+file:solve_time:2.26s
+current_time:2024-02-25 18:03:26
+file:solve_time:2.008s
+current_time:2024-02-25 18:03:29
+file:solve_time:1.498s
+current_time:2024-02-25 18:03:35
+file:solve_time:4.239s
+current_time:2024-02-25 18:03:37
+file:solve_time:0.583s
+current_time:2024-02-25 18:03:42
+file:solve_time:2.769s
+current_time:2024-02-25 18:03:47
+file:solve_time:4.174s
+current_time:2024-02-25 18:03:50
+file:solve_time:0.541s
+current_time:2024-02-25 18:03:52
+file:solve_time:0.588s
+current_time:2024-02-25 18:03:54
+file:solve_time:0.553s
+current_time:2024-02-25 18:03:58
+file:solve_time:1.953s
+current_time:2024-02-25 18:04:11
+file:solve_time:9.837s
+current_time:2024-02-25 18:04:15
+file:solve_time:0.828s
+current_time:2024-02-25 18:04:21
+file:solve_time:4.75s
+current_time:2024-02-25 18:04:26
+file:solve_time:2.862s
+current_time:2024-02-25 18:04:28
+file:solve_time:0.735s
+current_time:2024-02-25 18:04:34
+file:solve_time:4.208s
+current_time:2024-02-25 18:04:38
+file:solve_time:2.385s
+current_time:2024-02-25 18:04:45
+file:solve_time:5.411s
+current_time:2024-02-25 18:04:47
+file:solve_time:0.594s
+current_time:2024-02-25 18:04:51
+file:solve_time:2.339s
+current_time:2024-02-25 18:04:54
+file:solve_time:1.151s
+current_time:2024-02-25 18:05:00
+file:solve_time:4.26s
+current_time:2024-02-25 18:05:03
+file:solve_time:1.736s
+current_time:2024-02-25 18:05:06
+file:solve_time:0.829s
+current_time:2024-02-25 18:05:08
+file:solve_time:0.533s
+current_time:2024-02-25 18:05:15
+file:solve_time:4.935s
+current_time:2024-02-25 18:05:17
+file:solve_time:0.529s
+current_time:2024-02-25 18:05:22
+file:solve_time:3.763s
+current_time:2024-02-25 18:05:27
+file:solve_time:3.794s
+current_time:2024-02-25 18:05:33
+file:solve_time:3.784s
+current_time:2024-02-25 18:05:36
+file:solve_time:1.805s
+current_time:2024-02-25 18:05:39
+file:solve_time:1.335s
+current_time:2024-02-25 18:05:42
+file:solve_time:1.02s
+current_time:2024-02-25 18:05:45
+file:solve_time:1.907s
+current_time:2024-02-25 18:05:49
+file:solve_time:2.016s
+current_time:2024-02-25 18:05:54
+file:solve_time:1.563s
+current_time:2024-02-25 18:05:57
+file:solve_time:1.324s
+current_time:2024-02-25 18:05:59
+file:solve_time:0.847s
+current_time:2024-02-25 18:06:15
+file:solve_time:13.936s
+current_time:2024-02-25 18:06:17
+file:solve_time:1.079s
+current_time:2024-02-25 18:06:23
+file:solve_time:3.693s
+current_time:2024-02-25 18:06:26
+file:solve_time:2.142s
+current_time:2024-02-25 18:06:29
+file:solve_time:0.736s
+current_time:2024-02-25 18:06:31
+file:solve_time:0.783s
+current_time:2024-02-25 18:06:33
+file:solve_time:0.772s
+current_time:2024-02-25 18:06:36
+file:solve_time:0.977s
+current_time:2024-02-25 18:06:41
+file:solve_time:3.28s
+current_time:2024-02-25 18:06:43
+file:solve_time:0.755s
+current_time:2024-02-25 18:06:47
+file:solve_time:2.438s
+current_time:2024-02-25 18:06:54
+file:solve_time:5.137s
+current_time:2024-02-25 18:06:56
+file:solve_time:0.732s
+current_time:2024-02-25 18:06:59
+file:solve_time:0.639s
+current_time:2024-02-25 18:07:02
+file:solve_time:1.413s
+current_time:2024-02-25 18:07:06
+file:solve_time:0.87s
+current_time:2024-02-25 18:07:11
+file:solve_time:3.838s
+current_time:2024-02-25 18:07:16
+file:solve_time:2.788s
+current_time:2024-02-25 18:07:22
+file:solve_time:4.465s
+current_time:2024-02-25 18:07:24
+file:solve_time:1.151s
+current_time:2024-02-25 18:07:30
+file:solve_time:2.356s
+current_time:2024-02-25 18:07:36
+file:solve_time:4.122s
+current_time:2024-02-25 18:07:38
+file:solve_time:0.734s
+current_time:2024-02-25 18:07:41
+file:solve_time:1.509s
+current_time:2024-02-25 18:07:45
+file:solve_time:2.071s
+current_time:2024-02-25 18:07:47
+file:solve_time:1.082s
+current_time:2024-02-25 18:07:59
+file:solve_time:10.014s
+current_time:2024-02-25 18:08:03
+file:solve_time:2.026s
+current_time:2024-02-25 18:08:07
+file:solve_time:2.927s
+current_time:2024-02-25 18:08:15
+file:solve_time:4.581s
+current_time:2024-02-25 18:08:20
+file:solve_time:2.157s
+current_time:2024-02-25 18:08:30
+file:solve_time:6.732s
+current_time:2024-02-25 18:08:32
+file:solve_time:0.824s
+current_time:2024-02-25 18:08:35
+file:solve_time:0.803s
+current_time:2024-02-25 18:08:37
+file:solve_time:1.088s
+current_time:2024-02-25 18:08:40
+file:solve_time:1.072s
+current_time:2024-02-25 18:08:45
+file:solve_time:3.189s
+current_time:2024-02-25 18:08:51
+file:solve_time:2.712s
+current_time:2024-02-25 18:08:53
+file:solve_time:0.585s
+current_time:2024-02-25 18:09:01
+file:solve_time:6.761s
+current_time:2024-02-25 18:09:05
+file:solve_time:1.88s
+current_time:2024-02-25 18:09:07
+file:solve_time:0.72s
+current_time:2024-02-25 18:09:15
+file:solve_time:5.842s
+current_time:2024-02-25 18:09:20
+file:solve_time:3.808s
+current_time:2024-02-25 18:09:25
+file:solve_time:3.16s
+current_time:2024-02-25 18:09:27
+file:solve_time:1.049s
+current_time:2024-02-25 18:09:30
+file:solve_time:1.113s
+current_time:2024-02-25 18:09:34
+file:solve_time:2.269s
+current_time:2024-02-25 18:09:41
+file:solve_time:5.496s
+current_time:2024-02-25 18:09:46
+file:solve_time:3.615s
+current_time:2024-02-25 18:09:50
+file:solve_time:1.806s
+current_time:2024-02-25 18:09:55
+file:solve_time:3.084s
+current_time:2024-02-25 18:09:58
+file:solve_time:2.213s
+current_time:2024-02-25 18:10:06
+file:solve_time:5.515s
+current_time:2024-02-25 18:10:10
+file:solve_time:0.718s
+current_time:2024-02-25 18:10:14
+file:solve_time:2.238s
+current_time:2024-02-25 18:10:17
+file:solve_time:2.033s
+current_time:2024-02-25 18:10:27
+file:solve_time:8.14s
+current_time:2024-02-25 18:10:29
+file:solve_time:0.805s
+current_time:2024-02-25 18:10:32
+file:solve_time:1.233s
+current_time:2024-02-25 18:10:36
+file:solve_time:2.092s
+current_time:2024-02-25 18:10:39
+file:solve_time:1.138s
+current_time:2024-02-25 18:10:55
+file:solve_time:14.492s
+current_time:2024-02-25 18:10:58
+file:solve_time:2.006s
+current_time:2024-02-25 18:11:03
+file:solve_time:2.716s
+current_time:2024-02-25 18:11:05
+file:solve_time:1.031s
+current_time:2024-02-25 18:11:15
+file:solve_time:8.425s
+current_time:2024-02-25 18:11:18
+file:solve_time:0.851s
+current_time:2024-02-25 18:11:23
+file:solve_time:1.408s
+current_time:2024-02-25 18:11:26
+file:solve_time:1.221s
+current_time:2024-02-25 18:11:29
+file:solve_time:1.93s
+current_time:2024-02-25 18:11:34
+file:solve_time:3.301s
+current_time:2024-02-25 18:11:36
+file:solve_time:0.571s
+current_time:2024-02-25 18:11:40
+file:solve_time:1.911s
+current_time:2024-02-25 18:11:43
+file:solve_time:1.166s
+current_time:2024-02-25 18:11:46
+file:solve_time:2.19s
+current_time:2024-02-25 18:12:00
+file:solve_time:11.878s
+current_time:2024-02-25 18:12:05
+file:solve_time:3.179s
+current_time:2024-02-25 18:12:08
+file:solve_time:1.636s
+current_time:2024-02-25 18:12:14
+file:solve_time:4.037s
+current_time:2024-02-25 18:12:21
+file:solve_time:5.958s
+current_time:2024-02-25 18:12:24
+file:solve_time:0.744s
+current_time:2024-02-25 18:12:27
+file:solve_time:1.852s
+current_time:2024-02-25 18:12:32
+file:solve_time:3.327s
+current_time:2024-02-25 18:12:34
+file:solve_time:0.912s
+current_time:2024-02-25 18:12:38
+file:solve_time:0.803s
+current_time:2024-02-25 18:12:44
+file:solve_time:3.804s
+current_time:2024-02-25 18:12:46
+file:solve_time:0.652s
+current_time:2024-02-25 18:12:51
+file:solve_time:3.531s
+current_time:2024-02-25 18:12:57
+file:solve_time:3.984s
+current_time:2024-02-25 18:13:06
+file:solve_time:7.135s
+current_time:2024-02-25 18:13:09
+file:solve_time:2.316s
+current_time:2024-02-25 18:13:15
+file:solve_time:3.812s
+current_time:2024-02-25 18:13:17
+file:solve_time:0.825s
+current_time:2024-02-25 18:13:19
+file:solve_time:0.581s
+current_time:2024-02-25 18:13:28
+file:solve_time:6.951s
+current_time:2024-02-25 18:13:31
+file:solve_time:1.698s
+current_time:2024-02-25 18:13:34
+file:solve_time:1.493s
+current_time:2024-02-25 18:13:37
+file:solve_time:1.095s
+current_time:2024-02-25 18:13:39
+file:solve_time:0.64s
+current_time:2024-02-25 18:13:42
+file:solve_time:0.678s
+current_time:2024-02-25 18:13:46
+file:solve_time:2.903s
+current_time:2024-02-25 18:13:52
+file:solve_time:3.712s
+current_time:2024-02-25 18:13:56
+file:solve_time:0.988s
+current_time:2024-02-25 18:14:00
+file:solve_time:2.963s
+current_time:2024-02-25 18:14:23
+file:solve_time:20.744s
+current_time:2024-02-25 18:14:25
+file:solve_time:0.545s
+current_time:2024-02-25 18:14:32
+file:solve_time:5.382s
+current_time:2024-02-25 18:14:35
+file:solve_time:1.376s
+current_time:2024-02-25 18:14:38
+file:solve_time:1.251s
+current_time:2024-02-25 18:14:41
+file:solve_time:1.532s
+current_time:2024-02-25 18:14:46
+file:solve_time:1.46s
+current_time:2024-02-25 18:14:48
+file:solve_time:0.613s
+current_time:2024-02-25 18:14:53
+file:solve_time:3.749s
+current_time:2024-02-25 18:14:56
+file:solve_time:0.984s
+current_time:2024-02-25 18:15:05
+file:solve_time:7.912s
+current_time:2024-02-25 18:15:09
+file:solve_time:2.276s
+current_time:2024-02-25 18:15:12
+file:solve_time:0.998s
+current_time:2024-02-25 18:15:28
+file:solve_time:14.615s
+current_time:2024-02-25 18:15:30
+file:solve_time:0.765s
+current_time:2024-02-25 18:15:39
+file:solve_time:6.733s
+current_time:2024-02-25 18:15:46
+file:solve_time:5.532s
+current_time:2024-02-25 18:15:56
+file:solve_time:8.802s
+current_time:2024-02-25 18:15:59
+file:solve_time:0.911s
+current_time:2024-02-25 18:16:01
+file:solve_time:0.78s
+current_time:2024-02-25 18:16:04
+file:solve_time:0.725s
+current_time:2024-02-25 18:16:08
+file:solve_time:2.653s
+current_time:2024-02-25 18:16:12
+file:solve_time:2.885s
+current_time:2024-02-25 18:16:15
+file:solve_time:1.034s
+current_time:2024-02-25 18:16:18
+file:solve_time:1.849s
+current_time:2024-02-25 18:16:21
+file:solve_time:0.753s
+current_time:2024-02-25 18:16:24
+file:solve_time:1.103s
+current_time:2024-02-25 18:16:29
+file:solve_time:4.04s
+current_time:2024-02-25 18:16:35
+file:solve_time:4.344s
+current_time:2024-02-25 18:16:39
+file:solve_time:1.728s
+current_time:2024-02-25 18:16:43
+file:solve_time:2.616s
+current_time:2024-02-25 18:16:46
+file:solve_time:1.67s
+current_time:2024-02-25 18:16:48
+file:solve_time:0.549s
+current_time:2024-02-25 18:16:51
+file:solve_time:0.614s
+current_time:2024-02-25 18:16:56
+file:solve_time:3.768s
+current_time:2024-02-25 18:17:04
+file:solve_time:5.678s
+current_time:2024-02-25 18:17:10
+file:solve_time:3.289s
+current_time:2024-02-25 18:17:14
+file:solve_time:2.339s
+current_time:2024-02-25 18:17:19
+file:solve_time:3.612s
+current_time:2024-02-25 18:17:29
+file:solve_time:8.291s
+current_time:2024-02-25 18:17:33
+file:solve_time:1.873s
+current_time:2024-02-25 18:17:41
+file:solve_time:4.433s
+current_time:2024-02-25 18:17:43
+file:solve_time:0.858s
+current_time:2024-02-25 18:17:47
+file:solve_time:2.183s
+current_time:2024-02-25 18:17:49
+file:solve_time:0.758s
+current_time:2024-02-25 18:17:55
+file:solve_time:4.121s
+current_time:2024-02-25 18:18:00
+file:solve_time:3.737s
+current_time:2024-02-25 18:18:07
+file:solve_time:4.957s
+current_time:2024-02-25 18:18:17
+file:solve_time:8.361s
+current_time:2024-02-25 18:18:20
+file:solve_time:1.732s
+current_time:2024-02-25 18:18:24
+file:solve_time:2.478s
+current_time:2024-02-25 18:18:29
+file:solve_time:2.877s
+current_time:2024-02-25 18:18:32
+file:solve_time:2.081s
+current_time:2024-02-25 18:18:36
+file:solve_time:1.751s
+current_time:2024-02-25 18:18:39
+file:solve_time:1.113s
+current_time:2024-02-25 18:18:43
+file:solve_time:2.692s
+current_time:2024-02-25 18:18:45
+file:solve_time:0.621s
+current_time:2024-02-25 18:18:49
+file:solve_time:2.524s
+current_time:2024-02-25 18:18:54
+file:solve_time:3.192s
+current_time:2024-02-25 18:18:58
+file:solve_time:2.686s
+current_time:2024-02-25 18:19:03
+file:solve_time:3.342s
+current_time:2024-02-25 18:19:12
+file:solve_time:7.018s
+current_time:2024-02-25 18:19:14
+file:solve_time:0.607s
+current_time:2024-02-25 18:19:23
+file:solve_time:6.827s
+current_time:2024-02-25 18:19:28
+file:solve_time:3.76s
+current_time:2024-02-25 18:19:31
+file:solve_time:1.48s
+current_time:2024-02-25 18:19:34
+file:solve_time:0.885s
+current_time:2024-02-25 18:19:38
+file:solve_time:2.246s
+current_time:2024-02-25 18:19:46
+file:solve_time:6.758s
+current_time:2024-02-25 18:19:50
+file:solve_time:2.076s
+current_time:2024-02-25 18:19:58
+file:solve_time:5.593s
+current_time:2024-02-25 18:20:03
+file:solve_time:2.995s
+current_time:2024-02-25 18:20:16
+file:solve_time:11.061s
+current_time:2024-02-25 18:20:26
+file:solve_time:8.254s
+current_time:2024-02-25 18:20:29
+file:solve_time:1.991s
+current_time:2024-02-25 18:20:32
+file:solve_time:1.479s
+current_time:2024-02-25 18:20:42
+file:solve_time:7.633s
+current_time:2024-02-25 18:20:55
+file:solve_time:12.125s
+current_time:2024-02-25 18:21:02
+file:solve_time:3.621s
+current_time:2024-02-25 18:21:05
+file:solve_time:0.859s
+current_time:2024-02-25 18:21:07
+file:solve_time:0.841s
+current_time:2024-02-25 18:21:10
+file:solve_time:0.881s
+current_time:2024-02-25 18:21:17
+file:solve_time:5.827s
+current_time:2024-02-25 18:21:20
+file:solve_time:1.474s
+current_time:2024-02-25 18:21:24
+file:solve_time:2.41s
+current_time:2024-02-25 18:21:27
+file:solve_time:1.603s
+current_time:2024-02-25 18:21:33
+file:solve_time:3.815s
+current_time:2024-02-25 18:21:39
+file:solve_time:4.089s
+current_time:2024-02-25 18:21:43
+file:solve_time:2.779s
+current_time:2024-02-25 18:21:50
+file:solve_time:5.504s
+current_time:2024-02-25 18:21:53
+file:solve_time:1.48s
+current_time:2024-02-25 18:21:56
+file:solve_time:1.012s
+current_time:2024-02-25 18:21:59
+file:solve_time:1.444s
+current_time:2024-02-25 18:22:02
+file:solve_time:1.699s
+current_time:2024-02-25 18:22:08
+file:solve_time:4.503s
+current_time:2024-02-25 18:22:11
+file:solve_time:0.604s
+current_time:2024-02-25 18:22:18
+file:solve_time:5.9s
+current_time:2024-02-25 18:22:25
+file:solve_time:5.224s
+current_time:2024-02-25 18:22:34
+file:solve_time:7.124s
+current_time:2024-02-25 18:22:36
+file:solve_time:0.701s
+current_time:2024-02-25 18:22:42
+file:solve_time:3.89s
+current_time:2024-02-25 18:22:44
+file:solve_time:1.068s
+current_time:2024-02-25 18:22:47
+file:solve_time:1.463s
+current_time:2024-02-25 18:22:52
+file:solve_time:3.401s
+current_time:2024-02-25 18:22:56
+file:solve_time:2.09s
+current_time:2024-02-25 18:22:58
+file:solve_time:0.733s
+current_time:2024-02-25 18:23:01
+file:solve_time:1.102s
+current_time:2024-02-25 18:23:11
+file:solve_time:8.487s
+current_time:2024-02-25 18:23:17
+file:solve_time:4.424s
+current_time:2024-02-25 18:23:23
+file:solve_time:3.818s
+current_time:2024-02-25 18:23:30
+file:solve_time:5.607s
+current_time:2024-02-25 18:23:32
+file:solve_time:0.822s
+current_time:2024-02-25 18:23:45
+file:solve_time:11.534s
+current_time:2024-02-25 18:23:49
+file:solve_time:2.018s
+current_time:2024-02-25 18:23:58
+file:solve_time:5.732s
+current_time:2024-02-25 18:24:05
+file:solve_time:5.514s
+current_time:2024-02-25 18:24:11
+file:solve_time:4.372s
+current_time:2024-02-25 18:24:14
+file:solve_time:1.227s
+current_time:2024-02-25 18:24:18
+file:solve_time:2.65s
+current_time:2024-02-25 18:24:23
+file:solve_time:2.819s
+current_time:2024-02-25 18:24:28
+file:solve_time:4.213s
+current_time:2024-02-25 18:24:31
+file:solve_time:0.957s
+current_time:2024-02-25 18:24:34
+file:solve_time:1.031s
+current_time:2024-02-25 18:24:36
+file:solve_time:0.989s
+current_time:2024-02-25 18:24:39
+file:solve_time:0.801s
+current_time:2024-02-25 18:24:58
+file:solve_time:17.654s
+current_time:2024-02-25 18:25:01
+file:solve_time:1.077s
+current_time:2024-02-25 18:25:04
+file:solve_time:1.387s
+current_time:2024-02-25 18:25:11
+file:solve_time:5.678s
+current_time:2024-02-25 18:25:14
+file:solve_time:1.722s
+current_time:2024-02-25 18:25:20
+file:solve_time:3.862s
+current_time:2024-02-25 18:25:24
+file:solve_time:2.214s
+current_time:2024-02-25 18:25:26
+file:solve_time:0.805s
+current_time:2024-02-25 18:25:31
+file:solve_time:3.323s
+current_time:2024-02-25 18:25:35
+file:solve_time:1.728s
+current_time:2024-02-25 18:25:45
+file:solve_time:9.13s
+current_time:2024-02-25 18:25:48
+file:solve_time:1.247s
+current_time:2024-02-25 18:25:51
+file:solve_time:0.731s
+current_time:2024-02-25 18:25:54
+file:solve_time:1.05s
+current_time:2024-02-25 18:25:58
+file:solve_time:3.188s
+current_time:2024-02-25 18:26:02
+file:solve_time:1.498s
+current_time:2024-02-25 18:26:10
+file:solve_time:6.854s
+current_time:2024-02-25 18:26:13
+file:solve_time:1.099s
+current_time:2024-02-25 18:26:19
+file:solve_time:4.146s
+current_time:2024-02-25 18:26:21
+file:solve_time:0.83s
+current_time:2024-02-25 18:26:25
+file:solve_time:2.156s
+current_time:2024-02-25 18:26:28
+file:solve_time:1.57s
+current_time:2024-02-25 18:26:35
+file:solve_time:5.317s
+current_time:2024-02-25 18:26:37
+file:solve_time:0.738s
+current_time:2024-02-25 18:26:46
+file:solve_time:5.89s
+current_time:2024-02-25 18:26:49
+file:solve_time:0.95s
+current_time:2024-02-25 18:26:54
+file:solve_time:2.936s
+current_time:2024-02-25 18:26:56
+file:solve_time:0.732s
+current_time:2024-02-25 18:26:59
+file:solve_time:1.46s
+current_time:2024-02-25 18:27:02
+file:solve_time:1.228s
+current_time:2024-02-25 18:27:07
+file:solve_time:3.062s
+current_time:2024-02-25 18:27:09
+file:solve_time:1.151s
+current_time:2024-02-25 18:27:16
+file:solve_time:4.921s
+current_time:2024-02-25 18:27:27
+file:solve_time:9.761s
+current_time:2024-02-25 18:27:31
+file:solve_time:1.961s
+current_time:2024-02-25 18:27:33
+file:solve_time:0.582s
+current_time:2024-02-25 18:27:39
+file:solve_time:4.214s
+current_time:2024-02-25 18:27:42
+file:solve_time:1.523s
+current_time:2024-02-25 18:27:45
+file:solve_time:0.936s
+current_time:2024-02-25 18:27:47
+file:solve_time:0.622s
+current_time:2024-02-25 18:27:54
+file:solve_time:4.078s
+current_time:2024-02-25 18:27:59
+file:solve_time:2.546s
+current_time:2024-02-25 18:28:03
+file:solve_time:3.116s
+current_time:2024-02-25 18:28:06
+file:solve_time:1.306s
+current_time:2024-02-25 18:28:13
+file:solve_time:3.966s
+current_time:2024-02-25 18:28:16
+file:solve_time:1.348s
+current_time:2024-02-25 18:28:21
+file:solve_time:3.076s
+current_time:2024-02-25 18:28:28
+file:solve_time:5.076s
+current_time:2024-02-25 18:28:31
+file:solve_time:2.142s
+current_time:2024-02-25 18:28:36
+file:solve_time:2.682s
+current_time:2024-02-25 18:28:38
+file:solve_time:0.836s
+current_time:2024-02-25 18:28:47
+file:solve_time:7.375s
+current_time:2024-02-25 18:28:50
+file:solve_time:0.964s
+current_time:2024-02-25 18:28:56
+file:solve_time:5.009s
+current_time:2024-02-25 18:29:03
+file:solve_time:4.562s
+current_time:2024-02-25 18:29:05
+file:solve_time:0.69s
+current_time:2024-02-25 18:29:12
+file:solve_time:5.717s
+current_time:2024-02-25 18:29:15
+file:solve_time:1.348s
+current_time:2024-02-25 18:29:23
+file:solve_time:5.851s
+current_time:2024-02-25 18:29:28
+file:solve_time:3.738s
+current_time:2024-02-25 18:29:31
+file:solve_time:0.79s
+current_time:2024-02-25 18:29:33
+file:solve_time:1.193s
+current_time:2024-02-25 18:29:39
+file:solve_time:3.916s
+current_time:2024-02-25 18:29:43
+file:solve_time:1.141s
+current_time:2024-02-25 18:29:46
+file:solve_time:1.55s
+current_time:2024-02-25 18:29:52
+file:solve_time:4.01s
+current_time:2024-02-25 18:29:58
+file:solve_time:4.758s
+current_time:2024-02-25 18:30:01
+file:solve_time:0.912s
+current_time:2024-02-25 18:30:04
+file:solve_time:1.796s
+current_time:2024-02-25 18:30:10
+file:solve_time:3.906s
+current_time:2024-02-25 18:30:12
+file:solve_time:1.09s
+current_time:2024-02-25 18:30:15
+file:solve_time:1.267s
+current_time:2024-02-25 18:30:20
+file:solve_time:3.049s
+current_time:2024-02-25 18:30:23
+file:solve_time:1.32s
+current_time:2024-02-25 18:30:27
+file:solve_time:2.541s
+current_time:2024-02-25 18:30:33
+file:solve_time:2.88s
+current_time:2024-02-25 18:30:37
+file:solve_time:2.152s
+current_time:2024-02-25 18:30:40
+file:solve_time:1.252s
+current_time:2024-02-25 18:30:48
+file:solve_time:7.185s
+current_time:2024-02-25 18:30:52
+file:solve_time:1.838s
+current_time:2024-02-25 18:30:56
+file:solve_time:2.045s
+current_time:2024-02-25 18:30:59
+file:solve_time:1.43s
+current_time:2024-02-25 18:31:03
+file:solve_time:1.236s
+current_time:2024-02-25 18:31:06
+file:solve_time:0.895s
+current_time:2024-02-25 18:31:09
+file:solve_time:1.331s
+current_time:2024-02-25 18:31:12
+file:solve_time:1.42s
+current_time:2024-02-25 18:31:15
+file:solve_time:2.159s
+current_time:2024-02-25 18:31:18
+file:solve_time:1.231s
+current_time:2024-02-25 18:31:23
+file:solve_time:3.458s
+current_time:2024-02-25 18:31:28
+file:solve_time:2.723s
+current_time:2024-02-25 18:31:35
+file:solve_time:5.881s
+current_time:2024-02-25 18:31:38
+file:solve_time:1.184s
+current_time:2024-02-25 18:31:42
+file:solve_time:2.123s
+current_time:2024-02-25 18:31:45
+file:solve_time:0.769s
+current_time:2024-02-25 18:31:48
+file:solve_time:1.699s
+current_time:2024-02-25 18:31:51
+file:solve_time:1.372s
+current_time:2024-02-25 18:31:59
+file:solve_time:6.038s
+current_time:2024-02-25 18:32:21
+file:solve_time:20.992s
+current_time:2024-02-25 18:32:29
+file:solve_time:5.729s
+current_time:2024-02-25 18:32:34
+file:solve_time:3.593s
+current_time:2024-02-25 18:32:36
+file:solve_time:0.899s
+current_time:2024-02-25 18:32:40
+file:solve_time:1.458s
+current_time:2024-02-25 18:32:43
+file:solve_time:1.322s
+current_time:2024-02-25 18:32:46
+file:solve_time:2.222s
+current_time:2024-02-25 18:32:49
+file:solve_time:0.731s
+current_time:2024-02-25 18:32:56
+file:solve_time:5.278s
+current_time:2024-02-25 18:33:04
+file:solve_time:6.542s
+current_time:2024-02-25 18:33:07
+file:solve_time:1.178s
+current_time:2024-02-25 18:33:10
+file:solve_time:1.567s
+current_time:2024-02-25 18:33:20
+file:solve_time:8.408s
+current_time:2024-02-25 18:33:31
+file:solve_time:10.04s
+current_time:2024-02-25 18:33:37
+file:solve_time:3.841s
+current_time:2024-02-25 18:33:39
+file:solve_time:0.907s
+current_time:2024-02-25 18:33:42
+file:solve_time:0.67s
+current_time:2024-02-25 18:33:45
+file:solve_time:1.62s
+current_time:2024-02-25 18:33:47
+file:solve_time:0.737s
+current_time:2024-02-25 18:33:52
+file:solve_time:1.619s
+current_time:2024-02-25 18:33:54
+file:solve_time:0.898s
+current_time:2024-02-25 18:34:02
+file:solve_time:6.039s
+current_time:2024-02-25 18:34:05
+file:solve_time:1.415s
+current_time:2024-02-25 18:34:08
+file:solve_time:0.94s
+current_time:2024-02-25 18:34:11
+file:solve_time:1.798s
+current_time:2024-02-25 18:34:15
+file:solve_time:2.083s
+current_time:2024-02-25 18:34:28
+file:solve_time:12.015s
+current_time:2024-02-25 18:34:31
+file:solve_time:0.91s
+current_time:2024-02-25 18:34:41
+file:solve_time:8.578s
+current_time:2024-02-25 18:34:46
+file:solve_time:2.893s
+current_time:2024-02-25 18:34:48
+file:solve_time:0.781s
+current_time:2024-02-25 18:34:51
+file:solve_time:1.311s
+current_time:2024-02-25 18:34:54
+file:solve_time:1.064s
+current_time:2024-02-25 18:34:56
+file:solve_time:0.807s
+current_time:2024-02-25 18:35:06
+file:solve_time:7.054s
+current_time:2024-02-25 18:35:14
+file:solve_time:5.83s
+current_time:2024-02-25 18:35:17
+file:solve_time:1.881s
+current_time:2024-02-25 18:35:21
+file:solve_time:2.162s
+current_time:2024-02-25 18:35:31
+file:solve_time:8.622s
+current_time:2024-02-25 18:35:34
+file:solve_time:1.072s
+current_time:2024-02-25 18:35:37
+file:solve_time:1.45s
+current_time:2024-02-25 18:35:45
+file:solve_time:6.47s
+current_time:2024-02-25 18:35:49
+file:solve_time:2.405s
+current_time:2024-02-25 18:35:52
+file:solve_time:1.625s
+current_time:2024-02-25 18:35:57
+file:solve_time:2.824s
+current_time:2024-02-25 18:36:00
+file:solve_time:1.127s
+current_time:2024-02-25 18:36:02
+file:solve_time:1.034s
+current_time:2024-02-25 18:36:08
+file:solve_time:3.454s
+current_time:2024-02-25 18:36:14
+file:solve_time:4.451s
+current_time:2024-02-25 18:36:16
+file:solve_time:0.748s
+current_time:2024-02-25 18:36:19
+file:solve_time:0.692s
+current_time:2024-02-25 18:36:22
+file:solve_time:1.771s
+current_time:2024-02-25 18:36:26
+file:solve_time:2.531s
+current_time:2024-02-25 18:36:29
+file:solve_time:1.799s
+current_time:2024-02-25 18:36:35
+file:solve_time:4.152s
+current_time:2024-02-25 18:36:39
+file:solve_time:2.387s
+current_time:2024-02-25 18:36:41
+file:solve_time:0.594s
+current_time:2024-02-25 18:36:45
+file:solve_time:1.751s
+current_time:2024-02-25 18:36:53
+file:solve_time:6.504s
+current_time:2024-02-25 18:37:07
+file:solve_time:12.142s
+current_time:2024-02-25 18:37:10
+file:solve_time:1.813s
+current_time:2024-02-25 18:37:14
+file:solve_time:2.555s
+current_time:2024-02-25 18:37:21
+file:solve_time:4.816s
+current_time:2024-02-25 18:37:27
+file:solve_time:4.597s
+current_time:2024-02-25 18:37:35
+file:solve_time:6.338s
+current_time:2024-02-25 18:37:44
+file:solve_time:6.916s
+current_time:2024-02-25 18:37:49
+file:solve_time:3.283s
+current_time:2024-02-25 18:37:52
+file:solve_time:2.097s
+current_time:2024-02-25 18:37:56
+file:solve_time:2.333s
+current_time:2024-02-25 18:38:09
+file:solve_time:11.451s
+current_time:2024-02-25 18:38:12
+file:solve_time:1.043s
+current_time:2024-02-25 18:38:17
+file:solve_time:3.338s
+current_time:2024-02-25 18:38:22
+file:solve_time:3.897s
+current_time:2024-02-25 18:38:37
+file:solve_time:13.272s
+current_time:2024-02-25 18:38:43
+file:solve_time:3.855s
+current_time:2024-02-25 18:38:48
+file:solve_time:3.751s
+current_time:2024-02-25 18:38:51
+file:solve_time:0.847s
+current_time:2024-02-25 18:38:55
+file:solve_time:1.457s
+current_time:2024-02-25 18:39:19
+file:solve_time:22.26s
+current_time:2024-02-25 18:39:23
+file:solve_time:2.701s
+current_time:2024-02-25 18:39:28
+file:solve_time:2.812s
+current_time:2024-02-25 18:39:36
+file:solve_time:6.366s
+current_time:2024-02-25 18:39:47
+file:solve_time:9.64s
+current_time:2024-02-25 18:39:50
+file:solve_time:1.905s
+current_time:2024-02-25 18:39:56
+file:solve_time:3.753s
+current_time:2024-02-25 18:39:59
+file:solve_time:1.399s
+current_time:2024-02-25 18:40:02
+file:solve_time:1.252s
+current_time:2024-02-25 18:40:04
+file:solve_time:0.886s
+current_time:2024-02-25 18:40:07
+file:solve_time:1.245s
+current_time:2024-02-25 18:40:11
+file:solve_time:2.583s
+current_time:2024-02-25 18:40:16
+file:solve_time:2.986s
+current_time:2024-02-25 18:40:24
+file:solve_time:6.769s
+current_time:2024-02-25 18:40:27
+file:solve_time:0.577s
+current_time:2024-02-25 18:40:30
+file:solve_time:2.056s
+current_time:2024-02-25 18:40:35
+file:solve_time:3.142s
+current_time:2024-02-25 18:40:40
+file:solve_time:1.504s
+current_time:2024-02-25 18:40:47
+file:solve_time:5.361s
+current_time:2024-02-25 18:40:58
+file:solve_time:8.573s
+current_time:2024-02-25 18:41:03
+file:solve_time:1.418s
+current_time:2024-02-25 18:41:06
+file:solve_time:1.447s
+current_time:2024-02-25 18:41:09
+file:solve_time:1.367s
+current_time:2024-02-25 18:41:16
+file:solve_time:4.596s
+current_time:2024-02-25 18:41:23
+file:solve_time:6.073s
+current_time:2024-02-25 18:41:27
+file:solve_time:1.607s
+current_time:2024-02-25 18:41:36
+file:solve_time:8.123s
+current_time:2024-02-25 18:41:41
+file:solve_time:1.18s
+current_time:2024-02-25 18:41:44
+file:solve_time:1.381s
+current_time:2024-02-25 18:41:46
+file:solve_time:0.623s
+current_time:2024-02-25 18:41:49
+file:solve_time:0.916s
+current_time:2024-02-25 18:41:56
+file:solve_time:5.358s
+current_time:2024-02-25 18:42:03
+file:solve_time:5.563s
+current_time:2024-02-25 18:42:06
+file:solve_time:1.063s
+current_time:2024-02-25 18:42:08
+file:solve_time:1.028s
+current_time:2024-02-25 18:42:14
+file:solve_time:4.36s
+current_time:2024-02-25 18:42:18
+file:solve_time:1.791s
+current_time:2024-02-25 18:42:23
+file:solve_time:2.857s
+current_time:2024-02-25 18:42:25
+file:solve_time:0.653s
+current_time:2024-02-25 18:42:28
+file:solve_time:1.589s
+current_time:2024-02-25 18:42:34
+file:solve_time:4.198s
+current_time:2024-02-25 18:42:37
+file:solve_time:1.432s
+current_time:2024-02-25 18:42:43
+file:solve_time:4.55s
+current_time:2024-02-25 18:42:47
+file:solve_time:1.937s
+current_time:2024-02-25 18:42:52
+file:solve_time:3.682s
+current_time:2024-02-25 18:42:58
+file:solve_time:3.504s
+current_time:2024-02-25 18:43:02
+file:solve_time:2.461s
+current_time:2024-02-25 18:43:12
+file:solve_time:8.33s
+current_time:2024-02-25 18:43:14
+file:solve_time:0.641s
+current_time:2024-02-25 18:43:24
+file:solve_time:8.013s
+current_time:2024-02-25 18:43:32
+file:solve_time:6.432s
+current_time:2024-02-25 18:43:42
+file:solve_time:7.936s
+current_time:2024-02-25 18:43:44
+file:solve_time:0.944s
+current_time:2024-02-25 18:43:47
+file:solve_time:0.767s
+current_time:2024-02-25 18:43:49
+file:solve_time:0.731s
+current_time:2024-02-25 18:43:54
+file:solve_time:2.702s
+current_time:2024-02-25 18:44:04
+file:solve_time:8.907s
+current_time:2024-02-25 18:44:18
+file:solve_time:11.853s
+current_time:2024-02-25 18:44:21
+file:solve_time:1.558s
+current_time:2024-02-25 18:44:29
+file:solve_time:4.914s
+current_time:2024-02-25 18:44:32
+file:solve_time:0.809s
+current_time:2024-02-25 18:44:34
+file:solve_time:1.04s
+current_time:2024-02-25 18:44:38
+file:solve_time:1.466s
+current_time:2024-02-25 18:44:41
+file:solve_time:1.54s
+current_time:2024-02-25 18:44:50
+file:solve_time:7.879s
+current_time:2024-02-25 18:44:54
+file:solve_time:1.886s
+current_time:2024-02-25 18:44:56
+file:solve_time:0.669s
+current_time:2024-02-25 18:45:02
+file:solve_time:4.105s
+current_time:2024-02-25 18:45:04
+file:solve_time:0.826s
+current_time:2024-02-25 18:45:19
+file:solve_time:12.52s
+current_time:2024-02-25 18:45:25
+file:solve_time:4.198s
+current_time:2024-02-25 18:45:27
+file:solve_time:0.967s
+current_time:2024-02-25 18:45:35
+file:solve_time:6.156s
+current_time:2024-02-25 18:45:42
+file:solve_time:5.21s
+current_time:2024-02-25 18:45:44
+file:solve_time:0.742s
+current_time:2024-02-25 18:45:47
+file:solve_time:0.811s
+current_time:2024-02-25 18:45:49
+file:solve_time:0.586s
+current_time:2024-02-25 18:45:57
+file:solve_time:5.8s
+current_time:2024-02-25 18:46:02
+file:solve_time:4.125s
+current_time:2024-02-25 18:46:06
+file:solve_time:1.55s
+current_time:2024-02-25 18:46:09
+file:solve_time:1.307s
+current_time:2024-02-25 18:46:11
+file:solve_time:0.874s
+current_time:2024-02-25 18:46:15
+file:solve_time:2.363s
+current_time:2024-02-25 18:46:25
+file:solve_time:6.018s
+current_time:2024-02-25 18:46:31
+file:solve_time:4.779s
+current_time:2024-02-25 18:46:34
+file:solve_time:0.784s
+current_time:2024-02-25 18:46:39
+file:solve_time:3.552s
+current_time:2024-02-25 18:46:43
+file:solve_time:2.822s
+current_time:2024-02-25 18:46:46
+file:solve_time:0.866s
+current_time:2024-02-25 18:46:52
+file:solve_time:3.957s
+current_time:2024-02-25 18:46:56
+file:solve_time:1.176s
+current_time:2024-02-25 18:47:07
+file:solve_time:9.335s
+current_time:2024-02-25 18:47:14
+file:solve_time:4.983s
+current_time:2024-02-25 18:47:17
+file:solve_time:0.943s
+current_time:2024-02-25 18:47:22
+file:solve_time:1.761s
+current_time:2024-02-25 18:47:25
+file:solve_time:1.605s
+current_time:2024-02-25 18:47:28
+file:solve_time:1.062s
+current_time:2024-02-25 18:47:42
+file:solve_time:12.93s
+current_time:2024-02-25 18:47:49
+file:solve_time:3.629s
+current_time:2024-02-25 18:47:52
+file:solve_time:0.737s
+current_time:2024-02-25 18:47:56
+file:solve_time:2.449s
+current_time:2024-02-25 18:47:59
+file:solve_time:1.403s
+current_time:2024-02-25 18:48:01
+file:solve_time:0.835s
+current_time:2024-02-25 18:48:10
+file:solve_time:7.078s
+current_time:2024-02-25 18:48:15
+file:solve_time:3.409s
+current_time:2024-02-25 18:48:19
+file:solve_time:1.501s
+current_time:2024-02-25 18:48:26
+file:solve_time:6.236s
+current_time:2024-02-25 18:48:29
+file:solve_time:1.012s
+current_time:2024-02-25 18:48:32
+file:solve_time:0.724s
+current_time:2024-02-25 18:48:35
+file:solve_time:1.763s
+current_time:2024-02-25 18:48:38
+file:solve_time:1.242s
+current_time:2024-02-25 18:48:42
+file:solve_time:2.694s
+current_time:2024-02-25 18:48:45
+file:solve_time:0.95s
+current_time:2024-02-25 18:48:48
+file:solve_time:1.601s
+current_time:2024-02-25 18:48:52
+file:solve_time:2.075s
+current_time:2024-02-25 18:49:00
+file:solve_time:6.302s
+current_time:2024-02-25 18:49:05
+file:solve_time:1.572s
+current_time:2024-02-25 18:49:11
+file:solve_time:4.327s
+current_time:2024-02-25 18:49:14
+file:solve_time:1.585s
+current_time:2024-02-25 18:49:19
+file:solve_time:1.788s
+current_time:2024-02-25 18:49:22
+file:solve_time:1.555s
+current_time:2024-02-25 18:49:28
+file:solve_time:2.348s
+current_time:2024-02-25 18:49:31
+file:solve_time:1.798s
+current_time:2024-02-25 18:49:34
+file:solve_time:1.059s
+current_time:2024-02-25 18:49:38
+file:solve_time:0.653s
+current_time:2024-02-25 18:49:40
+file:solve_time:0.72s
+current_time:2024-02-25 18:49:51
+file:solve_time:8.487s
+current_time:2024-02-25 18:49:55
+file:solve_time:2.562s
+current_time:2024-02-25 18:50:13
+file:solve_time:16.576s
+current_time:2024-02-25 18:50:16
+file:solve_time:1.339s
+current_time:2024-02-25 18:50:22
+file:solve_time:4.288s
+current_time:2024-02-25 18:50:27
+file:solve_time:3.054s
+current_time:2024-02-25 18:50:30
+file:solve_time:1.142s
+current_time:2024-02-25 18:50:33
+file:solve_time:1.838s
+current_time:2024-02-25 18:50:51
+file:solve_time:15.972s
+current_time:2024-02-25 18:50:53
+file:solve_time:0.711s
+current_time:2024-02-25 18:51:07
+file:solve_time:12.796s
+current_time:2024-02-25 18:51:10
+file:solve_time:0.684s
+current_time:2024-02-25 18:51:14
+file:solve_time:2.214s
+current_time:2024-02-25 18:51:19
+file:solve_time:4.182s
+current_time:2024-02-25 18:51:23
+file:solve_time:1.507s
+current_time:2024-02-25 18:51:27
+file:solve_time:3.314s
+current_time:2024-02-25 18:51:30
+file:solve_time:1.267s
+current_time:2024-02-25 18:51:35
+file:solve_time:2.978s
+current_time:2024-02-25 18:51:38
+file:solve_time:1.531s
+current_time:2024-02-25 18:51:49
+file:solve_time:9.107s
+current_time:2024-02-25 18:51:53
+file:solve_time:2.829s
+current_time:2024-02-25 18:51:56
+file:solve_time:1.067s
+current_time:2024-02-25 18:52:01
+file:solve_time:3.228s
+current_time:2024-02-25 18:52:07
+file:solve_time:4.445s
+current_time:2024-02-25 18:52:12
+file:solve_time:3.103s
+current_time:2024-02-25 18:52:19
+file:solve_time:4.757s
+current_time:2024-02-25 18:52:31
+file:solve_time:11.235s
+current_time:2024-02-25 18:52:36
+file:solve_time:3.393s
+current_time:2024-02-25 18:52:41
+file:solve_time:2.495s
+current_time:2024-02-25 18:52:53
+file:solve_time:10.775s
+current_time:2024-02-25 18:53:03
+file:solve_time:8.762s
+current_time:2024-02-25 18:53:07
+file:solve_time:2.104s
+current_time:2024-02-25 18:53:13
+file:solve_time:4.583s
+current_time:2024-02-25 18:53:18
+file:solve_time:3.407s
+current_time:2024-02-25 18:53:22
+file:solve_time:2.018s
+current_time:2024-02-25 18:53:26
+file:solve_time:2.828s
+current_time:2024-02-25 18:53:29
+file:solve_time:0.615s
+current_time:2024-02-25 18:53:33
+file:solve_time:2.4s
+current_time:2024-02-25 18:53:36
+file:solve_time:1.457s
+current_time:2024-02-25 18:53:43
+file:solve_time:5.313s
+current_time:2024-02-25 18:53:46
+file:solve_time:1.757s
+current_time:2024-02-25 18:53:49
+file:solve_time:1.162s
+current_time:2024-02-25 18:53:53
+file:solve_time:2.317s
+current_time:2024-02-25 18:53:59
+file:solve_time:4.404s
+current_time:2024-02-25 18:54:07
+file:solve_time:6.545s
+current_time:2024-02-25 18:54:10
+file:solve_time:0.681s
+current_time:2024-02-25 18:54:13
+file:solve_time:1.423s
+current_time:2024-02-25 18:54:25
+file:solve_time:10.218s
+current_time:2024-02-25 18:54:41
+file:solve_time:14.714s
+current_time:2024-02-25 18:54:49
+file:solve_time:6.929s
+current_time:2024-02-25 18:54:54
+file:solve_time:2.478s
+current_time:2024-02-25 18:54:57
+file:solve_time:1.366s
+current_time:2024-02-25 18:55:00
+file:solve_time:1.685s
+current_time:2024-02-25 18:55:04
+file:solve_time:2.185s
+current_time:2024-02-25 18:55:07
+file:solve_time:1.773s
+current_time:2024-02-25 18:55:17
+file:solve_time:8.3s
+current_time:2024-02-25 18:55:21
+file:solve_time:2.606s
+current_time:2024-02-25 18:55:31
+file:solve_time:7.674s
+current_time:2024-02-25 18:55:38
+file:solve_time:5.608s
+current_time:2024-02-25 18:55:46
+file:solve_time:6.364s
+current_time:2024-02-25 18:55:55
+file:solve_time:7.355s
+current_time:2024-02-25 18:56:00
+file:solve_time:1.583s
+current_time:2024-02-25 18:56:06
+file:solve_time:4.724s
+current_time:2024-02-25 18:56:09
+file:solve_time:1.052s
+current_time:2024-02-25 18:56:11
+file:solve_time:0.713s
+current_time:2024-02-25 18:56:14
+file:solve_time:0.779s
+current_time:2024-02-25 18:56:18
+file:solve_time:2.357s
+current_time:2024-02-25 18:56:21
+file:solve_time:1.09s
+current_time:2024-02-25 18:56:26
+file:solve_time:3.644s
+current_time:2024-02-25 18:56:30
+file:solve_time:1.881s
+current_time:2024-02-25 18:56:36
+file:solve_time:5.102s
+current_time:2024-02-25 18:56:41
+file:solve_time:2.407s
+current_time:2024-02-25 18:56:45
+file:solve_time:1.757s
+current_time:2024-02-25 18:56:51
+file:solve_time:4.523s
+current_time:2024-02-25 18:56:59
+file:solve_time:6.607s
+current_time:2024-02-25 18:57:02
+file:solve_time:0.992s
+current_time:2024-02-25 18:57:06
+file:solve_time:2.665s
+current_time:2024-02-25 18:57:10
+file:solve_time:2.229s
+current_time:2024-02-25 18:57:13
+file:solve_time:0.853s
+current_time:2024-02-25 18:57:16
+file:solve_time:1.335s
+current_time:2024-02-25 18:57:19
+file:solve_time:2.036s
+current_time:2024-02-25 18:57:25
+file:solve_time:2.6s
+current_time:2024-02-25 18:57:28
+file:solve_time:1.136s
+current_time:2024-02-25 18:57:36
+file:solve_time:7.088s
+current_time:2024-02-25 18:57:39
+file:solve_time:0.808s
+current_time:2024-02-25 18:57:42
+file:solve_time:1.078s
+current_time:2024-02-25 18:57:54
+file:solve_time:11.123s
+current_time:2024-02-25 18:58:09
+file:solve_time:13.295s
+current_time:2024-02-25 18:58:13
+file:solve_time:1.912s
+current_time:2024-02-25 18:58:16
+file:solve_time:1.195s
+current_time:2024-02-25 18:58:20
+file:solve_time:2.346s
+current_time:2024-02-25 18:58:25
+file:solve_time:2.055s
+current_time:2024-02-25 18:58:30
+file:solve_time:2.969s
+current_time:2024-02-25 18:58:33
+file:solve_time:1.622s
+current_time:2024-02-25 18:58:40
+file:solve_time:4.773s
+current_time:2024-02-25 18:58:42
+file:solve_time:0.585s
+current_time:2024-02-25 18:58:49
+file:solve_time:5.253s
+current_time:2024-02-25 18:58:51
+file:solve_time:0.752s
+current_time:2024-02-25 18:58:55
+file:solve_time:1.498s
+current_time:2024-02-25 18:59:00
+file:solve_time:3.782s
+current_time:2024-02-25 18:59:05
+file:solve_time:3.167s
+current_time:2024-02-25 18:59:08
+file:solve_time:1.263s
+current_time:2024-02-25 18:59:20
+file:solve_time:10.06s
+current_time:2024-02-25 18:59:24
+file:solve_time:2.885s
+current_time:2024-02-25 18:59:27
+file:solve_time:0.658s
+current_time:2024-02-25 18:59:30
+file:solve_time:1.968s
+current_time:2024-02-25 18:59:35
+file:solve_time:3.084s
+current_time:2024-02-25 18:59:39
+file:solve_time:2.392s
+current_time:2024-02-25 18:59:44
+file:solve_time:2.867s
+current_time:2024-02-25 18:59:48
+file:solve_time:2.107s
+current_time:2024-02-25 18:59:56
+file:solve_time:6.727s
+current_time:2024-02-25 19:00:01
+file:solve_time:3.19s
+current_time:2024-02-25 19:00:11
+file:solve_time:7.977s
+current_time:2024-02-25 19:00:20
+file:solve_time:5.886s
+current_time:2024-02-25 19:00:33
+file:solve_time:11.06s
+current_time:2024-02-25 19:00:35
+file:solve_time:1.028s
+current_time:2024-02-25 19:00:38
+file:solve_time:1.287s
+current_time:2024-02-25 19:00:42
+file:solve_time:2.106s
+current_time:2024-02-25 19:00:47
+file:solve_time:2.757s
+current_time:2024-02-25 19:00:51
+file:solve_time:2.633s
+current_time:2024-02-25 19:00:55
+file:solve_time:2.33s
+current_time:2024-02-25 19:00:58
+file:solve_time:1.283s
+current_time:2024-02-25 19:01:01
+file:solve_time:0.713s
+current_time:2024-02-25 19:01:03
+file:solve_time:0.791s
+current_time:2024-02-25 19:01:06
+file:solve_time:0.875s
+current_time:2024-02-25 19:01:15
+file:solve_time:7.834s
+current_time:2024-02-25 19:01:18
+file:solve_time:0.861s
+current_time:2024-02-25 19:01:25
+file:solve_time:5.89s
+current_time:2024-02-25 19:01:33
+file:solve_time:5.762s
+current_time:2024-02-25 19:01:42
+file:solve_time:6.109s
+current_time:2024-02-25 19:01:45
+file:solve_time:0.778s
+current_time:2024-02-25 19:01:48
+file:solve_time:1.142s
+current_time:2024-02-25 19:01:55
+file:solve_time:4.157s
+current_time:2024-02-25 19:01:58
+file:solve_time:1.162s
+current_time:2024-02-25 19:02:04
+file:solve_time:4.307s
+current_time:2024-02-25 19:02:07
+file:solve_time:1.368s
+current_time:2024-02-25 19:02:15
+file:solve_time:4.134s
+current_time:2024-02-25 19:02:19
+file:solve_time:2.158s
+current_time:2024-02-25 19:02:23
+file:solve_time:2.418s
+current_time:2024-02-25 19:02:32
+file:solve_time:7.155s
+current_time:2024-02-25 19:02:37
+file:solve_time:3.64s
+current_time:2024-02-25 19:02:39
+file:solve_time:0.6s
+current_time:2024-02-25 19:02:43
+file:solve_time:2.154s
+current_time:2024-02-25 19:02:49
+file:solve_time:3.604s
+current_time:2024-02-25 19:02:52
+file:solve_time:1.733s
+current_time:2024-02-25 19:03:08
+file:solve_time:14.46s
+current_time:2024-02-25 19:03:11
+file:solve_time:1.119s
+current_time:2024-02-25 19:03:21
+file:solve_time:7.534s
+current_time:2024-02-25 19:03:23
+file:solve_time:0.927s
+current_time:2024-02-25 19:03:28
+file:solve_time:3.001s
+current_time:2024-02-25 19:03:36
+file:solve_time:5.106s
+current_time:2024-02-25 19:03:47
+file:solve_time:9.384s
+current_time:2024-02-25 19:03:54
+file:solve_time:4.6s
+current_time:2024-02-25 19:03:56
+file:solve_time:0.682s
+current_time:2024-02-25 19:04:02
+file:solve_time:4.079s
+current_time:2024-02-25 19:04:09
+file:solve_time:4.977s
+current_time:2024-02-25 19:04:12
+file:solve_time:1.672s
+current_time:2024-02-25 19:04:22
+file:solve_time:8.796s
+current_time:2024-02-25 19:04:26
+file:solve_time:1.42s
+current_time:2024-02-25 19:04:34
+file:solve_time:6.598s
+current_time:2024-02-25 19:04:36
+file:solve_time:0.628s
+current_time:2024-02-25 19:04:42
+file:solve_time:4.679s
+current_time:2024-02-25 19:04:46
+file:solve_time:2.282s
+current_time:2024-02-25 19:04:49
+file:solve_time:0.635s
+current_time:2024-02-25 19:04:51
+file:solve_time:0.7s
+current_time:2024-02-25 19:04:55
+file:solve_time:1.865s
+current_time:2024-02-25 19:05:03
+file:solve_time:7.035s
+current_time:2024-02-25 19:05:07
+file:solve_time:1.838s
+current_time:2024-02-25 19:05:13
+file:solve_time:4.165s
+current_time:2024-02-25 19:05:18
+file:solve_time:2.443s
+current_time:2024-02-25 19:05:27
+file:solve_time:7.056s
+current_time:2024-02-25 19:05:30
+file:solve_time:0.982s
+current_time:2024-02-25 19:05:37
+file:solve_time:5.312s
+current_time:2024-02-25 19:05:45
+file:solve_time:6.143s
+current_time:2024-02-25 19:05:58
+file:solve_time:10.99s
+current_time:2024-02-25 19:06:01
+file:solve_time:1.822s
+current_time:2024-02-25 19:06:07
+file:solve_time:4.058s
+current_time:2024-02-25 19:06:09
+file:solve_time:0.909s
+current_time:2024-02-25 19:06:12
+file:solve_time:1.151s
+current_time:2024-02-25 19:06:15
+file:solve_time:1.177s
+current_time:2024-02-25 19:06:18
+file:solve_time:0.896s
+current_time:2024-02-25 19:06:25
+file:solve_time:5.446s
+current_time:2024-02-25 19:06:31
+file:solve_time:4.573s
+current_time:2024-02-25 19:06:34
+file:solve_time:1.144s
+current_time:2024-02-25 19:06:44
+file:solve_time:8.529s
+current_time:2024-02-25 19:06:46
+file:solve_time:0.848s
+current_time:2024-02-25 19:06:49
+file:solve_time:1.33s
+current_time:2024-02-25 19:06:55
+file:solve_time:2.776s
+current_time:2024-02-25 19:06:58
+file:solve_time:1.215s
+current_time:2024-02-25 19:07:02
+file:solve_time:1.687s
+current_time:2024-02-25 19:07:06
+file:solve_time:2.643s
+current_time:2024-02-25 19:07:11
+file:solve_time:2.273s
+current_time:2024-02-25 19:07:14
+file:solve_time:1.453s
+current_time:2024-02-25 19:07:21
+file:solve_time:5.137s
+current_time:2024-02-25 19:07:25
+file:solve_time:2.345s
+current_time:2024-02-25 19:07:35
+file:solve_time:8.315s
+current_time:2024-02-25 19:07:40
+file:solve_time:3.108s
+current_time:2024-02-25 19:07:42
+file:solve_time:0.822s
+current_time:2024-02-25 19:07:47
+file:solve_time:2.502s
+current_time:2024-02-25 19:07:50
+file:solve_time:2.043s
+current_time:2024-02-25 19:07:55
+file:solve_time:2.917s
+current_time:2024-02-25 19:08:02
+file:solve_time:5.314s
+current_time:2024-02-25 19:08:12
+file:solve_time:7.994s
+current_time:2024-02-25 19:08:18
+file:solve_time:3.537s
+current_time:2024-02-25 19:08:20
+file:solve_time:1.061s
+current_time:2024-02-25 19:08:29
+file:solve_time:6.822s
+current_time:2024-02-25 19:08:33
+file:solve_time:1.986s
+current_time:2024-02-25 19:08:38
+file:solve_time:1.562s
+current_time:2024-02-25 19:08:41
+file:solve_time:1.765s
+current_time:2024-02-25 19:08:43
+file:solve_time:0.824s
+current_time:2024-02-25 19:08:47
+file:solve_time:1.845s
+current_time:2024-02-25 19:08:50
+file:solve_time:1.762s
+current_time:2024-02-25 19:08:53
+file:solve_time:0.83s
+current_time:2024-02-25 19:08:55
+file:solve_time:0.909s
+current_time:2024-02-25 19:08:58
+file:solve_time:0.843s
+current_time:2024-02-25 19:09:03
+file:solve_time:1.356s
+current_time:2024-02-25 19:09:10
+file:solve_time:5.358s
+current_time:2024-02-25 19:09:14
+file:solve_time:3.057s
+current_time:2024-02-25 19:09:19
+file:solve_time:3.161s
+current_time:2024-02-25 19:09:28
+file:solve_time:7.044s
+current_time:2024-02-25 19:09:31
+file:solve_time:1.232s
+current_time:2024-02-25 19:09:37
+file:solve_time:4.138s
+current_time:2024-02-25 19:09:49
+file:solve_time:10.277s
+current_time:2024-02-25 19:09:51
+file:solve_time:0.77s
+current_time:2024-02-25 19:09:54
+file:solve_time:0.901s
+current_time:2024-02-25 19:10:03
+file:solve_time:7.707s
+current_time:2024-02-25 19:10:09
+file:solve_time:4.064s
+current_time:2024-02-25 19:10:11
+file:solve_time:0.67s
+current_time:2024-02-25 19:10:20
+file:solve_time:7.028s
+current_time:2024-02-25 19:10:27
+file:solve_time:5.528s
+current_time:2024-02-25 19:10:30
+file:solve_time:1.145s
+current_time:2024-02-25 19:10:34
+file:solve_time:2.222s
+current_time:2024-02-25 19:10:39
+file:solve_time:2.994s
+current_time:2024-02-25 19:10:42
+file:solve_time:1.276s
+current_time:2024-02-25 19:10:46
+file:solve_time:2.406s
+current_time:2024-02-25 19:10:56
+file:solve_time:8.287s
+current_time:2024-02-25 19:11:05
+file:solve_time:5.359s
+current_time:2024-02-25 19:11:08
+file:solve_time:1.764s
+current_time:2024-02-25 19:11:11
+file:solve_time:0.95s
+current_time:2024-02-25 19:11:18
+file:solve_time:5.393s
+current_time:2024-02-25 19:11:24
+file:solve_time:3.685s
+current_time:2024-02-25 19:11:27
+file:solve_time:1.995s
+current_time:2024-02-25 19:11:37
+file:solve_time:7.39s
+current_time:2024-02-25 19:11:51
+file:solve_time:12.889s
+current_time:2024-02-25 19:12:01
+file:solve_time:7.649s
+current_time:2024-02-25 19:12:03
+file:solve_time:0.854s
+current_time:2024-02-25 19:12:06
+file:solve_time:0.717s
+current_time:2024-02-25 19:12:12
+file:solve_time:5.016s
+current_time:2024-02-25 19:12:15
+file:solve_time:0.946s
+current_time:2024-02-25 19:12:18
+file:solve_time:1.107s
+current_time:2024-02-25 19:12:21
+file:solve_time:1.008s
+current_time:2024-02-25 19:12:28
+file:solve_time:5.412s
+current_time:2024-02-25 19:12:30
+file:solve_time:0.675s
+current_time:2024-02-25 19:12:36
+file:solve_time:4.165s
+current_time:2024-02-25 19:12:40
+file:solve_time:1.786s
+current_time:2024-02-25 19:12:43
+file:solve_time:1.656s
+current_time:2024-02-25 19:12:47
+file:solve_time:2.306s
+current_time:2024-02-25 19:12:50
+file:solve_time:1.414s
+current_time:2024-02-25 19:12:56
+file:solve_time:3.697s
+current_time:2024-02-25 19:13:00
+file:solve_time:2.944s
+current_time:2024-02-25 19:13:11
+file:solve_time:8.238s
+current_time:2024-02-25 19:13:14
+file:solve_time:1.098s
+current_time:2024-02-25 19:13:17
+file:solve_time:1.088s
+current_time:2024-02-25 19:13:23
+file:solve_time:4.821s
+current_time:2024-02-25 19:13:26
+file:solve_time:0.668s
+current_time:2024-02-25 19:13:30
+file:solve_time:2.217s
+current_time:2024-02-25 19:13:34
+file:solve_time:2.502s
+current_time:2024-02-25 19:13:37
+file:solve_time:1.371s
+current_time:2024-02-25 19:13:43
+file:solve_time:3.379s
+current_time:2024-02-25 19:13:46
+file:solve_time:1.818s
+current_time:2024-02-25 19:13:50
+file:solve_time:2.503s
+current_time:2024-02-25 19:13:55
+file:solve_time:2.785s
+current_time:2024-02-25 19:13:59
+file:solve_time:1.251s
+current_time:2024-02-25 19:14:04
+file:solve_time:3.265s
+current_time:2024-02-25 19:14:08
+file:solve_time:2.224s
+current_time:2024-02-25 19:14:14
+file:solve_time:3.452s
+current_time:2024-02-25 19:14:18
+file:solve_time:2.955s
+current_time:2024-02-25 19:14:23
+file:solve_time:1.828s
+current_time:2024-02-25 19:14:28
+file:solve_time:2.332s
+current_time:2024-02-25 19:14:32
+file:solve_time:2.909s
+current_time:2024-02-25 19:14:35
+file:solve_time:1.08s
+current_time:2024-02-25 19:14:37
+file:solve_time:0.725s
+current_time:2024-02-25 19:14:40
+file:solve_time:1.319s
+current_time:2024-02-25 19:14:50
+file:solve_time:7.552s
+current_time:2024-02-25 19:14:54
+file:solve_time:3.038s
+current_time:2024-02-25 19:15:00
+file:solve_time:3.69s
+current_time:2024-02-25 19:15:04
+file:solve_time:2.158s
+current_time:2024-02-25 19:15:07
+file:solve_time:1.328s
+current_time:2024-02-25 19:15:10
+file:solve_time:1.182s
+current_time:2024-02-25 19:15:14
+file:solve_time:2.73s
+current_time:2024-02-25 19:15:17
+file:solve_time:0.735s
+current_time:2024-02-25 19:15:21
+file:solve_time:3.22s
+current_time:2024-02-25 19:15:25
+file:solve_time:1.544s
+current_time:2024-02-25 19:15:27
+file:solve_time:0.728s
+current_time:2024-02-25 19:15:31
+file:solve_time:2.501s
+current_time:2024-02-25 19:15:34
+file:solve_time:0.652s
+current_time:2024-02-25 19:15:40
+file:solve_time:4.815s
+current_time:2024-02-25 19:15:45
+file:solve_time:3.163s
+current_time:2024-02-25 19:15:50
+file:solve_time:2.757s
+current_time:2024-02-25 19:16:06
+file:solve_time:14.37s
+current_time:2024-02-25 19:16:09
+file:solve_time:1.68s
+current_time:2024-02-25 19:16:13
+file:solve_time:2.219s
+current_time:2024-02-25 19:16:17
+file:solve_time:1.958s
+current_time:2024-02-25 19:16:21
+file:solve_time:2.496s
+current_time:2024-02-25 19:16:26
+file:solve_time:2.947s
+current_time:2024-02-25 19:16:32
+file:solve_time:4.737s
+current_time:2024-02-25 19:16:36
+file:solve_time:2.63s
+current_time:2024-02-25 19:16:46
+file:solve_time:6.081s
+current_time:2024-02-25 19:16:49
+file:solve_time:1.86s
+current_time:2024-02-25 19:16:53
+file:solve_time:1.902s
+current_time:2024-02-25 19:16:59
+file:solve_time:4.744s
+current_time:2024-02-25 19:17:04
+file:solve_time:2.582s
+current_time:2024-02-25 19:17:07
+file:solve_time:1.227s
+current_time:2024-02-25 19:17:10
+file:solve_time:1.929s
+current_time:2024-02-25 19:17:14
+file:solve_time:1.727s
+current_time:2024-02-25 19:17:18
+file:solve_time:0.939s
+current_time:2024-02-25 19:17:22
+file:solve_time:2.038s
+current_time:2024-02-25 19:17:24
+file:solve_time:0.692s
+current_time:2024-02-25 19:17:27
+file:solve_time:0.747s
+current_time:2024-02-25 19:17:31
+file:solve_time:2.045s
+current_time:2024-02-25 19:17:34
+file:solve_time:1.808s
+current_time:2024-02-25 19:17:40
+file:solve_time:3.652s
+current_time:2024-02-25 19:17:44
+file:solve_time:3.202s
+current_time:2024-02-25 19:17:48
+file:solve_time:2.09s
+current_time:2024-02-25 19:18:04
+file:solve_time:14.043s
+current_time:2024-02-25 19:18:07
+file:solve_time:1.58s
+current_time:2024-02-25 19:18:11
+file:solve_time:1.359s
+current_time:2024-02-25 19:18:18
+file:solve_time:4.304s
+current_time:2024-02-25 19:18:23
+file:solve_time:3.303s
+current_time:2024-02-25 19:18:40
+file:solve_time:16.019s
+current_time:2024-02-25 19:18:44
+file:solve_time:2.088s
+current_time:2024-02-25 19:18:47
+file:solve_time:1.156s
+current_time:2024-02-25 19:18:52
+file:solve_time:3.257s
+current_time:2024-02-25 19:18:56
+file:solve_time:1.881s
+current_time:2024-02-25 19:18:58
+file:solve_time:0.671s
+current_time:2024-02-25 19:19:02
+file:solve_time:1.458s
+current_time:2024-02-25 19:19:04
+file:solve_time:0.733s
+current_time:2024-02-25 19:19:10
+file:solve_time:4.496s
+current_time:2024-02-25 19:19:18
+file:solve_time:6.415s
+current_time:2024-02-25 19:19:35
+file:solve_time:14.288s
+current_time:2024-02-25 19:19:41
+file:solve_time:4.721s
+current_time:2024-02-25 19:19:44
+file:solve_time:1.338s
+current_time:2024-02-25 19:19:49
+file:solve_time:2.666s
+current_time:2024-02-25 19:19:51
+file:solve_time:0.797s
+current_time:2024-02-25 19:19:59
+file:solve_time:6.614s
+current_time:2024-02-25 19:20:13
+file:solve_time:11.426s
+current_time:2024-02-25 19:20:15
+file:solve_time:0.807s
+current_time:2024-02-25 19:20:22
+file:solve_time:5.023s
+current_time:2024-02-25 19:20:31
+file:solve_time:7.11s
+current_time:2024-02-25 19:20:34
+file:solve_time:2.027s
+current_time:2024-02-25 19:20:40
+file:solve_time:4.038s
+current_time:2024-02-25 19:20:42
+file:solve_time:0.617s
+current_time:2024-02-25 19:20:46
+file:solve_time:2.219s
+current_time:2024-02-25 19:21:00
+file:solve_time:11.44s
+current_time:2024-02-25 19:21:02
+file:solve_time:1.09s
+current_time:2024-02-25 19:21:09
+file:solve_time:4.997s
+current_time:2024-02-25 19:21:13
+file:solve_time:1.807s
+current_time:2024-02-25 19:21:17
+file:solve_time:2.833s
+current_time:2024-02-25 19:21:23
+file:solve_time:4.391s
+current_time:2024-02-25 19:21:26
+file:solve_time:0.792s
+current_time:2024-02-25 19:21:33
+file:solve_time:5.825s
+current_time:2024-02-25 19:21:36
+file:solve_time:0.727s
+current_time:2024-02-25 19:21:42
+file:solve_time:2.752s
+current_time:2024-02-25 19:21:49
+file:solve_time:5.111s
+current_time:2024-02-25 19:21:51
+file:solve_time:1.099s
+current_time:2024-02-25 19:21:54
+file:solve_time:0.927s
+current_time:2024-02-25 19:21:57
+file:solve_time:1.328s
+current_time:2024-02-25 19:22:00
+file:solve_time:0.764s
+current_time:2024-02-25 19:22:03
+file:solve_time:1.805s
+current_time:2024-02-25 19:22:06
+file:solve_time:1.148s
+current_time:2024-02-25 19:22:13
+file:solve_time:5.126s
+current_time:2024-02-25 19:22:16
+file:solve_time:1.971s
+current_time:2024-02-25 19:22:19
+file:solve_time:1.098s
+current_time:2024-02-25 19:22:29
+file:solve_time:8.479s
+current_time:2024-02-25 19:22:33
+file:solve_time:1.784s
+current_time:2024-02-25 19:22:36
+file:solve_time:1.04s
+current_time:2024-02-25 19:22:38
+file:solve_time:1.068s
+current_time:2024-02-25 19:22:43
+file:solve_time:2.61s
+current_time:2024-02-25 19:22:46
+file:solve_time:1.604s
+current_time:2024-02-25 19:22:50
+file:solve_time:2.624s
+current_time:2024-02-25 19:22:56
+file:solve_time:3.761s
+current_time:2024-02-25 19:23:03
+file:solve_time:6.053s
+current_time:2024-02-25 19:23:07
+file:solve_time:1.601s
+current_time:2024-02-25 19:23:13
+file:solve_time:3.909s
+current_time:2024-02-25 19:23:16
+file:solve_time:1.77s
+current_time:2024-02-25 19:23:21
+file:solve_time:3.129s
+current_time:2024-02-25 19:23:27
+file:solve_time:4.403s
+current_time:2024-02-25 19:23:30
+file:solve_time:1.502s
+current_time:2024-02-25 19:23:36
+file:solve_time:4.492s
+current_time:2024-02-25 19:23:39
+file:solve_time:0.885s
+current_time:2024-02-25 19:23:46
+file:solve_time:4.777s
+current_time:2024-02-25 19:23:48
+file:solve_time:0.675s
+current_time:2024-02-25 19:24:02
+file:solve_time:11.353s
+current_time:2024-02-25 19:24:05
+file:solve_time:1.549s
+current_time:2024-02-25 19:24:10
+file:solve_time:1.165s
+current_time:2024-02-25 19:24:21
+file:solve_time:9.432s
+current_time:2024-02-25 19:24:24
+file:solve_time:1.291s
+current_time:2024-02-25 19:24:29
+file:solve_time:2.997s
+current_time:2024-02-25 19:24:31
+file:solve_time:0.682s
+current_time:2024-02-25 19:24:34
+file:solve_time:0.747s
+current_time:2024-02-25 19:24:42
+file:solve_time:6.219s
+current_time:2024-02-25 19:24:45
+file:solve_time:1.957s
+current_time:2024-02-25 19:24:50
+file:solve_time:3.449s
+current_time:2024-02-25 19:24:55
+file:solve_time:2.797s
+current_time:2024-02-25 19:25:01
+file:solve_time:4.661s
+current_time:2024-02-25 19:25:05
+file:solve_time:1.617s
+current_time:2024-02-25 19:25:09
+file:solve_time:2.285s
+current_time:2024-02-25 19:25:12
+file:solve_time:1.591s
+current_time:2024-02-25 19:25:14
+file:solve_time:0.736s
+current_time:2024-02-25 19:25:17
+file:solve_time:0.851s
+current_time:2024-02-25 19:25:30
+file:solve_time:11.603s
+current_time:2024-02-25 19:25:33
+file:solve_time:1.483s
+current_time:2024-02-25 19:25:40
+file:solve_time:4.989s
+current_time:2024-02-25 19:25:43
+file:solve_time:0.854s
+current_time:2024-02-25 19:25:46
+file:solve_time:0.884s
+current_time:2024-02-25 19:25:49
+file:solve_time:1.731s
+current_time:2024-02-25 19:25:53
+file:solve_time:2.076s
+current_time:2024-02-25 19:25:56
+file:solve_time:1.42s
+current_time:2024-02-25 19:25:59
+file:solve_time:1.406s
+current_time:2024-02-25 19:26:09
+file:solve_time:8.078s
+current_time:2024-02-25 19:26:13
+file:solve_time:0.97s
+current_time:2024-02-25 19:26:23
+file:solve_time:7.856s
+current_time:2024-02-25 19:26:29
+file:solve_time:4.268s
+current_time:2024-02-25 19:26:33
+file:solve_time:0.695s
+current_time:2024-02-25 19:26:37
+file:solve_time:1.123s
+current_time:2024-02-25 19:26:55
+file:solve_time:15.442s
+current_time:2024-02-25 19:27:00
+file:solve_time:1.907s
+current_time:2024-02-25 19:27:03
+file:solve_time:1.619s
+current_time:2024-02-25 19:27:06
+file:solve_time:1.612s
+current_time:2024-02-25 19:27:10
+file:solve_time:1.597s
+current_time:2024-02-25 19:27:12
+file:solve_time:0.812s
+current_time:2024-02-25 19:27:16
+file:solve_time:2.269s
+current_time:2024-02-25 19:27:22
+file:solve_time:4.348s
+current_time:2024-02-25 19:27:25
+file:solve_time:0.705s
+current_time:2024-02-25 19:27:29
+file:solve_time:2.67s
+current_time:2024-02-25 19:27:32
+file:solve_time:0.737s
+current_time:2024-02-25 19:27:34
+file:solve_time:0.913s
+current_time:2024-02-25 19:27:39
+file:solve_time:2.988s
+current_time:2024-02-25 19:27:45
+file:solve_time:4.669s
+current_time:2024-02-25 19:27:55
+file:solve_time:8.23s
+current_time:2024-02-25 19:27:58
+file:solve_time:0.894s
+current_time:2024-02-25 19:28:01
+file:solve_time:0.984s
+current_time:2024-02-25 19:28:04
+file:solve_time:1.342s
+current_time:2024-02-25 19:28:11
+file:solve_time:5.185s
+current_time:2024-02-25 19:28:16
+file:solve_time:3.117s
+current_time:2024-02-25 19:28:19
+file:solve_time:1.458s
+current_time:2024-02-25 19:28:25
+file:solve_time:4.147s
+current_time:2024-02-25 19:28:29
+file:solve_time:2.239s
+current_time:2024-02-25 19:28:34
+file:solve_time:3.766s
+current_time:2024-02-25 19:28:38
+file:solve_time:2.063s
+current_time:2024-02-25 19:28:47
+file:solve_time:7.434s
+current_time:2024-02-25 19:28:50
+file:solve_time:0.671s
+current_time:2024-02-25 19:28:53
+file:solve_time:0.947s
+current_time:2024-02-25 19:28:55
+file:solve_time:0.748s
+current_time:2024-02-25 19:28:59
+file:solve_time:1.623s
+current_time:2024-02-25 19:29:02
+file:solve_time:1.517s
+current_time:2024-02-25 19:29:07
+file:solve_time:3.755s
+current_time:2024-02-25 19:29:12
+file:solve_time:2.716s
+current_time:2024-02-25 19:29:17
+file:solve_time:3.373s
+current_time:2024-02-25 19:29:20
+file:solve_time:0.927s
+current_time:2024-02-25 19:29:22
+file:solve_time:0.73s
+current_time:2024-02-25 19:29:31
+file:solve_time:7.684s
+current_time:2024-02-25 19:29:38
+file:solve_time:5.127s
+current_time:2024-02-25 19:29:45
+file:solve_time:4.666s
+current_time:2024-02-25 19:29:59
+file:solve_time:12.478s
+current_time:2024-02-25 19:30:04
+file:solve_time:3.611s
+current_time:2024-02-25 19:30:07
+file:solve_time:0.98s
+current_time:2024-02-25 19:30:12
+file:solve_time:3.632s
+current_time:2024-02-25 19:30:24
+file:solve_time:9.445s
+current_time:2024-02-25 19:30:28
+file:solve_time:2.791s
+current_time:2024-02-25 19:30:31
+file:solve_time:1.029s
+current_time:2024-02-25 19:30:35
+file:solve_time:2.223s
+current_time:2024-02-25 19:30:40
+file:solve_time:1.263s
+current_time:2024-02-25 19:30:43
+file:solve_time:1.616s
+current_time:2024-02-25 19:30:52
+file:solve_time:7.183s
+current_time:2024-02-25 19:30:56
+file:solve_time:2.025s
+current_time:2024-02-25 19:30:58
+file:solve_time:0.621s
+current_time:2024-02-25 19:31:07
+file:solve_time:7.296s
+current_time:2024-02-25 19:31:11
+file:solve_time:1.844s
+current_time:2024-02-25 19:31:18
+file:solve_time:5.697s
+current_time:2024-02-25 19:31:21
+file:solve_time:0.983s
+current_time:2024-02-25 19:31:37
+file:solve_time:14.019s
+current_time:2024-02-25 19:31:54
+file:solve_time:14.434s
+current_time:2024-02-25 19:31:57
+file:solve_time:0.772s
+current_time:2024-02-25 19:32:00
+file:solve_time:1.455s
+current_time:2024-02-25 19:32:04
+file:solve_time:1.994s
+current_time:2024-02-25 19:32:06
+file:solve_time:0.856s
+current_time:2024-02-25 19:32:09
+file:solve_time:1.033s
+current_time:2024-02-25 19:32:22
+file:solve_time:9.974s
+current_time:2024-02-25 19:32:27
+file:solve_time:2.529s
+current_time:2024-02-25 19:32:30
+file:solve_time:1.306s
+current_time:2024-02-25 19:32:32
+file:solve_time:1.037s
+current_time:2024-02-25 19:32:36
+file:solve_time:1.967s
+current_time:2024-02-25 19:32:41
+file:solve_time:3.119s
+current_time:2024-02-25 19:32:50
+file:solve_time:6.83s
+current_time:2024-02-25 19:32:52
+file:solve_time:0.79s
+current_time:2024-02-25 19:32:57
+file:solve_time:3.659s
+current_time:2024-02-25 19:33:05
+file:solve_time:6.011s
+current_time:2024-02-25 19:33:12
+file:solve_time:5.066s
+current_time:2024-02-25 19:33:16
+file:solve_time:2.688s
+current_time:2024-02-25 19:33:20
+file:solve_time:1.754s
+current_time:2024-02-25 19:33:23
+file:solve_time:1.867s
+current_time:2024-02-25 19:33:36
+file:solve_time:10.349s
+current_time:2024-02-25 19:33:41
+file:solve_time:3.312s
+current_time:2024-02-25 19:33:44
+file:solve_time:1.263s
+current_time:2024-02-25 19:33:46
+file:solve_time:1.087s
+current_time:2024-02-25 19:33:49
+file:solve_time:0.911s
+current_time:2024-02-25 19:33:53
+file:solve_time:2.608s
+current_time:2024-02-25 19:34:01
+file:solve_time:5.461s
+current_time:2024-02-25 19:34:11
+file:solve_time:8.802s
+current_time:2024-02-25 19:34:14
+file:solve_time:0.955s
+current_time:2024-02-25 19:34:18
+file:solve_time:2.424s
+current_time:2024-02-25 19:34:21
+file:solve_time:1.209s
+current_time:2024-02-25 19:34:23
+file:solve_time:0.755s
+current_time:2024-02-25 19:34:28
+file:solve_time:1.446s
+current_time:2024-02-25 19:34:31
+file:solve_time:1.454s
+current_time:2024-02-25 19:34:34
+file:solve_time:1.119s
+current_time:2024-02-25 19:34:36
+file:solve_time:0.747s
+current_time:2024-02-25 19:34:46
+file:solve_time:7.666s
+current_time:2024-02-25 19:34:50
+file:solve_time:2.474s
+current_time:2024-02-25 19:34:54
+file:solve_time:2.765s
+current_time:2024-02-25 19:35:13
+file:solve_time:17.249s
+current_time:2024-02-25 19:35:16
+file:solve_time:1.096s
+current_time:2024-02-25 19:35:31
+file:solve_time:13.284s
+current_time:2024-02-25 19:35:37
+file:solve_time:4.012s
+current_time:2024-02-25 19:35:46
+file:solve_time:7.819s
+current_time:2024-02-25 19:35:50
+file:solve_time:1.97s
+current_time:2024-02-25 19:36:01
+file:solve_time:9.364s
+current_time:2024-02-25 19:36:07
+file:solve_time:3.814s
+current_time:2024-02-25 19:36:11
+file:solve_time:2.513s
+current_time:2024-02-25 19:36:16
+file:solve_time:3.567s
+current_time:2024-02-25 19:36:23
+file:solve_time:5.149s
+current_time:2024-02-25 19:36:26
+file:solve_time:1.007s
+current_time:2024-02-25 19:36:35
+file:solve_time:6.695s
+current_time:2024-02-25 19:36:41
+file:solve_time:4.212s
+current_time:2024-02-25 19:36:46
+file:solve_time:1.6s
+current_time:2024-02-25 19:36:49
+file:solve_time:1.211s
+current_time:2024-02-25 19:36:55
+file:solve_time:4.874s
+current_time:2024-02-25 19:36:58
+file:solve_time:0.811s
+current_time:2024-02-25 19:37:02
+file:solve_time:2.244s
+current_time:2024-02-25 19:37:06
+file:solve_time:2.347s
+current_time:2024-02-25 19:37:11
+file:solve_time:3.136s
+current_time:2024-02-25 19:37:14
+file:solve_time:1.139s
+current_time:2024-02-25 19:37:25
+file:solve_time:9.88s
+current_time:2024-02-25 19:37:30
+file:solve_time:2.739s
+current_time:2024-02-25 19:37:32
+file:solve_time:0.745s
+current_time:2024-02-25 19:37:39
+file:solve_time:4.804s
+current_time:2024-02-25 19:37:43
+file:solve_time:2.25s
+current_time:2024-02-25 19:37:51
+file:solve_time:5.842s
+current_time:2024-02-25 19:37:54
+file:solve_time:1.242s
+current_time:2024-02-25 19:38:09
+file:solve_time:13.978s
+current_time:2024-02-25 19:38:12
+file:solve_time:0.727s
+current_time:2024-02-25 19:38:15
+file:solve_time:1.464s
+current_time:2024-02-25 19:38:18
+file:solve_time:0.892s
+current_time:2024-02-25 19:38:22
+file:solve_time:2.482s
+current_time:2024-02-25 19:38:25
+file:solve_time:0.86s
+current_time:2024-02-25 19:38:33
+file:solve_time:6.486s
+current_time:2024-02-25 19:38:43
+file:solve_time:7.99s
+current_time:2024-02-25 19:38:48
+file:solve_time:3.898s
+current_time:2024-02-25 19:38:56
+file:solve_time:5.333s
+current_time:2024-02-25 19:39:00
+file:solve_time:2.923s
+current_time:2024-02-25 19:39:04
+file:solve_time:1.443s
+current_time:2024-02-25 19:39:14
+file:solve_time:8.386s
+current_time:2024-02-25 19:39:18
+file:solve_time:2.137s
+current_time:2024-02-25 19:39:23
+file:solve_time:3.178s
+current_time:2024-02-25 19:39:26
+file:solve_time:1.481s
+current_time:2024-02-25 19:39:36
+file:solve_time:8.161s
+current_time:2024-02-25 19:39:40
+file:solve_time:2.282s
+current_time:2024-02-25 19:39:43
+file:solve_time:1.785s
+current_time:2024-02-25 19:39:48
+file:solve_time:2.81s
+current_time:2024-02-25 19:40:00
+file:solve_time:8.859s
+current_time:2024-02-25 19:40:03
+file:solve_time:0.97s
+current_time:2024-02-25 19:40:08
+file:solve_time:3.225s
+current_time:2024-02-25 19:40:14
+file:solve_time:4.493s
+current_time:2024-02-25 19:40:17
+file:solve_time:1.254s
+current_time:2024-02-25 19:40:20
+file:solve_time:1.834s
+current_time:2024-02-25 19:40:24
+file:solve_time:2.439s
+current_time:2024-02-25 19:40:29
+file:solve_time:2.79s
+current_time:2024-02-25 19:40:31
+file:solve_time:0.634s
+current_time:2024-02-25 19:40:34
+file:solve_time:0.741s
+current_time:2024-02-25 19:40:38
+file:solve_time:2.322s
+current_time:2024-02-25 19:40:41
+file:solve_time:1.456s
+current_time:2024-02-25 19:40:49
+file:solve_time:5.877s
+current_time:2024-02-25 19:40:53
+file:solve_time:0.982s
+current_time:2024-02-25 19:40:58
+file:solve_time:3.15s
+current_time:2024-02-25 19:41:06
+file:solve_time:6.56s
+current_time:2024-02-25 19:41:17
+file:solve_time:8.73s
+current_time:2024-02-25 19:41:21
+file:solve_time:2.822s
+current_time:2024-02-25 19:41:24
+file:solve_time:0.822s
+current_time:2024-02-25 19:41:28
+file:solve_time:2.325s
+current_time:2024-02-25 19:41:33
+file:solve_time:3.18s
+current_time:2024-02-25 19:41:49
+file:solve_time:14.769s
+current_time:2024-02-25 19:41:52
+file:solve_time:0.761s
+current_time:2024-02-25 19:41:57
+file:solve_time:3.568s
+current_time:2024-02-25 19:42:07
+file:solve_time:7.667s
+current_time:2024-02-25 19:42:13
+file:solve_time:4.848s
+current_time:2024-02-25 19:42:17
+file:solve_time:2.153s
+current_time:2024-02-25 19:42:20
+file:solve_time:0.887s
+当前测试文件:/nju/Downloads/smt/gnu_angr.tar.gz/single_test/ginstall/ginstall307943 195.5149s
+current_time:2024-02-25 20:29:20
+file:solve_time:1.111s
+current_time:2024-02-25 20:29:25
+file:solve_time:1.21s
+current_time:2024-02-25 20:29:27
+file:solve_time:0.646s
+current_time:2024-02-25 20:29:34
+file:solve_time:5.648s
+current_time:2024-02-25 20:29:39
+file:solve_time:3.753s
+current_time:2024-02-25 20:29:46
+file:solve_time:5.663s
+current_time:2024-02-25 20:29:55
+file:solve_time:7.491s
+current_time:2024-02-25 20:29:58
+file:solve_time:1.533s
+current_time:2024-02-25 20:30:01
+file:solve_time:1.35s
+current_time:2024-02-25 20:30:05
+file:solve_time:2.497s
+current_time:2024-02-25 20:30:10
+file:solve_time:2.796s
+current_time:2024-02-25 20:30:15
+file:solve_time:3.699s
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/ginstall/ginstall308229 144s
+current_time:2024-02-25 20:30:41
+file:solve_time:0.949s
+current_time:2024-02-25 20:30:44
+file:solve_time:0.618s
+current_time:2024-02-25 20:30:47
+file:solve_time:0.649s
+current_time:2024-02-25 20:30:49
+file:solve_time:0.719s
+current_time:2024-02-25 20:30:52
+file:solve_time:0.811s
+current_time:2024-02-25 20:30:55
+file:solve_time:1.09s
+current_time:2024-02-25 20:30:57
+file:solve_time:0.586s
+current_time:2024-02-25 20:30:59
+file:solve_time:0.56s
+current_time:2024-02-25 20:31:03
+file:solve_time:1.618s
+current_time:2024-02-25 20:31:06
+file:solve_time:1.153s
+current_time:2024-02-25 20:31:08
+file:solve_time:0.549s
+current_time:2024-02-25 20:31:11
+file:solve_time:0.857s
+current_time:2024-02-25 20:31:14
+file:solve_time:1.131s
+current_time:2024-02-25 20:31:16
+file:solve_time:0.609s
+current_time:2024-02-25 20:31:19
+file:solve_time:1.331s
+current_time:2024-02-25 20:31:23
+file:solve_time:0.57s
+current_time:2024-02-25 20:31:25
+file:solve_time:0.572s
+current_time:2024-02-25 20:31:28
+file:solve_time:0.862s
+current_time:2024-02-25 20:31:32
+file:solve_time:0.782s
+current_time:2024-02-25 20:31:34
+file:solve_time:0.904s
+current_time:2024-02-25 20:31:37
+file:solve_time:0.694s
+current_time:2024-02-25 20:31:39
+file:solve_time:0.527s
+current_time:2024-02-25 20:31:42
+file:solve_time:1.694s
+current_time:2024-02-25 20:31:46
+file:solve_time:0.717s
+current_time:2024-02-25 20:31:49
+file:solve_time:0.667s
+current_time:2024-02-25 20:31:51
+file:solve_time:0.77s
+current_time:2024-02-25 20:31:54
+file:solve_time:0.58s
+current_time:2024-02-25 20:31:56
+file:solve_time:0.57s
+current_time:2024-02-25 20:31:58
+file:solve_time:0.538s
+current_time:2024-02-25 20:32:01
+file:solve_time:0.669s
+current_time:2024-02-25 20:32:03
+file:solve_time:0.58s
+current_time:2024-02-25 20:32:05
+file:solve_time:0.633s
+current_time:2024-02-25 20:32:08
+file:solve_time:0.903s
+current_time:2024-02-25 20:32:10
+file:solve_time:0.521s
+current_time:2024-02-25 20:32:15
+file:solve_time:2.219s
+current_time:2024-02-25 20:32:19
+file:solve_time:0.837s
+current_time:2024-02-25 20:32:21
+file:solve_time:1.126s
+current_time:2024-02-25 20:32:26
+file:solve_time:1.69s
+current_time:2024-02-25 20:32:29
+file:solve_time:0.545s
+current_time:2024-02-25 20:32:31
+file:solve_time:0.565s
+current_time:2024-02-25 20:32:34
+file:solve_time:1.473s
+current_time:2024-02-25 20:32:37
+file:solve_time:0.552s
+current_time:2024-02-25 20:32:39
+file:solve_time:0.545s
+current_time:2024-02-25 20:32:42
+file:solve_time:0.588s
+current_time:2024-02-25 20:32:44
+file:solve_time:0.561s
+current_time:2024-02-25 20:32:46
+file:solve_time:0.803s
+current_time:2024-02-25 20:32:49
+file:solve_time:0.541s
+current_time:2024-02-25 20:32:51
+file:solve_time:0.56s
+current_time:2024-02-25 20:32:54
+file:solve_time:1.356s
+current_time:2024-02-25 20:32:57
+file:solve_time:0.594s
+current_time:2024-02-25 20:32:59
+file:solve_time:0.775s
+current_time:2024-02-25 20:33:01
+file:solve_time:0.642s
+current_time:2024-02-25 20:33:04
+file:solve_time:0.536s
+current_time:2024-02-25 20:33:06
+file:solve_time:0.741s
+current_time:2024-02-25 20:33:09
+file:solve_time:1.123s
+current_time:2024-02-25 20:33:12
+file:solve_time:0.526s
+current_time:2024-02-25 20:33:14
+file:solve_time:0.667s
+current_time:2024-02-25 20:33:17
+file:solve_time:0.737s
+current_time:2024-02-25 20:33:21
+file:solve_time:1.029s
+current_time:2024-02-25 20:33:24
+file:solve_time:0.642s
+current_time:2024-02-25 20:33:26
+file:solve_time:0.571s
+current_time:2024-02-25 20:33:29
+file:solve_time:0.563s
+current_time:2024-02-25 20:33:32
+file:solve_time:0.542s
+current_time:2024-02-25 20:33:35
+file:solve_time:0.609s
+current_time:2024-02-25 20:33:37
+file:solve_time:0.647s
+current_time:2024-02-25 20:33:40
+file:solve_time:0.711s
+current_time:2024-02-25 20:33:42
+file:solve_time:0.916s
+current_time:2024-02-25 20:33:46
+file:solve_time:0.605s
+current_time:2024-02-25 20:33:48
+file:solve_time:0.567s
+current_time:2024-02-25 20:33:51
+file:solve_time:0.845s
+current_time:2024-02-25 20:33:54
+file:solve_time:1.194s
+current_time:2024-02-25 20:33:57
+file:solve_time:1.219s
+current_time:2024-02-25 20:33:59
+file:solve_time:0.608s
+current_time:2024-02-25 20:34:02
+file:solve_time:0.939s
+current_time:2024-02-25 20:34:04
+file:solve_time:0.591s
+current_time:2024-02-25 20:34:07
+file:solve_time:0.824s
+current_time:2024-02-25 20:34:09
+file:solve_time:0.545s
+current_time:2024-02-25 20:34:11
+file:solve_time:0.552s
+current_time:2024-02-25 20:34:14
+file:solve_time:1.223s
+current_time:2024-02-25 20:34:18
+file:solve_time:1.403s
+current_time:2024-02-25 20:34:21
+file:solve_time:0.931s
+current_time:2024-02-25 20:34:23
+file:solve_time:0.796s
+current_time:2024-02-25 20:34:26
+file:solve_time:0.607s
+current_time:2024-02-25 20:34:28
+file:solve_time:0.616s
+current_time:2024-02-25 20:34:30
+file:solve_time:0.567s
+current_time:2024-02-25 20:34:33
+file:solve_time:1.32s
+current_time:2024-02-25 20:34:36
+file:solve_time:0.529s
+current_time:2024-02-25 20:34:38
+file:solve_time:0.852s
+current_time:2024-02-25 20:34:41
+file:solve_time:0.523s
+current_time:2024-02-25 20:34:43
+file:solve_time:0.773s
+current_time:2024-02-25 20:34:46
+file:solve_time:0.704s
+current_time:2024-02-25 20:34:48
+file:solve_time:0.54s
+current_time:2024-02-25 20:34:50
+file:solve_time:0.535s
+current_time:2024-02-25 20:34:53
+file:solve_time:0.54s
+current_time:2024-02-25 20:34:55
+file:solve_time:0.72s
+current_time:2024-02-25 20:34:58
+file:solve_time:1.26s
+current_time:2024-02-25 20:35:00
+file:solve_time:0.563s
+current_time:2024-02-25 20:35:03
+file:solve_time:0.699s
+current_time:2024-02-25 20:35:07
+file:solve_time:0.946s
+current_time:2024-02-25 20:35:10
+file:solve_time:0.617s
+current_time:2024-02-25 20:35:12
+file:solve_time:0.571s
+current_time:2024-02-25 20:35:14
+file:solve_time:0.62s
+current_time:2024-02-25 20:35:17
+file:solve_time:0.629s
+current_time:2024-02-25 20:35:19
+file:solve_time:0.55s
+current_time:2024-02-25 20:35:21
+file:solve_time:0.524s
+current_time:2024-02-25 20:35:24
+file:solve_time:0.537s
+current_time:2024-02-25 20:35:26
+file:solve_time:0.601s
+current_time:2024-02-25 20:35:30
+file:solve_time:0.544s
+current_time:2024-02-25 20:35:32
+file:solve_time:0.576s
+current_time:2024-02-25 20:35:36
+file:solve_time:1.309s
+current_time:2024-02-25 20:35:38
+file:solve_time:0.596s
+current_time:2024-02-25 20:35:40
+file:solve_time:0.557s
+current_time:2024-02-25 20:35:43
+file:solve_time:0.602s
+current_time:2024-02-25 20:35:47
+file:solve_time:0.584s
+current_time:2024-02-25 20:35:49
+file:solve_time:0.796s
+current_time:2024-02-25 20:35:51
+file:solve_time:0.528s
+current_time:2024-02-25 20:35:54
+file:solve_time:0.519s
+current_time:2024-02-25 20:35:56
+file:solve_time:0.558s
+current_time:2024-02-25 20:35:59
+file:solve_time:1.059s
+current_time:2024-02-25 20:36:01
+file:solve_time:0.601s
+current_time:2024-02-25 20:36:04
+file:solve_time:0.585s
+current_time:2024-02-25 20:36:06
+file:solve_time:0.646s
+current_time:2024-02-25 20:36:10
+file:solve_time:0.553s
+current_time:2024-02-25 20:36:12
+file:solve_time:0.75s
+current_time:2024-02-25 20:36:16
+file:solve_time:1.312s
+current_time:2024-02-25 20:36:18
+file:solve_time:0.574s
+current_time:2024-02-25 20:36:20
+file:solve_time:0.547s
+current_time:2024-02-25 20:36:23
+file:solve_time:1.264s
+current_time:2024-02-25 20:36:26
+file:solve_time:0.624s
+current_time:2024-02-25 20:36:30
+file:solve_time:0.544s
+current_time:2024-02-25 20:36:32
+file:solve_time:0.604s
+current_time:2024-02-25 20:36:35
+file:solve_time:0.696s
+current_time:2024-02-25 20:36:37
+file:solve_time:0.659s
+current_time:2024-02-25 20:36:40
+file:solve_time:0.572s
+current_time:2024-02-25 20:36:44
+file:solve_time:0.57s
+current_time:2024-02-25 20:36:46
+file:solve_time:0.54s
+current_time:2024-02-25 20:36:48
+file:solve_time:0.568s
+current_time:2024-02-25 20:36:51
+file:solve_time:0.651s
+current_time:2024-02-25 20:36:53
+file:solve_time:0.651s
+current_time:2024-02-25 20:36:56
+file:solve_time:0.906s
+current_time:2024-02-25 20:37:00
+file:solve_time:2.408s
+current_time:2024-02-25 20:37:03
+file:solve_time:0.767s
+current_time:2024-02-25 20:37:07
+file:solve_time:0.596s
+current_time:2024-02-25 20:37:09
+file:solve_time:0.579s
+current_time:2024-02-25 20:37:12
+file:solve_time:0.608s
+current_time:2024-02-25 20:37:15
+file:solve_time:0.976s
+current_time:2024-02-25 20:37:18
+file:solve_time:2.017s
+current_time:2024-02-25 20:37:21
+file:solve_time:1.249s
+current_time:2024-02-25 20:37:24
+file:solve_time:0.575s
+current_time:2024-02-25 20:37:26
+file:solve_time:0.597s
+current_time:2024-02-25 20:37:29
+file:solve_time:0.632s
+current_time:2024-02-25 20:37:31
+file:solve_time:0.632s
+current_time:2024-02-25 20:37:34
+file:solve_time:0.62s
+current_time:2024-02-25 20:37:38
+file:solve_time:0.939s
+current_time:2024-02-25 20:37:40
+file:solve_time:0.612s
+current_time:2024-02-25 20:37:43
+file:solve_time:0.797s
+current_time:2024-02-25 20:37:47
+file:solve_time:1.637s
+current_time:2024-02-25 20:37:49
+file:solve_time:0.661s
+current_time:2024-02-25 20:37:52
+file:solve_time:0.566s
+current_time:2024-02-25 20:37:54
+file:solve_time:0.627s
+current_time:2024-02-25 20:37:57
+file:solve_time:1.594s
+current_time:2024-02-25 20:38:00
+file:solve_time:0.605s
+current_time:2024-02-25 20:38:02
+file:solve_time:0.528s
+current_time:2024-02-25 20:38:05
+file:solve_time:0.764s
+current_time:2024-02-25 20:38:07
+file:solve_time:0.586s
+current_time:2024-02-25 20:38:10
+file:solve_time:0.571s
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/ginstall/ginstall308229
+current_time:2024-02-25 20:40:30
+file:solve_time:0.958s
+current_time:2024-02-25 20:40:40
+file:solve_time:0.618s
+current_time:2024-02-25 20:40:48
+file:solve_time:0.651s
+current_time:2024-02-25 20:40:59
+file:solve_time:0.717s
+current_time:2024-02-25 20:41:05
+file:solve_time:0.804s
+current_time:2024-02-25 20:41:11
+file:solve_time:1.086s
+current_time:2024-02-25 20:41:18
+file:solve_time:0.588s
+current_time:2024-02-25 20:41:29
+file:solve_time:0.562s
+current_time:2024-02-25 20:41:36
+file:solve_time:1.625s
+current_time:2024-02-25 20:41:42
+file:solve_time:1.16s
+current_time:2024-02-25 20:41:48
+file:solve_time:0.548s
+current_time:2024-02-25 20:41:53
+file:solve_time:0.868s
+current_time:2024-02-25 20:43:21
+file:solve_time:1.113s
+current_time:2024-02-25 20:43:28
+file:solve_time:0.612s
+current_time:2024-02-25 20:43:36
+file:solve_time:1.324s
+current_time:2024-02-25 20:49:41
+file:solve_time:0.567s
+current_time:2024-02-25 20:50:04
+file:solve_time:0.572s
+current_time:2024-02-25 20:50:11
+file:solve_time:0.861s
+current_time:2024-02-25 20:50:23
+file:solve_time:0.773s
+current_time:2024-02-25 20:50:31
+file:solve_time:0.894s
+current_time:2024-02-25 20:50:39
+file:solve_time:0.689s
+current_time:2024-02-25 20:50:46
+file:solve_time:0.531s
+current_time:2024-02-25 20:51:07
+file:solve_time:1.678s
+current_time:2024-02-25 20:52:21
+file:solve_time:0.725s
+current_time:2024-02-25 20:52:27
+file:solve_time:0.664s
+current_time:2024-02-25 20:52:34
+file:solve_time:0.761s
+current_time:2024-02-25 20:52:40
+file:solve_time:0.582s
+current_time:2024-02-25 20:52:46
+file:solve_time:0.575s
+current_time:2024-02-25 20:52:53
+file:solve_time:0.538s
+current_time:2024-02-25 20:52:58
+file:solve_time:0.667s
+current_time:2024-02-25 20:53:03
+file:solve_time:0.583s
+current_time:2024-02-25 20:53:46
+file:solve_time:0.627s
+current_time:2024-02-25 20:53:54
+file:solve_time:0.879s
+current_time:2024-02-25 20:54:02
+file:solve_time:0.52s
+current_time:2024-02-25 20:54:08
+file:solve_time:2.203s
+current_time:2024-02-25 20:54:14
+file:solve_time:0.84s
+current_time:2024-02-25 20:54:21
+file:solve_time:1.108s
+current_time:2024-02-25 21:01:09
+file:solve_time:1.654s
+current_time:2024-02-25 21:01:14
+file:solve_time:0.548s
+current_time:2024-02-25 21:01:20
+file:solve_time:0.566s
+current_time:2024-02-25 21:01:25
+file:solve_time:1.465s
+current_time:2024-02-25 21:01:37
+file:solve_time:0.557s
+current_time:2024-02-25 21:01:53
+file:solve_time:0.547s
+current_time:2024-02-25 21:02:14
+file:solve_time:0.58s
+current_time:2024-02-25 21:02:31
+file:solve_time:0.561s
+current_time:2024-02-25 21:02:55
+file:solve_time:0.8s
+current_time:2024-02-25 21:03:13
+file:solve_time:0.543s
+current_time:2024-02-25 21:03:41
+file:solve_time:0.562s
+current_time:2024-02-25 21:04:36
+file:solve_time:1.351s
+current_time:2024-02-25 21:04:41
+file:solve_time:0.582s
+current_time:2024-02-25 21:04:46
+file:solve_time:0.765s
+current_time:2024-02-25 21:04:54
+file:solve_time:0.645s
+current_time:2024-02-25 21:04:58
+file:solve_time:0.538s
+current_time:2024-02-25 21:05:03
+file:solve_time:0.737s
+current_time:2024-02-25 21:05:43
+file:solve_time:1.116s
+current_time:2024-02-25 21:05:52
+file:solve_time:0.531s
+current_time:2024-02-25 21:06:04
+file:solve_time:0.668s
+current_time:2024-02-25 21:06:19
+file:solve_time:0.734s
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/who/who53174
+current_time:2024-02-25 21:07:51
+file:solve_time:6.756s
+current_time:2024-02-25 21:08:11
+file:solve_time:6.663s
+current_time:2024-02-25 21:08:34
+file:solve_time:8.743s
+current_time:2024-02-25 21:08:55
+file:solve_time:7.415s
+current_time:2024-02-25 21:09:15
+file:solve_time:5.803s
+current_time:2024-02-25 21:09:38
+file:solve_time:8.369s
+current_time:2024-02-25 21:09:59
+file:solve_time:7.324s
+current_time:2024-02-25 21:10:25
+file:solve_time:11.661s
+current_time:2024-02-25 21:10:48
+file:solve_time:8.83s
+current_time:2024-02-25 21:11:09
+file:solve_time:6.335s
+current_time:2024-02-25 21:11:29
+file:solve_time:6.272s
+current_time:2024-02-25 21:11:53
+file:solve_time:9.744s
+current_time:2024-02-25 21:12:19
+file:solve_time:11.961s
+current_time:2024-02-25 21:12:41
+file:solve_time:7.491s
+current_time:2024-02-25 21:13:05
+file:solve_time:9.821s
+current_time:2024-02-25 21:13:36
+file:solve_time:15.888s
+current_time:2024-02-25 21:14:03
+file:solve_time:12.663s
+current_time:2024-02-25 21:14:25
+file:solve_time:8.39s
+current_time:2024-02-25 21:14:49
+file:solve_time:8.913s
+current_time:2024-02-25 21:15:09
+file:solve_time:6.332s
+current_time:2024-02-25 21:15:39
+file:solve_time:14.633s
+current_time:2024-02-25 21:16:03
+file:solve_time:8.197s
+current_time:2024-02-25 21:16:25
+file:solve_time:7.738s
+current_time:2024-02-25 21:16:48
+file:solve_time:9.088s
+current_time:2024-02-25 21:17:14
+file:solve_time:11.219s
+current_time:2024-02-25 21:17:37
+file:solve_time:8.958s
+current_time:2024-02-25 21:18:02
+file:solve_time:10.238s
+current_time:2024-02-25 21:18:29
+file:solve_time:12.594s
+current_time:2024-02-25 21:18:51
+file:solve_time:7.602s
+current_time:2024-02-25 21:19:17
+file:solve_time:11.142s
+current_time:2024-02-25 21:19:41
+file:solve_time:9.72s
+current_time:2024-02-25 21:20:04
+file:solve_time:8.526s
+current_time:2024-02-25 21:20:30
+file:solve_time:11.069s
+current_time:2024-02-25 21:20:51
+file:solve_time:6.866s
+current_time:2024-02-25 21:21:12
+file:solve_time:6.469s
+current_time:2024-02-25 21:21:39
+file:solve_time:10.532s
+current_time:2024-02-25 21:22:04
+file:solve_time:11.309s
+current_time:2024-02-25 21:22:26
+file:solve_time:7.065s
+current_time:2024-02-25 21:22:50
+file:solve_time:9.075s
+current_time:2024-02-25 21:23:12
+file:solve_time:7.404s
+current_time:2024-02-25 21:23:37
+file:solve_time:11.01s
+current_time:2024-02-25 21:24:02
+file:solve_time:8.984s
+current_time:2024-02-25 21:24:24
+file:solve_time:7.05s
+current_time:2024-02-25 21:24:47
+file:solve_time:8.826s
+current_time:2024-02-25 21:25:08
+file:solve_time:5.958s
+current_time:2024-02-25 21:25:40
+file:solve_time:16.095s
+current_time:2024-02-25 21:26:03
+file:solve_time:8.539s
+current_time:2024-02-25 21:26:29
+file:solve_time:11.559s
+current_time:2024-02-25 21:26:44
+file:solve_time:1.438s
+current_time:2024-02-25 21:27:07
+file:solve_time:8.41s
+current_time:2024-02-25 21:27:29
+file:solve_time:7.757s
+current_time:2024-02-25 21:27:52
+file:solve_time:6.902s
+current_time:2024-02-25 21:28:15
+file:solve_time:7.74s
+current_time:2024-02-25 21:28:39
+file:solve_time:9.427s
+current_time:2024-02-25 21:29:08
+file:solve_time:14.725s
+current_time:2024-02-25 21:29:33
+file:solve_time:10.041s
+current_time:2024-02-25 21:29:56
+file:solve_time:8.425s
+current_time:2024-02-25 21:30:17
+file:solve_time:7.25s
+current_time:2024-02-25 21:30:43
+file:solve_time:8.983s
+current_time:2024-02-25 21:31:07
+file:solve_time:9.545s
+current_time:2024-02-25 21:31:30
+file:solve_time:8.519s
+current_time:2024-02-25 21:31:51
+file:solve_time:7.035s
+current_time:2024-02-25 21:32:17
+file:solve_time:11.415s
+current_time:2024-02-25 21:32:44
+file:solve_time:12.47s
+current_time:2024-02-25 21:33:08
+file:solve_time:9.405s
+current_time:2024-02-25 21:33:31
+file:solve_time:8.534s
+current_time:2024-02-25 21:33:57
+file:solve_time:11.231s
+current_time:2024-02-25 21:34:30
+file:solve_time:17.041s
+current_time:2024-02-25 21:34:55
+file:solve_time:8.446s
+current_time:2024-02-25 21:35:20
+file:solve_time:10.97s
+current_time:2024-02-25 21:35:47
+file:solve_time:11.67s
+current_time:2024-02-25 21:36:15
+file:solve_time:13.035s
+current_time:2024-02-25 21:36:39
+file:solve_time:10.137s
+current_time:2024-02-25 21:37:03
+file:solve_time:8.629s
+current_time:2024-02-25 21:37:27
+file:solve_time:8.413s
+current_time:2024-02-25 21:37:54
+file:solve_time:11.529s
+current_time:2024-02-25 21:38:16
+file:solve_time:7.661s
+current_time:2024-02-25 21:38:40
+file:solve_time:9.446s
+current_time:2024-02-25 21:39:05
+file:solve_time:10.376s
+current_time:2024-02-25 21:39:27
+file:solve_time:7.229s
+current_time:2024-02-25 21:39:52
+file:solve_time:10.08s
+current_time:2024-02-25 21:40:13
+file:solve_time:7.239s
+current_time:2024-02-25 21:40:41
+file:solve_time:12.893s
+current_time:2024-02-25 21:41:05
+file:solve_time:9.102s
+current_time:2024-02-25 21:41:29
+file:solve_time:9.511s
+current_time:2024-02-25 21:41:53
+file:solve_time:8.792s
+current_time:2024-02-25 21:42:17
+file:solve_time:9.771s
+current_time:2024-02-25 21:42:42
+file:solve_time:9.878s
+current_time:2024-02-25 21:43:07
+file:solve_time:10.349s
+current_time:2024-02-25 21:43:32
+file:solve_time:10.753s
+current_time:2024-02-25 21:44:03
+file:solve_time:16.311s
+current_time:2024-02-25 21:44:28
+file:solve_time:10.446s
+current_time:2024-02-25 21:44:53
+file:solve_time:10.483s
+current_time:2024-02-25 21:45:14
+file:solve_time:6.824s
+current_time:2024-02-25 21:45:43
+file:solve_time:14.189s
+current_time:2024-02-25 21:46:06
+file:solve_time:8.887s
+current_time:2024-02-25 21:46:29
+file:solve_time:8.002s
+current_time:2024-02-25 21:46:54
+file:solve_time:9.821s
+current_time:2024-02-25 21:47:19
+file:solve_time:10.482s
+current_time:2024-02-25 21:47:43
+file:solve_time:9.636s
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq123945
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq123945
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq128931
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq143541 65s
+current_time:2024-02-27 18:52:41
+file:solve_time:0.427s
+current_time:2024-02-27 18:52:56
+file:solve_time:0.257s
+current_time:2024-02-27 18:53:11
+file:solve_time:0.66s
+current_time:2024-02-27 18:53:26
+file:solve_time:0.422s
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq12583
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq112583
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq112583
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq112583
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq112583
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq112583
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq143541  64s
+current_time:2024-02-28 19:10:28
+file:solve_time:0.429s
+current_time:2024-02-28 19:10:40
+file:solve_time:0.259s
+current_time:2024-02-28 19:10:52
+file:solve_time:0.669s
+current_time:2024-02-28 19:11:04
+file:solve_time:0.425s
+current_time:2024-02-28 19:11:15
+file:solve_time:0.652s
+current_time:2024-02-28 19:11:27
+file:solve_time:0.815s
+current_time:2024-02-28 19:11:38
+file:solve_time:0.165s
+current_time:2024-02-28 19:11:50
+file:solve_time:0.939s
+current_time:2024-02-28 19:12:02
+file:solve_time:0.364s
+current_time:2024-02-28 19:12:15
+file:solve_time:1.253s
+current_time:2024-02-28 19:12:27
+file:solve_time:0.607s
+current_time:2024-02-28 19:12:40
+file:solve_time:0.945s
+current_time:2024-02-28 19:12:52
+file:solve_time:0.303s
+current_time:2024-02-28 19:13:04
+file:solve_time:0.772s
+current_time:2024-02-28 19:13:17
+file:solve_time:0.726s
+current_time:2024-02-28 19:13:29
+file:solve_time:0.199s
+current_time:2024-02-28 19:13:41
+file:solve_time:0.117s
+current_time:2024-02-28 19:13:53
+file:solve_time:0.825s
+current_time:2024-02-28 19:14:06
+file:solve_time:0.516s
+current_time:2024-02-28 19:14:18
+file:solve_time:0.323s
+current_time:2024-02-28 19:14:31
+file:solve_time:1.496s
+current_time:2024-02-28 19:14:44
+file:solve_time:1.585s
+current_time:2024-02-28 19:14:56
+file:solve_time:0.351s
+current_time:2024-02-28 19:15:09
+file:solve_time:1.274s
+current_time:2024-02-28 19:15:21
+file:solve_time:1.225s
+current_time:2024-02-28 19:15:34
+file:solve_time:0.802s
+current_time:2024-02-28 19:15:46
+file:solve_time:0.96s
+current_time:2024-02-28 19:15:58
+file:solve_time:0.353s
+current_time:2024-02-28 19:16:10
+file:solve_time:0.24s
+current_time:2024-02-28 19:16:22
+file:solve_time:0.597s
+current_time:2024-02-28 19:16:34
+file:solve_time:0.356s
+current_time:2024-02-28 19:16:46
+file:solve_time:0.161s
+current_time:2024-02-28 19:16:58
+file:solve_time:0.499s
+current_time:2024-02-28 19:17:10
+file:solve_time:0.192s
+current_time:2024-02-28 19:17:22
+file:solve_time:0.154s
+current_time:2024-02-28 19:17:34
+file:solve_time:0.648s
+current_time:2024-02-28 19:17:47
+file:solve_time:0.442s
+current_time:2024-02-28 19:17:59
+file:solve_time:0.719s
+current_time:2024-02-28 19:18:12
+file:solve_time:1.289s
+current_time:2024-02-28 19:18:25
+file:solve_time:0.336s
+current_time:2024-02-28 19:18:38
+file:solve_time:0.961s
+current_time:2024-02-28 19:18:51
+file:solve_time:1.71s
+current_time:2024-02-28 19:19:03
+file:solve_time:0.561s
+current_time:2024-02-28 19:19:16
+file:solve_time:0.68s
+current_time:2024-02-28 19:19:30
+file:solve_time:0.718s
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq128931 59s
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq128931
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq123946 367s
+当前测试文件:/home/nju/Downloads/smt/smt-comp/QF_BV/Sage2_bench_1056.smt2
+当前测试文件:/home/nju/Downloads/smt/smt-comp/QF_BV/Sage2_bench_1056.smt2
+当前测试文件:/home/nju/Downloads/smt/smt-comp/QF_BV/Sage2_bench_1056.smt2
+当前测试文件:/home/nju/Downloads/smt/smt-comp/QF_BV/Sage2_bench_1056.smt2
+当前测试文件:/home/nju/Downloads/smt/smt-comp/QF_BV/Sage2_bench_1056.smt2
+当前测试文件:/home/nju/Downloads/smt/smt-comp/QF_BV/Sage2_bench_3256.smt2
+当前测试文件:/home/nju/Downloads/smt/smt-comp/QF_BV/Sage2_bench_3256.smt2
+当前测试文件:/home/nju/Downloads/smt/smt-comp/QF_BV/Sage2_bench_3256.smt2
+当前测试文件:/home/nju/Downloads/smt/smt-comp/QF_BV/Sage2_bench_3256.smt2
+当前测试文件:/home/nju/Downloads/smt/smt-comp/QF_BV/Sage2_bench_3256.smt2
+当前测试文件:/home/nju/Downloads/smt/smt-comp/QF_BV/Sage2_bench_3256.smt2
+当前测试文件:/home/nju/Downloads/smt/smt-comp/QF_BV/brummayerbiere3_mulhs64.smt2
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268  136.711s
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq123946
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq123946
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq123946
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq123946
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq123946
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268
+当前测试文件:/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268

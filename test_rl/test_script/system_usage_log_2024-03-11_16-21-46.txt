@@ -1,0 +1,318 @@
+2024-03-11 16:21:46 - System Memory Usage: 14.7%
+2024-03-11 16:21:46 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 9.0%, Memory Usage: 555.0/24564.0 MB
+2024-03-11 16:21:51 - System Memory Usage: 22.9%
+2024-03-11 16:21:51 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 555.0/24564.0 MB
+2024-03-11 16:21:56 - System Memory Usage: 14.6%
+2024-03-11 16:21:56 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 1.0%, Memory Usage: 6785.0/24564.0 MB
+2024-03-11 16:22:01 - System Memory Usage: 14.7%
+2024-03-11 16:22:01 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 7111.0/24564.0 MB
+2024-03-11 16:22:06 - System Memory Usage: 15.0%
+2024-03-11 16:22:06 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 7371.0/24564.0 MB
+2024-03-11 16:22:12 - System Memory Usage: 15.5%
+2024-03-11 16:22:12 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 7371.0/24564.0 MB
+2024-03-11 16:22:17 - System Memory Usage: 15.4%
+2024-03-11 16:22:17 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 7763.0/24564.0 MB
+2024-03-11 16:22:22 - System Memory Usage: 16.0%
+2024-03-11 16:22:22 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 7763.0/24564.0 MB
+2024-03-11 16:22:27 - System Memory Usage: 15.8%
+2024-03-11 16:22:27 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 7801.0/24564.0 MB
+2024-03-11 16:22:32 - System Memory Usage: 16.0%
+2024-03-11 16:22:32 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8063.0/24564.0 MB
+2024-03-11 16:22:37 - System Memory Usage: 16.5%
+2024-03-11 16:22:37 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8063.0/24564.0 MB
+2024-03-11 16:22:42 - System Memory Usage: 15.9%
+2024-03-11 16:22:42 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8101.0/24564.0 MB
+2024-03-11 16:22:47 - System Memory Usage: 16.5%
+2024-03-11 16:22:47 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8101.0/24564.0 MB
+2024-03-11 16:22:52 - System Memory Usage: 15.8%
+2024-03-11 16:22:52 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 13.0%, Memory Usage: 8101.0/24564.0 MB
+2024-03-11 16:22:57 - System Memory Usage: 16.2%
+2024-03-11 16:22:57 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8139.0/24564.0 MB
+2024-03-11 16:23:02 - System Memory Usage: 15.8%
+2024-03-11 16:23:02 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8101.0/24564.0 MB
+2024-03-11 16:23:07 - System Memory Usage: 16.1%
+2024-03-11 16:23:07 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8101.0/24564.0 MB
+2024-03-11 16:23:12 - System Memory Usage: 15.9%
+2024-03-11 16:23:12 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8101.0/24564.0 MB
+2024-03-11 16:23:17 - System Memory Usage: 16.0%
+2024-03-11 16:23:17 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8101.0/24564.0 MB
+2024-03-11 16:23:22 - System Memory Usage: 16.5%
+2024-03-11 16:23:22 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8101.0/24564.0 MB
+2024-03-11 16:23:27 - System Memory Usage: 15.8%
+2024-03-11 16:23:27 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 7.000000000000001%, Memory Usage: 8139.0/24564.0 MB
+2024-03-11 16:23:32 - System Memory Usage: 16.4%
+2024-03-11 16:23:32 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 23.0%, Memory Usage: 8139.0/24564.0 MB
+2024-03-11 16:23:37 - System Memory Usage: 15.9%
+2024-03-11 16:23:37 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8101.0/24564.0 MB
+2024-03-11 16:23:43 - System Memory Usage: 16.3%
+2024-03-11 16:23:43 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8101.0/24564.0 MB
+2024-03-11 16:23:48 - System Memory Usage: 15.9%
+2024-03-11 16:23:48 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:23:53 - System Memory Usage: 16.2%
+2024-03-11 16:23:53 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8136.0/24564.0 MB
+2024-03-11 16:23:58 - System Memory Usage: 16.0%
+2024-03-11 16:23:58 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 7.000000000000001%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:24:03 - System Memory Usage: 16.1%
+2024-03-11 16:24:03 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:24:08 - System Memory Usage: 16.6%
+2024-03-11 16:24:08 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:24:13 - System Memory Usage: 16.0%
+2024-03-11 16:24:13 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:24:18 - System Memory Usage: 16.6%
+2024-03-11 16:24:18 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 15.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:24:23 - System Memory Usage: 15.9%
+2024-03-11 16:24:23 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 7.000000000000001%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:24:28 - System Memory Usage: 16.4%
+2024-03-11 16:24:28 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 23.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:24:33 - System Memory Usage: 15.9%
+2024-03-11 16:24:33 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:24:38 - System Memory Usage: 16.4%
+2024-03-11 16:24:38 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:24:43 - System Memory Usage: 15.9%
+2024-03-11 16:24:43 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:24:48 - System Memory Usage: 16.3%
+2024-03-11 16:24:48 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:24:53 - System Memory Usage: 15.9%
+2024-03-11 16:24:53 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:24:58 - System Memory Usage: 16.2%
+2024-03-11 16:24:58 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:25:03 - System Memory Usage: 15.9%
+2024-03-11 16:25:03 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 8.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:25:08 - System Memory Usage: 16.1%
+2024-03-11 16:25:08 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:25:13 - System Memory Usage: 16.5%
+2024-03-11 16:25:13 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:25:19 - System Memory Usage: 16.0%
+2024-03-11 16:25:19 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:25:24 - System Memory Usage: 16.5%
+2024-03-11 16:25:24 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 16.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:25:29 - System Memory Usage: 15.9%
+2024-03-11 16:25:29 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 17.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:25:34 - System Memory Usage: 16.5%
+2024-03-11 16:25:34 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:25:39 - System Memory Usage: 15.9%
+2024-03-11 16:25:39 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:25:44 - System Memory Usage: 16.2%
+2024-03-11 16:25:44 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8136.0/24564.0 MB
+2024-03-11 16:25:49 - System Memory Usage: 15.9%
+2024-03-11 16:25:49 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 8.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:25:54 - System Memory Usage: 16.1%
+2024-03-11 16:25:54 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:25:59 - System Memory Usage: 16.6%
+2024-03-11 16:25:59 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:26:04 - System Memory Usage: 16.0%
+2024-03-11 16:26:04 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:26:09 - System Memory Usage: 16.6%
+2024-03-11 16:26:09 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 14.000000000000002%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:26:14 - System Memory Usage: 15.9%
+2024-03-11 16:26:14 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:26:19 - System Memory Usage: 16.5%
+2024-03-11 16:26:19 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:26:24 - System Memory Usage: 15.9%
+2024-03-11 16:26:24 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:26:29 - System Memory Usage: 16.3%
+2024-03-11 16:26:29 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8136.0/24564.0 MB
+2024-03-11 16:26:34 - System Memory Usage: 15.9%
+2024-03-11 16:26:34 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 18.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:26:39 - System Memory Usage: 16.2%
+2024-03-11 16:26:39 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:26:44 - System Memory Usage: 15.9%
+2024-03-11 16:26:44 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 3.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:26:50 - System Memory Usage: 16.1%
+2024-03-11 16:26:50 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:26:55 - System Memory Usage: 16.3%
+2024-03-11 16:26:55 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:27:00 - System Memory Usage: 16.0%
+2024-03-11 16:27:00 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:27:05 - System Memory Usage: 16.6%
+2024-03-11 16:27:05 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 20.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:27:10 - System Memory Usage: 15.9%
+2024-03-11 16:27:10 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 12.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:27:15 - System Memory Usage: 16.5%
+2024-03-11 16:27:15 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:27:20 - System Memory Usage: 15.9%
+2024-03-11 16:27:20 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:27:25 - System Memory Usage: 16.3%
+2024-03-11 16:27:25 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8138.0/24564.0 MB
+2024-03-11 16:27:30 - System Memory Usage: 15.9%
+2024-03-11 16:27:30 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 18.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:27:35 - System Memory Usage: 16.3%
+2024-03-11 16:27:35 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8062.0/24564.0 MB
+2024-03-11 16:27:40 - System Memory Usage: 15.9%
+2024-03-11 16:27:40 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:27:45 - System Memory Usage: 15.8%
+2024-03-11 16:27:45 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:27:50 - System Memory Usage: 15.8%
+2024-03-11 16:27:50 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 12.0%, Memory Usage: 8136.0/24564.0 MB
+2024-03-11 16:27:55 - System Memory Usage: 16.4%
+2024-03-11 16:27:55 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8136.0/24564.0 MB
+2024-03-11 16:28:00 - System Memory Usage: 15.9%
+2024-03-11 16:28:00 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 18.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:28:05 - System Memory Usage: 16.3%
+2024-03-11 16:28:05 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:28:10 - System Memory Usage: 16.0%
+2024-03-11 16:28:10 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 20.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:28:15 - System Memory Usage: 16.1%
+2024-03-11 16:28:15 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8138.0/24564.0 MB
+2024-03-11 16:28:20 - System Memory Usage: 16.6%
+2024-03-11 16:28:20 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8138.0/24564.0 MB
+2024-03-11 16:28:25 - System Memory Usage: 16.0%
+2024-03-11 16:28:25 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:28:31 - System Memory Usage: 16.6%
+2024-03-11 16:28:31 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 23.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:28:36 - System Memory Usage: 15.9%
+2024-03-11 16:28:36 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 17.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:28:41 - System Memory Usage: 16.5%
+2024-03-11 16:28:41 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:28:46 - System Memory Usage: 16.0%
+2024-03-11 16:28:46 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:28:51 - System Memory Usage: 16.4%
+2024-03-11 16:28:51 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:28:56 - System Memory Usage: 15.9%
+2024-03-11 16:28:56 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:29:01 - System Memory Usage: 16.3%
+2024-03-11 16:29:01 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8100.0/24564.0 MB
+2024-03-11 16:29:06 - System Memory Usage: 16.0%
+2024-03-11 16:29:06 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 18.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:29:11 - System Memory Usage: 16.2%
+2024-03-11 16:29:11 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:29:16 - System Memory Usage: 16.0%
+2024-03-11 16:29:16 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:29:21 - System Memory Usage: 16.1%
+2024-03-11 16:29:21 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:29:26 - System Memory Usage: 16.6%
+2024-03-11 16:29:26 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:29:31 - System Memory Usage: 16.0%
+2024-03-11 16:29:31 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:29:36 - System Memory Usage: 16.6%
+2024-03-11 16:29:36 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:29:41 - System Memory Usage: 15.9%
+2024-03-11 16:29:41 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 16.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:29:46 - System Memory Usage: 16.4%
+2024-03-11 16:29:46 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8133.0/24564.0 MB
+2024-03-11 16:29:51 - System Memory Usage: 16.0%
+2024-03-11 16:29:51 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:29:56 - System Memory Usage: 16.2%
+2024-03-11 16:29:56 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8135.0/24564.0 MB
+2024-03-11 16:30:02 - System Memory Usage: 16.0%
+2024-03-11 16:30:02 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:30:07 - System Memory Usage: 16.1%
+2024-03-11 16:30:07 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:30:12 - System Memory Usage: 16.6%
+2024-03-11 16:30:12 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:30:17 - System Memory Usage: 16.0%
+2024-03-11 16:30:17 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:30:22 - System Memory Usage: 16.6%
+2024-03-11 16:30:22 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:30:27 - System Memory Usage: 16.0%
+2024-03-11 16:30:27 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 12.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:30:32 - System Memory Usage: 16.5%
+2024-03-11 16:30:32 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:30:37 - System Memory Usage: 16.0%
+2024-03-11 16:30:37 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:30:42 - System Memory Usage: 16.4%
+2024-03-11 16:30:42 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:30:47 - System Memory Usage: 15.9%
+2024-03-11 16:30:47 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:30:52 - System Memory Usage: 16.2%
+2024-03-11 16:30:52 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8133.0/24564.0 MB
+2024-03-11 16:30:57 - System Memory Usage: 16.0%
+2024-03-11 16:30:57 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 8.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:31:02 - System Memory Usage: 16.0%
+2024-03-11 16:31:02 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8133.0/24564.0 MB
+2024-03-11 16:31:07 - System Memory Usage: 16.6%
+2024-03-11 16:31:07 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8133.0/24564.0 MB
+2024-03-11 16:31:12 - System Memory Usage: 15.9%
+2024-03-11 16:31:12 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 7.000000000000001%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:31:17 - System Memory Usage: 16.5%
+2024-03-11 16:31:17 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:31:22 - System Memory Usage: 16.0%
+2024-03-11 16:31:22 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:31:27 - System Memory Usage: 16.4%
+2024-03-11 16:31:27 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:31:33 - System Memory Usage: 16.0%
+2024-03-11 16:31:33 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:31:38 - System Memory Usage: 16.4%
+2024-03-11 16:31:38 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 21.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:31:43 - System Memory Usage: 16.0%
+2024-03-11 16:31:43 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:31:48 - System Memory Usage: 16.3%
+2024-03-11 16:31:48 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:31:53 - System Memory Usage: 16.0%
+2024-03-11 16:31:53 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 4.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:31:58 - System Memory Usage: 16.2%
+2024-03-11 16:31:58 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:32:03 - System Memory Usage: 16.0%
+2024-03-11 16:32:03 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 2.0%, Memory Usage: 8059.0/24564.0 MB
+2024-03-11 16:32:08 - System Memory Usage: 16.1%
+2024-03-11 16:32:08 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:32:13 - System Memory Usage: 16.6%
+2024-03-11 16:32:13 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 4.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:32:18 - System Memory Usage: 16.0%
+2024-03-11 16:32:18 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:32:23 - System Memory Usage: 16.6%
+2024-03-11 16:32:23 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 22.0%, Memory Usage: 8097.0/24564.0 MB
+2024-03-11 16:32:28 - System Memory Usage: 10.4%
+2024-03-11 16:32:28 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:32:33 - System Memory Usage: 10.4%
+2024-03-11 16:32:33 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:32:38 - System Memory Usage: 10.4%
+2024-03-11 16:32:38 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 12.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:32:43 - System Memory Usage: 10.4%
+2024-03-11 16:32:43 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 12.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:32:49 - System Memory Usage: 10.4%
+2024-03-11 16:32:49 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:32:54 - System Memory Usage: 10.4%
+2024-03-11 16:32:54 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 12.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:32:59 - System Memory Usage: 10.4%
+2024-03-11 16:32:59 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 10.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:33:04 - System Memory Usage: 10.4%
+2024-03-11 16:33:04 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 99.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:33:09 - System Memory Usage: 10.4%
+2024-03-11 16:33:09 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 51.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:33:14 - System Memory Usage: 10.4%
+2024-03-11 16:33:14 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 12.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:33:19 - System Memory Usage: 10.4%
+2024-03-11 16:33:19 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 5.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:33:24 - System Memory Usage: 10.4%
+2024-03-11 16:33:24 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 96.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:33:29 - System Memory Usage: 10.5%
+2024-03-11 16:33:29 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 20.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:33:34 - System Memory Usage: 10.4%
+2024-03-11 16:33:34 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:33:39 - System Memory Usage: 10.4%
+2024-03-11 16:33:39 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 13.0%, Memory Usage: 162.0/24564.0 MB
+2024-03-11 16:33:44 - System Memory Usage: 10.4%
+2024-03-11 16:33:44 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 165.0/24564.0 MB
+2024-03-11 16:33:49 - System Memory Usage: 10.5%
+2024-03-11 16:33:49 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 19.0%, Memory Usage: 167.0/24564.0 MB
+2024-03-11 16:33:54 - System Memory Usage: 10.4%
+2024-03-11 16:33:54 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:33:59 - System Memory Usage: 10.4%
+2024-03-11 16:33:59 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 12.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:34:05 - System Memory Usage: 10.4%
+2024-03-11 16:34:05 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 3.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:34:10 - System Memory Usage: 10.4%
+2024-03-11 16:34:10 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 12.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:34:15 - System Memory Usage: 10.4%
+2024-03-11 16:34:15 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 39.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:34:20 - System Memory Usage: 10.4%
+2024-03-11 16:34:20 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:34:25 - System Memory Usage: 10.4%
+2024-03-11 16:34:25 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:34:30 - System Memory Usage: 10.4%
+2024-03-11 16:34:30 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:34:35 - System Memory Usage: 10.4%
+2024-03-11 16:34:35 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:34:40 - System Memory Usage: 10.4%
+2024-03-11 16:34:40 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:34:45 - System Memory Usage: 10.4%
+2024-03-11 16:34:45 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 12.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:34:50 - System Memory Usage: 10.4%
+2024-03-11 16:34:50 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:34:55 - System Memory Usage: 10.4%
+2024-03-11 16:34:55 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 11.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:35:00 - System Memory Usage: 10.4%
+2024-03-11 16:35:00 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 95.0%, Memory Usage: 161.0/24564.0 MB
+2024-03-11 16:35:05 - System Memory Usage: 10.4%
+2024-03-11 16:35:05 - GPU 0: NVIDIA GeForce RTX 4090, Utilization: 14.000000000000002%, Memory Usage: 161.0/24564.0 MB

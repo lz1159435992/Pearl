@@ -1,10 +1,13 @@
 import json
 import re
+import time
+
 from z3 import *
 
 
 from pearl.policy_learners.sequential_decision_making.soft_actor_critic import SoftActorCritic
-from pearl.replay_buffers.sequential_decision_making.bootstrap_replay_buffer import BootstrapReplayBuffer
+# from pearl.replay_buffers.sequential_decision_making.bootstrap_replay_buffer import BootstrapReplayBuffer
+from pearl.replay_buffers.sequential_decision_making.bootstrap_replay_buffer import FIFOOffPolicyReplayBuffer
 from pearl.utils.functional_utils.experimentation.set_seed import set_seed
 from pearl.action_representation_modules.identity_action_representation_module import IdentityActionRepresentationModule
 from pearl.history_summarization_modules.lstm_history_summarization_module import LSTMHistorySummarizationModule
@@ -18,6 +21,9 @@ from env import ConstraintSimplificationEnv_v3
 
 
 from test_code_bert_4 import CodeEmbedder
+from test_rl.test_script.utils import parse_smt2_in_parts, process_smt_lib_string
+
+start = time.time()
 
 def extract_variables_from_smt2_content(content):
     """
@@ -57,7 +63,7 @@ def visit(expr):
 
 # file_path = '/home/lz/baidudisk/smt/gnu_angr.tar.gz/single_test/arch/arch15998'
 # file_path = '/home/nju/Downloads/smt/buzybox_angr.tar.gz/single_test/readahead/readahead651389'
-file_path = '/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq123946'
+file_path = '/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268'
 with open('time.txt', "a") as file:
     file.write(f"当前测试文件:{file_path}\n")
 with open(file_path, 'r') as file:
@@ -76,12 +82,12 @@ if 'smt-comp' in file_path:
 else:
     smtlib_str = dict_obj['script']
 assertions = parse_smt2_string(smtlib_str)
-
+# assertions = process_smt_lib_string(smtlib_str)
 variables = set()
 
-solver = Solver()
-for a in assertions:
-    solver.add(a)
+# solver = Solver()
+# for a in assertions:
+#     solver.add(a)
 
 # Extract variables from each assertion
 # for a in assertions:
@@ -139,7 +145,7 @@ agent = PearlAgent(
         hidden_dim=768,
         history_length=len(env.variables),  # 和完整结点数相同
     ),
-    replay_buffer=BootstrapReplayBuffer(10_000, 1.0, 5),
+    replay_buffer = FIFOOffPolicyReplayBuffer(10),
     device_id=-1,
 )
 # 训练代理

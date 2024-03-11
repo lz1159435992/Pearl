@@ -11,7 +11,7 @@ class CodeEmbedder:
 
     def get_max_pooling_embedding(self, code):
         # 分块处理代码
-        tokens = self.tokenizer.encode_plus(code, add_special_tokens=True, return_tensors='pt')['input_ids'].squeeze(0)
+        tokens = self.tokenizer.encode_plus(code, padding=True, truncation=True,add_special_tokens=True, return_tensors='pt')['input_ids'].squeeze(0)
         chunks = tokens.split(self.chunk_size)
 
         # 存储每个块的最大池化嵌入
