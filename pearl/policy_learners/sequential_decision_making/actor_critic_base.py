@@ -231,7 +231,6 @@ class ActorCriticBase(PolicyLearner):
                 )
                 # (action_space_size)
                 exploit_action = torch.argmax(action_probabilities)
-
         # Step 2: return exploit action if no exploration,
         # else pass through the exploration module
         if exploit:

@@ -49,17 +49,11 @@ class Predictor:
                 pass
             self.remove_name = True
         model = Predictor.model
-        print(script)
-        print(type(script))
         try:
             dataset = Predictor.dataset.generate_feature_dataset([script], time_selection="z3")
             # dataset = Predictor.dataset.generate_feature_dataset(script, time_selection="z3")
         except (KeyError,IndexError) as e:
-            print(e)
             return 0
-        print('*************************************************')
-        for i in self.x:
-            print(i)
         self.x = np.array(dataset[-1].feature).reshape(-1, 300)
         pred = model.predict(self.x)[0]
         return pred
