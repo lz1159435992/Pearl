@@ -281,3 +281,90 @@ def run_episode(
         info.update({"return_cost": cum_cost})
 
     return info, episode_steps
+
+def online_learning_with_break(
+    agent: PearlAgent,
+    env: Environment,
+    number_of_episodes: Optional[int] = None,
+    number_of_steps: Optional[int] = None,
+    learn_after_episode: bool = False,
+    print_every_x_episodes: Optional[int] = None,
+    print_every_x_steps: Optional[int] = None,
+    seed: Optional[int] = None,
+    # if number_of_episodes is used, report every record_period episodes
+    # if number_of_steps is used, report every record_period steps
+    # episodic stats collected within the period are averaged and then reported
+    record_period: int = 1,
+) -> Dict[str, Any]:
+    """
+    Performs online learning for a number of episodes.
+
+    Args:
+        agent (PearlAgent): the agent.
+        env (Environment): the environmnent.
+        number_of_episodes (int, optional): the number of episodes to run. Defaults to 1000.
+        learn_after_episode (bool, optional): asks the agent to only learn after every episode.
+        Defaults to False.
+    """
+    assert (number_of_episodes is None and number_of_steps is not None) or (
+        number_of_episodes is not None and number_of_steps is None
+    )
+    total_steps = 0
+    total_episodes = 0
+    info = {}
+    info_period = {}
+    while True:
+        if number_of_episodes is not None and total_episodes >= number_of_episodes:
+            break
+        if number_of_steps is not None and total_steps >= number_of_steps:
+            break
+        if env.finish:
+            break
+        old_total_steps = total_steps
+        episode_info, episode_total_steps = run_episode(
+            agent,
+            env,
+            learn=True,
+            exploit=False,
+            learn_after_episode=learn_after_episode,
+            total_steps=old_total_steps,
+            seed=seed,
+        )
+        if number_of_steps is not None and episode_total_steps > record_period:
+            print(
+                f"An episode is longer than the record_period: episode length {episode_total_steps}"
+                f", record_period {record_period}. Try using a larger record_period."
+            )
+            exit(1)
+        total_steps += episode_total_steps
+        total_episodes += 1
+        if (
+            print_every_x_steps is not None
+            and old_total_steps // print_every_x_steps
+            < total_steps // print_every_x_steps
+        ) or (
+            print_every_x_episodes is not None
+            and total_episodes % print_every_x_episodes == 0
+        ):
+            print(
+                f"episode {total_episodes}, step {total_steps}, agent={agent}, env={env}",
+            )
+            for key in episode_info:
+                print(f"{key}: {episode_info[key]}")
+        for key in episode_info:
+            info_period.setdefault(key, []).append(episode_info[key])
+        if number_of_episodes is not None and (
+            total_episodes % record_period == 0
+        ):  # record average info value every report_period episodes
+            for key in info_period:
+                info.setdefault(key, []).append(np.mean(info_period[key]))
+            info_period = {}
+        if number_of_steps is not None and old_total_steps // record_period < (
+            total_steps
+        ) // (
+            record_period
+        ):  # record average info value every record_period steps
+            for key in info_period:
+                info.setdefault(key, []).append(np.mean(info_period[key]))
+            info_period = {}
+    return info

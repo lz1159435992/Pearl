@@ -1,7 +1,7 @@
 import sqlite3
 import json
 from z3 import *
-from test_script.search_test import solve_and_measure_time
+from search_test import solve_and_measure_time
 from utils import model_to_dict
 from utils import *
 def fetch_data_as_dict(db_path, table_name):
@@ -20,7 +20,7 @@ def fetch_data_as_dict(db_path, table_name):
     # 将查询结果转换为字典
     result_dict = {row[0]: row[1] for row in rows}
     return result_dict
-if __name__ == '__main__':
+def some_method():
     result_dict_2 = load_dictionary('result_dict_2.txt')
     timeout = 86400000
     db_path = 'result_dictionary.db'
@@ -31,7 +31,7 @@ if __name__ == '__main__':
         if list1[0] == "unknown":
             if list1[1] > 100:
                 if key not in result_dict_2.keys():
-                    with open(key.replace('/home/yy/Downloads/','/home/lz/baidudisk/'), 'r') as file:
+                    with open(key.replace('/home/yy/Downloads/', '/home/lz/baidudisk/'), 'r') as file:
                         # 璇诲彇鏂囦欢鎵€鏈夊唴瀹瑰埌涓€涓瓧绗︿覆
                         smtlib_str = file.read()
                     try:
@@ -71,6 +71,19 @@ if __name__ == '__main__':
                         # 使用json.dump()将字典保存到文件
                         json.dump(result_dict_2, file, indent=4)
 
+
+if __name__ == '__main__':
+    db_path = 'value_dictionary.db'
+    table_name = 'value_dictionary'
+    value_dict = fetch_data_as_dict(db_path, table_name)
+    # print(value_dict)
+    count = 0
+    print(len(value_dict))
+    for k,v in value_dict.items():
+        if int(v) > 1:
+            # print(k)
+            count += 1
+    print(count)
 # conn = sqlite3.connect(db_path)
 
 # 示例数据

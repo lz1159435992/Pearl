@@ -78,9 +78,11 @@ for directory in path:
               print('导入文件错误')
 print('*********************************************************************************')
 file_path = 'smtcomp.txt'
-# 使用with语句打开文件以确保正确关�?with open(file_path, 'w') as file:
+# 使用with语句打开文件以确保正确关�?
+with open(file_path, 'w') as file:
     for s in path:
-        # 写入字符串并添加换行�?        file.write(s + '\n')
+        # 写入字符串并添加换行�?
+    file.write(s + '\n')
 
 
 
