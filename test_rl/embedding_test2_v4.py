@@ -63,7 +63,7 @@ def visit(expr):
 
 # file_path = '/home/lz/baidudisk/smt/gnu_angr.tar.gz/single_test/arch/arch15998'
 # file_path = '/home/nju/Downloads/smt/buzybox_angr.tar.gz/single_test/readahead/readahead651389'
-file_path = '/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268'
+file_path = '/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq143541'
 with open('time.txt', "a") as file:
     file.write(f"当前测试文件:{file_path}\n")
 with open(file_path, 'r') as file:
