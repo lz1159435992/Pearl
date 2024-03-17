@@ -1,3 +1,0 @@
-{
-    "/home/lz/baidudisk/smt/gnu_angr.tar.gz/single_test/seq/seq128907": 0
-}

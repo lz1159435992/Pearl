@@ -152,7 +152,8 @@ def test_group():
                 # )
                 # experiment code
                 number_of_steps = 500
-                record_period = 100
+                number_of_episodes = 1
+                record_period = 1
                 # 创建强化学习代理
                 print(len(env.variables))
                 agent = PearlAgent(
@@ -176,13 +177,17 @@ def test_group():
                 info = online_learning_with_break(
                     agent=agent,
                     env=env,
-                    number_of_steps=number_of_steps,
-                    print_every_x_steps=100,
+                    number_of_episodes=number_of_episodes,
+                    print_every_x_episodes=1,
                     record_period=record_period,
-                    learn_after_episode=True,
+                    # learn_after_episode=True,
                 )
                 end_time = time.time()
                 result_list.append(end_time - start_time)
+
+                if env.step_count > 500:
+                    result_list.append('求解失败')
+
                 info_dict[file_path] = result_list
                 with open('info_dict.txt', 'w') as file:
                     json.dump(info_dict, file, indent=4)
