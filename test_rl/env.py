@@ -69,8 +69,8 @@ def get_values_nju(db_path, table_name):
     # table_name = 'value_dictionary'
     value_dict_2 = {}
     value_dict_1 = fetch_data_as_dict(db_path, table_name)
-    # sampled_items = random.sample(value_dict_1.items(),20000)
-    # value_dict_1 = dict(sampled_items)
+    sampled_items = random.sample(value_dict_1.items(),20000)
+    value_dict_1 = dict(sampled_items)
     count = 0
     for key in value_dict_1.keys():
         value_dict_2[str(count)] = key
@@ -114,7 +114,7 @@ def group_values(input_dict, group_size):
 # except json.JSONDecodeError as e:
 #     print('failed', e)
 #nju
-dict_value = get_values_nju('/home/nju/PycharmProjects/Pearl/test_rl/test_script/value_dictionary.db', 'value_dictionary')
+dict_value = get_values_nju('/home/lz/PycharmProjects/Pearl/test_rl/test_script/value_dictionary.db', 'value_dictionary')
 
 
 # fenzu
@@ -667,6 +667,7 @@ class ConstraintSimplificationEnv_v2(Environment):
 class ConstraintSimplificationEnv_test(Environment):
 
     def __init__(self, embedder, z3ast, num_variables, num_constants, smtlib_str, file_path):
+        self.step_count = 0
         self.file_path = file_path
         self.actions_v = None
         self.embedder = embedder
@@ -740,6 +741,7 @@ class ConstraintSimplificationEnv_test(Environment):
 
     def step(self, action):
         # print(action)
+        self.step_count += 1
         try:
             reward = 0
             # variable_pred = self.variables[action]
@@ -846,6 +848,8 @@ class ConstraintSimplificationEnv_test(Environment):
             print('some problems are triggered')
             self.state = self.state_original
             reward = 0
+        if self.step_count > 500:
+            self.finish = True
         return ActionResult(
             observation=self.state,
             reward=float(reward),
