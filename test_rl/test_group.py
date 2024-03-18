@@ -95,14 +95,14 @@ def test_group():
                 print(key, value)
                 if '/home/yy/Downloads/' in key:
                     file_path = key.replace('/home/yy/Downloads/', '/home/lz/baidudisk/')
-                elif '/home/yy/Downloads/' in key:
-                    file_path = key.replace('/home/yy/Downloads/', '/home/lz/baidudisk/')
+                elif '/home/nju/Downloads/' in key:
+                    file_path = key.replace('/home/nju/Downloads/', '/home/lz/baidudisk/')
                 else:
                     file_path = key
                 if file_path not in info_dict.keys():
                     file_time = load_dictionary('file_time.txt')
                     file_time[file_path] = 0
-                    with open('file_time_.txt', 'w') as file:
+                    with open('file_time.txt', 'w') as file:
                         json.dump(file_time, file, indent=4)
                     # file_time = load_dictionary('file_time.txt')
 
