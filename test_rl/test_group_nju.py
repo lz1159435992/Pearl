@@ -66,7 +66,8 @@ def test_group():
     file_time = {}
     with open('file_time_nju.txt', 'w') as file:
         json.dump(file_time, file, indent=4)
-    info_dict = {}
+    # info_dict = {}
+    info_dict = load_dictionary('info_dict_nju.txt')
     db_path = '/home/nju/PycharmProjects/Pearl/test_rl/test_script/result_dictionary.db'
     table_name = 'result_dictionary'
     result_dict = fetch_data_as_dict(db_path, table_name)
@@ -81,115 +82,120 @@ def test_group():
                     file_path = key.replace('/home/lz/baidudisk/', '/home/nju/Downloads/')
                 else:
                     file_path = key
-                file_time = load_dictionary('file_time_nju.txt')
-                file_time[file_path] = 0
-                with open('file_time_nju.txt', 'w') as file:
-                    json.dump(file_time, file, indent=4)
+                if file_path not in info_dict.keys():
+                    file_time = load_dictionary('file_time_nju.txt')
+                    file_time[file_path] = 0
+                    with open('file_time_nju.txt', 'w') as file:
+                        json.dump(file_time, file, indent=4)
 
-                with open(file_path, 'r') as file:
-                    # 读取文件所有内容到一个字符串
-                    smtlib_str = file.read()
-                # 解析字符串
-                try:
-                    # 将JSON字符串转换为字典
-                    dict_obj = json.loads(smtlib_str)
-                    # print("转换后的字典：", dict_obj)
-                except json.JSONDecodeError as e:
-                    print("解析错误：", e)
-                #
-                if 'smt-comp' in file_path:
-                    smtlib_str = dict_obj['smt_script']
-                else:
-                    smtlib_str = dict_obj['script']
+                    with open(file_path, 'r') as file:
+                        # 读取文件所有内容到一个字符串
+                        smtlib_str = file.read()
+                    # 解析字符串
+                    try:
+                        # 将JSON字符串转换为字典
+                        dict_obj = json.loads(smtlib_str)
+                        # print("转换后的字典：", dict_obj)
+                    except json.JSONDecodeError as e:
+                        print("解析错误：", e)
+                    #
+                    if 'smt-comp' in file_path:
+                        smtlib_str = dict_obj['smt_script']
+                    else:
+                        smtlib_str = dict_obj['script']
 
-                assertions = parse_smt2_string(smtlib_str)
-                solver = Solver()
-                for a in assertions:
-                    solver.add(a)
-                timeout = 999999999
-                timeout = 1000
-                result, model, time_taken = solve_and_measure_time(solver, timeout)
-                print(result,time_taken)
-                result_list = [result, time_taken, timeout]
-                # if result == sat:
-                #     result = 'sat'
-                # elif result == unknown:
-                #     result = 'unknown'
-                # else:
-                #     result = 'unsat'
+                    assertions = parse_smt2_string(smtlib_str)
+                    solver = Solver()
+                    for a in assertions:
+                        solver.add(a)
+                    timeout = 999999999
+                    # timeout = 1000
+                    result, model, time_taken = solve_and_measure_time(solver, timeout)
+                    print(result,time_taken)
+                    result_list = [result, time_taken, timeout]
+                    # if result == sat:
+                    #     result = 'sat'
+                    # elif result == unknown:
+                    #     result = 'unknown'
+                    # else:
+                    #     result = 'unsat'
 
-                # result_dict[filepath] = result_list
-                if model:
-                    result_list.append(model_to_dict(model))
-                # file_path = key
-                # file_path = '/home/lz/baidudisk/smt/gnu_angr.tar.gz/single_test/ginstall/ginstall307943'
+                    # result_dict[filepath] = result_list
+                    if model:
+                        result_list.append(model_to_dict(model))
+                    # file_path = key
+                    # file_path = '/home/lz/baidudisk/smt/gnu_angr.tar.gz/single_test/ginstall/ginstall307943'
 
-                start_time = time.time()
+                    start_time = time.time()
 
-                # variables = set()
-                variables = extract_variables_from_smt2_content(smtlib_str)
+                    # variables = set()
+                    variables = extract_variables_from_smt2_content(smtlib_str)
 
-                print("变量列表：")
-                for v in variables:
-                    print(v)
-                embedder = CodeEmbedder()
-                set_seed(0)
-                # device = torch.device("cpu")
+                    print("变量列表：")
+                    for v in variables:
+                        print(v)
+                    embedder = CodeEmbedder()
+                    set_seed(0)
+                    # device = torch.device("cpu")
 
-                env = ConstraintSimplificationEnv_test(embedder, assertions, len(variables), len(variables), smtlib_str,
-                                                       file_path)
-                observation, action_space = env.reset()
-                action_representation_module = IdentityActionRepresentationModule(
-                    max_number_actions=action_space.n,
-                    representation_dim=action_space.action_dim,
-                )
-                # action_representation_module = OneHotActionTensorRepresentationModule(
-                #     max_number_actions=len(env.variables)*20000,
-                # )
-                # action_representation_module = IdentityActionRepresentationModule(
-                #     max_number_actions=len(variables)*20000,
-                #     representation_dim=action_space.action_dim,
-                # )
-                # experiment code
-                number_of_steps = 500
-                record_period = 100
-                # 创建强化学习代理
-                print(len(env.variables))
-                agent = PearlAgent(
-                    policy_learner=SoftActorCritic(
-                        state_dim=768,
-                        action_space=action_space,
-                        actor_hidden_dims=[768, 512, 128],
-                        critic_hidden_dims=[768, 512, 128],
-                        action_representation_module=action_representation_module,
-                    ),
-                    history_summarization_module=LSTMHistorySummarizationModule(
-                        observation_dim=768,
-                        action_dim=len(env.variables) + 1,
-                        hidden_dim=768,
-                        history_length=len(env.variables),  # 和完整结点数相同
-                    ),
-                    replay_buffer=FIFOOffPolicyReplayBuffer(10),
-                    device_id=-1,
-                )
-                # 训练代理
-                info = online_learning_with_break(
-                    agent=agent,
-                    env=env,
-                    number_of_steps=number_of_steps,
-                    print_every_x_steps=100,
-                    record_period=record_period,
-                    learn_after_episode=True,
-                )
-                end_time = time.time()
-                result_list.append(end_time - start_time)
-                info_dict[file_path] = result_list
-                with open('info_dict_nju.txt', 'w') as file:
-                    json.dump(info_dict, file, indent=4)
-                # torch.save(info["return"], "BootstrappedDQN-LSTM-return.pt")
-                # plt.plot(record_period * np.arange(len(info["return"])), info["return"], label="BootstrappedDQN-LSTM")
-                # plt.legend()
-                # plt.show()
+                    env = ConstraintSimplificationEnv_test(embedder, assertions, len(variables), len(variables), smtlib_str,
+                                                           file_path)
+                    observation, action_space = env.reset()
+                    action_representation_module = IdentityActionRepresentationModule(
+                        max_number_actions=action_space.n,
+                        representation_dim=action_space.action_dim,
+                    )
+                    # action_representation_module = OneHotActionTensorRepresentationModule(
+                    #     max_number_actions=len(env.variables)*20000,
+                    # )
+                    # action_representation_module = IdentityActionRepresentationModule(
+                    #     max_number_actions=len(variables)*20000,
+                    #     representation_dim=action_space.action_dim,
+                    # )
+                    # experiment code
+                    number_of_steps = 5
+                    number_of_episodes = 1
+                    record_period = 1
+                    # 创建强化学习代理
+                    print(len(env.variables))
+                    agent = PearlAgent(
+                        policy_learner=SoftActorCritic(
+                            state_dim=768,
+                            action_space=action_space,
+                            actor_hidden_dims=[768, 512, 128],
+                            critic_hidden_dims=[768, 512, 128],
+                            action_representation_module=action_representation_module,
+                        ),
+                        history_summarization_module=LSTMHistorySummarizationModule(
+                            observation_dim=768,
+                            action_dim=len(env.variables) + 1,
+                            hidden_dim=768,
+                            history_length=len(env.variables),  # 和完整结点数相同
+                        ),
+                        replay_buffer=FIFOOffPolicyReplayBuffer(10),
+                        device_id=-1,
+                    )
+                    # 训练代理
+                    info = online_learning_with_break(
+                        agent=agent,
+                        env=env,
+                        number_of_episodes=number_of_episodes,
+                        # number_of_steps=number_of_steps,
+                        print_every_x_episodes=1,
+                        record_period=record_period,
+                        # learn_after_episode=True,
+                    )
+                    end_time = time.time()
+                    result_list.append(end_time - start_time)
+                    if env.step_count > 3000:
+                        result_list.append('solve failed')
+                    info_dict[file_path] = result_list
+                    with open('info_dict_nju.txt', 'w') as file:
+                        json.dump(info_dict, file, indent=4)
+                    # torch.save(info["return"], "BootstrappedDQN-LSTM-return.pt")
+                    # plt.plot(record_period * np.arange(len(info["return"])), info["return"], label="BootstrappedDQN-LSTM")
+                    # plt.legend()
+                    # plt.show()
 
 
 if __name__ == '__main__':
