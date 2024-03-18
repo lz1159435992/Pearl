@@ -16,7 +16,7 @@ from pearl.pearl_agent import PearlAgent
 import torch
 import matplotlib.pyplot as plt
 import numpy as np
-from env import ConstraintSimplificationEnv_v3, ConstraintSimplificationEnv_test
+from env_nju import ConstraintSimplificationEnv_test
 
 from test_code_bert_4 import CodeEmbedder
 from test_rl.test_script.utils import parse_smt2_in_parts, process_smt_lib_string, fetch_data_as_dict, \
