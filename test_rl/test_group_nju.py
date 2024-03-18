@@ -63,11 +63,29 @@ def visit(expr):
 
 
 def test_group():
-    file_time = {}
-    with open('file_time_nju.txt', 'w') as file:
-        json.dump(file_time, file, indent=4)
+    if not os.path.exists('file_time_nju.txt'):
+        # 文件不存在时，创建文件
+        file_time = {}
+        with open('file_time_nju.txt', 'w') as file:
+            json.dump(file_time, file, indent=4)
+        print(f"文件 file_time_nju.txt 已创建。")
+    else:
+        # 文件已存在
+        print(f"文件已存在。")
+    # file_time = {}
+    # with open('file_time_nju.txt', 'w') as file:
+    #     json.dump(file_time, file, indent=4)
     # info_dict = {}
-    info_dict = load_dictionary('info_dict_nju.txt')
+    if not os.path.exists('info_dict_nju.txt'):
+        # 文件不存在时，创建文件
+        info_dict = {}
+        with open('info_dict_nju.txt', 'w') as file:
+            json.dump(info_dict, file, indent=4)
+        print(f"文件 info_dict_nju.txt 已创建。")
+    else:
+        info_dict = load_dictionary('info_dict_nju.txt')
+        print(f"文件已存在。")
+
     db_path = '/home/nju/PycharmProjects/Pearl/test_rl/test_script/result_dictionary.db'
     table_name = 'result_dictionary'
     result_dict = fetch_data_as_dict(db_path, table_name)

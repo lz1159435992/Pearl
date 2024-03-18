@@ -114,7 +114,7 @@ def group_values(input_dict, group_size):
 # except json.JSONDecodeError as e:
 #     print('failed', e)
 #nju
-dict_value = get_values_nju('/home/nju/PycharmProjects/Pearl/test_rl/test_script/value_dictionary.db', 'value_dictionary')
+dict_value = get_values_nju('/home/lz/PycharmProjects/Pearl/test_rl/test_script/value_dictionary.db', 'value_dictionary')
 
 
 # fenzu
