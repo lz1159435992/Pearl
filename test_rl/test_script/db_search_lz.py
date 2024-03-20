@@ -73,16 +73,29 @@ def some_method():
 
 
 if __name__ == '__main__':
-    db_path = 'value_dictionary.db'
-    table_name = 'value_dictionary'
+    # db_path = 'value_dictionary.db'
+    # table_name = 'value_dictionary'
+    # value_dict = fetch_data_as_dict(db_path, table_name)
+    # # print(value_dict)
+    # count = 0
+    # print(len(value_dict))
+    # for k,v in value_dict.items():
+    #     if int(v) > 1:
+    #         # print(k)
+    #         count += 1
+    # print(count)
+
+    db_path = '/home/lz/baidudisk/3.13_db/result_dictionary.db'
+    table_name = 'result_dictionary'
     value_dict = fetch_data_as_dict(db_path, table_name)
     # print(value_dict)
     count = 0
     print(len(value_dict))
     for k,v in value_dict.items():
-        if int(v) > 1:
-            # print(k)
-            count += 1
+        if 'ginstall307943' in k:
+        # print(k,v)
+            print(k,v)
+            # count += 1
     print(count)
 # conn = sqlite3.connect(db_path)
 

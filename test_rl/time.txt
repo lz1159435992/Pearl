@@ -4660,3 +4660,13 @@ file:solve_time:0.004s
 当前测试文件:/home/lz/baidudisk/smt/gnu_angr.tar.gz/single_test/ginstall/ginstall307943
 current_time:2024-03-14 20:46:31
 file:solve_time:0.003s
+current_time:2024-03-20 22:20:24
+file:solve_time:0.003s
+current_time:2024-03-20 22:27:24
+file:solve_time:0.003s
+current_time:2024-03-20 22:33:06
+file:solve_time:0.003s
+current_time:2024-03-20 22:40:15
+file:solve_time:16.396s
+current_time:2024-03-20 23:11:13
+file:solve_time:0.003s

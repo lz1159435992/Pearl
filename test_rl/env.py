@@ -848,7 +848,7 @@ class ConstraintSimplificationEnv_test(Environment):
             print('some problems are triggered')
             self.state = self.state_original
             reward = 0
-        if self.step_count > 3000:
+        if self.step_count > 500:
             self.finish = True
         return ActionResult(
             observation=self.state,
@@ -985,9 +985,9 @@ class ConstraintSimplificationEnv_test(Environment):
 
                                 print("求解时间:", stats.get_key_value('time'))
                                 update_txt_with_current_time('time.txt', stats.get_key_value('time'))
-                                file_time = load_dictionary('file_time_nju.txt')
+                                file_time = load_dictionary('file_time.txt')
                                 file_time[self.file_path] = stats.get_key_value('time')
-                                with open('file_time_nju.txt', 'w') as file:
+                                with open('file_time.txt', 'w') as file:
                                     json.dump(file_time, file, indent=4)
                             else:
                                 # reward += 1 / stats.get_key_value('time') * 100
@@ -999,6 +999,62 @@ class ConstraintSimplificationEnv_test(Environment):
                         reward += -5
                 else:
                     reward += -2
+        else:
+            #没有反例的情况下：
+            solver_part = Solver()
+            assertions = solver.assertions()
+
+            assertions_list = []
+            for a in assertions:
+                assertions_list.append(a)
+
+            indexes = random.sample(range(len(assertions_list)), int(len(assertions) * 0.5))
+
+            # 根据索引列表，从原始列表中选取元素，并保持原始顺序
+            res = [assertions_list[i] for i in sorted(indexes)]
+            # res = random.sample(assertions_list, int(len(assertions) * 0.6))
+            for r in res:
+                solver_part.add(r)
+            predicted_solvability_part = self.predictor.predict(solver_part.to_smt2())
+            if predicted_solvability_part == 0:
+                # if True:
+                performance += 1
+                reward += 2
+                # 注释掉提高速度
+                # solver_part.set("timeout", 60000)
+                # r = solver_part.check()
+                # if z3.sat == r:
+                if True:
+                    # performance += 1
+                    # reward += 5
+                    predicted_solvability = self.predictor.predict(self.smtlib_str)
+                    if predicted_solvability == 0:
+                        performance += 1
+                        # 提高一下reward数值
+                        reward += 7
+                        r = solver.check()
+                        stats = solver.statistics()
+                        if z3.sat == r:
+                            performance += 1
+                            reward += 15
+                            self.finish = True
+
+                            print("求解时间:", stats.get_key_value('time'))
+                            update_txt_with_current_time('time.txt', stats.get_key_value('time'))
+                            file_time = load_dictionary('file_time_nju.txt')
+                            file_time[self.file_path] = stats.get_key_value('time')
+                            with open('file_time_nju.txt', 'w') as file:
+                                json.dump(file_time, file, indent=4)
+                        else:
+                            # reward += 1 / stats.get_key_value('time') * 100
+                            reward += -15
+                    else:
+                        reward += -7
+                else:
+                    # reward += 1 / stats.get_key_value('time') * 100
+                    reward += -5
+            else:
+                reward += -2
         # query_smt2 = solver.to_smt2()
         # print(query_smt2)
         if performance < self.last_performance:
