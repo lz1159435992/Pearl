@@ -202,7 +202,7 @@ if __name__ == '__main__':
                         smtlib_str = file.read()
                 # 解析字符串
                     try:
-                        # 将JSON字符串转换为字典
+                        # 将字符串转换为字典
                         dict_obj = json.loads(smtlib_str)
                         # print("转换后的字典：", dict_obj)
                     except json.JSONDecodeError as e:

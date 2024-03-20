@@ -1,4 +1,5 @@
 import json
+import random
 import re
 import time
 
@@ -88,10 +89,14 @@ def test_group():
     db_path = '/home/lz/PycharmProjects/Pearl/test_rl/test_script/result_dictionary.db'
     table_name = 'result_dictionary'
     result_dict = fetch_data_as_dict(db_path, table_name)
+    items = list(result_dict.items())
+    random.shuffle(items)
+    result_dict = dict(items)
     for key, value in result_dict.items():
         list1 = json.loads(value)
         if list1[0] == "sat":
-            if list1[1] > 50:
+            if list1[1] > 20:
+            # if '143541' in key:
                 print(key, value)
                 if '/home/yy/Downloads/' in key:
                     file_path = key.replace('/home/yy/Downloads/', '/home/lz/baidudisk/')
@@ -127,7 +132,7 @@ def test_group():
                     for a in assertions:
                         solver.add(a)
                     timeout = 999999999
-                    # timeout = 1000
+                    timeout = 1000
                     result, model, time_taken = solve_and_measure_time(solver, timeout)
                     print(result,time_taken)
                     result_list = [result, time_taken, timeout]
@@ -206,7 +211,9 @@ def test_group():
                     result_list.append(end_time - start_time)
 
                     if env.step_count > 500:
-                        result_list.append('求解失败')
+                        result_list.append('failed')
+                    else:
+                        result_list.append('succeed')
 
                     info_dict[file_path] = result_list
                     with open('info_dict.txt', 'w') as file:
