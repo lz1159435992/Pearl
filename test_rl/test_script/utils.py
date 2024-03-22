@@ -262,3 +262,89 @@ def find_assertions_related_to_var_name(assertions, var_name):
         if ast_contains_var(assertion, var_name):
             related_assertions.append(assertion)
     return related_assertions
+
+
+def collect_symbols(ast, symbols):
+    """
+    递归收集AST中出现的所有符号。
+
+    :param ast: 要检查的AST节点。
+    :param symbols: 收集到的符号集合。
+    """
+    if ast.num_args() == 0:
+        if ast.decl().kind() == Z3_OP_UNINTERPRETED:
+            symbols.add(str(ast))
+    else:
+        for i in range(ast.num_args()):
+            collect_symbols(ast.arg(i), symbols)
+
+
+def find_assertions_related_to_var_names_optimized(assertions, var_names):
+    """
+    优化后的方法，找到与特定变量名列表中任何一个变量名相关的所有断言。
+
+    :param solver: Z3求解器实例。
+    :param var_names: 变量名字符串列表。
+    :return: 一个字典，键为变量名，值为包含该变量名的所有断言列表。
+    """
+    related_assertions_dict = {var_name: [] for var_name in var_names}
+    var_names_set = set(var_names)
+
+    for assertion in assertions:
+        symbols = set()
+        collect_symbols(assertion, symbols)  # 收集当前断言中出现的所有符号
+
+        # 检查收集到的符号中是否包含任何一个目标变量名
+        if symbols.intersection(var_names_set):
+            for var_name in var_names_set.intersection(symbols):
+                related_assertions_dict[var_name].append(assertion)
+
+    return related_assertions_dict
+
+def dfs_ast_for_vars(ast, var_names, visited, results):
+    """
+    使用深度优先搜索（DFS）遍历AST，并检查是否包含给定的变量名列表中的任何一个变量名。
+
+    :param ast: 要检查的AST节点。
+    :param var_names: 变量名字符串列表。
+    :param visited: 访问过的节点集合。
+    :param results: 存储每个变量名是否被找到的字典。
+    """
+    stack = [ast]
+    while stack:
+        current_node = stack.pop()
+        if id(current_node) in visited:
+            continue
+        visited.add(id(current_node))
+
+        # 检查当前节点是否为未解释的符号（变量）
+        if current_node.num_args() == 0 and current_node.decl().kind() == Z3_OP_UNINTERPRETED:
+            var_name = str(current_node)
+            if var_name in var_names:
+                results[var_name] = True
+
+        # 将子节点压入栈中
+        for i in range(current_node.num_args()):
+            stack.append(current_node.arg(i))
+
+def find_assertions_related_to_var_names_optimized_dfs(assertions, var_names):
+    """
+    优化后的方法，找到与特定变量名列表中任何一个变量名相关的所有断言。
+
+    :param solver: Z3求解器实例。
+    :param var_names: 变量名字符串列表。
+    :return: 一个字典，键为变量名，值为包含该变量名的所有断言列表。
+    """
+    results = {var_name: False for var_name in var_names}
+    related_assertions_dict = {var_name: [] for var_name in var_names}
+    visited = set()
+
+    for assertion in assertions:
+        dfs_ast_for_vars(assertion, var_names, visited, results)
+        for var_name in var_names:
+            if results[var_name]:
+                related_assertions_dict[var_name].append(assertion)
+        # 重置results，以便下一次断言检查
+        results = {var_name: False for var_name in var_names}
+
+    return related_assertions_dict

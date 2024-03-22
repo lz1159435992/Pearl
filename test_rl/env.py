@@ -9,13 +9,15 @@ import json
 import re
 
 import torch
+import z3
 from torch.nn.parameter import Parameter
 from z3 import *
 import embedding_util
 from pearl.SMTimer.KNN_Predictor import Predictor
 from test_rl.test_script.db_search_lz_alue import fetch_data_as_dict
 from test_rl.test_script.utils import find_var_declaration_in_string, split_at_check_sat, load_dictionary, \
-    find_assertions_related_to_var_name
+    find_assertions_related_to_var_name, find_assertions_related_to_var_names_optimized, \
+    find_assertions_related_to_var_names_optimized_dfs
 
 # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 device = torch.device("cuda:0")
@@ -686,7 +688,7 @@ class ConstraintSimplificationEnv_test(Environment):
         self.smtlib_str_original = smtlib_str
         self.state_original = self.embedder.get_max_pooling_embedding(self.smtlib_str)
         self.state = None
-        self.variables = set()
+        self.variables = extract_variables_from_smt2_content(self.smtlib_str)
         self.actions = []
         self.concrete_finish = False
         self.concrete_count = 0
@@ -698,6 +700,7 @@ class ConstraintSimplificationEnv_test(Environment):
         self.predictor = Predictor('KNN')
         self.last_performance = 0
         self.solve_time = 0
+        self.v_related_assertions = find_assertions_related_to_var_names_optimized_dfs(self.z3ast, self.variables)
 
     def reset(self, seed=None):
         self.concrete_finish = False
@@ -710,26 +713,6 @@ class ConstraintSimplificationEnv_test(Environment):
         self.z3ast = self.z3ast_original
         self.smtlib_str = self.smtlib_str_original
         self.last_performance = 0
-        # graph = embedding_util.Z3ASTGraph(self.z3ast_original)
-        # # node_type_dict = NODE_TYPE_ENUM
-        # graph2vec = embedding_util.Graph2Vec(graph)
-        # # 步骤5: 输出转换结果
-        # # node_embed = embedding_util.glorot_uniform(graph2vec.node_feat)
-        # node_embed = Parameter(graph2vec.node_feat)
-        # self.state = self.encoder(node_embed)
-
-        # variables = set()
-        # for a in self.z3ast:
-        #     visit(a, variables)
-        # self.variables = list(variables)
-
-        self.variables = extract_variables_from_smt2_content(self.smtlib_str)
-        # 之后要修改成变量+常量
-        # for i in range(len(self.variables)):
-        #     self.actions.append(torch.tensor(i))
-        #     # 先不使用字典了
-        # tensor = torch.arange(-10000, 10001)
-        # 笛卡尔积
         self.actions_v = self.strings_to_onehot(self.variables)
 
         self.actions = get_actions(self.actions_v, torch.arange(0, len(dict_value) - 1))
@@ -781,77 +764,109 @@ class ConstraintSimplificationEnv_test(Environment):
                 #找到最大最小值
                 if min_value <= selected_int <= max_value:
                     reward += 5
-                    assertions = parse_smt2_string(self.smtlib_str)
-
-                    related_assertions = find_assertions_related_to_var_name(assertions, variable_pred)
-                    solver_related = Solver()
-
-                    for a in related_assertions:
-                        solver_related.add(a)
-                    # 先预测再求解
-                    smtlib_str_before, smtlib_str_after = split_at_check_sat(solver_related.to_smt2())
+                    #需要添加的约束
                     new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
-                    new_smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
-                    predicted_solvability_related = self.predictor.predict(new_smtlib_str)
-                    if predicted_solvability_related == 0:
-                        reward += 5
-                        assertions_related = parse_smt2_string(new_smtlib_str)
+
+                    # assertions = parse_smt2_string(self.smtlib_str)
+                    related_assertions = self.v_related_assertions[variable_pred]
+                    if len(related_assertions) > 0:
+                    # related_assertions = find_assertions_related_to_var_name(assertions, variable_pred)
                         solver_related = Solver()
-                        solver_related.set("timeout", 10000)
-                        for a in assertions_related:
+
+                        for a in related_assertions:
                             solver_related.add(a)
-                        if z3.sat == solver_related.check():
+                        # 先预测再求解
+                        smtlib_str_before, smtlib_str_after = split_at_check_sat(solver_related.to_smt2())
+
+                        new_smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
+                        predicted_solvability_related = self.predictor.predict(new_smtlib_str)
+                        if predicted_solvability_related == 0:
                             reward += 5
-                            self.used_variables.append(variable_pred)
-                            self.concrete_count += 1
-                            # 数值这部分需要修改
-                            # print(action_n.item)
-                            # print(type(action_n.item))
+                            assertions_related = parse_smt2_string(new_smtlib_str)
+                            solver_related = Solver()
+                            for a in assertions_related:
+                                solver_related.add(a)
+                            solver_related.set("timeout", 10000)
+                            r = solver_related.check()
+                            if z3.sat == r:
+                                reward += 5
+                                self.used_variables.append(variable_pred)
+                                self.concrete_count += 1
+                                # 数值这部分需要修改
+                                # print(action_n.item)
+                                # print(type(action_n.item))
 
-                            print(selected_int)
-                            self.counterexamples_list[-1].append([variable_pred, selected_int])
+                                print(selected_int)
+                                self.counterexamples_list[-1].append([variable_pred, selected_int])
 
-                            smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
-                            # new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
-                            self.smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
-                            assertions = parse_smt2_string(self.smtlib_str)
-                            solver = Solver()
-                            for a in assertions:
-                                solver.add(a)
-                            reward += self.calculate_reward(solver)
-                            self.z3ast = solver.assertions()
-                            self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2())
+                                smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
+                                # new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
+                                self.smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
+                                assertions = parse_smt2_string(self.smtlib_str)
+                                solver = Solver()
+                                for a in assertions:
+                                    solver.add(a)
+                                reward += self.calculate_reward(solver)
+                                self.z3ast = solver.assertions()
+                                self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2())
 
-                            if self.concrete_count == len(self.variables):
-                                self.concrete_finish = True
-                                self.reset()
+                                if self.concrete_count == len(self.variables):
+                                    self.concrete_finish = True
+                                    self.reset()
+                            elif z3.unknown == r:
+                                reward += 2
+                                self.used_variables.append(variable_pred)
+                                self.concrete_count += 1
+                                # 数值这部分需要修改
+                                # print(action_n.item)
+                                # print(type(action_n.item))
+
+                                print(selected_int)
+                                self.counterexamples_list[-1].append([variable_pred, selected_int])
+
+                                smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
+                                # new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
+                                self.smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
+                                assertions = parse_smt2_string(self.smtlib_str)
+                                solver = Solver()
+                                for a in assertions:
+                                    solver.add(a)
+                                reward += self.calculate_reward(solver)
+                                self.z3ast = solver.assertions()
+                                self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2())
+
+                                if self.concrete_count == len(self.variables):
+                                    self.concrete_finish = True
+                                    self.reset()
+                            else:
+                                reward += -5
                         else:
                             reward += -5
-                            self.used_variables.append(variable_pred)
-                            self.concrete_count += 1
-                            # 数值这部分需要修改
-                            # print(action_n.item)
-                            # print(type(action_n.item))
+                    else:#没有变量约束的情况
+                        reward += 0
+                        self.used_variables.append(variable_pred)
+                        self.concrete_count += 1
+                        # 数值这部分需要修改
+                        # print(action_n.item)
+                        # print(type(action_n.item))
 
-                            print(selected_int)
-                            self.counterexamples_list[-1].append([variable_pred, selected_int])
+                        print(selected_int)
+                        self.counterexamples_list[-1].append([variable_pred, selected_int])
 
-                            smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
-                            # new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
-                            self.smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
-                            assertions = parse_smt2_string(self.smtlib_str)
-                            solver = Solver()
-                            for a in assertions:
-                                solver.add(a)
-                            reward += self.calculate_reward(solver)
-                            self.z3ast = solver.assertions()
-                            self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2())
+                        smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
+                        # new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
+                        self.smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
+                        assertions = parse_smt2_string(self.smtlib_str)
+                        solver = Solver()
+                        for a in assertions:
+                            solver.add(a)
+                        reward += self.calculate_reward(solver)
+                        self.z3ast = solver.assertions()
+                        self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2())
 
-                            if self.concrete_count == len(self.variables):
-                                self.concrete_finish = True
-                                self.reset()
-                    else:
-                        reward += -5
+                        if self.concrete_count == len(self.variables):
+                            self.concrete_finish = True
+                            self.reset()
                 else:
                     reward += -5
             else:
@@ -1022,7 +1037,7 @@ class ConstraintSimplificationEnv_test(Environment):
                                 performance += 1
                                 reward += 20
                                 self.finish = True
-
+                                self.solve_time = stats.get_key_value('time')
                                 print("求解时间:", stats.get_key_value('time'))
                                 update_txt_with_current_time('time.txt', stats.get_key_value('time'))
                                 file_time = load_dictionary('file_time.txt')
@@ -2019,28 +2034,33 @@ def get_actions(tensor_2d, tensor_1d):
     return result
 
 
+import re
+
 def extract_variables_from_smt2_content(content):
     """
-    从 SMT2 格式的字符串内容中提取变量名。
+    从 SMT2 格式的字符串内容中提取变量名，排除布尔类型的变量。
 
     参数:
     - content: SMT2 格式的字符串内容。
 
     返回:
-    - 变量名列表。
+    - 非布尔类型变量名列表。
     """
-    # 用于匹配 `(declare-fun ...)` 语句中的变量名的正则表达式
-    variable_pattern = re.compile(r'\(declare-fun\s+([^ ]+)')
+    # 用于匹配 `(declare-fun ...)` 语句的正则表达式，包括变量名和类型
+    variable_pattern = re.compile(r'\(declare-fun\s+([^ ]+)\s*\(\s*\)\s*([^)]+)\)')
 
-    # 存储提取的变量名
+    # 存储提取的非布尔类型变量名
     variables = []
 
     # 按行分割字符串并迭代每一行
     for line in content.splitlines():
-        # 在每一行中查找匹配的变量名
+        # 在每一行中查找匹配的变量声明
         match = variable_pattern.search(line)
         if match:
-            # 如果找到匹配项，则将变量名添加到列表中
-            variables.append(match.group(1).replace('|', ''))
+            var_name, var_type = match.group(1, 2)
+            # 如果变量类型不是 Bool，则将变量名添加到列表中
+            if var_type != 'Bool':
+                variables.append(var_name.replace('|', ''))
 
     return variables
+
