@@ -230,3 +230,35 @@ def update_txt_with_info(file_path, info):
 def load_dictionary(file_path):
     with open(file_path, 'r') as file:
         return json.load(file)
+
+
+def ast_contains_var(ast, var_name):
+    """
+    递归检查AST中是否包含给定的变量名。
+
+    :param ast: 要检查的AST节点。
+    :param var_name: 变量名字符串。
+    :return: 布尔值，表示是否找到该变量名。
+    """
+    if ast.num_args() > 0:
+        # 如果当前节点有子节点，递归检查每个子节点
+        return any(ast_contains_var(arg, var_name) for arg in ast.children())
+    elif ast.decl().kind() == Z3_OP_UNINTERPRETED:
+        # 如果当前节点是一个叶节点且为未解释的符号（变量），检查其名字
+        return str(ast) == var_name
+    return False
+
+
+def find_assertions_related_to_var_name(assertions, var_name):
+    """
+    找到与特定变量名相关的所有断言。
+
+    :param assertions: Z3ast。
+    :param var_name: 变量名字符串。
+    :return: 包含指定变量名的所有断言列表。
+    """
+    related_assertions = []
+    for assertion in assertions:
+        if ast_contains_var(assertion, var_name):
+            related_assertions.append(assertion)
+    return related_assertions
