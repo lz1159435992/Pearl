@@ -132,7 +132,7 @@ def test_group():
                     for a in assertions:
                         solver.add(a)
                     timeout = 999999999
-                    timeout = 1000
+                    # timeout = 1000
                     result, model, time_taken = solve_and_measure_time(solver, timeout)
                     print(result,time_taken)
                     result_list = [result, time_taken, timeout]
@@ -214,6 +214,8 @@ def test_group():
                         result_list.append('failed')
                     else:
                         result_list.append('succeed')
+                        result_list.append(env.solve_time)
+                        result_list.append(env.counterexamples_list[-1])
 
                     info_dict[file_path] = result_list
                     with open('info_dict.txt', 'w') as file:

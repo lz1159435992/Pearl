@@ -14,7 +14,8 @@ from z3 import *
 import embedding_util
 from pearl.SMTimer.KNN_Predictor import Predictor
 from test_rl.test_script.db_search_lz_alue import fetch_data_as_dict
-from test_rl.test_script.utils import find_var_declaration_in_string, split_at_check_sat, load_dictionary
+from test_rl.test_script.utils import find_var_declaration_in_string, split_at_check_sat, load_dictionary, \
+    find_assertions_related_to_var_name
 
 # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 device = torch.device("cuda:0")
@@ -64,18 +65,22 @@ def get_values(db_path, table_name):
             count += 1
     return value_dict_2
 
+
 def get_values_nju(db_path, table_name):
     # db_path = 'value_dictionary.db'
     # table_name = 'value_dictionary'
     value_dict_2 = {}
     value_dict_1 = fetch_data_as_dict(db_path, table_name)
-    sampled_items = random.sample(value_dict_1.items(),20000)
+    sampled_items = random.sample(value_dict_1.items(), 20000)
     value_dict_1 = dict(sampled_items)
     count = 0
     for key in value_dict_1.keys():
         value_dict_2[str(count)] = key
         count += 1
+    value_dict_2[str(count)] = 'random'
     return value_dict_2
+
+
 def group_values(input_dict, group_size):
     # 确保group_size是正数
     if group_size <= 0:
@@ -113,8 +118,9 @@ def group_values(input_dict, group_size):
 #     # print("杞崲鍚庣殑瀛楀吀锛?, dict_obj)
 # except json.JSONDecodeError as e:
 #     print('failed', e)
-#nju
-dict_value = get_values_nju('/home/lz/PycharmProjects/Pearl/test_rl/test_script/value_dictionary.db', 'value_dictionary')
+# nju
+dict_value = get_values_nju('/home/lz/PycharmProjects/Pearl/test_rl/test_script/value_dictionary.db',
+                            'value_dictionary')
 
 
 # fenzu
@@ -664,6 +670,7 @@ class ConstraintSimplificationEnv_v2(Environment):
         """
         return None
 
+
 class ConstraintSimplificationEnv_test(Environment):
 
     def __init__(self, embedder, z3ast, num_variables, num_constants, smtlib_str, file_path):
@@ -690,6 +697,7 @@ class ConstraintSimplificationEnv_test(Environment):
         self.state_count = 0
         self.predictor = Predictor('KNN')
         self.last_performance = 0
+        self.solve_time = 0
 
     def reset(self, seed=None):
         self.concrete_finish = False
@@ -757,63 +765,95 @@ class ConstraintSimplificationEnv_test(Environment):
             if self.concrete_count == 0:
                 self.counterexamples_list.append([])
             if variable_pred not in self.used_variables:
-                self.used_variables.append(variable_pred)
-                self.concrete_count += 1
-                # 数值这部分需要修改
-                # print(action_n.item)
-                # print(type(action_n.item))
-                selected_int = int(dict_value[str(int(action_n.item()))])
-                print(selected_int)
-                self.counterexamples_list[-1].append([variable_pred, selected_int])
-
-                smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
-
+                # 修改的部分
                 type_info = find_var_declaration_in_string(self.smtlib_str_original, variable_pred)
                 print(type_info)
                 print(type(type_info))
                 type_scale = type_info.split(' ')[-1]
                 print(type_scale)
-                # if type_info == '_ BitVec 64':
-                #     new_constraint = "(assert (= {} (_ bv{} 64)))\n".format(variable_pred, selected_int)
-                # elif type_info == '_ BitVec 8':
-                #     new_constraint = "(assert (= {} (_ bv{} 8)))\n".format(variable_pred, selected_int)
-                # elif type_info == '_ BitVec 1008':
-                #     new_constraint = "(assert (= {} (_ bv{} 1008)))\n".format(variable_pred, selected_int)
-                new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
-                self.smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
-                assertions = parse_smt2_string(self.smtlib_str)
-                solver = Solver()
-                for a in assertions:
-                    solver.add(a)
+                max_value = 2 ** int(type_scale) - 1
+                min_value = -2 ** (int(type_scale) - 1)
+                # 如果选择了最后一个数，随机选择一个值
+                if str(dict_value[str(int(action_n.item()))]) == 'random':
+                    selected_int = random.randrange(min_value, max_value + 1)
+                else:
+                    selected_int = int(dict_value[str(int(action_n.item()))])
+                #找到最大最小值
+                if min_value <= selected_int <= max_value:
+                    reward += 5
+                    assertions = parse_smt2_string(self.smtlib_str)
 
-                # solver = Solver()
-                # for a in self.z3ast:
-                #     solver.add(a)
-                # # change name
-                # v_name = 'v_name'
-                # exec(f"{v_name} = Int('{variable_pred}')")
-                # # 修改，添加取值部分内容
-                # solver.add(eval(v_name) == selected_int)
-                # print(solver)
+                    related_assertions = find_assertions_related_to_var_name(assertions, variable_pred)
+                    solver_related = Solver()
 
-                reward += self.calculate_reward(solver)
-                self.z3ast = solver.assertions()
-                # graph = embedding_util.Z3ASTGraph(self.z3ast)
-                # # node_type_dict = NODE_TYPE_ENUM
-                # graph2vec = embedding_util.Graph2Vec(graph)
-                # # 步骤5: 输出转换结果
-                # print("节点特征向量:")
-                # print(graph2vec.node_feat.shape)
-                # # node_embed = embedding_util.glorot_uniform(graph2vec.node_feat)
-                # node_embed = Parameter(graph2vec.node_feat)
-                # print(solver.to_smt2())
-                # print(type(solver.to_smt2()))
-                self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2())
+                    for a in related_assertions:
+                        solver_related.add(a)
+                    # 先预测再求解
+                    smtlib_str_before, smtlib_str_after = split_at_check_sat(solver_related.to_smt2())
+                    new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
+                    new_smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
+                    predicted_solvability_related = self.predictor.predict(new_smtlib_str)
+                    if predicted_solvability_related == 0:
+                        reward += 5
+                        assertions_related = parse_smt2_string(new_smtlib_str)
+                        solver_related = Solver()
+                        solver_related.set("timeout", 10000)
+                        for a in assertions_related:
+                            solver_related.add(a)
+                        if z3.sat == solver_related.check():
+                            reward += 5
+                            self.used_variables.append(variable_pred)
+                            self.concrete_count += 1
+                            # 数值这部分需要修改
+                            # print(action_n.item)
+                            # print(type(action_n.item))
 
-                if self.concrete_count == len(self.variables):
-                    self.concrete_finish = True
-                    self.reset()
-                    # 判断这里需不需要直接reset
+                            print(selected_int)
+                            self.counterexamples_list[-1].append([variable_pred, selected_int])
+
+                            smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
+                            # new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
+                            self.smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
+                            assertions = parse_smt2_string(self.smtlib_str)
+                            solver = Solver()
+                            for a in assertions:
+                                solver.add(a)
+                            reward += self.calculate_reward(solver)
+                            self.z3ast = solver.assertions()
+                            self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2())
+
+                            if self.concrete_count == len(self.variables):
+                                self.concrete_finish = True
+                                self.reset()
+                        else:
+                            reward += -5
+                            self.used_variables.append(variable_pred)
+                            self.concrete_count += 1
+                            # 数值这部分需要修改
+                            # print(action_n.item)
+                            # print(type(action_n.item))
+
+                            print(selected_int)
+                            self.counterexamples_list[-1].append([variable_pred, selected_int])
+
+                            smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
+                            # new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
+                            self.smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
+                            assertions = parse_smt2_string(self.smtlib_str)
+                            solver = Solver()
+                            for a in assertions:
+                                solver.add(a)
+                            reward += self.calculate_reward(solver)
+                            self.z3ast = solver.assertions()
+                            self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2())
+
+                            if self.concrete_count == len(self.variables):
+                                self.concrete_finish = True
+                                self.reset()
+                    else:
+                        reward += -5
+                else:
+                    reward += -5
             else:
                 reward += -10
                 print(action)
@@ -907,10 +947,10 @@ class ConstraintSimplificationEnv_test(Environment):
         # Check if there are any unique strings
         if unique_count > 0:
             # Calculate the positive reward, scaled based on the list length
-            reward = R_positive / math.log(1 + total_length)
+            reward = R_positive / math.log(1 + total_length) * 10
         else:
             # Apply the negative reward, scaled by alpha
-            reward = R_negative * alpha
+            reward = R_negative * alpha * 10
 
         return reward
 
@@ -923,7 +963,7 @@ class ConstraintSimplificationEnv_test(Environment):
         # 判断是否存在反例
         if len(self.counterexamples_list) > 1:
             if self.counterexamples_list[-1] in self.counterexamples_list[:len(self.counterexamples_list) - 1]:
-                reward += -1
+                reward += -10
             else:
                 # 判断新的序列和之前是否有重复（字符串重复）
                 # for i in range(len(self.counterexamples_list) - 1):
@@ -939,10 +979,10 @@ class ConstraintSimplificationEnv_test(Environment):
                         count += 1
                 reward += self.counter_reward_function(len(self.counterexamples_list) - 1,
                                                        len(self.counterexamples_list) - 1 - count)
-            # print(self.counterexamples_list)
-            # print(len(self.counterexamples_list))
-            # for i in self.counterexamples_list:
-            #     print(len(i))
+                # print(self.counterexamples_list)
+                # print(len(self.counterexamples_list))
+                # for i in self.counterexamples_list:
+                #     print(len(i))
                 # 后续实现一些子集求解
                 # 注释掉提高速度
                 solver_part = Solver()
@@ -961,10 +1001,10 @@ class ConstraintSimplificationEnv_test(Environment):
                     solver_part.add(r)
                 predicted_solvability_part = self.predictor.predict(solver_part.to_smt2())
                 if predicted_solvability_part == 0:
-                # if True:
+                    # if True:
                     performance += 1
-                    reward += 2
-                    #注释掉提高速度
+                    reward += 10
+                    # 注释掉提高速度
                     # solver_part.set("timeout", 60000)
                     # r = solver_part.check()
                     # if z3.sat == r:
@@ -975,12 +1015,12 @@ class ConstraintSimplificationEnv_test(Environment):
                         if predicted_solvability == 0:
                             performance += 1
                             # 提高一下reward数值
-                            reward += 7
+                            reward += 15
                             r = solver.check()
                             stats = solver.statistics()
                             if z3.sat == r:
                                 performance += 1
-                                reward += 15
+                                reward += 20
                                 self.finish = True
 
                                 print("求解时间:", stats.get_key_value('time'))
@@ -991,16 +1031,16 @@ class ConstraintSimplificationEnv_test(Environment):
                                     json.dump(file_time, file, indent=4)
                             else:
                                 # reward += 1 / stats.get_key_value('time') * 100
-                                reward += -15
+                                reward += -20
                         else:
-                            reward += -7
+                            reward += -15
                     else:
                         # reward += 1 / stats.get_key_value('time') * 100
-                        reward += -5
+                        reward += -10
                 else:
-                    reward += -2
+                    reward += -10
         else:
-            #没有反例的情况下：
+            # 没有反例的情况下：
             solver_part = Solver()
             assertions = solver.assertions()
 
@@ -1019,7 +1059,7 @@ class ConstraintSimplificationEnv_test(Environment):
             if predicted_solvability_part == 0:
                 # if True:
                 performance += 1
-                reward += 2
+                reward += 10
                 # 注释掉提高速度
                 # solver_part.set("timeout", 60000)
                 # r = solver_part.check()
@@ -1031,30 +1071,30 @@ class ConstraintSimplificationEnv_test(Environment):
                     if predicted_solvability == 0:
                         performance += 1
                         # 提高一下reward数值
-                        reward += 7
+                        reward += 15
                         r = solver.check()
                         stats = solver.statistics()
                         if z3.sat == r:
                             performance += 1
-                            reward += 15
+                            reward += 20
                             self.finish = True
-
+                            self.solve_time = stats.get_key_value('time')
                             print("求解时间:", stats.get_key_value('time'))
                             update_txt_with_current_time('time.txt', stats.get_key_value('time'))
-                            file_time = load_dictionary('file_time_nju.txt')
-                            file_time[self.file_path] = stats.get_key_value('time')
-                            with open('file_time_nju.txt', 'w') as file:
-                                json.dump(file_time, file, indent=4)
+                            # file_time = load_dictionary('file_time_nju.txt')
+                            # file_time[self.file_path] = stats.get_key_value('time')
+                            # with open('file_time_nju.txt', 'w') as file:
+                            #     json.dump(file_time, file, indent=4)
                         else:
                             # reward += 1 / stats.get_key_value('time') * 100
-                            reward += -15
+                            reward += -20
                     else:
-                        reward += -7
+                        reward += -15
                 else:
                     # reward += 1 / stats.get_key_value('time') * 100
-                    reward += -5
+                    reward += -10
             else:
-                reward += -2
+                reward += -10
         # query_smt2 = solver.to_smt2()
         # print(query_smt2)
         if performance < self.last_performance:
