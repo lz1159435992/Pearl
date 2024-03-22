@@ -95,8 +95,8 @@ def test_group():
     for key, value in result_dict.items():
         list1 = json.loads(value)
         if list1[0] == "sat":
-            if list1[1] > 20:
-            # if '143541' in key:
+            # if list1[1] > 20:
+            if '/who/who86404' in key:
                 print(key, value)
                 if '/home/yy/Downloads/' in key:
                     file_path = key.replace('/home/yy/Downloads/', '/home/lz/baidudisk/')
