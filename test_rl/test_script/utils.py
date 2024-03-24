@@ -348,3 +348,31 @@ def find_assertions_related_to_var_names_optimized_dfs(assertions, var_names):
         results = {var_name: False for var_name in var_names}
 
     return related_assertions_dict
+
+def extract_variables_from_smt2_content(content):
+    """
+    从 SMT2 格式的字符串内容中提取变量名，排除布尔类型的变量。
+
+    参数:
+    - content: SMT2 格式的字符串内容。
+
+    返回:
+    - 非布尔类型变量名列表。
+    """
+    # 用于匹配 `(declare-fun ...)` 语句的正则表达式，包括变量名和类型
+    variable_pattern = re.compile(r'\(declare-fun\s+([^ ]+)\s*\(\s*\)\s*([^)]+)\)')
+
+    # 存储提取的非布尔类型变量名
+    variables = []
+
+    # 按行分割字符串并迭代每一行
+    for line in content.splitlines():
+        # 在每一行中查找匹配的变量声明
+        match = variable_pattern.search(line)
+        if match:
+            var_name, var_type = match.group(1, 2)
+            # 如果变量类型不是 Bool，则将变量名添加到列表中
+            if var_type != 'Bool':
+                variables.append(var_name.replace('|', ''))
+
+    return variables
