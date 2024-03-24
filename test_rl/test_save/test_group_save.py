@@ -1,4 +1,5 @@
 import json
+import pickle
 import random
 import re
 import time
@@ -17,40 +18,42 @@ from pearl.pearl_agent import PearlAgent
 import torch
 import matplotlib.pyplot as plt
 import numpy as np
-from env import ConstraintSimplificationEnv_v3, ConstraintSimplificationEnv_test
+from env_save import ConstraintSimplificationEnv_test
 
-from test_code_bert_4 import CodeEmbedder
+from test_rl.test_code_bert_4 import CodeEmbedder
 from test_rl.test_script.utils import parse_smt2_in_parts, process_smt_lib_string, fetch_data_as_dict, \
-    solve_and_measure_time, model_to_dict, load_dictionary
+    solve_and_measure_time, model_to_dict, load_dictionary, find_assertions_related_to_var_names_optimized_dfs
 
 start = time.time()
 
 
 def extract_variables_from_smt2_content(content):
     """
-    从 SMT2 格式的字符串内容中提取变量名。
+    从 SMT2 格式的字符串内容中提取变量名，排除布尔类型的变量。
 
     参数:
     - content: SMT2 格式的字符串内容。
 
     返回:
-    - 变量名列表。
+    - 非布尔类型变量名列表。
     """
-    # 用于匹配 `(declare-fun ...)` 语句中的变量名的正则表达式
-    variable_pattern = re.compile(r'\(declare-fun\s+([^ ]+)')
+    # 用于匹配 `(declare-fun ...)` 语句的正则表达式，包括变量名和类型
+    variable_pattern = re.compile(r'\(declare-fun\s+([^ ]+)\s*\(\s*\)\s*([^)]+)\)')
 
-    # 存储提取的变量名
+    # 存储提取的非布尔类型变量名
     variables = []
 
     # 按行分割字符串并迭代每一行
     for line in content.splitlines():
-        # 在每一行中查找匹配的变量名
+        # 在每一行中查找匹配的变量声明
         match = variable_pattern.search(line)
         if match:
-            # 如果找到匹配项，则将变量名添加到列表中
-            variables.append(match.group(1).replace('|', ''))
+            var_name, var_type = match.group(1, 2)
+            # 如果变量类型不是 Bool，则将变量名添加到列表中
+            if var_type != 'Bool':
+                variables.append(var_name.replace('|', ''))
 
-    return set(variables)
+    return variables
 
 
 def visit(expr):
@@ -92,6 +95,36 @@ def test_group():
     items = list(result_dict.items())
     random.shuffle(items)
     result_dict = dict(items)
+
+    embedder = CodeEmbedder()
+    set_seed(0)
+    # device = torch.device("cpu")
+    variables_length = 50
+    env = ConstraintSimplificationEnv_test(embedder, None, variables_length, None, None)
+    _,action_space = env.reset()
+    action_representation_module = IdentityActionRepresentationModule(
+        max_number_actions=action_space.n,
+        representation_dim=action_space.action_dim,
+    )
+
+    agent = PearlAgent(
+        policy_learner=SoftActorCritic(
+            state_dim=768,
+            action_space=action_space,
+            actor_hidden_dims=[768, 512, 128],
+            critic_hidden_dims=[768, 512, 128],
+            action_representation_module=action_representation_module,
+        ),
+        history_summarization_module=LSTMHistorySummarizationModule(
+            observation_dim=768,
+            action_dim=variables_length + 1,
+            hidden_dim=768,
+            history_length=variables_length,  # 和完整结点数相同
+        ),
+        replay_buffer=FIFOOffPolicyReplayBuffer(10),
+        device_id=-1,
+    )
+
     for key, value in result_dict.items():
         list1 = json.loads(value)
         if list1[0] == "sat":
@@ -132,7 +165,7 @@ def test_group():
                     for a in assertions:
                         solver.add(a)
                     timeout = 999999999
-                    # timeout = 1000
+                    timeout = 1000
                     result, model, time_taken = solve_and_measure_time(solver, timeout)
                     print(result,time_taken)
                     result_list = [result, time_taken, timeout]
@@ -157,17 +190,21 @@ def test_group():
                     print("变量列表：")
                     for v in variables:
                         print(v)
-                    embedder = CodeEmbedder()
-                    set_seed(0)
-                    # device = torch.device("cpu")
+                    env = ConstraintSimplificationEnv_test(embedder, assertions, variables_length, smtlib_str, file_path)
+                    # env.z3ast = assertions
+                    env.z3ast_original = env.z3ast
+                    # env.smtlib_str = smtlib_str
+                    env.smtlib_str_original = env.smtlib_str
+                    # env.file_path = file_path
+                    env.state_original = env.embedder.get_max_pooling_embedding(env.smtlib_str)
+                    env.state = env.state_original
+                    env.variables = extract_variables_from_smt2_content(env.smtlib_str)
+                    env.v_related_assertions = find_assertions_related_to_var_names_optimized_dfs(env.z3ast, env.variables)
+                    env.num_variables = len(env.variables)
+                    _,_ = env.reset()
 
-                    env = ConstraintSimplificationEnv_test(embedder, assertions, len(variables), len(variables), smtlib_str,
-                                                           file_path)
-                    observation, action_space = env.reset()
-                    action_representation_module = IdentityActionRepresentationModule(
-                        max_number_actions=action_space.n,
-                        representation_dim=action_space.action_dim,
-                    )
+
+
                     # action_representation_module = OneHotActionTensorRepresentationModule(
                     #     max_number_actions=len(env.variables)*20000,
                     # )
@@ -180,24 +217,10 @@ def test_group():
                     number_of_episodes = 1
                     record_period = 1
                     # 创建强化学习代理
+                    if os.path.exists('agent.pkl'):
+                        with open('agent.pkl', 'rb') as f:
+                            agent = pickle.load(f)
                     print(len(env.variables))
-                    agent = PearlAgent(
-                        policy_learner=SoftActorCritic(
-                            state_dim=768,
-                            action_space=action_space,
-                            actor_hidden_dims=[768, 512, 128],
-                            critic_hidden_dims=[768, 512, 128],
-                            action_representation_module=action_representation_module,
-                        ),
-                        history_summarization_module=LSTMHistorySummarizationModule(
-                            observation_dim=768,
-                            action_dim=len(env.variables) + 1,
-                            hidden_dim=768,
-                            history_length=len(env.variables),  # 和完整结点数相同
-                        ),
-                        replay_buffer=FIFOOffPolicyReplayBuffer(10),
-                        device_id=-1,
-                    )
                     # 训练代理
                     info = online_learning_with_break(
                         agent=agent,
@@ -221,6 +244,9 @@ def test_group():
                     with open('info_dict.txt', 'w') as file:
                         json.dump(info_dict, file, indent=4)
                     torch.cuda.empty_cache()
+
+                    with open('agent.pkl', 'wb') as f:
+                        pickle.dump(agent, f)
                     # torch.save(info["return"], "BootstrappedDQN-LSTM-return.pt")
                     # plt.plot(record_period * np.arange(len(info["return"])), info["return"], label="BootstrappedDQN-LSTM")
                     # plt.legend()
