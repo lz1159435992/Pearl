@@ -99,36 +99,39 @@ def test_group():
     embedder = CodeEmbedder()
     set_seed(0)
     # device = torch.device("cpu")
-    variables_length = 50
+    variables_length = 70
     env = ConstraintSimplificationEnv_test(embedder, None, variables_length, None, None)
     _,action_space = env.reset()
     action_representation_module = IdentityActionRepresentationModule(
         max_number_actions=action_space.n,
         representation_dim=action_space.action_dim,
     )
-
-    agent = PearlAgent(
-        policy_learner=SoftActorCritic(
-            state_dim=768,
-            action_space=action_space,
-            actor_hidden_dims=[768, 512, 128],
-            critic_hidden_dims=[768, 512, 128],
-            action_representation_module=action_representation_module,
-        ),
-        history_summarization_module=LSTMHistorySummarizationModule(
-            observation_dim=768,
-            action_dim=variables_length + 1,
-            hidden_dim=768,
-            history_length=variables_length,  # 和完整结点数相同
-        ),
-        replay_buffer=FIFOOffPolicyReplayBuffer(10),
-        device_id=-1,
-    )
-
+    # if os.path.exists('agent.pkl'):
+    if False:
+        with open('agent.pkl', 'rb') as f:
+            agent = pickle.load(f)
+    else:
+        agent = PearlAgent(
+            policy_learner=SoftActorCritic(
+                state_dim=768,
+                action_space=action_space,
+                actor_hidden_dims=[768, 512, 128],
+                critic_hidden_dims=[768, 512, 128],
+                action_representation_module=action_representation_module,
+            ),
+            history_summarization_module=LSTMHistorySummarizationModule(
+                observation_dim=768,
+                action_dim=variables_length + 1,
+                hidden_dim=768,
+                history_length=variables_length,  # 和完整结点数相同
+            ),
+            replay_buffer=FIFOOffPolicyReplayBuffer(10),
+            device_id=-1,
+        )
     for key, value in result_dict.items():
         list1 = json.loads(value)
         if list1[0] == "sat":
-            if list1[1] > 20:
+            if list1[1] > 100:
             # if '/who/who86404' in key:
                 print(key, value)
                 if '/home/yy/Downloads/' in key:
@@ -217,9 +220,7 @@ def test_group():
                     number_of_episodes = 1
                     record_period = 1
                     # 创建强化学习代理
-                    if os.path.exists('agent.pkl'):
-                        with open('agent.pkl', 'rb') as f:
-                            agent = pickle.load(f)
+
                     print(len(env.variables))
                     # 训练代理
                     info = online_learning_with_break(

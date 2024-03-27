@@ -70,7 +70,7 @@ def get_values_nju(db_path, table_name):
     # table_name = 'value_dictionary'
     value_dict_2 = {}
     value_dict_1 = fetch_data_as_dict(db_path, table_name)
-    sampled_items = random.sample(value_dict_1.items(), 10000)
+    sampled_items = random.sample(value_dict_1.items(), 100)
     value_dict_1 = dict(sampled_items)
     count = 0
     for key in value_dict_1.keys():
@@ -168,7 +168,7 @@ class ConstraintSimplificationEnv_test(Environment):
         self.smtlib_str = self.smtlib_str_original
         self.last_performance = 0
         #先写个四代码，后面再改
-        if self.num_variables == 50:
+        if self.num_variables == 70:
             self.actions_v = self.strings_to_onehot()
         else:
             self.actions_v = self.strings_to_onehot(self.variables)
@@ -255,24 +255,6 @@ class ConstraintSimplificationEnv_test(Environment):
                                 # 数值这部分需要修改
                                 # print(action_n.item)
                                 # print(type(action_n.item))
-
-                                print(selected_int)
-                                self.counterexamples_list[-1].append([variable_pred, selected_int])
-
-                                smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
-                                # new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
-                                self.smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
-                                assertions = parse_smt2_string(self.smtlib_str)
-                                solver = Solver()
-                                for a in assertions:
-                                    solver.add(a)
-                                reward += self.calculate_reward(solver)
-                                self.z3ast = solver.assertions()
-                                self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2())
-
-                                if self.concrete_count == len(self.variables):
-                                    self.concrete_finish = True
-                                    self.reset()
                             elif z3.unknown == r:
                                 reward += 2
                                 self.used_variables.append(variable_pred)
@@ -280,26 +262,35 @@ class ConstraintSimplificationEnv_test(Environment):
                                 # 数值这部分需要修改
                                 # print(action_n.item)
                                 # print(type(action_n.item))
-
-                                print(selected_int)
-                                self.counterexamples_list[-1].append([variable_pred, selected_int])
-
-                                smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
-                                # new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
-                                self.smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
-                                assertions = parse_smt2_string(self.smtlib_str)
-                                solver = Solver()
-                                for a in assertions:
-                                    solver.add(a)
-                                reward += self.calculate_reward(solver)
-                                self.z3ast = solver.assertions()
-                                self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2())
-
-                                if self.concrete_count == len(self.variables):
-                                    self.concrete_finish = True
-                                    self.reset()
                             else:
                                 reward += -5
+
+                            print(selected_int)
+                            self.counterexamples_list[-1].append([variable_pred, selected_int])
+
+                            smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
+                            # new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
+                            self.smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
+                            assertions = parse_smt2_string(self.smtlib_str)
+                            solver = Solver()
+                            for a in assertions:
+                                solver.add(a)
+                            reward += self.calculate_reward(solver)
+                            self.z3ast = solver.assertions()
+                            self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2())
+
+                            if self.concrete_count == len(self.variables):
+                                self.concrete_finish = True
+                                self.reset()
+                            # 删除使用过的变量
+                            self.actions_v = [act.to(device) for act in self.actions_v]
+                            self.actions_v = [torch.round(act) for act in self.actions_v]
+                            action_v = [act.to(device) for act in action_v]
+                            action_v = [torch.round(act) for act in action_v]
+                            self.actions_v = [tensor1 for tensor1 in self.actions_v if
+                                              not any(torch.equal(tensor1, tensor2) for tensor2 in action_v)]
+                            self.action_space = DiscreteActionSpace(
+                                get_actions(self.actions_v, torch.arange(0, len(dict_value) - 1)))
                         else:
                             reward += -5
                     else:#没有变量约束的情况
@@ -324,6 +315,16 @@ class ConstraintSimplificationEnv_test(Environment):
                         self.z3ast = solver.assertions()
                         self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2())
 
+                        # 删除使用过的变量
+                        self.actions_v = [act.to(device) for act in self.actions_v]
+                        self.actions_v = [torch.round(act) for act in self.actions_v]
+                        action_v = [act.to(device) for act in action_v]
+                        action_v = [torch.round(act) for act in action_v]
+                        self.actions_v = [tensor1 for tensor1 in self.actions_v if
+                                          not any(torch.equal(tensor1, tensor2) for tensor2 in action_v)]
+                        self.action_space = DiscreteActionSpace(
+                            get_actions(self.actions_v, torch.arange(0, len(dict_value) - 1)))
+
                         if self.concrete_count == len(self.variables):
                             self.concrete_finish = True
                             self.reset()
@@ -332,29 +333,6 @@ class ConstraintSimplificationEnv_test(Environment):
             else:
                 reward += -10
                 print(action)
-                # 重新实现
-                # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-                # device = torch.device("cpu")
-                self.actions_v = [act.to(device) for act in self.actions_v]
-                self.actions_v = [torch.round(act) for act in self.actions_v]
-                action_v = [act.to(device) for act in action_v]
-                action_v = [torch.round(act) for act in action_v]
-
-                # print(self.actions)
-                # for i in self.actions_v:
-                #     i.to(device)
-                # for i in action_v:
-                #     i.to(device)
-                # action_v.to(device)
-                self.actions_v = [tensor1 for tensor1 in self.actions_v if
-                                  not any(torch.equal(tensor1, tensor2) for tensor2 in action_v)]
-                self.action_space = DiscreteActionSpace(
-                    get_actions(self.actions_v, torch.arange(0, len(dict_value) - 1)))
-            # print('***********************')
-            # print(len(self.counterexamples_list))
-            # for i in self.counterexamples_list:
-            #     print(len(i))
-            # 清除内存
             del action
             del action_n
             del action_v
@@ -374,7 +352,7 @@ class ConstraintSimplificationEnv_test(Environment):
             available_action_space=self.action_space, )
 
     @staticmethod
-    def strings_to_onehot(string_list=None, n=50):
+    def strings_to_onehot(string_list=None, n=70):
         if string_list is None:
             string_list = [''] * n
 
