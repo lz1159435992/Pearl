@@ -126,6 +126,13 @@ def test_group():
                         smtlib_str = dict_obj['smt_script']
                     else:
                         smtlib_str = dict_obj['script']
+                    # variables = set()
+                    variables = extract_variables_from_smt2_content(smtlib_str)
+                    if len(variables) > 50:
+                        continue
+                    print("变量列表：")
+                    for v in variables:
+                        print(v)
 
                     assertions = parse_smt2_string(smtlib_str)
                     solver = Solver()
@@ -151,12 +158,7 @@ def test_group():
 
                     start_time = time.time()
 
-                    # variables = set()
-                    variables = extract_variables_from_smt2_content(smtlib_str)
 
-                    print("变量列表：")
-                    for v in variables:
-                        print(v)
                     embedder = CodeEmbedder()
                     set_seed(0)
                     # device = torch.device("cpu")
@@ -220,6 +222,7 @@ def test_group():
                     info_dict[file_path] = result_list
                     with open('info_dict.txt', 'w') as file:
                         json.dump(info_dict, file, indent=4)
+                    del agent
                     torch.cuda.empty_cache()
                     # torch.save(info["return"], "BootstrappedDQN-LSTM-return.pt")
                     # plt.plot(record_period * np.arange(len(info["return"])), info["return"], label="BootstrappedDQN-LSTM")
