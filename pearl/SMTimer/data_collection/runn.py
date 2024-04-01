@@ -14,7 +14,7 @@ import multiprocessing as mp
 basedir = os.path.dirname(os.path.abspath(__file__))
 cf = configparser.ConfigParser()
 cf.read(basedir + "/config.ini")
-
+os.system('export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/PycharmProjects/Pearl/venv/lib/python3.8/site-packages/unicorn/lib')
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", "--dir", help="directory of file")
@@ -36,7 +36,7 @@ if __name__ == '__main__':
     test = cf.getboolean("Test", "test_rl")
     if not test:
         try:
-            data_dir = "/home/bz302/data/PycharmProjects/angr"
+            data_dir = "/home/lz/data/angr"
             if os.path.exists(os.path.join(data_dir, "query/timeout_query.log")):
                 os.remove(os.path.join(data_dir, "query/timeout_query.log"))
             if os.path.exists(os.path.join(data_dir, "query/timein_query.log")):

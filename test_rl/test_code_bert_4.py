@@ -2,7 +2,7 @@ from transformers import RobertaTokenizer, RobertaModel
 import torch
 
 class CodeEmbedder:
-    def __init__(self, model_name='microsoft/codebert-base', max_length=512, chunk_size=512):
+    def __init__(self, model_name='/home/lz/baidudisk/codebert-base', max_length=512, chunk_size=512):
         # 初始化分词器和模型
         self.tokenizer = RobertaTokenizer.from_pretrained(model_name)
         self.model = RobertaModel.from_pretrained(model_name)
