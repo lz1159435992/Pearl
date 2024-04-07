@@ -160,6 +160,8 @@ def run_symexe(path, argv_size=8, withtime=True):
     # target_func = cfg.kb.functions.function(name="exit")
     # print(target_func)
     tel = cf.getint("Time", "explore")
+    #我修改的
+    tel = 3000
     start_time = time.time()
     try:
         if withtime:
