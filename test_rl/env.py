@@ -1002,12 +1002,12 @@ class ConstraintSimplificationEnv_test(Environment):
                     performance += 1
                     reward += 10
                     # 注释掉提高速度
-                    # solver_part.set("timeout", 60000)
-                    # r = solver_part.check()
-                    # if z3.sat == r:
-                    if True:
-                        # performance += 1
-                        # reward += 5
+                    solver_part.set("timeout", 30000)
+                    r = solver_part.check()
+                    if z3.sat == r:
+                    # if True:
+                        performance += 1
+                        reward += 10
                         predicted_solvability = self.predictor.predict(self.smtlib_str)
                         if predicted_solvability == 0:
                             performance += 1
@@ -1021,11 +1021,28 @@ class ConstraintSimplificationEnv_test(Environment):
                                 self.finish = True
                                 self.solve_time = stats.get_key_value('time')
                                 print("求解时间:", stats.get_key_value('time'))
-                                update_txt_with_current_time('time.txt', stats.get_key_value('time'))
-                                file_time = load_dictionary('file_time.txt')
-                                file_time[self.file_path] = stats.get_key_value('time')
-                                with open('file_time.txt', 'w') as file:
-                                    json.dump(file_time, file, indent=4)
+                            else:
+                                # reward += 1 / stats.get_key_value('time') * 100
+                                reward += -20
+                        else:
+                            reward += -15
+                    elif z3.sat == unknown:
+                    # if True:
+                    #     performance += 1
+                        reward += 5
+                        predicted_solvability = self.predictor.predict(self.smtlib_str)
+                        if predicted_solvability == 0:
+                            performance += 1
+                            # 提高一下reward数值
+                            reward += 15
+                            r = solver.check()
+                            stats = solver.statistics()
+                            if z3.sat == r:
+                                performance += 1
+                                reward += 20
+                                self.finish = True
+                                self.solve_time = stats.get_key_value('time')
+                                print("求解时间:", stats.get_key_value('time'))
                             else:
                                 # reward += 1 / stats.get_key_value('time') * 100
                                 reward += -20
@@ -1061,9 +1078,12 @@ class ConstraintSimplificationEnv_test(Environment):
                 # solver_part.set("timeout", 60000)
                 # r = solver_part.check()
                 # if z3.sat == r:
-                if True:
-                    # performance += 1
-                    # reward += 5
+                solver_part.set("timeout", 30000)
+                r = solver_part.check()
+                if z3.sat == r:
+                    # if True:
+                    performance += 1
+                    reward += 10
                     predicted_solvability = self.predictor.predict(self.smtlib_str)
                     if predicted_solvability == 0:
                         performance += 1
@@ -1077,11 +1097,28 @@ class ConstraintSimplificationEnv_test(Environment):
                             self.finish = True
                             self.solve_time = stats.get_key_value('time')
                             print("求解时间:", stats.get_key_value('time'))
-                            update_txt_with_current_time('time.txt', stats.get_key_value('time'))
-                            # file_time = load_dictionary('file_time_nju.txt')
-                            # file_time[self.file_path] = stats.get_key_value('time')
-                            # with open('file_time_nju.txt', 'w') as file:
-                            #     json.dump(file_time, file, indent=4)
+                        else:
+                            # reward += 1 / stats.get_key_value('time') * 100
+                            reward += -20
+                    else:
+                        reward += -15
+                elif z3.sat == unknown:
+                    # if True:
+                    #     performance += 1
+                    reward += 5
+                    predicted_solvability = self.predictor.predict(self.smtlib_str)
+                    if predicted_solvability == 0:
+                        performance += 1
+                        # 提高一下reward数值
+                        reward += 15
+                        r = solver.check()
+                        stats = solver.statistics()
+                        if z3.sat == r:
+                            performance += 1
+                            reward += 20
+                            self.finish = True
+                            self.solve_time = stats.get_key_value('time')
+                            print("求解时间:", stats.get_key_value('time'))
                         else:
                             # reward += 1 / stats.get_key_value('time') * 100
                             reward += -20

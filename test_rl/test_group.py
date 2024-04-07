@@ -128,7 +128,7 @@ def test_group():
                         smtlib_str = dict_obj['script']
                     # variables = set()
                     variables = extract_variables_from_smt2_content(smtlib_str)
-                    if len(variables) > 50:
+                    if len(variables) > 40:
                         continue
                     print("变量列表：")
                     for v in variables:
