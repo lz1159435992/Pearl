@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 from abc import abstractmethod
 
 import torch
@@ -67,7 +69,6 @@ class RiskNeutralSafetyModule(RiskSensitiveSafetyModule):
         action_batch: Tensor,
         q_value_distribution_network: DistributionalQValueNetwork,
     ) -> torch.Tensor:
-
         """Returns Q(s, a), given s and a
         Args:
             state_batch: a batch of state tensors (batch_size, state_dim)

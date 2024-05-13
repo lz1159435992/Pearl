@@ -5,7 +5,9 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-from typing import Any, Dict, List, Optional, Type
+# pyre-strict
+
+from typing import Any, Dict, List, Optional, Type, Union
 
 import torch
 from pearl.action_representation_modules.action_representation_module import (
@@ -25,15 +27,16 @@ from pearl.neural_networks.sequential_decision_making.twin_critic import TwinCri
 from pearl.policy_learners.exploration_modules.exploration_module import (
     ExplorationModule,
 )
-from pearl.policy_learners.sequential_decision_making.actor_critic_base import (
-    twin_critic_action_value_loss,
-    update_critic_target_network,
-)
 from pearl.policy_learners.sequential_decision_making.ddpg import (
     DeepDeterministicPolicyGradient,
 )
 from pearl.replay_buffers.transition import TransitionBatch
+from pearl.utils.functional_utils.learning.critic_utils import (
+    twin_critic_action_value_loss,
+    update_critic_target_network,
+)
 from pearl.utils.instantiations.spaces.box_action import BoxActionSpace
+from torch import nn
 
 
 class TD3(DeepDeterministicPolicyGradient):
@@ -47,8 +50,8 @@ class TD3(DeepDeterministicPolicyGradient):
         self,
         state_dim: int,
         action_space: ActionSpace,
-        actor_hidden_dims: List[int],
-        critic_hidden_dims: List[int],
+        actor_hidden_dims: Optional[List[int]] = None,
+        critic_hidden_dims: Optional[List[int]] = None,
         exploration_module: Optional[ExplorationModule] = None,
         actor_learning_rate: float = 1e-3,
         critic_learning_rate: float = 1e-3,
@@ -63,6 +66,8 @@ class TD3(DeepDeterministicPolicyGradient):
         actor_update_noise: float = 0.2,
         actor_update_noise_clip: float = 0.5,
         action_representation_module: Optional[ActionRepresentationModule] = None,
+        actor_network_instance: Optional[ActorNetwork] = None,
+        critic_network_instance: Optional[Union[QValueNetwork, nn.Module]] = None,
     ) -> None:
         assert isinstance(action_space, BoxActionSpace)
         super(TD3, self).__init__(
@@ -81,6 +86,8 @@ class TD3(DeepDeterministicPolicyGradient):
             training_rounds=training_rounds,
             batch_size=batch_size,
             action_representation_module=action_representation_module,
+            actor_network_instance=actor_network_instance,
+            critic_network_instance=critic_network_instance,
         )
         self._action_space: BoxActionSpace = action_space
         self._actor_update_freq = actor_update_freq
@@ -89,36 +96,32 @@ class TD3(DeepDeterministicPolicyGradient):
         self._critic_update_count = 0
 
     def learn_batch(self, batch: TransitionBatch) -> Dict[str, Any]:
-        # TODO: this method is very similar to that of ActorCriticBase.
-        # Can we refactor?
+        # The actor and the critic updates are arranged in the following way
+        # for the same reason as in the comment "If the history summarization module ..."
+        # in the learn_batch function in actor_critic_base.py.
 
-        critic_loss = self._critic_loss(batch)  # critic update
         self._critic_update_count += 1
-
+        report = {}
         # delayed actor update
-        self._critic_optimizer.zero_grad()
+        self._actor_optimizer.zero_grad()
         if self._critic_update_count % self._actor_update_freq == 0:
             # see ddpg base class for actor update details
             actor_loss = self._actor_loss(batch)
-            self._actor_optimizer.zero_grad()
-            (actor_loss + critic_loss).backward()
-            self._actor_optimizer.step()
-            self._critic_optimizer.step()
-            report = {
-                "actor_loss": actor_loss.item(),
-                "critic_loss": critic_loss.item(),
-            }
-        else:
-            critic_loss.backward()
-            self._critic_optimizer.step()
-            report = {"critic_loss": critic_loss.item()}
+            actor_loss.backward(retain_graph=True)
+            report["actor_loss"] = actor_loss.item()
+
+        self._critic_optimizer.zero_grad()
+        critic_loss = self._critic_loss(batch)  # critic update
+        critic_loss.backward()
+        self._actor_optimizer.step()
+        self._critic_optimizer.step()
+        report["critic_loss"] = critic_loss.item()
 
         if self._critic_update_count % self._actor_update_freq == 0:
             # update targets of critics using soft updates
             update_critic_target_network(
                 self._critic_target,
                 self._critic,
-                self._use_twin_critic,
                 self._critic_soft_update_tau,
             )
             # update target of actor network using soft updates
@@ -147,10 +150,12 @@ class TD3(DeepDeterministicPolicyGradient):
                 self._actor_update_noise_clip,
             )  # shape (batch_size, action_dim)
 
-            # add clipped noise to next_action
+            # rescale the noise
             low = torch.tensor(self._action_space.low, device=batch.device)
             high = torch.tensor(self._action_space.high, device=batch.device)
+            noise = noise * (high - low) / 2
 
+            # add clipped noise to next_action
             next_action = torch.clamp(
                 next_action + noise, low, high
             )  # shape (batch_size, action_dim)
@@ -168,7 +173,7 @@ class TD3(DeepDeterministicPolicyGradient):
             # r + gamma * (min{Qtarget_1(s', a from target actor network),
             #                  Qtarget_2(s', a from target actor network)})
             expected_state_action_values = (
-                next_q * self._discount_factor * (1 - batch.done.float())
+                next_q * self._discount_factor * (1 - batch.terminated.float())
             ) + batch.reward  # (batch_size)
 
         # update twin critics towards bellman target
@@ -179,4 +184,82 @@ class TD3(DeepDeterministicPolicyGradient):
             expected_target_batch=expected_state_action_values,
             critic=self._critic,
         )
+        return loss
+
+
+class TD3BC(TD3):
+    """
+    Implementation of the TD3BC algorithm in which a behaviour cloning term is added to the actor loss.
+    The actor loss is implemented similarly to https://arxiv.org/pdf/2106.06860.pdf.
+    """
+
+    def __init__(
+        self,
+        state_dim: int,
+        action_space: ActionSpace,
+        behavior_policy: torch.nn.Module,
+        actor_hidden_dims: Optional[List[int]] = None,
+        critic_hidden_dims: Optional[List[int]] = None,
+        exploration_module: Optional[ExplorationModule] = None,
+        actor_learning_rate: float = 1e-3,
+        critic_learning_rate: float = 1e-3,
+        actor_network_type: Type[ActorNetwork] = VanillaContinuousActorNetwork,
+        critic_network_type: Type[QValueNetwork] = VanillaQValueNetwork,
+        actor_soft_update_tau: float = 0.005,
+        critic_soft_update_tau: float = 0.005,
+        discount_factor: float = 0.99,
+        training_rounds: int = 1,
+        batch_size: int = 256,
+        actor_update_freq: int = 2,
+        actor_update_noise: float = 0.2,
+        actor_update_noise_clip: float = 0.5,
+        action_representation_module: Optional[ActionRepresentationModule] = None,
+        actor_network_instance: Optional[ActorNetwork] = None,
+        critic_network_instance: Optional[Union[QValueNetwork, nn.Module]] = None,
+        alpha_bc: float = 2.5,
+    ) -> None:
+        super(TD3BC, self).__init__(
+            state_dim=state_dim,
+            action_space=action_space,
+            actor_hidden_dims=actor_hidden_dims,
+            critic_hidden_dims=critic_hidden_dims,
+            exploration_module=exploration_module,
+            actor_learning_rate=actor_learning_rate,
+            critic_learning_rate=critic_learning_rate,
+            actor_network_type=actor_network_type,
+            critic_network_type=critic_network_type,
+            actor_soft_update_tau=actor_soft_update_tau,
+            critic_soft_update_tau=critic_soft_update_tau,
+            discount_factor=discount_factor,
+            training_rounds=training_rounds,
+            batch_size=batch_size,
+            actor_update_freq=actor_update_freq,
+            actor_update_noise=actor_update_noise,
+            actor_update_noise_clip=actor_update_noise_clip,
+            action_representation_module=action_representation_module,
+            actor_network_instance=actor_network_instance,
+            critic_network_instance=critic_network_instance,
+        )
+        self.alpha_bc: float = alpha_bc
+        self._behavior_policy: torch.nn.Module = behavior_policy
+
+    def _actor_loss(self, batch: TransitionBatch) -> torch.Tensor:
+
+        # sample a batch of actions from the actor network; shape (batch_size, action_dim)
+        action_batch = self._actor.sample_action(batch.state)
+
+        # samples q values for (batch.state, action_batch) from twin critics
+        q, _ = self._critic.get_q_values(
+            state_batch=batch.state, action_batch=action_batch
+        )
+
+        # behvaiour cloning loss terms
+        with torch.no_grad():
+            behaviour_action_batch = self._behavior_policy(batch.state)
+        lmbda = self.alpha_bc / q.abs().mean().detach()
+        behavior_loss_mse = ((action_batch - behaviour_action_batch).pow(2)).mean()
+
+        # optimization objective: optimize actor to maximize Q(s, a)
+        loss = behavior_loss_mse - lmbda * q.mean()
+
         return loss

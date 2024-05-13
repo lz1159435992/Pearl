@@ -5,7 +5,9 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-from typing import List, Optional, Type
+# pyre-strict
+
+from typing import List, Optional, Type, Union
 
 import torch
 from pearl.action_representation_modules.action_representation_module import (
@@ -31,14 +33,17 @@ from pearl.policy_learners.exploration_modules.exploration_module import (
 )
 from pearl.policy_learners.sequential_decision_making.actor_critic_base import (
     ActorCriticBase,
-    twin_critic_action_value_loss,
 )
 from pearl.replay_buffers.transition import TransitionBatch
-from torch import optim
+from pearl.utils.functional_utils.learning.critic_utils import (
+    twin_critic_action_value_loss,
+)
+from torch import nn, optim
 
 
 # Currently available actions is not used. Needs to be updated once we know the input
 # structure of production stack on this param.
+
 
 # TODO: to make things easier with a single optimizer, we need to polish this method.
 class SoftActorCritic(ActorCriticBase):
@@ -50,8 +55,8 @@ class SoftActorCritic(ActorCriticBase):
         self,
         state_dim: int,
         action_space: ActionSpace,
-        actor_hidden_dims: List[int],
-        critic_hidden_dims: List[int],
+        actor_hidden_dims: Optional[List[int]] = None,
+        critic_hidden_dims: Optional[List[int]] = None,
         actor_learning_rate: float = 1e-4,
         critic_learning_rate: float = 1e-4,
         actor_network_type: Type[ActorNetwork] = VanillaActorNetwork,
@@ -63,6 +68,8 @@ class SoftActorCritic(ActorCriticBase):
         batch_size: int = 128,
         entropy_coef: float = 0.2,
         action_representation_module: Optional[ActionRepresentationModule] = None,
+        actor_network_instance: Optional[ActorNetwork] = None,
+        critic_network_instance: Optional[Union[QValueNetwork, nn.Module]] = None,
     ) -> None:
         super(SoftActorCritic, self).__init__(
             state_dim=state_dim,
@@ -78,15 +85,19 @@ class SoftActorCritic(ActorCriticBase):
             actor_soft_update_tau=0.0,  # not used
             critic_soft_update_tau=critic_soft_update_tau,
             use_twin_critic=True,
-            exploration_module=exploration_module
-            if exploration_module is not None
-            else PropensityExploration(),
+            exploration_module=(
+                exploration_module
+                if exploration_module is not None
+                else PropensityExploration()
+            ),
             discount_factor=discount_factor,
             training_rounds=training_rounds,
             batch_size=batch_size,
             is_action_continuous=False,
             on_policy=False,
             action_representation_module=action_representation_module,
+            actor_network_instance=actor_network_instance,
+            critic_network_instance=critic_network_instance,
         )
 
         # This is needed to avoid actor softmax overflow issue.
@@ -106,13 +117,13 @@ class SoftActorCritic(ActorCriticBase):
     def _critic_loss(self, batch: TransitionBatch) -> torch.Tensor:
 
         reward_batch = batch.reward  # (batch_size)
-        done_batch = batch.done  # (batch_size)
+        terminated_batch = batch.terminated  # (batch_size)
 
-        assert done_batch is not None
+        assert terminated_batch is not None
         expected_state_action_values = (
             self._get_next_state_expected_values(batch)
             * self._discount_factor
-            * (1 - done_batch.float())
+            * (1 - terminated_batch.float())
         ) + reward_batch  # (batch_size), r + gamma * V(s)
 
         assert isinstance(self._critic, TwinCritic)
@@ -157,7 +168,7 @@ class SoftActorCritic(ActorCriticBase):
         # next_q = next_q1 if random_index == 0 else next_q2
 
         next_state_action_values = next_q.view(
-            self.batch_size, -1
+            next_state_batch.shape[0], -1
         )  # (batch_size x action_space_size)
 
         # Make sure that unavailable actions' Q values are assigned to 0.0
@@ -210,7 +221,7 @@ class SoftActorCritic(ActorCriticBase):
         )  # (batch_size x action_space_size)
 
         state_action_values = q.view(
-            (self.batch_size, self.action_representation_module.max_number_actions)
+            (state_batch.shape[0], self.action_representation_module.max_number_actions)
         )  # (batch_size x action_space_size)
 
         if unavailable_actions_mask is not None:

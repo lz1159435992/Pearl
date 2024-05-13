@@ -5,9 +5,12 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import unittest
 
 import torch
+import torch.testing as tt
 from pearl.neural_networks.common.residual_wrapper import ResidualWrapper
 from pearl.policy_learners.contextual_bandits.neural_bandit import LOSS_TYPES
 from pearl.policy_learners.contextual_bandits.neural_linear_bandit import (
@@ -49,13 +52,12 @@ class TestNeuralLinearBandits(unittest.TestCase):
             learning_rate=0.01,
             exploration_module=UCBExploration(alpha=0.1),
         )
-        state = torch.randn(batch_size, 3)
-        action = torch.randn(batch_size, feature_dim - 3)
+        state = torch.randn(batch_size, feature_dim)
         batch = TransitionBatch(
             state=state,
-            action=action,
-            # y = sum of state + sum of action
-            reward=state.sum(-1, keepdim=True) + action.sum(-1, keepdim=True),
+            action=torch.zeros_like(state[:, -1:]),  # empty dummy values, not used
+            # y = sum of state
+            reward=state.sum(-1, keepdim=True),
             weight=torch.ones(batch_size, 1),
         )
         policy_learner.learn_batch(batch)
@@ -70,25 +72,25 @@ class TestNeuralLinearBandits(unittest.TestCase):
         copy_policy_learner.load_state_dict(policy_learner.state_dict())
 
         # assert and check if they are the same
-        self.assertTrue(
-            torch.equal(
-                copy_policy_learner.model._linear_regression_layer._A,
-                policy_learner.model._linear_regression_layer._A,
-            )
+        tt.assert_close(
+            copy_policy_learner.model._linear_regression_layer._A,
+            policy_learner.model._linear_regression_layer._A,
+            rtol=0.0,
+            atol=0.0,
         )
 
-        self.assertTrue(
-            torch.equal(
-                copy_policy_learner.model._linear_regression_layer._b,
-                policy_learner.model._linear_regression_layer._b,
-            )
+        tt.assert_close(
+            copy_policy_learner.model._linear_regression_layer._b,
+            policy_learner.model._linear_regression_layer._b,
+            rtol=0.0,
+            atol=0.0,
         )
 
         for p1, p2 in zip(
             copy_policy_learner.model._nn_layers.parameters(),
             policy_learner.model._nn_layers.parameters(),
         ):
-            self.assertTrue(torch.equal(p1.to(p2.device), p2))
+            tt.assert_close(p1.to(p2.device), p2, rtol=0.0, atol=0.0)
 
 
     # currently test support mse, mae, cross_entropy
@@ -136,18 +138,16 @@ class TestNeuralLinearBandits(unittest.TestCase):
             output_activation_name=output_activation_name,
         )
         self.assertEqual(feature_dim, policy_learner.feature_dim)
-        state = torch.randn(batch_size, 3)
-        action = torch.randn(batch_size, feature_dim - 3)
-        reward = state.sum(-1, keepdim=True) + action.sum(
-            -1, keepdim=True
-        )  # linear relation between label(reward) and feature (state,action pair)
+        state = torch.randn(batch_size, feature_dim)
+        reward = state.sum(-1, keepdim=True)
+        # linear relation between label(reward) and feature (state,action pair)
         if output_activation_name == "sigmoid":
             reward = torch.nn.Sigmoid()(reward)
             assert torch.all(reward >= 0) and torch.all(reward <= 1)
 
         batch = TransitionBatch(
             state=state,
-            action=action,
+            action=torch.zeros_like(state[:, -1:]),  # empty dummy values, not used
             reward=reward,
             weight=torch.ones(batch_size, 1),
         )
@@ -200,13 +200,12 @@ class TestNeuralLinearBandits(unittest.TestCase):
             gamma=0.95,
             apply_discounting_interval=100.0,
         )
-        state = torch.randn(batch_size, 3)
-        action = torch.randn(batch_size, feature_dim - 3)
+        state = torch.randn(batch_size, feature_dim)
         batch = TransitionBatch(
             state=state,
-            action=action,
+            action=torch.zeros_like(state[:, -1:]),  # empty dummy values, not used
             # y = sum of state + sum of action
-            reward=state.sum(-1, keepdim=True) + action.sum(-1, keepdim=True),
+            reward=torch.exp(state.sum(-1, keepdim=True)),
             weight=torch.ones(batch_size, 1),
         )
 

@@ -4,6 +4,8 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 
+# pyre-strict
+
 from .contextual_bandit_environment import ContextualBanditEnvironment
 from .contextual_bandit_linear_synthetic_environment import (
     ContextualBanditLinearSyntheticEnvironment,
@@ -15,8 +17,8 @@ from .environments import (
     OneHotObservationsFromDiscrete,
 )
 from .gym_environment import GymEnvironment
-from .reward_is_equal_to_ten_times_action_contextual_bandit_environment import (
-    RewardIsEqualToTenTimesActionContextualBanditEnvironment,
+from .reward_is_equal_to_ten_times_action_multi_arm_bandit_environment import (
+    RewardIsEqualToTenTimesActionMultiArmBanditEnvironment,
 )
 from .sparse_reward_environment import (
     ContinuousSparseRewardEnvironment,
@@ -34,7 +36,7 @@ __all__ = [
     "FixedNumberOfStepsEnvironment",
     "GymEnvironment",
     "OneHotObservationsFromDiscrete",
-    "RewardIsEqualToTenTimesActionContextualBanditEnvironment",
+    "RewardIsEqualToTenTimesActionMultiArmBanditEnvironment",
     "SLCBEnvironment",
     "SparseRewardEnvironment",
 ]

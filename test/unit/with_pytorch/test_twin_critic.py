@@ -5,12 +5,14 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import unittest
 
 import torch
 from pearl.neural_networks.common.utils import init_weights
 from pearl.neural_networks.sequential_decision_making.twin_critic import TwinCritic
-from pearl.policy_learners.sequential_decision_making.actor_critic_base import (
+from pearl.utils.functional_utils.learning.critic_utils import (
     twin_critic_action_value_loss,
 )
 

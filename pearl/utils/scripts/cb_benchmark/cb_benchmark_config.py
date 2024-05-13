@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import os
 from typing import Any, Dict, Tuple
 
@@ -138,6 +140,7 @@ def return_neural_lin_ucb_config(
             "hidden_dims": [64, 16],
             "learning_rate": 0.01,
             "batch_size": 128,
+            "state_features_only": False,
             "training_rounds": run_config["training_rounds"],
             "action_representation_module": BinaryActionTensorRepresentationModule(
                 bits_num=dim_actions
@@ -171,6 +174,7 @@ def return_neural_lin_ts_config(
             "hidden_dims": [64, 16],
             "learning_rate": 0.01,
             "batch_size": 128,
+            "state_features_only": False,
             "training_rounds": run_config["training_rounds"],
             "action_representation_module": BinaryActionTensorRepresentationModule(
                 bits_num=dim_actions

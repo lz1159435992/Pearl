@@ -5,7 +5,7 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-from typing import Optional
+# pyre-strict
 
 from pearl.api.action_space import ActionSpace
 from pearl.history_summarization_modules.history_summarization_module import (

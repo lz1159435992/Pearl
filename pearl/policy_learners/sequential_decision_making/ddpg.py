@@ -5,7 +5,9 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-from typing import List, Optional, Type
+# pyre-strict
+
+from typing import List, Optional, Type, Union
 
 import torch
 from pearl.action_representation_modules.action_representation_module import (
@@ -30,9 +32,12 @@ from pearl.policy_learners.exploration_modules.exploration_module import (
 )
 from pearl.policy_learners.sequential_decision_making.actor_critic_base import (
     ActorCriticBase,
-    twin_critic_action_value_loss,
 )
 from pearl.replay_buffers.transition import TransitionBatch
+from pearl.utils.functional_utils.learning.critic_utils import (
+    twin_critic_action_value_loss,
+)
+from torch import nn
 
 
 class DeepDeterministicPolicyGradient(ActorCriticBase):
@@ -45,8 +50,8 @@ class DeepDeterministicPolicyGradient(ActorCriticBase):
         self,
         state_dim: int,
         action_space: ActionSpace,
-        actor_hidden_dims: List[int],
-        critic_hidden_dims: List[int],
+        actor_hidden_dims: Optional[List[int]] = None,
+        critic_hidden_dims: Optional[List[int]] = None,
         exploration_module: Optional[ExplorationModule] = None,
         actor_learning_rate: float = 1e-3,
         critic_learning_rate: float = 1e-3,
@@ -58,6 +63,8 @@ class DeepDeterministicPolicyGradient(ActorCriticBase):
         training_rounds: int = 1,
         batch_size: int = 256,
         action_representation_module: Optional[ActionRepresentationModule] = None,
+        actor_network_instance: Optional[ActorNetwork] = None,
+        critic_network_instance: Optional[Union[QValueNetwork, nn.Module]] = None,
     ) -> None:
         super(DeepDeterministicPolicyGradient, self).__init__(
             state_dim=state_dim,
@@ -73,15 +80,19 @@ class DeepDeterministicPolicyGradient(ActorCriticBase):
             actor_soft_update_tau=actor_soft_update_tau,
             critic_soft_update_tau=critic_soft_update_tau,
             use_twin_critic=True,  # we need to make this optional to users
-            exploration_module=exploration_module
-            if exploration_module is not None
-            else NormalDistributionExploration(mean=0.0, std_dev=0.1),
+            exploration_module=(
+                exploration_module
+                if exploration_module is not None
+                else NormalDistributionExploration(mean=0.0, std_dev=0.1)
+            ),
             discount_factor=discount_factor,
             training_rounds=training_rounds,
             batch_size=batch_size,
             is_action_continuous=True,
             on_policy=False,
             action_representation_module=action_representation_module,
+            actor_network_instance=actor_network_instance,
+            critic_network_instance=critic_network_instance,
         )
 
     def _actor_loss(self, batch: TransitionBatch) -> torch.Tensor:
@@ -89,16 +100,13 @@ class DeepDeterministicPolicyGradient(ActorCriticBase):
         # sample a batch of actions from the actor network; shape (batch_size, action_dim)
         action_batch = self._actor.sample_action(batch.state)
 
-        # samples q values for (batch.state, action_batch) from twin critics
-        q1, q2 = self._critic.get_q_values(
+        # obtain q values for (batch.state, action_batch) from critic 1
+        q1 = self._critic._critic_1.get_q_values(
             state_batch=batch.state, action_batch=action_batch
         )
 
-        # clipped double q learning (reduce overestimation bias); shape (batch_size)
-        q = torch.minimum(q1, q2)
-
         # optimization objective: optimize actor to maximize Q(s, a)
-        loss = -q.mean()
+        loss = -q1.mean()
 
         return loss
 
@@ -122,7 +130,7 @@ class DeepDeterministicPolicyGradient(ActorCriticBase):
             # r + gamma * (min{Qtarget_1(s', a from target actor network),
             #                  Qtarget_2(s', a from target actor network)})
             expected_state_action_values = (
-                next_q * self._discount_factor * (1 - batch.done.float())
+                next_q * self._discount_factor * (1 - batch.terminated.float())
             ) + batch.reward  # shape (batch_size)
 
         assert isinstance(self._critic, TwinCritic), "DDPG requires TwinCritic critic"

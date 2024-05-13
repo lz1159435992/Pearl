@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 """
 This file contains helpers for unittest creation
 """
@@ -18,7 +20,6 @@ import torch
 def create_normal_pdf_training_data(
     input_dim: int, num_data_points: int
 ) -> Tuple[torch.Tensor, torch.Tensor]:
-
     """
     x are sampled from a multivariate normal distribution
     y are the corresponding pdf values

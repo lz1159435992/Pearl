@@ -5,9 +5,12 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import unittest
 
 import torch
+import torch.testing as tt
 
 from pearl.neural_networks.contextual_bandit.linear_regression import LinearRegression
 
@@ -18,19 +21,19 @@ class TestLinearRegression(unittest.TestCase):
         x = torch.randn(10)
         expected_output = torch.cat([torch.ones((1,)), x], dim=0)
         output = LinearRegression.append_ones(x)
-        self.assertTrue(torch.allclose(expected_output, output))
+        tt.assert_close(expected_output, output)
 
         # 2D input
         x = torch.randn(10, 5)
         expected_output = torch.cat([torch.ones((10, 1)), x], dim=1)
         output = LinearRegression.append_ones(x)
-        self.assertTrue(torch.allclose(expected_output, output))
+        tt.assert_close(expected_output, output)
 
         # 3D input
         x = torch.randn(10, 5, 6)
         expected_output = torch.cat([torch.ones((10, 5, 1)), x], dim=2)
         output = LinearRegression.append_ones(x)
-        self.assertTrue(torch.allclose(expected_output, output))
+        tt.assert_close(expected_output, output)
 
         # make sure it's traceable
         _ = torch.fx.symbolic_trace(LinearRegression.append_ones)

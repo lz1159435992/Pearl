@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 from typing import Any, Dict, List, Optional
 
 import torch
@@ -102,9 +104,11 @@ class DisjointBanditContainer(ContextualBanditBase):
                     TransitionBatch(
                         state=state[mask],
                         reward=batch.reward[mask],
-                        weight=batch.weight[mask]
-                        if batch.weight is not None
-                        else torch.ones_like(mask, dtype=torch.float),
+                        weight=(
+                            batch.weight[mask]
+                            if batch.weight is not None
+                            else torch.ones_like(mask, dtype=torch.float)
+                        ),
                         # empty action features since disjoint model used
                         # action as index of per-arm model
                         # if arms need different features, use 3D `state` instead
@@ -218,7 +222,7 @@ class DisjointBanditContainer(ContextualBanditBase):
             values=ensemble_forward(self.models, feature, use_for_loop=True),
             action_space=action_space,
             representation=self.models,  # pyre-fixme[6]: unexpected type
-        ).squeeze()
+        )
 
     @property
     def optimizer(self) -> torch.optim.Optimizer:

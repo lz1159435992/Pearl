@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import typing
 from typing import Any, Dict, Optional
 
@@ -112,7 +114,7 @@ class PearlAgent(Agent):
         self.replay_buffer.is_action_continuous = (
             self.policy_learner.is_action_continuous
         )
-        self.replay_buffer.device = self.device
+        self.replay_buffer.device_for_batches = self.device
 
         # check that all components of the agent are compatible with each other
         pearl_agent_compatibility_check(
@@ -156,10 +158,7 @@ class PearlAgent(Agent):
             subjective_state_to_be_used, safe_action_space, exploit=exploit  # pyre-fixme[6]
         )
 
-        if isinstance(safe_action_space, DiscreteActionSpace):
-            self._latest_action = safe_action_space.actions_batch[int(action.item())]
-        else:
-            self._latest_action = action
+        self._latest_action = action
 
         return action
 
@@ -185,13 +184,17 @@ class PearlAgent(Agent):
             # pyre-fixme[6]: this can be removed when tabular Q learning test uses tensors
             next_state=new_history,
             curr_available_actions=self._action_space,  # curr_available_actions
-            next_available_actions=self._action_space
-            if action_result.available_action_space is None
-            else action_result.available_action_space,  # next_available_actions
-            done=action_result.done,
-            max_number_actions=self.policy_learner.action_representation_module.max_number_actions
-            if not self.policy_learner.is_action_continuous
-            else None,  # max number of actions for discrete action space
+            next_available_actions=(
+                self._action_space
+                if action_result.available_action_space is None
+                else action_result.available_action_space
+            ),  # next_available_actions
+            terminated=action_result.terminated,
+            max_number_actions=(
+                self.policy_learner.action_representation_module.max_number_actions
+                if not self.policy_learner.is_action_continuous
+                else None
+            ),  # max number of actions for discrete action space
             cost=action_result.cost,
         )
 

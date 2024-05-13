@@ -5,8 +5,11 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
+import copy
 from abc import abstractmethod
-from typing import Any, cast, Dict, Iterable, List, Optional, Type, Union
+from typing import Any, Dict, List, Optional, Type, Union
 
 import torch
 
@@ -21,15 +24,8 @@ from pearl.api.state import SubjectiveState
 from pearl.history_summarization_modules.history_summarization_module import (
     HistorySummarizationModule,
 )
-from pearl.neural_networks.common.utils import (
-    init_weights,
-    update_target_network,
-    update_target_networks,
-)
-from pearl.neural_networks.common.value_networks import (
-    ValueNetwork,
-    VanillaValueNetwork,
-)
+from pearl.neural_networks.common.utils import init_weights, update_target_network
+from pearl.neural_networks.common.value_networks import ValueNetwork
 from pearl.neural_networks.sequential_decision_making.actor_networks import (
     ActorNetwork,
     DynamicActionActorNetwork,
@@ -39,12 +35,16 @@ from pearl.neural_networks.sequential_decision_making.q_value_networks import (
     QValueNetwork,
     VanillaQValueNetwork,
 )
-from pearl.neural_networks.sequential_decision_making.twin_critic import TwinCritic
+
 from pearl.policy_learners.exploration_modules.exploration_module import (
     ExplorationModule,
 )
 from pearl.policy_learners.policy_learner import PolicyLearner
 from pearl.replay_buffers.transition import TransitionBatch
+from pearl.utils.functional_utils.learning.critic_utils import (
+    make_critic,
+    update_critic_target_network,
+)
 
 from pearl.utils.instantiations.spaces.discrete_action import DiscreteActionSpace
 from torch import nn, optim
@@ -66,7 +66,8 @@ class ActorCriticBase(PolicyLearner):
         self,
         state_dim: int,
         exploration_module: ExplorationModule,
-        actor_hidden_dims: List[int],
+        actor_hidden_dims: Optional[List[int]] = None,
+        use_critic: bool = True,
         critic_hidden_dims: Optional[List[int]] = None,
         action_space: Optional[ActionSpace] = None,
         actor_learning_rate: float = 1e-3,
@@ -86,6 +87,10 @@ class ActorCriticBase(PolicyLearner):
         is_action_continuous: bool = False,
         on_policy: bool = False,
         action_representation_module: Optional[ActionRepresentationModule] = None,
+        actor_network_instance: Optional[ActorNetwork] = None,
+        critic_network_instance: Optional[
+            Union[ValueNetwork, QValueNetwork, nn.Module]
+        ] = None,
     ) -> None:
         super(ActorCriticBase, self).__init__(
             on_policy=on_policy,
@@ -96,11 +101,15 @@ class ActorCriticBase(PolicyLearner):
             action_representation_module=action_representation_module,
             action_space=action_space,
         )
+        """
+        Constructs a base actor-critic policy learner.
+        """
+
         self._state_dim = state_dim
         self._use_actor_target = use_actor_target
         self._use_critic_target = use_critic_target
         self._use_twin_critic = use_twin_critic
-        self._use_critic: bool = critic_hidden_dims is not None
+        self._use_critic: bool = use_critic
 
         self._action_dim: int = (
             self.action_representation_module.representation_dim
@@ -108,17 +117,29 @@ class ActorCriticBase(PolicyLearner):
             else self.action_representation_module.max_number_actions
         )
 
-        # actor network takes state as input and outputs an action vector
-        self._actor: nn.Module = actor_network_type(
-            input_dim=state_dim + self._action_dim
-            if actor_network_type is DynamicActionActorNetwork
-            else state_dim,
-            hidden_dims=actor_hidden_dims,
-            output_dim=1
-            if actor_network_type is DynamicActionActorNetwork
-            else self._action_dim,
-            action_space=action_space,
-        )
+        if actor_network_instance is not None:
+            self._actor: nn.Module = actor_network_instance
+        else:
+            assert (
+                actor_hidden_dims is not None
+            ), f"{self.__class__.__name__} requires parameter actor_hidden_dims if a parameter \
+            action_network_instance has not been provided."
+
+            # actor network takes state as input and outputs an action vector
+            self._actor: nn.Module = actor_network_type(
+                input_dim=(
+                    state_dim + self._action_dim
+                    if issubclass(actor_network_type, DynamicActionActorNetwork)
+                    else state_dim
+                ),
+                hidden_dims=actor_hidden_dims,
+                output_dim=(
+                    1
+                    if issubclass(actor_network_type, DynamicActionActorNetwork)
+                    else self._action_dim
+                ),
+                action_space=action_space,
+            )
         self._actor.apply(init_weights)
         self._actor_optimizer = optim.AdamW(
             [
@@ -130,28 +151,30 @@ class ActorCriticBase(PolicyLearner):
             ]
         )
         self._actor_soft_update_tau = actor_soft_update_tau
+
+        # make a copy of the actor network to be used as the actor target network
         if self._use_actor_target:
-            self._actor_target: nn.Module = actor_network_type(
-                input_dim=state_dim + self._action_dim
-                if actor_network_type is DynamicActionActorNetwork
-                else state_dim,
-                hidden_dims=actor_hidden_dims,
-                output_dim=1
-                if actor_network_type is DynamicActionActorNetwork
-                else self._action_dim,
-                action_space=action_space,
-            )
+            self._actor_target: nn.Module = copy.deepcopy(self._actor)
             update_target_network(self._actor_target, self._actor, tau=1)
 
         self._critic_soft_update_tau = critic_soft_update_tau
         if self._use_critic:
-            self._critic: nn.Module = make_critic(
-                state_dim=self._state_dim,
-                action_dim=self._action_dim,
-                hidden_dims=critic_hidden_dims,
-                use_twin_critic=use_twin_critic,
-                network_type=critic_network_type,
-            )
+            if critic_network_instance is not None:
+                self._critic: nn.Module = critic_network_instance
+            else:
+                assert (
+                    critic_hidden_dims is not None
+                ), f"{self.__class__.__name__} requires parameter critic_hidden_dims if a \
+                parameter critic_network_instance has not been provided."
+
+                self._critic: nn.Module = make_critic(
+                    state_dim=self._state_dim,
+                    action_dim=self._action_dim,
+                    hidden_dims=critic_hidden_dims,
+                    use_twin_critic=use_twin_critic,
+                    network_type=critic_network_type,
+                )
+
             self._critic_optimizer: optim.Optimizer = optim.AdamW(
                 [
                     {
@@ -162,17 +185,10 @@ class ActorCriticBase(PolicyLearner):
                 ]
             )
             if self._use_critic_target:
-                self._critic_target: nn.Module = make_critic(
-                    state_dim=self._state_dim,
-                    action_dim=self._action_dim,
-                    hidden_dims=critic_hidden_dims,
-                    use_twin_critic=use_twin_critic,
-                    network_type=critic_network_type,
-                )
+                self._critic_target: nn.Module = copy.deepcopy(self._critic)
                 update_critic_target_network(
                     self._critic_target,
                     self._critic,
-                    use_twin_critic,
                     1,
                 )
 
@@ -182,8 +198,6 @@ class ActorCriticBase(PolicyLearner):
         self, value: HistorySummarizationModule
     ) -> None:
         self._actor_optimizer.add_param_group({"params": value.parameters()})
-        if self._use_critic:
-            self._critic_optimizer.add_param_group({"params": value.parameters()})
         self._history_summarization_module = value
 
     def act(
@@ -230,7 +244,9 @@ class ActorCriticBase(PolicyLearner):
                     available_actions=actions,
                 )
                 # (action_space_size)
-                exploit_action = torch.argmax(action_probabilities)
+                exploit_action_index = torch.argmax(action_probabilities)
+                exploit_action = available_action_space.actions[exploit_action_index]
+
         # Step 2: return exploit action if no exploration,
         # else pass through the exploration module
         if exploit:
@@ -271,10 +287,24 @@ class ActorCriticBase(PolicyLearner):
         """
         actor_loss = self._actor_loss(batch)
         self._actor_optimizer.zero_grad()
+        """
+        If the history summarization module is a neural network,
+        the computation graph of this neural network is used
+        to obtain both actor and critic losses.
+        Without retain_graph=True, after actor_loss.backward(), the computation graph is cleared.
+        After the graph is cleared, critic_loss.backward() fails.
+        """
+        actor_loss.backward(retain_graph=True)
         if self._use_critic:
-            critic_loss = self._critic_loss(batch)
             self._critic_optimizer.zero_grad()
-            (actor_loss + critic_loss).backward()
+            critic_loss = self._critic_loss(batch)
+            """
+            This backward operation needs to happen before the actor_optimizer.step().
+            This is because actor_optimizer.step() updates the history summarization neural network
+            and critic_loss.backward() fails
+            once parameters involved in critic_loss's computational graph change.
+            """
+            critic_loss.backward()
             self._actor_optimizer.step()
             self._critic_optimizer.step()
             report = {
@@ -282,7 +312,6 @@ class ActorCriticBase(PolicyLearner):
                 "critic_loss": critic_loss.item(),
             }
         else:
-            actor_loss.backward()
             self._actor_optimizer.step()
             report = {"actor_loss": actor_loss.item()}
 
@@ -290,7 +319,6 @@ class ActorCriticBase(PolicyLearner):
             update_critic_target_network(
                 self._critic_target,
                 self._critic,
-                self._use_twin_critic,
                 self._critic_soft_update_tau,
             )
         if self._use_actor_target:
@@ -340,132 +368,3 @@ class ActorCriticBase(PolicyLearner):
             loss (Tensor): The critic loss.
         """
         pass
-
-
-def make_critic(
-    state_dim: int,
-    hidden_dims: Optional[Iterable[int]],
-    use_twin_critic: bool,
-    network_type: Union[Type[ValueNetwork], Type[QValueNetwork]],
-    action_dim: Optional[int] = None,
-) -> nn.Module:
-    if use_twin_critic:
-        assert action_dim is not None
-        assert hidden_dims is not None
-        assert issubclass(
-            network_type, QValueNetwork
-        ), "network_type must be a subclass of QValueNetwork when use_twin_critic is True"
-
-        # cast network_type to get around static Pyre type checking; the runtime check with
-        # `issubclass` ensures the network type is a sublcass of QValueNetwork
-        network_type = cast(Type[QValueNetwork], network_type)
-
-        return TwinCritic(
-            state_dim=state_dim,
-            action_dim=action_dim,
-            hidden_dims=hidden_dims,
-            network_type=network_type,
-            init_fn=init_weights,
-        )
-    else:
-        if network_type == VanillaQValueNetwork:
-            # pyre-ignore[45]:
-            # Pyre does not know that `network_type` is asserted to be concrete
-            return network_type(
-                state_dim=state_dim,
-                action_dim=action_dim,
-                hidden_dims=hidden_dims,
-                output_dim=1,
-            )
-        elif network_type == VanillaValueNetwork:
-            # pyre-ignore[45]:
-            # Pyre does not know that `network_type` is asserted to be concrete
-            return network_type(
-                input_dim=state_dim, hidden_dims=hidden_dims, output_dim=1
-            )
-        else:
-            raise NotImplementedError(
-                "Unknown network type. The code needs to be refactored to support this."
-            )
-
-
-def update_critic_target_network(
-    target_network: nn.Module, network: nn.Module, use_twin_critic: bool, tau: float
-) -> None:
-    if use_twin_critic:
-        update_target_networks(
-            target_network._critic_networks_combined,
-            network._critic_networks_combined,
-            tau=tau,
-        )
-    else:
-        update_target_network(
-            target_network._model,
-            network._model,
-            tau=tau,
-        )
-
-
-def single_critic_state_value_loss(
-    state_batch: torch.Tensor,
-    expected_target_batch: torch.Tensor,
-    critic: nn.Module,
-) -> torch.Tensor:
-    """
-    Performs a single optimization step on a (value) critic network using the input batch of states.
-    This method calculates the mean squared error loss between the predicted state values from the
-    critic network and the input target estimates. It then updates the critic network using the
-    provided optimizer.
-    Args:
-        state_batch (torch.Tensor): A batch of states with expected shape
-        `(batch_size, state_dim)`.
-        expected_target_batch (torch.Tensor): The batch of target estimates
-        (i.e., RHS of the Bellman equation) with shape `(batch_size)`.
-        critic (nn.Module): The critic network to update.
-    Returns:
-        loss (torch.Tensor): The mean squared error loss for state-value prediction
-    """
-    if not isinstance(critic, ValueNetwork):
-        raise TypeError(
-            "critic in the `single_critic_state_value_update` method must be an instance of "
-            "ValueNetwork"
-        )
-    vs = critic(state_batch)
-    criterion = torch.nn.MSELoss()
-    loss = criterion(
-        vs.reshape_as(expected_target_batch), expected_target_batch.detach()
-    )
-    return loss
-
-
-def twin_critic_action_value_loss(
-    state_batch: torch.Tensor,
-    action_batch: torch.Tensor,
-    expected_target_batch: torch.Tensor,
-    critic: TwinCritic,
-) -> torch.Tensor:
-    """
-    Performs a single optimization step on the twin critic networks using the input
-    batch of states and actions.
-    This method calculates the mean squared error loss between the predicted Q-values from both
-    critic networks and the input target estimates. It then updates the critic networks using the
-    provided optimizer.
-
-    Args:
-        state_batch (torch.Tensor): A batch of states with expected shape
-        `(batch_size, state_dim)`.
-        action_batch (torch.Tensor): A batch of actions with expected shape
-        `(batch_size, action_dim)`.
-        expected_target_batch (torch.Tensor): The batch of target estimates
-        (i.e. RHS of the Bellman equation) with shape `(batch_size)`.
-        critic (TwinCritic): The twin critic network to update.
-    Returns:
-        loss (torch.Tensor): The mean squared error loss for action-value prediction
-    """
-
-    criterion = torch.nn.MSELoss()
-    q_1, q_2 = critic.get_q_values(state_batch, action_batch)
-    loss = criterion(
-        q_1.reshape_as(expected_target_batch), expected_target_batch.detach()
-    ) + criterion(q_2.reshape_as(expected_target_batch), expected_target_batch.detach())
-    return loss

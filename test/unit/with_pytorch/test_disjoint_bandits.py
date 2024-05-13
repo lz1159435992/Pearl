@@ -5,10 +5,13 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import copy
 import unittest
 
 import torch
+import torch.testing as tt
 from parameterized import parameterized_class
 from pearl.policy_learners.contextual_bandits.disjoint_bandit import (
     DisjointBanditContainer,
@@ -71,14 +74,13 @@ class TestDisjointLinearBandits(unittest.TestCase):
         for i, action in enumerate(self.batch.action):
             action = action.item()
             # check if linear regression works
-            self.assertTrue(
-                torch.allclose(
-                    self.policy_learner._linear_regressions[action](
-                        self.batch.state[i : i + 1]
-                    ),
-                    self.batch.reward[i : i + 1],
-                    atol=1e-1,
-                )
+            tt.assert_close(
+                self.policy_learner._linear_regressions[action](
+                    self.batch.state[i : i + 1]
+                ),
+                self.batch.reward[i : i + 1],
+                atol=1e-1,
+                rtol=0.0,
             )
 
     def test_ucb_act(self) -> None:
@@ -248,14 +250,11 @@ class TestDisjointBanditContainerBandits(unittest.TestCase):
         for i, action in enumerate(self.batch.action):
             action = action.item()
             # check if each arm model works
-            self.assertTrue(
-                torch.allclose(
-                    policy_learner._arm_bandits[action].model(
-                        self.batch.state[i : i + 1]
-                    ),
-                    self.batch.reward[i : i + 1],
-                    atol=1e-1,
-                )
+            tt.assert_close(
+                policy_learner._arm_bandits[action].model(self.batch.state[i : i + 1]),
+                self.batch.reward[i : i + 1],
+                atol=1e-1,
+                rtol=0.0,
             )
 
     def test_ucb_act(self) -> None:
@@ -417,7 +416,7 @@ class TestDisjointBanditContainerBandits(unittest.TestCase):
             sigmas = model.calculate_sigma(features)
             expected_scores.append(mus + alpha * sigmas)
         expected_scores = torch.cat(expected_scores, dim=1)
-        self.assertTrue(torch.allclose(scores, expected_scores, atol=1e-1))
+        tt.assert_close(scores, expected_scores, atol=1e-1, rtol=0.0)
 
     def test_learn_batch_arm_subset(self) -> None:
         # test that learn_batch still works when the batch has a subset of arms

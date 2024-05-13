@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 from typing import Optional, Union
 
 import torch
@@ -90,7 +92,7 @@ class SquareCBExploration(ScoreExplorationBase):
             dist_policy = Categorical(prob_policy[batch_ind, :])
             selected_actions[batch_ind] = dist_policy.sample()
 
-        return selected_actions.squeeze()
+        return selected_actions.squeeze(-1)
 
     def clamp(self, values: torch.Tensor) -> torch.Tensor:
         """
@@ -130,7 +132,8 @@ class FastCBExploration(SquareCBExploration):
     See: https://arxiv.org/abs/2107.02237 for details.
 
     Assumptions: Reward is bounded. For the update rule to be valid we require bounded rewards.
-    User can modify lower and upper bounds of the reward by setting reward_lb and reward_ub. clamp_values is set to True by default.
+    User can modify lower and upper bounds of the reward by setting reward_lb and reward_ub.
+    Clamp_values is set to True by default.
 
     Args:
         gamma (float): controls the exploration-exploitation tradeoff;

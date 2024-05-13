@@ -173,9 +173,9 @@ def evaluate_single(
             method["history_summarization_module"].__name__
             == "LSTMHistorySummarizationModule"
         ):
-            method["history_summarization_module_args"][
-                "observation_dim"
-            ] = env.observation_space.shape[0]
+            method["history_summarization_module_args"]["observation_dim"] = (
+                env.observation_space.shape[0]
+            )
             method["history_summarization_module_args"]["action_dim"] = (
                 policy_learner_args["action_representation_module"].representation_dim
                 if "action_representation_module" in policy_learner_args
@@ -217,12 +217,8 @@ def evaluate_single(
     )
     method_name = method["name"]
     print(f"Run #{run_idx + 1} for {method_name} in {env_name}")
-    if (
-        method["name"] == "REINFORCE" or method["name"] == "PPO"
-    ):  # REINFORCE only performs learning at the end of each episode
-        learn_after_episode = True
-    else:
-        learn_after_episode = False
+    learn_every_k_steps = method.get("learn_every_k_steps", 1)
+    learn_after_episode = method.get("learn_after_episode", False)
     info = online_learning(
         agent,
         env,
@@ -231,6 +227,7 @@ def evaluate_single(
         print_every_x_episodes=print_every_x_episodes,
         print_every_x_steps=print_every_x_steps,
         learn_after_episode=learn_after_episode,
+        learn_every_k_steps=learn_every_k_steps,
         seed=run_idx,
         record_period=record_period,
     )

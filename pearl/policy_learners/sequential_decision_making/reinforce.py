@@ -5,7 +5,9 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-from typing import List, Optional, Type
+# pyre-strict
+
+from typing import Any, Dict, List, Optional, Type, Union
 
 from pearl.action_representation_modules.action_representation_module import (
     ActionRepresentationModule,
@@ -14,6 +16,7 @@ from pearl.action_representation_modules.action_representation_module import (
 from pearl.neural_networks.common.value_networks import ValueNetwork
 
 from pearl.neural_networks.sequential_decision_making.actor_networks import ActorNetwork
+from torch import nn
 
 try:
     import gymnasium as gym
@@ -34,9 +37,17 @@ from pearl.policy_learners.exploration_modules.exploration_module import (
 )
 from pearl.policy_learners.sequential_decision_making.actor_critic_base import (
     ActorCriticBase,
-    single_critic_state_value_loss,
+)
+from pearl.replay_buffers.replay_buffer import ReplayBuffer
+from pearl.replay_buffers.sequential_decision_making.on_policy_replay_buffer import (
+    OnPolicyReplayBuffer,
+    OnPolicyTransition,
+    OnPolicyTransitionBatch,
 )
 from pearl.replay_buffers.transition import TransitionBatch
+from pearl.utils.functional_utils.learning.critic_utils import (
+    single_critic_state_value_loss,
+)
 
 
 class REINFORCE(ActorCriticBase):
@@ -49,7 +60,8 @@ class REINFORCE(ActorCriticBase):
     def __init__(
         self,
         state_dim: int,
-        actor_hidden_dims: List[int],
+        actor_hidden_dims: Optional[List[int]] = None,
+        use_critic: bool = False,
         critic_hidden_dims: Optional[List[int]] = None,
         action_space: Optional[ActionSpace] = None,
         actor_learning_rate: float = 1e-4,
@@ -58,13 +70,17 @@ class REINFORCE(ActorCriticBase):
         critic_network_type: Type[ValueNetwork] = VanillaValueNetwork,
         exploration_module: Optional[ExplorationModule] = None,
         discount_factor: float = 0.99,
-        training_rounds: int = 1,
+        training_rounds: int = 8,
+        batch_size: int = 64,
         action_representation_module: Optional[ActionRepresentationModule] = None,
+        actor_network_instance: Optional[ActorNetwork] = None,
+        critic_network_instance: Optional[Union[ValueNetwork, nn.Module]] = None,
     ) -> None:
         super(REINFORCE, self).__init__(
             state_dim=state_dim,
             action_space=action_space,
             actor_hidden_dims=actor_hidden_dims,
+            use_critic=use_critic,
             critic_hidden_dims=critic_hidden_dims,
             actor_learning_rate=actor_learning_rate,
             critic_learning_rate=critic_learning_rate,
@@ -75,18 +91,23 @@ class REINFORCE(ActorCriticBase):
             actor_soft_update_tau=0.0,  # not used
             critic_soft_update_tau=0.0,  # not used
             use_twin_critic=False,
-            exploration_module=exploration_module
-            if exploration_module is not None
-            else PropensityExploration(),
+            exploration_module=(
+                exploration_module
+                if exploration_module is not None
+                else PropensityExploration()
+            ),
             discount_factor=discount_factor,
             training_rounds=training_rounds,
-            batch_size=0,  # REINFORCE does not use batch size
+            batch_size=batch_size,
             is_action_continuous=False,
             on_policy=True,
             action_representation_module=action_representation_module,
+            actor_network_instance=actor_network_instance,
+            critic_network_instance=critic_network_instance,
         )
 
     def _actor_loss(self, batch: TransitionBatch) -> torch.Tensor:
+        assert isinstance(batch, OnPolicyTransitionBatch)
         state_batch = (
             batch.state
         )  # (batch_size x state_dim) note that here batch_size = episode length
@@ -108,9 +129,41 @@ class REINFORCE(ActorCriticBase):
 
     def _critic_loss(self, batch: TransitionBatch) -> torch.Tensor:
         assert self._use_critic, "can not compute critic loss without critic"
+        assert isinstance(batch, OnPolicyTransitionBatch)
         assert batch.cum_reward is not None
         return single_critic_state_value_loss(
             state_batch=batch.state,
             expected_target_batch=batch.cum_reward,
             critic=self._critic,
         )
+
+    def learn(self, replay_buffer: ReplayBuffer) -> Dict[str, Any]:
+        assert type(replay_buffer) is OnPolicyReplayBuffer
+        assert len(replay_buffer.memory) > 0
+        # compute return for all states in the buffer
+
+        # Transitions in the reply buffer memory are in the CPU
+        # (only sampled batches are moved to the used device,
+        # kept in replay_buffer.device_for_batches)
+        # To use it in expressions involving the critic,
+        # we must move them to the device being used first.
+        next_state = replay_buffer.memory[-1].next_state
+        terminated = replay_buffer.memory[-1].terminated
+        assert next_state is not None
+        assert terminated is not None
+        next_state_in_device = next_state.to(replay_buffer.device_for_batches)
+        terminated_in_device = terminated.to(replay_buffer.device_for_batches)
+
+        cum_reward = self._critic(
+            self._history_summarization_module(next_state_in_device)
+        ).detach() * (~terminated_in_device)
+
+        # move cum_reward to CPU to process CPU-stored transitions
+        cum_reward = cum_reward.cpu()
+        for transition in reversed(replay_buffer.memory):
+            cum_reward += transition.reward
+            assert isinstance(transition, OnPolicyTransition)
+            transition.cum_reward = cum_reward
+        # sample from replay buffer and learn
+        result = super().learn(replay_buffer)
+        return result

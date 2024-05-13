@@ -8,6 +8,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Support Ukraine](https://img.shields.io/badge/Support-Ukraine-FFD500?style=flat&labelColor=005BBB)](https://opensource.fb.com/support-ukraine)
+[![codecov](https://codecov.io/gh/facebookresearch/Pearl/graph/badge.svg?token=CARFOP3E30)](https://codecov.io/gh/facebookresearch/Pearl)
 
 More details of the library at our [official website](https://pearlagent.github.io).
 
@@ -72,11 +73,19 @@ while not done:
 Users can replace the environment with any real-world problems.
 
 ## Tutorials
-1. The first tutorial of Pearl focuses on recommender systems. We derived a small contrived recommender system environment using the MIND dataset (Wu et al. 2020). More details in https://github.com/facebookresearch/Pearl/tree/main/pearl/tutorials/single_item_recommender_system_example/demo.ipynb
 
-2. The second tutorial of Pearl focuses on contextual bandit algorithms and their implementation using Pearl library. We designed a contextual bandit environment based on UCI dataset and tested the performance of neural implementations of SquareCB, LinUCB, and LinTS. More details in https://github.com/facebookresearch/Pearl/tree/main/pearl/tutorials/contextual_bandits/contextual_bandits_tutorial.ipynb
+We provide a few tutorial Jupyter notebooks (and are currently working on more!):
 
-More tutorials coming in 2024.
+1. [A single item recommender system](https://nbviewer.org/github/facebookresearch/Pearl/blob/main/tutorials/single_item_recommender_system_example/single_item_recommender_system.ipynb). We derived a small contrived recommender system environment using the MIND dataset (Wu et al. 2020).
+
+2. [Contextual bandits](https://nbviewer.org/github/facebookresearch/Pearl/blob/main/tutorials/contextual_bandits/contextual_bandits_tutorial.ipynb). Demonstrates contextual bandit algorithms and their implementation using Pearl using a contextual bandit environment for providing data from UCI datasets, and tested the performance of neural implementations of SquareCB, LinUCB, and LinTS.
+
+3. [Frozen Lake](https://nbviewer.org/github/facebookresearch/Pearl/blob/main/tutorials/frozen_lake/frozen_lake.ipynb). A simple example showing how to use a one-hot observation wrapper to learn the classic problem with DQN.
+
+4. [Deep Q-Learning (DQN) and Double DQN](https://nbviewer.org/github/facebookresearch/Pearl/blob/main/tutorials/sequential_decision_making/DQN_and_DoubleDQN_example.ipynb). Demonstrates how to run DQN and Double DQN on the Cart-Pole environment.
+
+5. [Actor-critic algorithms with safety constraints](https://nbviewer.org/github/facebookresearch/Pearl/blob/main/tutorials/actor_critic_and_rc_safety_module/actor_critic_and_safe_actor_critic.ipynb). Demonstrates how to run Actor Critic methods, including a version with safe constraints.
+
 
 ## Design and Features
 ![alt](./logo/agent_interface.png)

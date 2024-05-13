@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 from typing import Callable, List, Optional, Tuple
 
 from pearl.api.action import Action
@@ -35,9 +37,9 @@ class HindsightExperienceReplayBuffer(FIFOOffPolicyReplayBuffer):
               so we could need this info in order to split alternative goal after episode
               terminates.
     reward_fn: is the F here: F(state+goal, action) = reward
-    done_fn: This is different from paper. Original paper doesn't have it.
+    terminated_fn: This is different from paper. Original paper doesn't have it.
              We need it for games which may end earlier.
-             If this is not defined, then use done value from original trajectory.
+             If this is not defined, then use terminated value from original trajectory.
     """
 
     # TODO: improve unclear docstring
@@ -47,12 +49,12 @@ class HindsightExperienceReplayBuffer(FIFOOffPolicyReplayBuffer):
         capacity: int,
         goal_dim: int,
         reward_fn: Callable[[SubjectiveState, Action], Reward],
-        done_fn: Optional[Callable[[SubjectiveState, Action], bool]] = None,
+        terminated_fn: Optional[Callable[[SubjectiveState, Action], bool]] = None,
     ) -> None:
         super(HindsightExperienceReplayBuffer, self).__init__(capacity=capacity)
         self._goal_dim = goal_dim
         self._reward_fn = reward_fn
-        self._done_fn = done_fn
+        self._terminated_fn = terminated_fn
         self._trajectory: List[
             Tuple[
                 SubjectiveState,
@@ -74,7 +76,7 @@ class HindsightExperienceReplayBuffer(FIFOOffPolicyReplayBuffer):
         next_state: SubjectiveState,
         curr_available_actions: ActionSpace,
         next_available_actions: ActionSpace,
-        done: bool,
+        terminated: bool,
         max_number_actions: Optional[int] = None,
         cost: Optional[float] = None,
     ) -> None:
@@ -88,7 +90,7 @@ class HindsightExperienceReplayBuffer(FIFOOffPolicyReplayBuffer):
             next_state,
             curr_available_actions,
             next_available_actions,
-            done,
+            terminated,
             max_number_actions,
             cost,
         )
@@ -99,12 +101,12 @@ class HindsightExperienceReplayBuffer(FIFOOffPolicyReplayBuffer):
                 next_state,
                 curr_available_actions,
                 next_available_actions,
-                done,
+                terminated,
                 max_number_actions,
                 cost,
             )
         )
-        if done:
+        if terminated:
             additional_goal = next_state[: -self._goal_dim]  # final mode
             for (
                 state,
@@ -112,7 +114,7 @@ class HindsightExperienceReplayBuffer(FIFOOffPolicyReplayBuffer):
                 next_state,
                 curr_available_actions,
                 next_available_actions,
-                done,
+                terminated,
                 max_number_actions,
                 cost,
             ) in self._trajectory:
@@ -128,7 +130,11 @@ class HindsightExperienceReplayBuffer(FIFOOffPolicyReplayBuffer):
                     next_state,
                     curr_available_actions,
                     next_available_actions,
-                    done if self._done_fn is None else self._done_fn(state, action),
+                    (
+                        terminated
+                        if self._terminated_fn is None
+                        else self._terminated_fn(state, action)
+                    ),
                     max_number_actions,
                     cost,
                 )

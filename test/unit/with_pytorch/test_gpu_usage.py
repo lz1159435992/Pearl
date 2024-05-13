@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import unittest
 
 import torch
@@ -22,13 +24,12 @@ from pearl.policy_learners.sequential_decision_making.ppo import (
 from pearl.replay_buffers.sequential_decision_making.fifo_off_policy_replay_buffer import (
     FIFOOffPolicyReplayBuffer,
 )
-from pearl.replay_buffers.sequential_decision_making.on_policy_episodic_replay_buffer import (
-    OnPolicyEpisodicReplayBuffer,
+from pearl.replay_buffers.sequential_decision_making.on_policy_replay_buffer import (
+    OnPolicyReplayBuffer,
 )
 from pearl.utils.functional_utils.train_and_eval.online_learning import online_learning
 
 from pearl.utils.instantiations.environments.gym_environment import GymEnvironment
-from pearl.utils.instantiations.spaces.box import BoxSpace
 from pearl.utils.instantiations.spaces.discrete_action import DiscreteActionSpace
 
 
@@ -76,6 +77,7 @@ class TestGPUUsage(unittest.TestCase):
                 state_dim=env.observation_space.shape[0],
                 action_space=env.action_space,
                 actor_hidden_dims=[64, 64],
+                use_critic=True,
                 critic_hidden_dims=[64, 64],
                 training_rounds=20,
                 batch_size=500,
@@ -84,7 +86,7 @@ class TestGPUUsage(unittest.TestCase):
                     max_number_actions=num_actions
                 ),
             ),
-            replay_buffer=OnPolicyEpisodicReplayBuffer(10000),
+            replay_buffer=OnPolicyReplayBuffer(10000),
         )
 
         online_learning(agent, env, number_of_episodes=10, learn_after_episode=True)

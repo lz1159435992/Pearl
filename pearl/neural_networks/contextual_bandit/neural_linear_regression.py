@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import logging
 from typing import Dict, List, Optional
 
@@ -142,6 +144,7 @@ class NeuralLinearRegression(MuSigmaCBModel):
 
         # dim: [batch_size, num_arms]
         return {
+            "pred_label_pre_activation": x.reshape(batch_size, -1),
             "pred_label": self.output_activation(x).reshape(batch_size, -1),
             "nn_output": nn_output,
         }

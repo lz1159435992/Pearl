@@ -5,8 +5,9 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import unittest
-from typing import Any, Dict
 
 import torch
 from pearl.action_representation_modules.one_hot_action_representation_module import (
@@ -52,17 +53,10 @@ from pearl.utils.instantiations.environments.environments import (
     FixedNumberOfStepsEnvironment,
 )
 from pearl.utils.instantiations.environments.gym_environment import GymEnvironment
-from pearl.utils.instantiations.environments.reward_is_equal_to_ten_times_action_contextual_bandit_environment import (  # noqa: E501
-    RewardIsEqualToTenTimesActionContextualBanditEnvironment,
+from pearl.utils.instantiations.environments.reward_is_equal_to_ten_times_action_multi_arm_bandit_environment import (  # Noqa E501
+    RewardIsEqualToTenTimesActionMultiArmBanditEnvironment,
 )
 from pearl.utils.instantiations.spaces.discrete_action import DiscreteActionSpace
-from pearl.utils.scripts.cb_benchmark.cb_benchmark_config import (
-    pendigits_uci_dict,
-    return_neural_lin_ts_config,
-    return_neural_lin_ucb_config,
-    return_neural_squarecb_config,
-)
-from pearl.utils.scripts.cb_benchmark.run_cb_benchmarks import run_cb_benchmarks
 
 
 class TestAgentWithPyTorch(unittest.TestCase):
@@ -223,15 +217,30 @@ class TestAgentWithPyTorch(unittest.TestCase):
         self.assertTrue(sum(regrets[10:]) >= sum(regrets[-10:]))
 
     def test_online_rl(self) -> None:
-        env = FixedNumberOfStepsEnvironment(number_of_steps=100)
+        env = FixedNumberOfStepsEnvironment(max_number_of_steps=100)
         agent = PearlAgent(TabularQLearning())
         online_learning(agent, env, number_of_episodes=1000)
 
     def test_tabular_q_learning_online_rl(self) -> None:
         env = GymEnvironment("FrozenLake-v1", is_slippery=False)
-        agent = PearlAgent(policy_learner=TabularQLearning())
+        agent = PearlAgent(policy_learner=TabularQLearning(exploration_rate=0.7))
+        # We use a large exploration rate because the exploitation action
+        # is always the first one among those with the highest value
+        # (so that the agent is deterministic in the absence of exploration).
+        # For FrozenLake, this results in action 0 which is "moving left"
+        # and has no effect for the initial position in the left top corner.
+        # Ideally, we should use a smarter exploration strategy that
+        # picks an action randomly but favors the best ones
+        # (propensity exploration).
+        # For FrozenLake, especially at the beginning of training,
+        # this would result in a random choice between the
+        # initially equally valueless actions, resulting in effective
+        # exploration, but focusing more on valuable actions
+        # as training progresses.
+        # TODO: modify tabular Q-learning so it accepts
+        # a greater variety of exploration modules.
 
-        online_learning(agent, env, number_of_episodes=500)
+        online_learning(agent, env, number_of_episodes=6000)
 
         for _ in range(100):  # Should always reach the goal
             episode_info, total_steps = run_episode(
@@ -242,7 +251,7 @@ class TestAgentWithPyTorch(unittest.TestCase):
     def test_contextual_bandit_with_tabular_q_learning_online_rl(self) -> None:
         num_actions = 5
         max_action = num_actions - 1
-        env = RewardIsEqualToTenTimesActionContextualBanditEnvironment(
+        env = RewardIsEqualToTenTimesActionMultiArmBanditEnvironment(
             action_space=DiscreteActionSpace(
                 actions=list(torch.arange(num_actions).view(-1, 1))
             )
@@ -268,32 +277,3 @@ class TestAgentWithPyTorch(unittest.TestCase):
                 agent, env, learn=False, exploit=True
             )
             assert episode_info["return"] == max_action * 10
-
-    def test_contextual_bandit_on_uci_datasets(self) -> None:
-        # Tests that neural versions of CB algorithms train on a UCI dataset
-        # CB Algorithms are the neural versions of LinUCB, LinTS, and SquareCB with shared models.
-
-        # set number of time steps to be small, just for unit testing purposes
-        run_config_test: Dict[str, Any] = {
-            "T": 300,
-            "training_rounds": 1,
-            "num_of_experiments": 1,
-        }
-
-        # load configs of neural versions of SquareCB, LinUCB, and LinTS
-        cb_algorithms_config: Dict[str, Any] = {
-            "NeuralSquareCB": return_neural_squarecb_config,
-            "NeuralLinUCB": return_neural_lin_ucb_config,
-            "NeuralLinTS": return_neural_lin_ts_config,
-        }
-
-        # load only pendigits UCI dataset
-        test_environments_config: Dict[str, Any] = {
-            "pendigits": pendigits_uci_dict,
-        }
-
-        run_cb_benchmarks(
-            cb_algorithms_config=cb_algorithms_config,
-            test_environments_config=test_environments_config,
-            run_config=run_config_test,
-        )

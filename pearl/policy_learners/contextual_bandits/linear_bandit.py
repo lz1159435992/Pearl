@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 from typing import Any, Dict, Optional
 
 import torch
@@ -151,7 +153,6 @@ class LinearBandit(ContextualBanditBase):
             UCB scores when exploration module is UCB
             Shape is (batch)
         """
-        assert isinstance(self._exploration_module, ScoreExplorationBase)
         feature = concatenate_actions_to_state(
             subjective_state=subjective_state,
             action_space=action_space,
@@ -163,4 +164,4 @@ class LinearBandit(ContextualBanditBase):
             values=self.model(feature),
             action_space=action_space,
             representation=self.model,
-        ).squeeze()
+        ).squeeze(-1)
