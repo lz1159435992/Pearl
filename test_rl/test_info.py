@@ -1,6 +1,6 @@
 from test_rl.test_script.utils import load_dictionary
 
-file_time = load_dictionary('info_dict.txt')
+file_time = load_dictionary('info_dict_4.4.txt')
 time_succeed_1 = 0
 time_succeed_2 = 0
 
@@ -18,7 +18,7 @@ for k,v in file_time.items():
             time_reduce_1 += float(v[1])
             time_reduce_2 += float(v[4])
             count_time += 1
-            # print(v)
+            print(k)
             print('+++++++++++++++++')
             print(v[1], v[4])
             print('+++++++++++++++++')

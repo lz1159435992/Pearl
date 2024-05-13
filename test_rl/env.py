@@ -7,7 +7,7 @@
 # pyre-ignore-all-errors
 import json
 import re
-
+import copy
 import torch
 import z3
 from torch.nn.parameter import Parameter
@@ -681,11 +681,11 @@ class ConstraintSimplificationEnv_test(Environment):
         self.actions_v = None
         self.embedder = embedder
         self.z3ast = z3ast
-        self.z3ast_original = z3ast
+        self.z3ast_original = copy.deepcopy(z3ast)
         self.num_variables = num_variables
         self.num_constants = num_constants
         self.smtlib_str = smtlib_str
-        self.smtlib_str_original = smtlib_str
+        self.smtlib_str_original = copy.deepcopy(smtlib_str)
         self.state_original = self.embedder.get_max_pooling_embedding(self.smtlib_str)
         self.state = None
         self.variables = extract_variables_from_smt2_content(self.smtlib_str)
@@ -708,10 +708,10 @@ class ConstraintSimplificationEnv_test(Environment):
         # self.finish = False
         self.used_variables = []
         # 从原始的ast开始构建s
-        self.state = self.state_original
+        self.state = copy.deepcopy(self.state_original)
         # self.state = self.embedder.get_max_pooling_embedding(self.smtlib_str)
-        self.z3ast = self.z3ast_original
-        self.smtlib_str = self.smtlib_str_original
+        self.z3ast = copy.deepcopy(self.z3ast_original)
+        self.smtlib_str = copy.deepcopy(self.smtlib_str_original)
         self.last_performance = 0
         self.actions_v = self.strings_to_onehot(self.variables)
 
@@ -761,16 +761,16 @@ class ConstraintSimplificationEnv_test(Environment):
                     selected_int = random.randrange(min_value, max_value + 1)
                 else:
                     selected_int = int(dict_value[str(int(action_n.item()))])
-                #找到最大最小值
+                # 找到最大最小值
                 if min_value <= selected_int <= max_value:
                     reward += 5
-                    #需要添加的约束
+                    # 需要添加的约束
                     new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
 
                     # assertions = parse_smt2_string(self.smtlib_str)
                     related_assertions = self.v_related_assertions[variable_pred]
                     if len(related_assertions) > 0:
-                    # related_assertions = find_assertions_related_to_var_name(assertions, variable_pred)
+                        # related_assertions = find_assertions_related_to_var_name(assertions, variable_pred)
                         solver_related = Solver()
 
                         for a in related_assertions:
@@ -780,15 +780,29 @@ class ConstraintSimplificationEnv_test(Environment):
 
                         new_smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
                         predicted_solvability_related = self.predictor.predict(new_smtlib_str)
+                        # 统计求解正确率
+                        if not os.path.exists('predict.json'):
+                            # 文件不存在时，创建文件
+                            pre_list = []
+                            with open('predict.json', 'w') as file:
+                                json.dump(pre_list, file, indent=4)
+                            print(f"文件 predict.txt.txt 已创建。")
+                        else:
+                            with open('predict.json', 'r') as f:
+                                pre_list = json.load(f)
+                        temp_list = []
+
                         if predicted_solvability_related == 0:
+                            temp_list.append(0)
                             reward += 5
                             assertions_related = parse_smt2_string(new_smtlib_str)
                             solver_related = Solver()
                             for a in assertions_related:
                                 solver_related.add(a)
-                            solver_related.set("timeout", 10000)
+                            solver_related.set("timeout", 600000)
                             r = solver_related.check()
                             if z3.sat == r:
+                                temp_list.append(0)
                                 reward += 5
                                 self.used_variables.append(variable_pred)
                                 self.concrete_count += 1
@@ -796,6 +810,7 @@ class ConstraintSimplificationEnv_test(Environment):
                                 # print(action_n.item)
                                 # print(type(action_n.item)
                             elif z3.unknown == r:
+                                temp_list.append('unknown')
                                 reward += 2
                                 self.used_variables.append(variable_pred)
                                 self.concrete_count += 1
@@ -803,9 +818,15 @@ class ConstraintSimplificationEnv_test(Environment):
                                 # print(action_n.item)
                                 # print(type(action_n.item))
 
-
                             else:
                                 reward += -5
+
+                                temp_list.append(1)
+
+                                pre_list.append(temp_list)
+                                with open('predict.json', 'w') as file:
+                                    json.dump(pre_list, file, indent=4)
+
                             print(selected_int)
                             self.counterexamples_list[-1].append([variable_pred, selected_int])
 
@@ -833,7 +854,7 @@ class ConstraintSimplificationEnv_test(Environment):
                                 get_actions(self.actions_v, torch.arange(0, len(dict_value) - 1)))
                         else:
                             reward += -5
-                    else:#没有变量约束的情况
+                    else:  # 没有变量约束的情况
                         reward += 0
                         self.used_variables.append(variable_pred)
                         self.concrete_count += 1
@@ -883,7 +904,7 @@ class ConstraintSimplificationEnv_test(Environment):
             torch.cuda.empty_cache()
         except Exception as e:
             print('some problems are triggered')
-            self.state = self.state_original
+            self.state = copy.deepcopy(self.state_original)
             reward = 0
         if self.step_count > 500:
             self.finish = True
@@ -1003,11 +1024,11 @@ class ConstraintSimplificationEnv_test(Environment):
                     reward += 10
                     # 注释掉提高速度
                     solver_part.set("timeout", 30000)
-                    r = solver_part.check()
-                    if z3.sat == r:
-                    # if True:
-                        performance += 1
-                        reward += 10
+                    # r = solver_part.check()
+                    # if z3.sat == r:
+                    if True:
+                        #     performance += 1
+                        #     reward += 10
                         predicted_solvability = self.predictor.predict(self.smtlib_str)
                         if predicted_solvability == 0:
                             performance += 1
@@ -1027,8 +1048,8 @@ class ConstraintSimplificationEnv_test(Environment):
                         else:
                             reward += -15
                     elif z3.sat == unknown:
-                    # if True:
-                    #     performance += 1
+                        # if True:
+                        #     performance += 1
                         reward += 5
                         predicted_solvability = self.predictor.predict(self.smtlib_str)
                         if predicted_solvability == 0:
@@ -2055,6 +2076,7 @@ def get_actions(tensor_2d, tensor_1d):
 
 import re
 
+
 def extract_variables_from_smt2_content(content):
     """
     从 SMT2 格式的字符串内容中提取变量名，排除布尔类型的变量。
@@ -2082,4 +2104,3 @@ def extract_variables_from_smt2_content(content):
                 variables.append(var_name.replace('|', ''))
 
     return variables
-

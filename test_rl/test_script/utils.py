@@ -301,6 +301,7 @@ def find_assertions_related_to_var_names_optimized(assertions, var_names):
 
     return related_assertions_dict
 
+
 def dfs_ast_for_vars(ast, var_names, visited, results):
     """
     使用深度优先搜索（DFS）遍历AST，并检查是否包含给定的变量名列表中的任何一个变量名。
@@ -327,6 +328,7 @@ def dfs_ast_for_vars(ast, var_names, visited, results):
         for i in range(current_node.num_args()):
             stack.append(current_node.arg(i))
 
+
 def find_assertions_related_to_var_names_optimized_dfs(assertions, var_names):
     """
     优化后的方法，找到与特定变量名列表中任何一个变量名相关的所有断言。
@@ -348,6 +350,7 @@ def find_assertions_related_to_var_names_optimized_dfs(assertions, var_names):
         results = {var_name: False for var_name in var_names}
 
     return related_assertions_dict
+
 
 def extract_variables_from_smt2_content(content):
     """
@@ -376,3 +379,35 @@ def extract_variables_from_smt2_content(content):
                 variables.append(var_name.replace('|', ''))
 
     return variables
+
+
+# 保存长文本
+def save_string_to_file(file_path, new_string):
+    if not os.path.exists(file_path):
+        # 文件不存在时，创建文件
+        strings = []
+        with open(file_path, 'w') as file:
+            json.dump(strings, file, indent=4)
+        # print(f"文件 info_dict_bingxing.txt 已创建。")
+    else:
+        with open(file_path, 'r') as file:
+            strings = json.load(file)
+    strings.append(new_string)
+
+    with open(file_path, 'w') as file:
+        json.dump(strings, file)
+
+
+def repalce_veriable(input_string, variable_pred, selected_int, type_scale):
+    # 定义替换的正则表达式
+    replacement_pattern = r"(assert (= {} (_ bv{} {})))".format(
+        variable_pred, selected_int, type_scale
+    )
+
+    # 使用正则表达式替换字符串中的变量
+    output_string = re.sub(r"\(assert \(= {} \(_ bv(\w+) (\w+)\)\)\)".format(variable_pred), replacement_pattern,
+                           input_string)
+
+    # 打印输出结果
+    print(output_string)
+    return output_string

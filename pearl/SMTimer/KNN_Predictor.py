@@ -4,6 +4,8 @@ import json
 from pearl.SMTimer.dgl_treelstm.KNN import KNN
 import numpy as np
 from pearl.SMTimer.preprocessing import Vector_Dataset
+from test_rl.test_script.utils import save_string_to_file
+
 
 class Predictor:
     model = None
@@ -40,6 +42,8 @@ class Predictor:
             pass
 
     def predict(self, script):
+        #直接保存文件
+        # save_string_to_file('/home/lz/PycharmProjects/Pearl/test_rl/smt.json', script)
         if not Predictor.model:
             Predictor.init_static()
         if Predictor.filename != "" and self.remove_name == False:

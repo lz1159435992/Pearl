@@ -4,6 +4,7 @@ from z3 import *
 from search_test import solve_and_measure_time
 from utils import model_to_dict
 from utils import *
+import ast
 def fetch_data_as_dict(db_path, table_name):
     # 连接到SQLite数据库
     conn = sqlite3.connect(db_path)
@@ -21,28 +22,38 @@ def fetch_data_as_dict(db_path, table_name):
     result_dict = {row[0]: row[1] for row in rows}
     return result_dict
 def some_method():
-    result_dict_2 = load_dictionary('result_dict_2.txt')
+    if os.path.exists('../result_dict_2.txt'):
+        result_dict_2 = load_dictionary('../result_dict_2.txt')
+    else:
+        result_dict_2 = {}
+    result_dict = load_dictionary('../result_dict.txt')
     timeout = 86400000
-    db_path = 'result_dictionary.db'
-    table_name = 'result_dictionary'
-    result_dict = fetch_data_as_dict(db_path, table_name)
     for key, value in result_dict.items():
-        list1 = json.loads(value)
-        if list1[0] == "unknown":
-            if list1[1] > 100:
-                if key not in result_dict_2.keys():
-                    with open(key.replace('/home/yy/Downloads/', '/home/lz/baidudisk/'), 'r') as file:
-                        # 璇诲彇鏂囦欢鎵€鏈夊唴瀹瑰埌涓€涓瓧绗︿覆
-                        smtlib_str = file.read()
-                    try:
-                        # 灏咼SON瀛楃涓茶浆鎹负瀛楀吀
-                        dict_obj = json.loads(smtlib_str)
-                        # print("杞崲鍚庣殑瀛楀吀锛?, dict_obj)
-                    except json.JSONDecodeError as e:
-                        print('failed', e)
-                    #
+        if '/home/yy/Downloads/' in key:
+            file_path = key.replace('/home/yy/Downloads/', '/home/lz/baidudisk/')
+        elif '/home/nju/Downloads/' in key:
+            file_path = key.replace('/home/nju/Downloads/', '/home/lz/baidudisk/')
+        else:
+            file_path = key
+        value = ast.literal_eval(value)
+        if key not in result_dict_2.keys():
+            if value[0] != "unsat":
+                with open(file_path, 'r') as file:
+                    # 读取文件所有内容到一个字符串
+                    smtlib_str = file.read()
+                # 解析字符串
+                try:
+                    # 将JSON字符串转换为字典
+                    dict_obj = json.loads(smtlib_str)
+                    # print("转换后的字典：", dict_obj)
+                except json.JSONDecodeError as e:
+                    print("解析错误：", e)
+                #
+                if 'smt-comp' in file_path:
+                    smtlib_str = dict_obj['smt_script']
+                else:
                     smtlib_str = dict_obj['script']
-                    # print(smtlib_str)
+
                     assertions = parse_smt2_string(smtlib_str)
                     solver = Solver()
                     for a in assertions:
@@ -52,27 +63,29 @@ def some_method():
                     print(result)
                     print(model)
                     print(time_taken)
-                    result_list = []
+                    result_list = [result, time_taken, timeout]
                     # if result == sat:
                     #     result = 'sat'
                     # elif result == unknown:
                     #     result = 'unknown'
                     # else:
                     #     result = 'unsat'
-                    result_list.append(result)
-                    result_list.append(time_taken)
-                    result_list.append(timeout)
                     if model:
-                        result_list.append(model_to_dict(model))
-                    else:
-                        result_list.append(model)
+                        if len(model_to_dict(model))>0:
+                            result_list.append(model_to_dict(model))
+                    # else:
+                    #     result_list.append('无解')
+
                     result_dict_2[key] = result_list
-                    with open('result_dict_2.txt', 'w') as file:
-                        # 使用json.dump()将字典保存到文件
-                        json.dump(result_dict_2, file, indent=4)
+            else:
+                result_dict_2[key] = value
+            with open('../result_dict_2.txt', 'w') as file:
+                # 使用json.dump()将字典保存到文件
+                json.dump(result_dict_2, file, indent=4)
 
 
 if __name__ == '__main__':
+    some_method()
     # db_path = 'value_dictionary.db'
     # table_name = 'value_dictionary'
     # value_dict = fetch_data_as_dict(db_path, table_name)
@@ -85,18 +98,18 @@ if __name__ == '__main__':
     #         count += 1
     # print(count)
 
-    db_path = '/home/lz/baidudisk/3.13_db/result_dictionary.db'
-    table_name = 'result_dictionary'
-    value_dict = fetch_data_as_dict(db_path, table_name)
-    # print(value_dict)
-    count = 0
-    print(len(value_dict))
-    for k,v in value_dict.items():
-        if 'ginstall307943' in k:
-        # print(k,v)
-            print(k,v)
-            # count += 1
-    print(count)
+    # db_path = '/home/lz/baidudisk/3.13_db/result_dictionary.db'
+    # table_name = 'result_dictionary'
+    # value_dict = fetch_data_as_dict(db_path, table_name)
+    # # print(value_dict)
+    # count = 0
+    # print(len(value_dict))
+    # for k,v in value_dict.items():
+    #     if 'ginstall307943' in k:
+    #     # print(k,v)
+    #         print(k,v)
+    #         # count += 1
+    # print(count)
 # conn = sqlite3.connect(db_path)
 
 # 示例数据
