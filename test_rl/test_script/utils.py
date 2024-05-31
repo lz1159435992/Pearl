@@ -134,7 +134,7 @@ def find_var_declaration_in_string(smt_content, var_name):
     for line in lines:
         # 检查当前行是否包含变量声明
         if var_name in line and ("declare-fun" in line or "declare-const" in line):
-            print(line.strip())
+            # print(line.strip())
             match = re.search(r'\(([^\)]+)\)\s*\)$', line.strip())
             if match:
                 # 返回匹配到的最后一对括号内的内容
@@ -301,6 +301,7 @@ def find_assertions_related_to_var_names_optimized(assertions, var_names):
 
     return related_assertions_dict
 
+
 def dfs_ast_for_vars(ast, var_names, visited, results):
     """
     使用深度优先搜索（DFS）遍历AST，并检查是否包含给定的变量名列表中的任何一个变量名。
@@ -327,6 +328,7 @@ def dfs_ast_for_vars(ast, var_names, visited, results):
         for i in range(current_node.num_args()):
             stack.append(current_node.arg(i))
 
+
 def find_assertions_related_to_var_names_optimized_dfs(assertions, var_names):
     """
     优化后的方法，找到与特定变量名列表中任何一个变量名相关的所有断言。
@@ -348,6 +350,7 @@ def find_assertions_related_to_var_names_optimized_dfs(assertions, var_names):
         results = {var_name: False for var_name in var_names}
 
     return related_assertions_dict
+
 
 def extract_variables_from_smt2_content(content):
     """
@@ -376,3 +379,96 @@ def extract_variables_from_smt2_content(content):
                 variables.append(var_name.replace('|', ''))
 
     return variables
+
+
+# 保存长文本
+def save_string_to_file(file_path, new_string):
+    if not os.path.exists(file_path):
+        # 文件不存在时，创建文件
+        strings = []
+        with open(file_path, 'w') as file:
+            json.dump(strings, file, indent=4)
+        # print(f"文件 info_dict_bingxing.txt 已创建。")
+    else:
+        with open(file_path, 'r') as file:
+            strings = json.load(file)
+    strings.append(new_string)
+
+    with open(file_path, 'w') as file:
+        json.dump(strings, file)
+
+
+def repalce_veriable(input_string, variable_pred, selected_int, type_scale):
+    # 定义替换的正则表达式
+    replacement_pattern = r"(assert (= {} (_ bv{} {})))".format(
+        variable_pred, selected_int, type_scale
+    )
+
+    # 使用正则表达式替换字符串中的变量
+    output_string = re.sub(r"\(assert \(= {} \(_ bv(\w+) (\w+)\)\)\)".format(variable_pred), replacement_pattern,
+                           input_string)
+
+    # 打印输出结果
+    # print(output_string)
+    return output_string
+
+
+# 标准化方法
+
+def generate_variable_names(count):
+    """
+    根据固定的规则生成变量名列表。
+
+    :param count: 要生成的变量名的数量。
+    :return: 一个包含生成的变量名的列表。
+    """
+    return [f"VAR{i + 1}" for i in range(count)]
+
+
+def create_variables_dict(variable_names, variable_values):
+    """
+    根据变量名列表和变量值列表创建一个字典。
+
+    :param variable_names: 一个包含变量名的列表。
+    :param variable_values: 一个包含对应替换值的列表。
+    :return: 一个字典，其键是变量名，值是对应的替换值。
+    """
+    if len(variable_names) != len(variable_values):
+        raise ValueError("变量名列表和变量值列表的长度必须相同。")
+
+    return dict(zip(variable_names, variable_values))
+
+
+def normalize_variables(text, variable_values):
+    """
+    替换文本中的变量为指定的值。
+    key：原来的变量名
+    value：替换的值
+
+    :param text: 原始文本，包含需要替换的变量。
+    :param variables: 一个包含变量名和对应替换值的字典。
+    :return: 替换后的文本。
+    """
+    # variable_count = 3  # 想要生成的变量数量
+    variable_names = generate_variable_names(len(variable_values))
+
+    variables_dict = create_variables_dict(variable_values, variable_names)
+    # print(variables_dict)
+    # 按照变量列表的顺序进行替换
+    for var_name, var_value in variables_dict.items():
+        # 使用正则表达式替换变量，确保只替换完整的单词，避免替换中间包含变量名的单词
+        text = re.sub(r'\b' + re.escape(var_name) + r'\b', str(var_value), text)
+    return text
+
+# import re
+#
+# # 示例使用
+# text = "This is a sample text with variables VAR1, VAR2 and VAR3."
+# variables = {
+#     "VAR1": "value1",
+#     "VAR2": "value2",
+#     "VAR3": "value3"
+# }
+#
+# result = replace_variables(text, variables)
+# print(result)
