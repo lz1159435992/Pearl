@@ -1,6 +1,6 @@
 from test_rl.test_script.utils import load_dictionary
 
-file_time = load_dictionary('info_dict.txt')
+file_time = load_dictionary('info_dict_gai_3_normal.txt')
 time_succeed_1 = 0
 time_succeed_2 = 0
 
