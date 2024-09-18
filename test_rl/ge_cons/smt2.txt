@@ -1,0 +1,62 @@
+(set-info :status unknown)
+(declare-fun b () (_ BitVec 32))
+(declare-fun a () (_ BitVec 32))
+(declare-fun c () (_ BitVec 32))
+
+(assert
+ (let ((?x44 (bvmul a b)))
+ (let ((?x76 (bvsmod ?x44 (_ bv1023 32))))
+ (let ((?temp1 (bvadd (bvmul b c) (bvsmod (bvmul (_ bv101 32) c) (bvadd (_ bv5 32) a)))))
+ (let ((?x69 (bvxor a ?temp1)))
+ (let ((?x73 (bvnot (bvor (bvnot b) (bvnot (bvor a c))))))
+ (= (bvsmod (bvmul ?x73 ?x69) (_ bv2048 32)) ?x76)))))))
+
+(assert
+ (let (($x90 (= (bvsmod (bvadd a b) (_ bv512 32)) (_ bv300 32))))
+ (ite $x90 (= (bvsmod (bvmul c (bvadd a b)) (_ bv200 32)) (_ bv33 32))
+      (= (bvsmod (bvmul c (bvadd a (bvmul (_ bv4294967295 32) b))) (_ bv200 32)) (_ bv84 32)))))
+
+(assert
+ (let ((?x117 (bvmul a b c)))
+ (let ((?x119 (bvsmod ?x117 (bvadd (_ bv1 32) a))))
+ (let ((?x113 (bvashr c (_ bv1 32))))
+ (let ((?x112 (bvxor a b)))
+ (let ((?x114 (bvadd ?x112 ?x113)))
+ (not (bvsle (bvmul ?x114 ?x119) (_ bv10000 32)))))))))
+
+(assert
+ (let (($x145 (not (bvsle (bvadd a b c) (_ bv1500000 32)))))
+ (let ((?x140 (bvmul (_ bv4294967295 32) c)))
+ (let ((?x99 (bvmul (_ bv4294967295 32) b)))
+ (let ((?x142 (bvadd (_ bv1775431 32) ?x99 ?x140)))
+ (let (($x143 (= a ?x142)))
+ (ite (= a (_ bv654321 32)) $x143 $x145)))))))
+
+(assert
+ (let ((?x117 (bvmul a b c)))
+ (let ((?x154 (bvsmod ?x117 (bvadd (_ bv1 32) (bvmul a b)))))
+ (let ((?x78 (bvadd a b)))
+ (let ((?x149 (bvxor c ?x78)))
+ (let ((?x155 (bvsmod ?x149 (_ bv200 32))))
+ (= (bvmul ?x155 ?x154) (_ bv0 32))))))))
+
+(assert
+ (let ((?x246 ((_ extract 4 0) a)))
+ (let ((?x264 (concat (_ bv0 24) ?x246 (_ bv0 3))))
+ (let ((?x316 (concat (_ bv0 16) (bvxor (bvmul (_ bv4 16) ((_ extract 15 0) a)) ((_ extract 15 0) (bvashr a (_ bv3 32)))))))
+ (let ((?x239 (concat ((_ extract 31 4) a) (_ bv1 1) ((_ extract 2 1) a) (_ bv1 1))))
+ (let ((?x240 (bvsmod ?x239 (_ bv82 32))))
+ (let ((?x320 (bvsdiv (bvsmod (bvadd (bvmul ?x240 ?x316) ?x264) (_ bv14 32)) (_ bv2 32))))
+ (let ((?x278 (bvsmod (bvmul c (bvsmod (bvmul (_ bv17 32) a) (_ bv14 32))) (_ bv14 32))))
+ (let ((?x94 (bvmul a c)))
+ (let ((?x276 (bvsmod ?x94 (bvsmod (bvmul a a) (bvadd a (bvmul (_ bv4294967282 32) b) c)))))
+ (let ((?x206 (bvsmod (bvmul (_ bv17 32) a) (_ bv14 32))))
+ (let ((?x280 (bvsmod (bvmul (_ bv9 32) a) ?x206)))
+ (let ((?x182 (bvmul b b)))
+ (let ((?x44 (bvmul a b)))
+ (let ((?x199 (bvmul (_ bv17 32) ?x44)))
+ (let ((?x200 (bvmul a a b c)))
+ (let ((?x207 (bvsmod ?x94 ?x206)))
+ (let ((?x299 (bvmul ?x207 (bvsmod ?x200 (bvsmod ?x199 (bvadd (bvsmod a b) c))))))
+ (= (bvadd ?x299 ?x182) (bvmul c ?x280 ?x276 ?x278 ?x320 ?x320))))))))))))))))))))
+(check-sat)
