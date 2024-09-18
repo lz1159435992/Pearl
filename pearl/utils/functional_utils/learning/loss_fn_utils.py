@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import torch
 from pearl.neural_networks.sequential_decision_making.q_value_networks import (
     QValueNetwork,
@@ -19,13 +21,12 @@ from torch import Tensor
 def compute_cql_loss(
     q_network: QValueNetwork, batch: TransitionBatch, batch_size: int
 ) -> torch.Tensor:
-
     """
     Compute CQL loss for a batch of data.
 
     Inputs:
     1) q_network: to compute the q values of every (state, action) pair.
-    2) batch: batch of data transitions (state, action, reward, done, next_state) along with
+    2) batch: batch of data transitions (state, action, reward, terminated, next_state) along with
               (current and next) available actions.
     3) batch_size: size of batch.
 

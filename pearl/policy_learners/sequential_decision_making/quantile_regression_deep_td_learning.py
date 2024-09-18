@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import copy
 from abc import abstractmethod
 from typing import Any, Dict, List, Optional, Type
@@ -147,7 +149,8 @@ class QuantileRegressionDeepTDLearning(DistributionalPolicyLearner):
             q_values = self.safety_module.get_q_values_under_risk_metric(
                 states_repeated, actions, self._Q
             )
-            exploit_action = torch.argmax(q_values).view((-1))
+            exploit_action_index = torch.argmax(q_values)
+            exploit_action = available_action_space.actions[exploit_action_index]
 
         if exploit:
             return exploit_action
@@ -206,14 +209,14 @@ class QuantileRegressionDeepTDLearning(DistributionalPolicyLearner):
 
         """
         Step 2: compute Bellman target for each quantile location
-            - add a dimension to the reward and (1-done) vectors so they
+            - add a dimension to the reward and (1-terminated) vectors so they
               can be broadcasted with the next state quantiles
         """
 
         with torch.no_grad():
             quantile_next_state_greedy_action_values = self._get_next_state_quantiles(
                 batch, batch_size
-            ) * self._discount_factor * (1 - batch.done.float()).unsqueeze(
+            ) * self._discount_factor * (1 - batch.terminated.float()).unsqueeze(
                 -1
             ) + batch.reward.unsqueeze(
                 -1

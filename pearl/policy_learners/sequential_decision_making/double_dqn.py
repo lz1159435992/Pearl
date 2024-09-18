@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import torch
 from pearl.policy_learners.sequential_decision_making.deep_q_learning import (
     DeepQLearning,
@@ -23,7 +25,7 @@ class DoubleDQN(DeepQLearning):
     """
 
     @torch.no_grad()
-    def _get_next_state_values(
+    def get_next_state_values(
         self, batch: TransitionBatch, batch_size: int
     ) -> torch.Tensor:
         next_state_batch = batch.next_state  # (batch_size x state_dim)

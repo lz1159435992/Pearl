@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import logging
 from typing import Any, Dict, Iterable, Optional, Tuple, Union
 
@@ -41,7 +43,7 @@ def tensor_to_numpy(x: Tensor) -> np.ndarray:
 
 GYM_TO_PEARL_ACTION_SPACE = {
     "Discrete": DiscreteActionSpace,
-    "Box": BoxActionSpace
+    "Box": BoxActionSpace,
     # Add more here as needed
 }
 GYM_TO_PEARL_OBSERVATION_SPACE = {
@@ -123,8 +125,12 @@ class GymEnvironment(Environment):
         if len(gym_action_result) == 4:
             # Older Gym versions use 'done' as opposed to 'terminated' and 'truncated'
             observation, reward, done, info = gym_action_result  # pyre-ignore
-            terminated = done
-            truncated = False
+            if done:
+                truncated = info["TimeLimit.truncated"]
+                terminated = not truncated
+            else:
+                truncated = False
+                terminated = False
         elif len(gym_action_result) == 5:
             # Newer Gym versions use 'terminated' and 'truncated'
             observation, reward, terminated, truncated, info = gym_action_result

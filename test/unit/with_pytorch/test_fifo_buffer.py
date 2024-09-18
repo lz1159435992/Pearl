@@ -5,9 +5,12 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import unittest
 
 import torch
+import torch.testing as tt
 
 from pearl.replay_buffers.sequential_decision_making.fifo_on_policy_replay_buffer import (
     FIFOOnPolicyReplayBuffer,
@@ -31,7 +34,7 @@ class TestFifoBuffer(unittest.TestCase):
         )
         self.curr_available_actions = self.action_space
         self.next_available_actions = self.action_space
-        self.done = torch.randint(2, (self.batch_size,))
+        self.terminated = torch.randint(2, (self.batch_size,))
 
     def test_on_poliy_buffer_sarsa_match(self) -> None:
         """
@@ -65,32 +68,34 @@ class TestFifoBuffer(unittest.TestCase):
         )
         # expect S0 A0 R0 S1 A1 returned from sample
         batch = replay_buffer.sample(1)
-        self.assertTrue(
-            torch.equal(
-                batch.state,
-                self.states[0].view(1, -1),
-            )
+        tt.assert_close(
+            batch.state,
+            self.states[0].view(1, -1),
+            rtol=0.0,
+            atol=0.0,
         )
-        self.assertTrue(
-            torch.equal(
-                batch.action,
-                torch.tensor([self.actions[0]]),
-            )
+        tt.assert_close(
+            batch.action,
+            torch.tensor([self.actions[0]]),
+            rtol=0.0,
+            atol=0.0,
         )
-        self.assertTrue(torch.equal(batch.reward, torch.tensor([self.rewards[0]])))
+        tt.assert_close(
+            batch.reward, torch.tensor([self.rewards[0]]), rtol=0.0, atol=0.0
+        )
         assert (batch_next_state := batch.next_state) is not None
-        self.assertTrue(
-            torch.equal(
-                batch_next_state,
-                self.next_states[0].view(1, -1),
-            )
+        tt.assert_close(
+            batch_next_state,
+            self.next_states[0].view(1, -1),
+            rtol=0.0,
+            atol=0.0,
         )
         assert (batch_next_action := batch.next_action) is not None
-        self.assertTrue(
-            torch.equal(
-                batch_next_action,
-                torch.tensor([self.actions[1]]),
-            )
+        tt.assert_close(
+            batch_next_action,
+            torch.tensor([self.actions[1]]),
+            rtol=0.0,
+            atol=0.0,
         )
 
     def test_on_poliy_buffer_ternimal_push(self) -> None:
@@ -112,4 +117,4 @@ class TestFifoBuffer(unittest.TestCase):
         )
         # expect one sample returned
         batch = replay_buffer.sample(1)
-        self.assertTrue(batch.done[0])
+        self.assertTrue(batch.terminated[0])

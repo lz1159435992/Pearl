@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 from typing import Any, Dict, List, Optional, Type
 
 import torch
@@ -42,10 +44,12 @@ from pearl.policy_learners.exploration_modules.exploration_module import (
 )
 from pearl.policy_learners.sequential_decision_making.actor_critic_base import (
     ActorCriticBase,
-    twin_critic_action_value_loss,
 )
 
 from pearl.replay_buffers.transition import TransitionBatch
+from pearl.utils.functional_utils.learning.critic_utils import (
+    twin_critic_action_value_loss,
+)
 from torch import optim
 
 
@@ -105,9 +109,11 @@ class ImplicitQLearning(ActorCriticBase):
             use_critic_target=True,
             critic_soft_update_tau=critic_soft_update_tau,
             use_twin_critic=True,
-            exploration_module=exploration_module
-            if exploration_module is not None
-            else NoExploration(),
+            exploration_module=(
+                exploration_module
+                if exploration_module is not None
+                else NoExploration()
+            ),
             discount_factor=discount_factor,
             training_rounds=training_rounds,
             batch_size=batch_size,
@@ -149,8 +155,6 @@ class ImplicitQLearning(ActorCriticBase):
         self, value: HistorySummarizationModule
     ) -> None:
         self._actor_optimizer.add_param_group({"params": value.parameters()})
-        self._critic_optimizer.add_param_group({"params": value.parameters()})
-        self._value_network_optimizer.add_param_group({"params": value.parameters()})
         self._history_summarization_module = value
 
     def learn_batch(self, batch: TransitionBatch) -> Dict[str, Any]:
@@ -260,7 +264,9 @@ class ImplicitQLearning(ActorCriticBase):
 
             # compute targets for batch of (state, action, next_state): target y = r + gamma * V(s')
             target = (
-                values_next_states * self._discount_factor * (1 - batch.done.float())
+                values_next_states
+                * self._discount_factor
+                * (1 - batch.terminated.float())
             ) + batch.reward  # shape: (batch_size)
 
         assert isinstance(

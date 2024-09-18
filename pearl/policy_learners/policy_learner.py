@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 from abc import ABC, abstractmethod
 from typing import Any, Dict, Optional, TypeVar
 
@@ -79,9 +81,11 @@ class PolicyLearner(torch.nn.Module, ABC):
                 # the agent does not need dynamic action space support.
                 self._action_representation_module: ActionRepresentationModule = (
                     IdentityActionRepresentationModule(
-                        max_number_actions=action_space.n
-                        if isinstance(action_space, DiscreteActionSpace)
-                        else -1,
+                        max_number_actions=(
+                            action_space.n
+                            if isinstance(action_space, DiscreteActionSpace)
+                            else -1
+                        ),
                         representation_dim=action_space.action_dim,
                     )
                 )
@@ -156,10 +160,13 @@ class PolicyLearner(torch.nn.Module, ABC):
         Returns:
             A dictionary which includes useful metrics
         """
-        batch_size = self._batch_size if not self.on_policy else len(replay_buffer)
-
-        if len(replay_buffer) < batch_size or len(replay_buffer) == 0:
+        if len(replay_buffer) == 0:
             return {}
+
+        if self._batch_size == -1 or len(replay_buffer) < self._batch_size:
+            batch_size = len(replay_buffer)
+        else:
+            batch_size = self._batch_size
 
         report = {}
         for _ in range(self._training_rounds):

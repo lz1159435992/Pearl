@@ -5,12 +5,14 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import unittest
 
 import torch
 from pearl.utils.functional_utils.learning.action_utils import (
     argmax_random_tie_breaks,
-    get_model_actions,
+    get_model_action_index_batch,
 )
 
 
@@ -75,7 +77,7 @@ class TestGetAction(unittest.TestCase):
         argmax_values_returned = {0: set(), 1: set(), 2: set(), 3: set()}
         for _ in range(1000):
             # repeat many times since the function is stochastic
-            argmax = get_model_actions(scores, mask, randomize_ties=True)
+            argmax = get_model_action_index_batch(scores, mask, randomize_ties=True)
             # make sure argmax returns one of the max element indices
             argmax_values_returned[0].add(argmax[0].item())
             argmax_values_returned[1].add(argmax[1].item())
@@ -109,7 +111,7 @@ class TestGetAction(unittest.TestCase):
         argmax_values_returned = {0: set(), 1: set(), 2: set(), 3: set()}
         for _ in range(1000):
             # repeat many times since the function is stochastic
-            argmax = get_model_actions(scores, mask, randomize_ties=False)
+            argmax = get_model_action_index_batch(scores, mask, randomize_ties=False)
             # make sure argmax returns one of the max element indices
             argmax_values_returned[0].add(argmax[0].item())
             argmax_values_returned[1].add(argmax[1].item())

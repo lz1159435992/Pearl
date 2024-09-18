@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 from typing import Optional
 
 import torch
@@ -56,7 +58,7 @@ def argmax_random_tie_breaks(
     return argmax_indices
 
 
-def get_model_actions(
+def get_model_action_index_batch(
     scores: Tensor,
     mask: Optional[Tensor] = None,
     randomize_ties: bool = False,

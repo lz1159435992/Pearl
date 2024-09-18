@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import os
 import random
 from typing import Any, Dict, List, Optional
@@ -271,18 +273,20 @@ def run_cb_benchmarks(
     run_config: dictionary with config files of the run parameters.
     """
 
-    # Download uci datasets if dont exist
+    # Create UCI data directory if it does not already exist
     uci_data_path = "./utils/instantiations/environments/uci_datasets"
     if not os.path.exists(uci_data_path):
         os.makedirs(uci_data_path)
-        download_uci_data(data_path=uci_data_path)
 
-    # Path to save results
+    # Download UCI data
+    download_uci_data(data_path=uci_data_path)
+
+    # Create folder for result if it does not already exist
     save_results_path: str = "./utils/scripts/cb_benchmark/experiments_results"
     if not os.path.exists(save_results_path):
         os.makedirs(save_results_path)
 
-    # run all CB algorithms on all benchmarks
+    # Run all CB algorithms on all benchmarks
     for algorithm in cb_algorithms_config.keys():
         for dataset_name in test_environments_config.keys():
             env = SLCBEnvironment(**test_environments_config[dataset_name])
@@ -303,7 +307,7 @@ def run_cb_benchmarks(
             )
 
 
-if __name__ == "__main__":
+def main() -> None:
 
     # load CB algorithm
     cb_algorithms_config: Dict[str, Any] = {
@@ -326,3 +330,7 @@ if __name__ == "__main__":
         test_environments_config=test_environments_config,
         run_config=run_config_def,
     )
+
+
+if __name__ == "__main__":
+    main()  # pragma: no cover

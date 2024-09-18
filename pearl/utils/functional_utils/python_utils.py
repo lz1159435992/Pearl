@@ -5,7 +5,9 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-from typing import Dict, Optional, Type, TypeVar
+# pyre-strict
+
+from typing import Dict, Iterable, Optional, Type, TypeVar
 
 K = TypeVar("K")
 V = TypeVar("V")
@@ -14,6 +16,14 @@ V = TypeVar("V")
 def value_of_first_item(d: Dict[K, V]) -> Optional[V]:
     """Returns the first item in a dictionary or None if inexistent."""
     return next(iter(d.values())) if d else None
+
+
+def first_item(i: Iterable[V]) -> Optional[V]:
+    """Returns the first item of an Iterable or None if there is none."""
+    try:
+        return next(iter(i))
+    except StopIteration:
+        return None
 
 
 # In the following, we create a generic function that takes a type arg_type,

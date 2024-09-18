@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 from typing import Optional
 
 import torch
@@ -15,7 +17,6 @@ from pearl.api.state import SubjectiveState
 from pearl.policy_learners.exploration_modules.exploration_module import (
     ExplorationModule,
 )
-from pearl.utils.instantiations.spaces.discrete_action import DiscreteActionSpace
 
 
 class PropensityExploration(ExplorationModule):
@@ -26,7 +27,6 @@ class PropensityExploration(ExplorationModule):
     def __init__(self) -> None:
         super(PropensityExploration, self).__init__()
 
-    # TODO: We should make discrete action space itself iterable
     def act(
         self,
         subjective_state: SubjectiveState,

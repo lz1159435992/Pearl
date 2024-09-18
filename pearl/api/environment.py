@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
@@ -14,6 +16,7 @@ from pearl.api.action import Action
 from pearl.api.action_result import ActionResult
 from pearl.api.action_space import ActionSpace
 from pearl.api.observation import Observation
+from pearl.api.space import Space
 
 
 class Environment(ABC):
@@ -29,12 +32,11 @@ class Environment(ABC):
         """Returns the action space of the environment."""
         pass
 
-    # FIXME: add this and in implement in all concrete subclasses
-    # @property
-    # @abstractmethod
-    # def observation_space(self) -> Space:
-    #     """Returns the observation space of the environment."""
-    #     pass
+    @property
+    @abstractmethod
+    def observation_space(self) -> Space:
+        """Returns the observation space of the environment."""
+        pass
 
     @abstractmethod
     def reset(self, seed: Optional[int] = None) -> Tuple[Observation, ActionSpace]:

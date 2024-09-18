@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import unittest
 
 import torch
@@ -18,7 +20,7 @@ from pearl.utils.instantiations.spaces.discrete_action import DiscreteActionSpac
 class TestSparseRewardEnvironment(unittest.TestCase):
     def test_basic(self) -> None:
         env = DiscreteSparseRewardEnvironment(
-            length=100, height=100, step_size=1, action_count=4
+            width=100, height=100, reward_distance=1, step_size=1, action_count=4
         )
 
         # Test reset

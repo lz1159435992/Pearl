@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 import random
 from typing import Optional
 
@@ -26,7 +28,7 @@ class DiscreteContextualBanditReplayBuffer(TensorBasedReplayBuffer):
     from other replay buffers
     - No next action or next state related
     - action is action idx instead of action value
-    - done is not needed, as for contextual bandit, it is always True
+    - terminated is not needed, as for contextual bandit, it is always True
     """
 
     def __init__(self, capacity: int) -> None:
@@ -45,7 +47,7 @@ class DiscreteContextualBanditReplayBuffer(TensorBasedReplayBuffer):
         next_state: SubjectiveState,
         curr_available_actions: ActionSpace,
         next_available_actions: ActionSpace,
-        done: bool,
+        terminated: bool,
         max_number_actions: Optional[int] = None,
         cost: Optional[float] = None,
     ) -> None:
@@ -55,9 +57,9 @@ class DiscreteContextualBanditReplayBuffer(TensorBasedReplayBuffer):
         self.memory.append(
             Transition(
                 state=self._process_single_state(state),
-                action=action,
+                action=self._process_single_action(action),
                 reward=self._process_single_reward(reward),
-            ).to(self.device)
+            )
         )
 
     def sample(self, batch_size: int) -> TransitionBatch:
@@ -66,4 +68,4 @@ class DiscreteContextualBanditReplayBuffer(TensorBasedReplayBuffer):
             state=torch.cat([x.state for x in samples]),
             action=torch.stack([x.action for x in samples]),
             reward=torch.cat([x.reward for x in samples]),
-        ).to(self.device)
+        ).to(self.device_for_batches)

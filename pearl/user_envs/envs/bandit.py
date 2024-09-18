@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+# pyre-strict
+
 from typing import Any, Dict, Optional, Tuple, Union
 
 import numpy as np
@@ -52,6 +54,6 @@ class MeanVarBanditEnv(gym.Env[np.ndarray, Union[int, np.ndarray]]):
             reward = self.np_random.normal(loc=6.0, scale=1)
         else:
             reward = self.np_random.normal(loc=10.0, scale=3)
-        done = True
+        terminated = True
         observation = self.get_observation()
-        return observation, reward, done, False, {"risky_sa": int(action == 1)}
+        return observation, reward, terminated, False, {"risky_sa": int(action == 1)}
