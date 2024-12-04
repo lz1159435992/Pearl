@@ -1,4 +1,6 @@
 import json
+import os
+
 from z3 import *
 
 from test_rl.test_script.search_test import solve_and_measure_time
@@ -27,4 +29,9 @@ def test_solver(file_path):
     print(model)
     print(time_taken)
 if __name__ == '__main__':
-    test_solver('/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268')
+    # test_solver('/home/nju/Downloads/smt/gnu_angr.tar.gz/single_test/seq/seq140268')
+    print(os.path.exists('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/smt_comp_features/QF_IDL'))
+    if not os.path.exists('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/smt_comp_features/QF_IDL'):
+        # 如果目录不存在，则创建目录
+        os.makedirs('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/smt_comp_features/QF_IDL')
+    # with open(file_path, 'r') as file:

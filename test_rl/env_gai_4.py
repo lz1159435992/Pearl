@@ -96,17 +96,18 @@ class ConstraintSimplificationEnv_test(Environment):
             print(self.smtlib_str_original)
             print(type_info)
             print(type(type_info))
-            type_scale = type_info.split(' ')[-1]
-            print(type_scale)
-            max_value = 2 ** int(type_scale) - 1
-            # #bv取消负值
-            # if 'BitVec' in type_info:
-            #     min_value = 0
-            # else:
-            min_value = 0
-            # min_value = -2 ** (int(type_scale) - 1)
-
-            # self.var_range_dict[variable] = []
+            if 'BitVec' in type_info:
+            # if type_info in ['BV']:
+                type_scale = type_info.split(' ')[-1]
+                print(type_scale)
+                max_value = 2 ** int(type_scale) - 1
+                min_value = 0
+            elif type_info in ['Int', 'Real']:
+                # max_value = 2247483648
+                # min_value = -2247483648
+                max_value = 2147483650
+                min_value = -2147483650
+                type_scale = 0
             self.var_range_dict[variable].append([min_value, max_value])
             # #添加新的约束
             # for k, v in self.var_bound[variable].items():
@@ -136,7 +137,7 @@ class ConstraintSimplificationEnv_test(Environment):
         #增减 0 减小 1 增加
         #倍率 0 1 2 3 4 5 6 7 8    10的次方
         self.actions = get_actions(torch.arange(0, len(self.variables)), torch.arange(0, 3), torch.arange(0, 2),
-                                   torch.arange(0, 4))
+                                   torch.arange(0, 9))
 
         self.actions.to(device)
         # self.variables = {index: item for index, item in enumerate(self.variables)}
@@ -256,15 +257,13 @@ class ConstraintSimplificationEnv_test(Environment):
             type_info = find_var_declaration_in_string(self.smtlib_str_original, variable_pred)
             print(type_info)
             print(type(type_info))
-            type_scale = type_info.split(' ')[-1]
-            print(type_scale)
-            print(selected_int)
-            if type(selected_int) == float:
-                selected_int = format(selected_int, '.0f')
-            print('对比一下')
-            print(selected_int)
-            new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, str(selected_int), type_scale)
-            # assertions = parse_smt2_string(self.smtlib_str)
+            if 'BitVec' in type_info:
+                type_scale = type_info.split(' ')[-1]
+                print(type_scale)
+                new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, str(selected_int), type_scale)
+            elif type_info in ['Int', 'Real']:
+                new_constraint = "(assert (= {} {}))\n".format(variable_pred, str(selected_int))
+                type_scale = 0
             related_assertions = self.v_related_assertions[variable_pred]
             count = 0
             if len(related_assertions) > 0:
@@ -314,7 +313,12 @@ class ConstraintSimplificationEnv_test(Environment):
                             self.counterexamples_list.append(last_ce)
                     # 此次具体化不记入，而是更新
                     # self.concrete_count -= 1
-                    self.smtlib_str = repalce_veriable(self.smtlib_str, variable_pred, selected_int, type_scale)
+                    # if type_info in ['BV']:
+                    self.smtlib_str = repalce_veriable(self.smtlib_str, variable_pred, selected_int, type_scale,
+                                                       type_info)
+                    # elif type_info in ['Int']:
+                    #     new_constraint = "(assert (= {} {}))\n".format(variable_pred, str(selected_int))
+
                 assertions = parse_smt2_string(self.smtlib_str)
                 solver = Solver()
                 for a in assertions:

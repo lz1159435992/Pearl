@@ -9,7 +9,7 @@ import signal
 
 from .feature_extraction import Script_Info, feature_extractor
 from .feature_structure import AST
-from preprocessing.abstract_tree_extraction import abstract_tree_extraction
+from pearl.SMTimer.preprocessing.abstract_tree_extraction import abstract_tree_extraction
 
 gnucore_file_list = ["[", "chmod", "dd", "expr", "hostid", "md5sum", "nproc", "ptx", "sha224sum", "stdbuf", "touch", "unlink", "b2sum", "chown", "df",
 "factor","id","mkdir","numfmt","pwd","sha256sum","stty","tr","uptime","base32","chroot","dir","false","join","mkfifo",
@@ -85,6 +85,7 @@ class Dataset:
                 signal.alarm(1)
                 try:
                     ret = self.parse_data(script, time_selection)
+                    print(ret)
                     self.fs_list.append(ret)
                     self.script_filename_list.append(string.split("/")[-1])
                 except TimeoutError:
@@ -121,6 +122,7 @@ class Dataset:
             featurestructure.treeforassert = self.treeforassert
         featurestructure.script_to_feature()
         ast = AST(featurestructure)
+        print(ast)
         del featurestructure.logic_tree, featurestructure.feature_list
         del featurestructure
         del script

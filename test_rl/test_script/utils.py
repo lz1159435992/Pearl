@@ -1,6 +1,11 @@
+import ctypes
+import inspect
 import json
 import sqlite3
 from datetime import datetime
+
+from z3.z3 import is_quantifier, is_app, sat, unknown
+from z3.z3consts import Z3_OP_UNINTERPRETED
 
 import time
 
@@ -27,7 +32,39 @@ from collections import defaultdict
 
 from pysmt.environment import get_env, push_env, Environment
 
+from loguru import logger
+from datetime import datetime
+import os
 
+
+def setup_logger(log_folder_name='log'):
+    """
+    设置日志记录器，日志文件将被保存在指定的文件夹中。
+    如果文件夹不存在，则创建它。
+
+    参数:
+    log_folder_name (str): 存放日志文件的文件夹名称，默认为 'log'。
+    """
+    # 获取调用此函数的文件名
+    frame = inspect.stack()[1]
+    calling_file = os.path.splitext(os.path.basename(frame.filename))[0]
+
+    # 获取当前时间，格式化为字符串
+    current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+    # 拼接日志文件名
+    log_file_name = f"{calling_file}_{current_time}.log"
+
+    # 检查是否存在指定的文件夹
+    if not os.path.exists(log_folder_name):
+        # 如果文件夹不存在，则创建
+        os.makedirs(log_folder_name)
+
+    # 设置完整的日志文件路径
+    full_log_file_path = os.path.join(log_folder_name, log_file_name)
+
+    # 设置logger的文件名
+    logger.add(full_log_file_path)
 def preprocess_list(value_list):
     # Replace NaN values with None
     processed_list = []
@@ -381,7 +418,7 @@ def dfs_ast_for_vars_range(ast, var_names, visited, results, var_nodes):
         # 检查当前节点是否为未解释的符号（变量）
         # print(current_node.decl().kind())
         # print(current_node)
-        print(f"Current node: {current_node}")
+        # print(f"Current node: {current_node}")
         print(f"Is app: {is_app(current_node)}")
         print(f"Is quantifier: {is_quantifier(current_node)}")
         if is_quantifier(current_node):
@@ -489,8 +526,8 @@ def solve_assertion_get_range(assertions, var_names):
 
     var_range = {var_name: [] for var_name in var_names}
     for assertion in assertions:
-        print('*******************')
-        print(assertion)
+        # print('*******************')
+        # print(assertion)
         visited = set()
         dfs_ast_for_vars_range(assertion, var_names, visited, results, var_nodes)
         for var_name in var_names:
@@ -597,15 +634,23 @@ def save_string_to_file(file_path, new_string):
         json.dump(strings, file)
 
 
-def repalce_veriable(input_string, variable_pred, selected_int, type_scale):
+def repalce_veriable(input_string, variable_pred, selected_int, type_scale, type_info):
     # 定义替换的正则表达式
-    replacement_pattern = r"(assert (= {} (_ bv{} {})))".format(
-        variable_pred, selected_int, type_scale
-    )
+    print(type_info)
+    if 'BitVec' in type_info:
+        replacement_pattern = r"(assert (= {} (_ bv{} {})))".format(
+            variable_pred, selected_int, type_scale
+        )
+        # 使用正则表达式替换字符串中的变量
+        output_string = re.sub(r"\(assert \(= {} \(_ bv(\w+) (\w+)\)\)\)".format(variable_pred), replacement_pattern,
+                               input_string)
+    elif type_info in ['Int', 'Real']:
+        replacement_pattern = r"(assert (= {} {}))".format(
+            variable_pred, selected_int)
 
-    # 使用正则表达式替换字符串中的变量
-    output_string = re.sub(r"\(assert \(= {} \(_ bv(\w+) (\w+)\)\)\)".format(variable_pred), replacement_pattern,
-                           input_string)
+        # 使用正则表达式替换字符串中的变量
+        output_string = re.sub(r"\(assert \(= {} (\w+)\)\)".format(variable_pred), replacement_pattern,
+                               input_string)
 
     # 打印输出结果
     # print(output_string)
@@ -934,6 +979,9 @@ def normalize_smt_str(smtlib_str):
                     continue
                 filtered_constants.add(num)
                 last_num = num
+        except MyException as e:
+            print("Time out! Bye!")
+            return smtlib_str, None, None
         except PysmtTypeError as e:
             print("未知错误：", e)
             return smtlib_str, None, None
@@ -1028,3 +1076,11 @@ def normalize_smt_str_without_replace(smtlib_str):
         print("未知错误：", e)
         sorted_variables = extract_variables_from_smt2_content(smtlib_str)
     return sorted_variables
+
+class MyException(Exception):
+    def __init__(self, value):
+        self.value = value
+        # current_process = ctypes.windll.kernel32.GetCurrentProcess()
+        # ctypes.windll.kernel32.TerminateProcess(current_process, -1)
+def timeout_handler(signum, frame):
+    raise MyException("Timeout!")

@@ -5,4 +5,6 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-from .bandit import *  # noqa
+from .bandit import MeanVarBanditEnv
+
+__all__ = ["MeanVarBanditEnv"]

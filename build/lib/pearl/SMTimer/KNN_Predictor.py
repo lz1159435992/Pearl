@@ -1,9 +1,9 @@
 import os
 import json
 
-from .dgl_treelstm.KNN import KNN
+from pearl.SMTimer.dgl_treelstm.KNN import KNN
 import numpy as np
-from .preprocessing import Vector_Dataset
+from pearl.SMTimer.preprocessing import Vector_Dataset
 
 class Predictor:
     model = None
@@ -51,8 +51,8 @@ class Predictor:
         model = Predictor.model
         try:
             dataset = Predictor.dataset.generate_feature_dataset([script], time_selection="z3")
+            # dataset = Predictor.dataset.generate_feature_dataset(script, time_selection="z3")
         except (KeyError,IndexError) as e:
-            print(e)
             return 0
         self.x = np.array(dataset[-1].feature).reshape(-1, 300)
         pred = model.predict(self.x)[0]

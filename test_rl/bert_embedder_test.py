@@ -66,7 +66,7 @@ class CodeEmbedder_normalize:
         combined_var_embed = torch.zeros_like(embeddings)
         variable_ids = [self.tokenizer.encode(variable, add_special_tokens=False) for variable in var_list]
         #获取ids的维度
-        var_len = len(variable_ids[0])
+        # var_len = len(variable_ids[0])
         embed_len = embeddings.size(1)
         if len(variable_ids) > 0:
             variable_embeddings = []
