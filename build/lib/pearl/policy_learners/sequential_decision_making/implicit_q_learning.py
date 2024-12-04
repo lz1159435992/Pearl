@@ -17,18 +17,20 @@ from pearl.history_summarization_modules.history_summarization_module import (
     HistorySummarizationModule,
 )
 from pearl.neural_networks.common.utils import update_target_networks
-
 from pearl.neural_networks.common.value_networks import (
-    QValueNetwork,
     ValueNetwork,
-    VanillaQValueNetwork,
     VanillaValueNetwork,
 )
+
 from pearl.neural_networks.sequential_decision_making.actor_networks import (
     ActorNetwork,
     GaussianActorNetwork,
     VanillaActorNetwork,
     VanillaContinuousActorNetwork,
+)
+from pearl.neural_networks.sequential_decision_making.q_value_networks import (
+    QValueNetwork,
+    VanillaQValueNetwork,
 )
 from pearl.neural_networks.sequential_decision_making.twin_critic import TwinCritic
 from pearl.policy_learners.exploration_modules.common.no_exploration import (
@@ -40,7 +42,7 @@ from pearl.policy_learners.exploration_modules.exploration_module import (
 )
 from pearl.policy_learners.sequential_decision_making.actor_critic_base import (
     ActorCriticBase,
-    twin_critic_action_value_update,
+    twin_critic_action_value_loss,
 )
 
 from pearl.replay_buffers.transition import TransitionBatch
@@ -57,10 +59,8 @@ class ImplicitQLearning(ActorCriticBase):
      - perform value, crtic and actor updates sequentially
      - soft update target networks of twin critics using (tau)
 
-    Notes:
-    1) Currently written for discrete action spaces. For continuous action spaces, we
-    need to implement the reparameterization trick.
-    2) This implementation uses twin critic (clipped double q learning) to reduce
+    Note:
+    This implementation uses twin critic to reduce
     overestimation bias. See TwinCritic class for implementation details.
 
     Args:
@@ -119,8 +119,8 @@ class ImplicitQLearning(ActorCriticBase):
         self._expectile = expectile
         self._is_action_continuous: bool = action_space.is_continuous
 
-        # TODO: base actor networks on a base class, and differentiate between
-        # discrete and continuous actor networks, as well as stocahstic and deterministic actors
+        # TODO: create actor network interfaces for discrete and continuous actor networks
+        # and use the continuous one in this test.
         if self._is_action_continuous:
             torch._assert(
                 actor_network_type == GaussianActorNetwork
@@ -154,9 +154,17 @@ class ImplicitQLearning(ActorCriticBase):
         self._history_summarization_module = value
 
     def learn_batch(self, batch: TransitionBatch) -> Dict[str, Any]:
-
-        value_loss = self._value_learn_batch(batch)  # update value network
-        critic_loss = self._critic_learn_batch(batch)  # update critic networks
+        value_loss = self._value_loss(batch)
+        critic_loss = self._critic_loss(batch)
+        actor_loss = self._actor_loss(batch)
+        self._value_network_optimizer.zero_grad()
+        self._actor_optimizer.zero_grad()
+        self._critic_optimizer.zero_grad()
+        loss = value_loss + critic_loss + actor_loss
+        loss.backward()
+        self._value_network_optimizer.step()
+        self._actor_optimizer.step()
+        self._critic_optimizer.step()
 
         # update critic and target Twin networks;
         update_target_networks(
@@ -165,52 +173,47 @@ class ImplicitQLearning(ActorCriticBase):
             self._critic_soft_update_tau,
         )
 
-        actor_loss = self._actor_learn_batch(batch)  # update actor network
-
         return {
-            "value_loss": value_loss,
-            "actor_loss": actor_loss,
-            "critic_loss": critic_loss,
+            "value_loss": value_loss.item(),
+            "actor_loss": actor_loss.item(),
+            "critic_loss": critic_loss.item(),
         }
 
-    def _value_learn_batch(self, batch: TransitionBatch) -> Dict[str, Any]:
+    def _value_loss(self, batch: TransitionBatch) -> torch.Tensor:
 
         with torch.no_grad():
             q1, q2 = self._critic_target.get_q_values(batch.state, batch.action)
-            # random ensemble distillation. TODO: clipped double q-learning
+            # random ensemble distillation.
             random_index = torch.randint(0, 2, (1,)).item()
             target_q = q1 if random_index == 0 else q2  # shape: (batch_size)
 
         value_batch = self._value_network(batch.state).view(-1)  # shape: (batch_size)
 
         # note the change in loss function from a mean square loss to an expectile loss
-        loss_value_network = self._expectile_loss(target_q - value_batch).mean()
-        self._value_network_optimizer.zero_grad()
-        loss_value_network.backward()
-        self._value_network_optimizer.step()
-        return {"value_loss": loss_value_network.mean().item()}
+        loss = self._expectile_loss(target_q - value_batch).mean()
+        return loss
 
-    def _actor_learn_batch(self, batch: TransitionBatch) -> Dict[str, Any]:
+    def _actor_loss(self, batch: TransitionBatch) -> torch.Tensor:
         """
         Performs policy extraction using advantage weighted regression
         """
         with torch.no_grad():
             q1, q2 = self._critic_target.get_q_values(batch.state, batch.action)
-            # random ensemble distillation. TODO: clipped double q-learning
+            # random ensemble distillation.
             random_index = torch.randint(0, 2, (1,)).item()
             target_q = q1 if random_index == 0 else q2  # shape: (batch_size)
 
-            value_batch = self._value_network(batch.state).view(
-                -1
-            )  # shape: (batch_size)
+            value_batch = self._value_network(batch.state).view(-1)
+            # shape: (batch_size)
+
             advantage = torch.exp(
                 (target_q - value_batch)
                 * self._temperature_advantage_weighted_regression
             )  # shape: (batch_size)
             advantage = torch.clamp(advantage, max=self._advantage_clamp)
 
-        # TODO: replace VanillaContinuousActorNetwork by a base class for
-        # deterministic actors
+        # TODO: replace VanillaContinuousActorNetwork by a base interface
+        # covering all deterministic actors
         if isinstance(self._actor, VanillaContinuousActorNetwork):
             # mean square error between the actor network output and action batch
             loss = (
@@ -226,14 +229,12 @@ class ImplicitQLearning(ActorCriticBase):
             if self.is_action_continuous:
                 log_action_probabilities = self._actor.get_log_probability(
                     batch.state, batch.action
-                ).view(
-                    -1
-                )  # shape: (batch_size)
+                ).view(-1)
+                # shape: (batch_size)
 
             else:
-                action_probabilities = self._actor(
-                    batch.state
-                )  # shape: (batch_size, action_space_size)
+                action_probabilities = self._actor(batch.state)
+                # shape: (batch_size, action_space_size)
 
                 # one_hot to action indices
                 action_idx = torch.argmax(batch.action, dim=1).unsqueeze(-1)
@@ -246,18 +247,15 @@ class ImplicitQLearning(ActorCriticBase):
             # advantage weighted regression for stochastic actors
             actor_loss = -(advantage * log_action_probabilities).mean()
 
-        self._actor_optimizer.zero_grad()
-        actor_loss.backward()
-        self._actor_optimizer.step()
-        return actor_loss.mean().item()
+        return actor_loss
 
-    def _critic_learn_batch(self, batch: TransitionBatch) -> Dict[str, Any]:
+    def _critic_loss(self, batch: TransitionBatch) -> torch.Tensor:
         with torch.no_grad():
             # sample values of next states
             values_next_states = self._value_network(batch.next_state).view(-1)
             # shape: (batch_size)
 
-            # To do: add interface to vanilla value networks
+            # TODO: add interface to vanilla value networks
             # like vanilla q value networks using the 'get' function
 
             # compute targets for batch of (state, action, next_state): target y = r + gamma * V(s')
@@ -270,14 +268,13 @@ class ImplicitQLearning(ActorCriticBase):
         ), "Critic in ImplicitQLearning should be TwinCritic"
 
         # update twin critics towards target
-        loss_critic_update = twin_critic_action_value_update(
+        loss = twin_critic_action_value_loss(
             state_batch=batch.state,
             action_batch=batch.action,
             expected_target_batch=target,
-            optimizer=self._critic_optimizer,
             critic=self._critic,
         )
-        return loss_critic_update
+        return loss
 
     # we do not expect this method to be reused in different algorithms, so it is defined here
     # To Do: add a utils method separately if needed in future for other algorithms to reuse

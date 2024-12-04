@@ -16,12 +16,18 @@ from pearl.replay_buffers.transition import Transition
 
 
 class OnPolicyEpisodicReplayBuffer(TensorBasedReplayBuffer):
-    def __init__(self, capacity: int, discounted_factor: float = 1.0) -> None:
+    def __init__(
+        self,
+        capacity: int,
+        discounted_factor: float = 1.0,
+        has_cost_available: bool = False,
+    ) -> None:
         super(OnPolicyEpisodicReplayBuffer, self).__init__(
             capacity=capacity,
-            has_next_state=False,
+            has_next_state=True,
             has_next_action=False,
             has_next_available_actions=False,
+            has_cost_available=has_cost_available,
         )
         # this is used to delay push SARS
         # wait for next action is available and then final push
@@ -34,7 +40,7 @@ class OnPolicyEpisodicReplayBuffer(TensorBasedReplayBuffer):
         state: SubjectiveState,
         action: Action,
         reward: Reward,
-        next_state: Optional[SubjectiveState],
+        next_state: SubjectiveState,
         curr_available_actions: ActionSpace,
         next_available_actions: ActionSpace,
         done: bool,
@@ -51,13 +57,14 @@ class OnPolicyEpisodicReplayBuffer(TensorBasedReplayBuffer):
         current_state = self._process_single_state(state)
         current_action = self._process_single_action(action)
         next_reward = self._process_single_reward(reward)
+        n_state = self._process_single_state(next_state)
         self.state_action_cache.append(
             Transition(
                 state=current_state,
                 action=current_action,
                 reward=next_reward,
                 cum_reward=None,
-                next_state=None,
+                next_state=n_state,
                 curr_available_actions=curr_available_actions_tensor_with_padding,
                 curr_unavailable_actions_mask=curr_unavailable_actions_mask,
                 next_available_actions=None,

@@ -109,7 +109,6 @@ class TensorBasedReplayBuffer(ReplayBuffer):
     ) -> Tuple[Optional[torch.Tensor], Optional[torch.Tensor]]:
         if self._is_action_continuous or max_number_actions is None:
             return (None, None)
-
         assert isinstance(available_action_space, DiscreteActionSpace)
 
         available_actions_tensor_with_padding = torch.zeros(
@@ -121,7 +120,6 @@ class TensorBasedReplayBuffer(ReplayBuffer):
         available_actions_tensor_with_padding[
             0, : available_action_space.n, :
         ] = available_actions_tensor
-
         unavailable_actions_mask = torch.zeros(
             (1, max_number_actions), device=self._device
         )  # (1 x action_space_size)
@@ -154,6 +152,8 @@ class TensorBasedReplayBuffer(ReplayBuffer):
             )
         samples = random.sample(self.memory, batch_size)
         return self._create_transition_batch(
+            # pyre-fixme[6]: For 1st argument expected `List[Transition]` but got
+            #  `List[Union[Transition, TransitionBatch]]`.
             transitions=samples,
             has_next_state=self._has_next_state,
             has_next_action=self._has_next_action,

@@ -11,10 +11,12 @@ from typing import Any, Dict, List, Optional, Union
 import torch
 import torch.nn as nn
 
+from pearl.neural_networks.common.residual_wrapper import ResidualWrapper
+
 from torch.func import stack_module_state
 
-from .residual_wrapper import ResidualWrapper
-
+# Activations and loss functions
+# TODO: Make these into Enums
 ACTIVATION_MAP = {
     "tanh": nn.Tanh,
     "relu": nn.ReLU,
@@ -23,6 +25,12 @@ ACTIVATION_MAP = {
     "sigmoid": nn.Sigmoid,
     "softplus": nn.Softplus,
     "softmax": nn.Softmax,
+}
+
+LOSS_TYPES = {
+    "mse": nn.functional.mse_loss,
+    "mae": nn.functional.l1_loss,
+    "cross_entropy": nn.functional.binary_cross_entropy,
 }
 
 
@@ -75,7 +83,7 @@ def mlp_block(
             if input_dim_current_layer == output_dim_current_layer:
                 single_layer_model = ResidualWrapper(single_layer_model)
             else:
-                logging.warn(
+                logging.warning(
                     "Skip connections are enabled, "
                     f"but layer in_dim ({input_dim_current_layer}) != out_dim "
                     f"({output_dim_current_layer})."
@@ -92,7 +100,7 @@ def mlp_block(
         if dims[-2] == dims[-1]:
             last_layer_model = ResidualWrapper(last_layer_model)
         else:
-            logging.warn(
+            logging.warning(
                 "Skip connections are enabled, "
                 f"but layer in_dim ({dims[-2]}) != out_dim ({dims[-1]}). "
                 "Skip connection will not be added for this layer"

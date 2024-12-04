@@ -34,7 +34,7 @@ start = time.time()
 
 
 def test_group():
-    info_name = 'info_dict_gai_4_normal912_smt.txt'
+    info_name = 'info_dict_gai_4_normal922_special.txt'
     if not os.path.exists(info_name):
         # 文件不存在时，创建文件
         info_dict = {}
@@ -44,7 +44,7 @@ def test_group():
     else:
         info_dict = load_dictionary(info_name)
         print(f'文件已存在。')
-    with open('/home/lz/PycharmProjects/Pearl/test_rl/test_script/result_dict_no_increment.txt', 'r') as file:
+    with open('/home/lz/PycharmProjects/Pearl/test_rl/test_script/result_dict_no_increment_special_920.txt', 'r') as file:
         result_dict = json.load(file)
     #添加一个限制
     # with open('info_bit_dict.txt', 'r') as file:
@@ -59,8 +59,11 @@ def test_group():
     # result_dict = dict(items)
     for key, value in result_dict.items():
         list1 = value
+        print(list1[3])
+        print(list1[1])
+        print(type(list1[3]))
         if list1[0] == "sat":
-            if list1[1] > 500:
+            if list1[1] > 200 and list1[3] is not None:
                 # if '/who/who86404' in key:
                 print(key, value)
                 file_path = key
