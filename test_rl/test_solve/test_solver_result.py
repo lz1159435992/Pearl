@@ -4,10 +4,12 @@ import os
 
 import time
 
+from overrides.typing_utils import unknown
 from z3 import *
 from z3.z3 import parse_smt2_string, Solver
 
-from test_rl.test_script.utils import  solve_and_measure_time, model_to_dict, load_dictionary, setup_logger
+from test_rl.test_script.utils import solve_and_measure_time, model_to_dict, load_dictionary, setup_logger, \
+    normalize_smt_str
 from loguru import logger
 
 
@@ -159,12 +161,12 @@ def test_group_1_save():
     print(count,succeed_count,failed_count,all_time_sat,all_time_rl,all_time_sat_succeed,all_time_rl_succeed,all_time_sat_failed,all_time_rl_failed)
 
 #选择修正过的求解时间大于300s的测试数据
-def test_group_1_save():
-    solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt'
+def test_group_2_save_1208(solve_name,info_name):
+
     solve_dict = load_dictionary(solve_name)
 
     # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1109_pre_SMTimer_save_docker_llama_3.1:70b_1200s.txt'
-    info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1111_pre_SMTimer_save_docker_llama_3.1:70b_1200s_info_dict_rl.txt'
+
     info_dict = load_dictionary(info_name)
     for k,v in info_dict.items():
         if k in solve_dict.keys():
@@ -195,16 +197,32 @@ def test_group_1_save():
     unknown2failed = 0
     sat2succeed = 0
     sat2failed = 0
+
+    # v0 原始求解是否成功
+    # v1 实际求解时间
+    # v2 求解超时时间
+    # v3 大模型求解时间
+    # v4 大模型求解是否成功
+    time_out = 500
+    for k, v in info_dict.items():
+        if v[1] > time_out:
+            v[0] = 'unknown'
+            v[1] = time_out
+        if v[4] > time_out:
+            v[5] = 'failed'
+            v[4] = time_out
+
     for k,v in info_dict.items():
 
         if v[1] > 300:
-            if v[0] == 'sat' and v[1] <= 1200:
+            if v[0] == 'sat' and v[1] <= time_out:
                 sat_count += 1
                 if v[5] == 'succeed':
                     sat2succeed += 1
                 else:
                     sat2failed += 1
-            elif v[1]>1200:
+            elif v[0] == 'unknown':
+            # elif v[1]>time_out:
                 print(k,v)
                 unknown_count += 1
                 if v[5] == 'succeed':
@@ -223,13 +241,13 @@ def test_group_1_save():
                 failed_count += 1
                 all_time_sat_failed += v[1]
                 all_time_rl_failed += v[4]
-    print(f"Total Count: {count}, Succeed Count: {succeed_count}, Failed Count: {failed_count}, "
-          f"All Time SAT: {all_time_sat}, All Time RL: {all_time_rl}, "
-          f"All Time SAT Succeed: {all_time_sat_succeed}, All Time RL Succeed: {all_time_rl_succeed}, "
-          f"All Time SAT Failed: {all_time_sat_failed}, All Time RL Failed: {all_time_rl_failed}")
-    print(f"Unknown Count: {unknown_count}, SAT Count: {sat_count}, "
-          f"Unknown to Succeed: {unknown2succeed}, Unknown to Failed: {unknown2failed}, "
-          f"SAT to Succeed: {sat2succeed}, SAT to Failed: {sat2failed}")
+    print(f"Total Count: {count},\n Succeed Count: {succeed_count},\n Failed Count: {failed_count},\n "
+          f"All Time SAT: {all_time_sat},\n All Time RL: {all_time_rl},\n "
+          f"All Time SAT Succeed: {all_time_sat_succeed},\n All Time RL Succeed: {all_time_rl_succeed},\n "
+          f"All Time SAT Failed: {all_time_sat_failed},\n All Time RL Failed: {all_time_rl_failed}")
+    print(f"Unknown Count: {unknown_count},\n SAT Count: {sat_count},\n "
+          f"Unknown to Succeed: {unknown2succeed},\n Unknown to Failed: {unknown2failed},\n "
+          f"SAT to Succeed: {sat2succeed},\n SAT to Failed: {sat2failed}\n")
     #修改求解时间,求解时间大于1200s的测试数据记为unknown
 #选择修正过的求解时间大于300s的测试数据
 def test_group_1_no_save():
@@ -594,7 +612,1004 @@ def test_group_2_no_save(solve_name,info_name):
           f"Unknown to Succeed: {unknown2succeed}, Unknown to Failed: {unknown2failed}, "
           f"SAT to Succeed: {sat2succeed}, SAT to Failed: {sat2failed}")
     print(result_dict)
+    return result_dict
     #修改求解时间,求解时间大于1200s的测试数据记为unknown
+def test_group_2_no_save_1207(solve_name,info_name):
+    time_dict = {}
+    time_dict_2 = {}
+    solve_dict = load_dictionary(solve_name)
+
+    var_count = load_dictionary('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/var_count.txt')
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1109_pre_SMTimer_llama3.1:70b_1200s.txt'
+
+    info_dict = load_dictionary(info_name)
+    for k,v in info_dict.items():
+        if k in solve_dict.keys():
+            info_dict[k][0] = solve_dict[k][0]
+            info_dict[k][1] = solve_dict[k][1]
+            info_dict[k][2] = solve_dict[k][2]
+    # if not os.path.exists(info_name):
+    #     # 文件不存在时，创建文件
+    #     info_dict = {}
+    #     with open(info_name, 'w') as file:
+    #         json.dump(info_dict, file, indent=4)
+    #     print(f'文件{info_name} 已创建。')
+    # else:
+    #     info_dict = load_dictionary(info_name)
+    #     print(f'文件已存在。')
+    result_dict = {}
+    result_dict['succeed'] = []
+    result_dict['failed'] = []
+    result_dict['unknown to succeed'] = []
+    result_dict['unknown to failed'] = []
+    result_dict['sat to succeed'] = []
+    result_dict['sat to failed'] = []
+    count = 0
+    succeed_count = 0
+    failed_count = 0
+    all_time_sat_succeed = 0
+    all_time_rl_succeed = 0
+    all_time_sat_failed = 0
+    all_time_rl_failed = 0
+    all_time_sat = 0
+    all_time_rl = 0
+    unknown_count = 0
+    sat_count = 0
+    unknown2succeed = 0
+    unknown2failed = 0
+    sat2succeed = 0
+    sat2failed = 0
+    z3_sat_time = 0
+    z3_failed_time = 0
+    #v0 原始求解是否成功
+    #v1 实际求解时间
+    #v2 求解超时时间
+    #v3 大模型求解时间
+    #v4 大模型求解是否成功
+    time_out = 1200
+    for k, v in info_dict.items():
+        if v[1] > time_out:
+            v[0] = 'unknown'
+            v[1] = time_out
+        if v[3] > time_out:
+            v[4] = 'failed'
+            v[3] = time_out
+    del_list = []
+    for k,v in info_dict.items():
+        #筛选变量个数
+        if v[1] > 300 and len(var_count[k]) > 5:
+            #收集求解时间 z3solver
+            if v[0] == 'sat':
+                time_dict[k] = v[1]
+                z3_sat_time += v[1]
+            else:
+                time_dict[k] = -v[1]
+                z3_failed_time += v[1]
+            #收集其他求解时间
+            if v[4] == 'succeed':
+                time_dict_2[k] = v[3]
+            else:
+                time_dict_2[k] = -v[3]
+            if v[0] == 'sat' and v[1] <= time_out:
+                sat_count += 1
+                if v[4] == 'succeed':
+                    result_dict['succeed'].append(k)
+                    sat2succeed += 1
+                    result_dict['sat to succeed'].append(k)
+                else:
+                    result_dict['failed'].append(k)
+                    sat2failed += 1
+                    result_dict['sat to failed'].append(k)
+            # elif v[1]>900:
+            elif v[0] == 'unknown':
+                # print(k,v)
+                unknown_count += 1
+                if v[4] == 'succeed':
+                    result_dict['succeed'].append(k)
+                    unknown2succeed += 1
+                    result_dict['unknown to succeed'].append(k)
+                else:
+                    result_dict['failed'].append(k)
+                    unknown2failed += 1
+                    result_dict['unknown to failed'].append(k)
+            # print(k,v[0],v[1],v[2],v[3],v[4])
+            count += 1
+            all_time_sat += v[1]
+            all_time_rl += v[3]
+            if v[4] == 'succeed':
+                succeed_count += 1
+                all_time_sat_succeed += v[1]
+                all_time_rl_succeed += v[3]
+            elif v[4] == 'failed':
+                failed_count += 1
+                all_time_sat_failed += v[1]
+                all_time_rl_failed += v[3]
+        else:
+            del_list.append(k)                      #删除变量个数小于5的测试数据
+    for k in del_list:
+        del info_dict[k]
+    # logger.info(result_dict)
+    print(f"Total Count: {count}, Succeed Count: {succeed_count}, Failed Count: {failed_count}, "
+          f"All Time SAT: {all_time_sat},All Time SAT avg: {all_time_sat/count}  All Time RL: {all_time_rl},All Time RL avg:{all_time_rl/count}, "
+          f"All Time SAT Succeed: {all_time_sat_succeed}, All Time SAT Succeed avg: {all_time_sat_succeed/succeed_count}, All Time RL Succeed: {all_time_rl_succeed},All Time RL Succeed avg: {all_time_rl_succeed/succeed_count}, "
+          f"All Time SAT Failed: {all_time_sat_failed}, All Time SAT Failed avg: {all_time_sat_failed/failed_count},All Time RL Failed: {all_time_rl_failed},All Time RL Failed avg: {all_time_rl_failed/failed_count}")
+    print(f"Unknown Count: {unknown_count}, SAT Count: {sat_count}, "
+          f"Unknown to Succeed: {unknown2succeed}, Unknown to Failed: {unknown2failed}, "
+          f"SAT to Succeed: {sat2succeed}, SAT to Failed: {sat2failed}")
+    print(result_dict)
+    print(time_dict)
+    return result_dict,time_dict,time_dict_2,info_dict
+    #修改求解时间,求解时间大于1200s的测试数据记为unknown
+def test_group_2_no_save_0607_cvc5(solve_name,info_name,new_solver):
+    new_solver_dict = load_dictionary(new_solver)
+    for k, v in new_solver_dict.items():
+        if v[0] == 'sat' and v[1] > 1200:
+            new_solver_dict[k][0] = 'unknown'
+            new_solver_dict[k][1] = 1200
+        if (v[0] == 'unknown' or v[0] == 'timeout') and v[1] >= 1200:
+            new_solver_dict[k][0] = 'unknown'
+            new_solver_dict[k][1] = 1200
+
+    time_dict = {}
+    time_dict_2 = {}
+    solve_dict = load_dictionary(solve_name)
+
+    var_count = load_dictionary('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/var_count.txt')
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1109_pre_SMTimer_llama3.1:70b_1200s.txt'
+
+    info_dict = load_dictionary(info_name)
+    for k,v in info_dict.items():
+        if k in solve_dict.keys():
+            info_dict[k][0] = solve_dict[k][0]
+            info_dict[k][1] = solve_dict[k][1]
+            info_dict[k][2] = solve_dict[k][2]
+    # if not os.path.exists(info_name):
+    #     # 文件不存在时，创建文件
+    #     info_dict = {}
+    #     with open(info_name, 'w') as file:
+    #         json.dump(info_dict, file, indent=4)
+    #     print(f'文件{info_name} 已创建。')
+    # else:
+    #     info_dict = load_dictionary(info_name)
+    #     print(f'文件已存在。')
+    result_dict = {}
+    result_dict['succeed'] = []
+    result_dict['failed'] = []
+    result_dict['unknown to succeed'] = []
+    result_dict['unknown to failed'] = []
+    result_dict['sat to succeed'] = []
+    result_dict['sat to failed'] = []
+    count = 0
+    succeed_count = 0
+    failed_count = 0
+    all_time_sat_succeed = 0
+    all_time_rl_succeed = 0
+    all_time_sat_failed = 0
+    all_time_rl_failed = 0
+    all_time_sat = 0
+    all_time_rl = 0
+    unknown_count = 0
+    sat_count = 0
+    unknown2succeed = 0
+    unknown2failed = 0
+    sat2succeed = 0
+    sat2failed = 0
+    z3_sat_time = 0
+    z3_failed_time = 0
+
+    all_time_newsolver_succeed = 0
+    all_time_newsolver_failed = 0
+    #v0 原始求解是否成功
+    #v1 实际求解时间
+    #v2 求解超时时间
+    #v3 大模型求解时间
+    #v4 大模型求解是否成功
+    time_out = 1200
+    for k, v in info_dict.items():
+        if v[1] > time_out:
+            v[0] = 'unknown'
+            v[1] = time_out
+        if v[3] > time_out:
+            v[4] = 'failed'
+            v[3] = time_out
+    del_list = []
+    for k,v in info_dict.items():
+        #筛选变量个数
+        if v[1] > 300 and len(var_count[k]) > 5:
+            #收集求解时间 z3solver
+            if v[0] == 'sat':
+                time_dict[k] = v[1]
+                z3_sat_time += v[1]
+            else:
+                time_dict[k] = -v[1]
+                z3_failed_time += v[1]
+            #收集其他求解时间
+            if v[4] == 'succeed':
+                time_dict_2[k] = v[3]
+            else:
+                time_dict_2[k] = -v[3]
+            if v[0] == 'sat' and v[1] <= time_out:
+                sat_count += 1
+                if v[4] == 'succeed':
+                    result_dict['succeed'].append(k)
+                    sat2succeed += 1
+                    result_dict['sat to succeed'].append(k)
+                else:
+                    result_dict['failed'].append(k)
+                    sat2failed += 1
+                    result_dict['sat to failed'].append(k)
+            # elif v[1]>900:
+            elif v[0] == 'unknown':
+                # print(k,v)
+                unknown_count += 1
+                if v[4] == 'succeed':
+                    result_dict['succeed'].append(k)
+                    unknown2succeed += 1
+                    result_dict['unknown to succeed'].append(k)
+                else:
+                    result_dict['failed'].append(k)
+                    unknown2failed += 1
+                    result_dict['unknown to failed'].append(k)
+            # print(k,v[0],v[1],v[2],v[3],v[4])
+            count += 1
+            all_time_sat += v[1]
+            all_time_rl += v[3]
+            if v[4] == 'succeed':
+                succeed_count += 1
+                all_time_newsolver_succeed += new_solver_dict[k][1]
+                all_time_sat_succeed += v[1]
+                all_time_rl_succeed += v[3]
+            elif v[4] == 'failed':
+                failed_count += 1
+                all_time_newsolver_failed += new_solver_dict[k][1]
+                all_time_sat_failed += v[1]
+                all_time_rl_failed += v[3]
+        else:
+            del_list.append(k)                      #删除变量个数小于5的测试数据
+    for k in del_list:
+        del info_dict[k]
+    # logger.info(result_dict)
+    print(f"Total Count: {count}, Succeed Count: {succeed_count}, Failed Count: {failed_count}, "
+          f"All Time SAT: {all_time_sat},All Time SAT avg: {all_time_sat/count}  All Time RL: {all_time_rl},All Time RL avg:{all_time_rl/count}, "
+          f"All Time SAT Succeed: {all_time_sat_succeed}, All Time SAT Succeed avg: {all_time_sat_succeed/succeed_count}, All Time RL Succeed: {all_time_rl_succeed},All Time RL Succeed avg: {all_time_rl_succeed/succeed_count}, "
+          f"All Time SAT Failed: {all_time_sat_failed}, All Time SAT Failed avg: {all_time_sat_failed/failed_count},All Time RL Failed: {all_time_rl_failed},All Time RL Failed avg: {all_time_rl_failed/failed_count}")
+    print(f"All Time New Solver Succeed: {all_time_newsolver_succeed,all_time_newsolver_succeed/succeed_count}, All Time New Solver Failed: {all_time_newsolver_failed,all_time_newsolver_failed/failed_count}, ")
+    print(f"Unknown Count: {unknown_count}, SAT Count: {sat_count}, "
+          f"Unknown to Succeed: {unknown2succeed}, Unknown to Failed: {unknown2failed}, "
+          f"SAT to Succeed: {sat2succeed}, SAT to Failed: {sat2failed}")
+    print(result_dict)
+    print(time_dict)
+    return result_dict,time_dict,time_dict_2,info_dict
+    #修改求解时间,求解时间大于1200s的测试数据记为unknown
+def test_group_2_no_save_1207_only_llm(solve_name,info_name):
+    time_dict = {}
+
+    solve_dict = load_dictionary(solve_name)
+
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1109_pre_SMTimer_llama3.1:70b_1200s.txt'
+    var_count = load_dictionary('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/var_count.txt')
+    info_dict = load_dictionary(info_name)
+    for k,v in info_dict.items():
+        if k in solve_dict.keys():
+            info_dict[k][0] = solve_dict[k][0]
+            info_dict[k][1] = solve_dict[k][1]
+            info_dict[k][2] = solve_dict[k][2]
+    # if not os.path.exists(info_name):
+    #     # 文件不存在时，创建文件
+    #     info_dict = {}
+    #     with open(info_name, 'w') as file:
+    #         json.dump(info_dict, file, indent=4)
+    #     print(f'文件{info_name} 已创建。')
+    # else:
+    #     info_dict = load_dictionary(info_name)
+    #     print(f'文件已存在。')
+    result_dict = {}
+    result_dict['succeed'] = []
+    result_dict['failed'] = []
+    result_dict['unknown to succeed'] = []
+    result_dict['unknown to failed'] = []
+    result_dict['sat to succeed'] = []
+    result_dict['sat to failed'] = []
+    count = 0
+    succeed_count = 0
+    failed_count = 0
+    all_time_sat_succeed = 0
+    all_time_rl_succeed = 0
+    all_time_sat_failed = 0
+    all_time_rl_failed = 0
+    all_time_sat = 0
+    all_time_rl = 0
+    unknown_count = 0
+    sat_count = 0
+    unknown2succeed = 0
+    unknown2failed = 0
+    sat2succeed = 0
+    sat2failed = 0
+
+
+    #v0 原始求解是否成功
+    #v1 实际求解时间
+    #v2 求解超时时间
+    #v3 大模型求解时间
+    #v4 大模型求解是否成功
+    time_out = 1200
+    for k, v in info_dict.items():
+        if v[1] > time_out:
+            v[0] = 'unknown'
+            v[1] = time_out
+        if v[4] > time_out:
+            v[3] = 'failed'
+            v[4] = time_out
+    for k,v in info_dict.items():
+        #筛选变量个数
+        if v[1] > 300 and len(var_count[k]) > 5:
+            if v[3] == 'succeed':
+                time_dict[k] = v[4]
+            else:
+                time_dict[k] = -v[4]
+            if v[0] == 'sat' and v[1] <= time_out:
+                sat_count += 1
+                if v[3] == 'succeed':
+                    result_dict['succeed'].append(k)
+                    sat2succeed += 1
+                    result_dict['sat to succeed'].append(k)
+                else:
+                    result_dict['failed'].append(k)
+                    sat2failed += 1
+                    result_dict['sat to failed'].append(k)
+            # elif v[1]>900:
+            elif v[0] == 'unknown':
+                # print(k,v)
+                unknown_count += 1
+                if v[3] == 'succeed':
+                    result_dict['succeed'].append(k)
+                    unknown2succeed += 1
+                    result_dict['unknown to succeed'].append(k)
+                else:
+                    result_dict['failed'].append(k)
+                    unknown2failed += 1
+                    result_dict['unknown to failed'].append(k)
+            # print(k,v[0],v[1],v[2],v[3],v[4])
+            count += 1
+            all_time_sat += v[1]
+            all_time_rl += v[4]
+            if v[3] == 'succeed':
+                succeed_count += 1
+                all_time_sat_succeed += v[1]
+                all_time_rl_succeed += v[4]
+            elif v[3] == 'failed':
+                failed_count += 1
+                all_time_sat_failed += v[1]
+                all_time_rl_failed += v[4]
+    # logger.info(result_dict)
+    print(f"Total Count: {count}, Succeed Count: {succeed_count}, Failed Count: {failed_count}, "
+          f"All Time SAT: {all_time_sat},All Time SAT avg: {all_time_sat/count}  All Time RL: {all_time_rl},All Time RL avg:{all_time_rl/count}, "
+          f"All Time SAT Succeed: {all_time_sat_succeed}, All Time SAT Succeed avg: {all_time_sat_succeed/succeed_count}, All Time RL Succeed: {all_time_rl_succeed},All Time RL Succeed avg: {all_time_rl_succeed/succeed_count}, "
+          f"All Time SAT Failed: {all_time_sat_failed}, All Time SAT Failed avg: {all_time_sat_failed/failed_count},All Time RL Failed: {all_time_rl_failed},All Time RL Failed avg: {all_time_rl_failed/failed_count}")
+    print(f"Unknown Count: {unknown_count}, SAT Count: {sat_count}, "
+          f"Unknown to Succeed: {unknown2succeed}, Unknown to Failed: {unknown2failed}, "
+          f"SAT to Succeed: {sat2succeed}, SAT to Failed: {sat2failed}")
+    # print(f"z3_sat_time: {z3_sat_time}, z3_failed_time: {z3_failed_time}")
+    # print(result_dict)
+    return result_dict,time_dict
+    #修改求解时间,求解时间大于1200s的测试数据记为unknown
+def test_group_2_no_save_QF_IDL_0429(solve_name,info_name):
+    time_dict = {}
+    time_dict_2 = {}
+    solve_dict = load_dictionary(solve_name)
+
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1109_pre_SMTimer_llama3.1:70b_1200s.txt'
+
+    info_dict = load_dictionary(info_name)
+    for k,v in info_dict.items():
+        if k in solve_dict.keys():
+            info_dict[k][0] = solve_dict[k][0]
+            info_dict[k][1] = solve_dict[k][1]
+            info_dict[k][2] = solve_dict[k][2]
+    # if not os.path.exists(info_name):
+    #     # 文件不存在时，创建文件
+    #     info_dict = {}
+    #     with open(info_name, 'w') as file:
+    #         json.dump(info_dict, file, indent=4)
+    #     print(f'文件{info_name} 已创建。')
+    # else:
+    #     info_dict = load_dictionary(info_name)
+    #     print(f'文件已存在。')
+    result_dict = {}
+    result_dict['succeed'] = []
+    result_dict['failed'] = []
+    result_dict['unknown to succeed'] = []
+    result_dict['unknown to failed'] = []
+    result_dict['sat to succeed'] = []
+    result_dict['sat to failed'] = []
+    count = 0
+    succeed_count = 0
+    failed_count = 0
+    all_time_sat_succeed = 0
+    all_time_rl_succeed = 0
+    all_time_sat_failed = 0
+    all_time_rl_failed = 0
+    all_time_sat = 0
+    all_time_rl = 0
+    unknown_count = 0
+    sat_count = 0
+    unknown2succeed = 0
+    unknown2failed = 0
+    sat2succeed = 0
+    sat2failed = 0
+    z3_sat_time = 0
+    z3_failed_time = 0
+    #v0 原始求解是否成功
+    #v1 实际求解时间
+    #v2 求解超时时间
+    #v3 大模型求解时间
+    #v4 大模型求解是否成功
+    time_out = 1200
+    for k, v in info_dict.items():
+        if v[1] > time_out:
+            v[0] = 'unknown'
+            v[1] = time_out
+        if v[3] > time_out:
+            v[4] = 'failed'
+            v[3] = time_out
+    del_list = []
+    for k,v in info_dict.items():
+        #筛选变量个数
+        if v[1] > 300:
+            #收集求解时间 z3solver
+            if v[0] == 'sat':
+                time_dict[k] = v[1]
+                z3_sat_time += v[1]
+            else:
+                time_dict[k] = -v[1]
+                z3_failed_time += v[1]
+            #收集其他求解时间
+            if v[4] == 'succeed':
+                time_dict_2[k] = v[3]
+            else:
+                time_dict_2[k] = -v[3]
+            if v[0] == 'sat' and v[1] <= time_out:
+                sat_count += 1
+                if v[4] == 'succeed':
+                    result_dict['succeed'].append(k)
+                    sat2succeed += 1
+                    result_dict['sat to succeed'].append(k)
+                else:
+                    result_dict['failed'].append(k)
+                    sat2failed += 1
+                    result_dict['sat to failed'].append(k)
+            # elif v[1]>900:
+            elif v[0] == 'unknown':
+                # print(k,v)
+                unknown_count += 1
+                if v[4] == 'succeed':
+                    result_dict['succeed'].append(k)
+                    unknown2succeed += 1
+                    result_dict['unknown to succeed'].append(k)
+                else:
+                    result_dict['failed'].append(k)
+                    unknown2failed += 1
+                    result_dict['unknown to failed'].append(k)
+            # print(k,v[0],v[1],v[2],v[3],v[4])
+            count += 1
+            all_time_sat += v[1]
+            all_time_rl += v[3]
+            if v[4] == 'succeed':
+                succeed_count += 1
+                all_time_sat_succeed += v[1]
+                all_time_rl_succeed += v[3]
+            elif v[4] == 'failed':
+                failed_count += 1
+                all_time_sat_failed += v[1]
+                all_time_rl_failed += v[3]
+        else:
+            del_list.append(k)                      #删除变量个数小于5的测试数据
+    for k in del_list:
+        del info_dict[k]
+    # logger.info(result_dict)
+    print(f"Total Count: {count}, Succeed Count: {succeed_count}, Failed Count: {failed_count}, "
+          f"All Time SAT: {all_time_sat},All Time SAT avg: {all_time_sat/count}  All Time RL: {all_time_rl},All Time RL avg:{all_time_rl/count}, "
+          f"All Time SAT Succeed: {all_time_sat_succeed}, All Time SAT Succeed avg: {all_time_sat_succeed/succeed_count}, All Time RL Succeed: {all_time_rl_succeed},All Time RL Succeed avg: {all_time_rl_succeed/succeed_count}, "
+          f"All Time SAT Failed: {all_time_sat_failed}, All Time SAT Failed avg: {all_time_sat_failed/failed_count},All Time RL Failed: {all_time_rl_failed},All Time RL Failed avg: {all_time_rl_failed/failed_count}")
+    print(f"Unknown Count: {unknown_count}, SAT Count: {sat_count}, "
+          f"Unknown to Succeed: {unknown2succeed}, Unknown to Failed: {unknown2failed}, "
+          f"SAT to Succeed: {sat2succeed}, SAT to Failed: {sat2failed}")
+    print(result_dict)
+    print(time_dict)
+    return result_dict,time_dict,time_dict_2,info_dict
+    #修改求解时间,求解时间大于1200s的测试数据记为unknown
+def spilt_class(data_dict):
+    result_dict ={}
+    new_dict = {}
+    for k,v in data_dict.items():
+        k_list = k.split('/')
+        print(k_list)
+        soft_class = k_list[-2]
+        if soft_class not in new_dict.keys():
+            new_dict[soft_class] = {}
+            new_dict[soft_class][k] = v
+        else:
+            new_dict[soft_class][k] = v
+    for k,v in new_dict.items():
+        result_dict[k] = {}
+        result_dict[k]['succeed'] = 0
+        result_dict[k]['failed'] = 0
+        result_dict[k]['succeed_time'] = 0
+        result_dict[k]['failed_time'] = 0
+        result_dict[k]['succeed_time_avg'] = 0
+        result_dict[k]['all_time'] = 0
+        result_dict[k]['avg'] = 0
+        for k1,v1 in v.items():
+            if v1>0:
+                result_dict[k]['succeed'] += 1
+                result_dict[k]['succeed_time'] += v1
+                result_dict[k]['all_time'] += v1
+            else:
+                result_dict[k]['failed'] += 1
+                result_dict[k]['failed_time'] += -v1
+                result_dict[k]['all_time'] += -v1
+        result_dict[k]['avg'] = result_dict[k]['all_time']/(result_dict[k]['succeed']+result_dict[k]['failed'])
+        if result_dict[k]['succeed'] > 0:
+            result_dict[k]['succeed_time_avg'] = result_dict[k]['succeed_time']/result_dict[k]['succeed']
+    return new_dict,result_dict
+def resolve_dataset():
+    result_dict = {}
+    result_dict_2 = {}
+    solve_dict = load_dictionary('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt')
+    for k, v in solve_dict.items():
+        if v[0] =='sat' and v[1] > 1200:
+            solve_dict[k][0] = 'unknown'
+            solve_dict[k][1] = 1200
+        if v[0] == 'unknown' and v[1] > 1200:
+            # solve_dict[k][0] = 'unknown'
+            solve_dict[k][1] = 1200
+    for k,v in solve_dict.items():
+        k_list = k.split('/')
+        if k_list[5] not in result_dict.keys():
+            result_dict[k_list[5]]= {}
+        if k_list[-2] not in result_dict[k_list[5]].keys():
+            result_dict[k_list[5]][k_list[-2]] = {}
+            result_dict[k_list[5]][k_list[-2]][k] = v
+        else:
+            result_dict[k_list[5]][k_list[-2]][k] = v
+    # print(result_dict)
+    for k,v in result_dict.items():
+        result_dict_2[k] = {}
+        for k1,v1 in v.items():
+            result_dict_2[k][k1] = {}
+            result_dict_2[k][k1]['sat'] = 0
+            result_dict_2[k][k1]['unsat'] = 0
+            result_dict_2[k][k1]['unknown'] = 0
+            result_dict_2[k][k1]['sat_time'] = 0
+            result_dict_2[k][k1]['unsat_time'] = 0
+            result_dict_2[k][k1]['unknown_time'] = 0
+            result_dict_2[k][k1]['sat+unknown_time'] = 0
+            result_dict_2[k][k1]['sat_time_avg'] = 0
+            result_dict_2[k][k1]['unsat_time_avg'] = 0
+            result_dict_2[k][k1]['unknown_time_avg'] = 0
+            result_dict_2[k][k1]['sat+unknown_time_avg'] = 0
+
+            result_dict_2[k][k1]['all_time'] = 0
+            result_dict_2[k][k1]['avg'] = 0
+            #unsat数据
+
+
+
+            for k2, v2 in v1.items():
+                print(k2,v2)
+                if v2[0] == 'sat':
+                    result_dict_2[k][k1]['sat'] += 1
+                    result_dict_2[k][k1]['sat_time'] += v2[1]
+                    result_dict_2[k][k1]['all_time'] += v2[1]
+                    result_dict_2[k][k1]['sat+unknown_time'] += v2[1]
+                elif v2[0] == 'unknown':
+                    result_dict_2[k][k1]['unknown'] += 1
+                    result_dict_2[k][k1]['unknown_time'] += v2[1]
+                    result_dict_2[k][k1]['all_time'] += v2[1]
+                    result_dict_2[k][k1]['sat+unknown_time'] += v2[1]
+                elif v2[0] == 'unsat':
+                    result_dict_2[k][k1]['unsat'] += 1
+                    result_dict_2[k][k1]['unsat_time'] += v2[1]
+                    result_dict_2[k][k1]['all_time'] += v2[1]
+            if result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] + result_dict_2[k][k1]['unsat']> 0:
+                result_dict_2[k][k1]['avg'] = result_dict_2[k][k1]['all_time'] / (result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] + result_dict_2[k][k1]['unsat'])
+            if result_dict_2[k][k1]['sat'] > 0:
+                result_dict_2[k][k1]['sat_time_avg'] = result_dict_2[k][k1]['sat_time'] / result_dict_2[k][k1]['sat']
+            if result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] > 0:
+                result_dict_2[k][k1]['sat+unknown_time_avg'] = result_dict_2[k][k1]['sat+unknown_time'] / (result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'])
+            if result_dict_2[k][k1]['unsat'] > 0:
+                result_dict_2[k][k1]['unsat_time_avg'] = result_dict_2[k][k1]['unsat_time'] / result_dict_2[k][k1]['unsat']
+            if result_dict_2[k][k1]['unknown'] > 0:
+                result_dict_2[k][k1]['unknown_time_avg'] = result_dict_2[k][k1]['unknown_time'] / result_dict_2[k][k1]['unknown']
+    print(result_dict_2)
+    for k,v in result_dict_2.items():
+        for k1,v1 in v.items():
+            print(k,k1,v1)
+    with open('result_dict_z3solver.txt', 'w') as file:
+        json.dump(result_dict_2, file, indent=4)
+def resolve_dataset_300s():
+    var_count = load_dictionary('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/var_count.txt')
+    with open('/home/lz/sibyl_3/src/networks/info_dict_rl.txt', 'r') as file:
+        rl_dict = json.load(file)
+    result_dict = {}
+    result_dict_2 = {}
+    solve_dict = load_dictionary('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt')
+    for k, v in solve_dict.items():
+        if v[0] =='sat' and v[1] > 1200:
+            solve_dict[k][0] = 'unknown'
+            solve_dict[k][1] = 1200
+        if v[0] == 'unknown' and v[1] > 1200:
+            # solve_dict[k][0] = 'unknown'
+            solve_dict[k][1] = 1200
+    for k,v in solve_dict.items():
+        if (v[0] == "sat" or v[0] == "unknown") and v[1] > 300 and k in rl_dict.keys() and len(var_count[k]) > 5:
+            k_list = k.split('/')
+            if k_list[5] not in result_dict.keys():
+                result_dict[k_list[5]]= {}
+            if k_list[-2] not in result_dict[k_list[5]].keys():
+                result_dict[k_list[5]][k_list[-2]] = {}
+                result_dict[k_list[5]][k_list[-2]][k] = v
+            else:
+                result_dict[k_list[5]][k_list[-2]][k] = v
+    # print(result_dict)
+    for k,v in result_dict.items():
+        result_dict_2[k] = {}
+        for k1,v1 in v.items():
+            result_dict_2[k][k1] = {}
+            result_dict_2[k][k1]['sat'] = 0
+            result_dict_2[k][k1]['unsat'] = 0
+            result_dict_2[k][k1]['unknown'] = 0
+            result_dict_2[k][k1]['sat_time'] = 0
+            result_dict_2[k][k1]['unsat_time'] = 0
+            result_dict_2[k][k1]['unknown_time'] = 0
+            result_dict_2[k][k1]['sat+unknown_time'] = 0
+            result_dict_2[k][k1]['sat_time_avg'] = 0
+            result_dict_2[k][k1]['unsat_time_avg'] = 0
+            result_dict_2[k][k1]['unknown_time_avg'] = 0
+            result_dict_2[k][k1]['sat+unknown_time_avg'] = 0
+
+            result_dict_2[k][k1]['all_time'] = 0
+            result_dict_2[k][k1]['avg'] = 0
+            #unsat数据
+            result_dict_2[k][k1]['sat_list'] = []
+
+
+            for k2, v2 in v1.items():
+                print(k2,v2)
+                if v2[0] == 'sat':
+                    result_dict_2[k][k1]['sat'] += 1
+                    result_dict_2[k][k1]['sat_time'] += v2[1]
+                    result_dict_2[k][k1]['all_time'] += v2[1]
+                    result_dict_2[k][k1]['sat+unknown_time'] += v2[1]
+
+                    result_dict_2[k][k1]['sat_list'].append(v2[1])
+
+                elif v2[0] == 'unknown':
+                    result_dict_2[k][k1]['unknown'] += 1
+                    result_dict_2[k][k1]['unknown_time'] += v2[1]
+                    result_dict_2[k][k1]['all_time'] += v2[1]
+                    result_dict_2[k][k1]['sat+unknown_time'] += v2[1]
+                elif v2[0] == 'unsat':
+                    result_dict_2[k][k1]['unsat'] += 1
+                    result_dict_2[k][k1]['unsat_time'] += v2[1]
+                    result_dict_2[k][k1]['all_time'] += v2[1]
+            if result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] + result_dict_2[k][k1]['unsat']> 0:
+                result_dict_2[k][k1]['avg'] = result_dict_2[k][k1]['all_time'] / (result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] + result_dict_2[k][k1]['unsat'])
+            if result_dict_2[k][k1]['sat'] > 0:
+                result_dict_2[k][k1]['sat_time_avg'] = result_dict_2[k][k1]['sat_time'] / result_dict_2[k][k1]['sat']
+            if result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] > 0:
+                result_dict_2[k][k1]['sat+unknown_time_avg'] = result_dict_2[k][k1]['sat+unknown_time'] / (result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'])
+            if result_dict_2[k][k1]['unsat'] > 0:
+                result_dict_2[k][k1]['unsat_time_avg'] = result_dict_2[k][k1]['unsat_time'] / result_dict_2[k][k1]['unsat']
+            if result_dict_2[k][k1]['unknown'] > 0:
+                result_dict_2[k][k1]['unknown_time_avg'] = result_dict_2[k][k1]['unknown_time'] / result_dict_2[k][k1]['unknown']
+    print(result_dict_2)
+    for k,v in result_dict_2.items():
+        for k1,v1 in v.items():
+            print(k,k1,v1)
+    with open('result_dict_z3solver_300s.txt', 'w') as file:
+        json.dump(result_dict_2, file, indent=4)
+def resolve_dataset_cvc5_smtimer(file_path='/home/lz/PycharmProjects/Pearl/test_rl/test_cvc5/cvc5_smtimer_results.json'):
+    result_dict = {}
+    result_dict_2 = {}
+    solve_dict = load_dictionary(file_path)
+    for k, v in solve_dict.items():
+        if v[0] =='sat' and v[1] > 1200:
+            solve_dict[k][0] = 'unknown'
+            solve_dict[k][1] = 1200
+        if (v[0] == 'unknown' or v[0] == 'timeout') and v[1] >= 1200:
+            solve_dict[k][0] = 'unknown'
+            solve_dict[k][1] = 1200
+    for k,v in solve_dict.items():
+        k_list = k.split('/')
+        if k_list[5] not in result_dict.keys():
+            result_dict[k_list[5]]= {}
+        if k_list[-2] not in result_dict[k_list[5]].keys():
+            result_dict[k_list[5]][k_list[-2]] = {}
+            result_dict[k_list[5]][k_list[-2]][k] = v
+        else:
+            result_dict[k_list[5]][k_list[-2]][k] = v
+    # print(result_dict)
+    for k,v in result_dict.items():
+        result_dict_2[k] = {}
+        for k1,v1 in v.items():
+            result_dict_2[k][k1] = {}
+            result_dict_2[k][k1]['sat'] = 0
+            result_dict_2[k][k1]['unsat'] = 0
+            result_dict_2[k][k1]['unknown'] = 0
+            result_dict_2[k][k1]['sat_time'] = 0
+            result_dict_2[k][k1]['unsat_time'] = 0
+            result_dict_2[k][k1]['unknown_time'] = 0
+            result_dict_2[k][k1]['sat+unknown_time'] = 0
+            result_dict_2[k][k1]['sat_time_avg'] = 0
+            result_dict_2[k][k1]['unsat_time_avg'] = 0
+            result_dict_2[k][k1]['unknown_time_avg'] = 0
+            result_dict_2[k][k1]['sat+unknown_time_avg'] = 0
+
+            result_dict_2[k][k1]['all_time'] = 0
+            result_dict_2[k][k1]['avg'] = 0
+            #unsat数据
+
+
+
+            for k2, v2 in v1.items():
+                print(k2,v2)
+                if v2[0] == 'sat':
+                    result_dict_2[k][k1]['sat'] += 1
+                    result_dict_2[k][k1]['sat_time'] += v2[1]
+                    result_dict_2[k][k1]['all_time'] += v2[1]
+                    result_dict_2[k][k1]['sat+unknown_time'] += v2[1]
+                elif v2[0] == 'unknown':
+                    result_dict_2[k][k1]['unknown'] += 1
+                    result_dict_2[k][k1]['unknown_time'] += v2[1]
+                    result_dict_2[k][k1]['all_time'] += v2[1]
+                    result_dict_2[k][k1]['sat+unknown_time'] += v2[1]
+                elif v2[0] == 'unsat':
+                    result_dict_2[k][k1]['unsat'] += 1
+                    result_dict_2[k][k1]['unsat_time'] += v2[1]
+                    result_dict_2[k][k1]['all_time'] += v2[1]
+            if result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] + result_dict_2[k][k1]['unsat']> 0:
+                result_dict_2[k][k1]['avg'] = result_dict_2[k][k1]['all_time'] / (result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] + result_dict_2[k][k1]['unsat'])
+            if result_dict_2[k][k1]['sat'] > 0:
+                result_dict_2[k][k1]['sat_time_avg'] = result_dict_2[k][k1]['sat_time'] / result_dict_2[k][k1]['sat']
+            if result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] > 0:
+                result_dict_2[k][k1]['sat+unknown_time_avg'] = result_dict_2[k][k1]['sat+unknown_time'] / (result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'])
+            if result_dict_2[k][k1]['unsat'] > 0:
+                result_dict_2[k][k1]['unsat_time_avg'] = result_dict_2[k][k1]['unsat_time'] / result_dict_2[k][k1]['unsat']
+            if result_dict_2[k][k1]['unknown'] > 0:
+                result_dict_2[k][k1]['unknown_time_avg'] = result_dict_2[k][k1]['unknown_time'] / result_dict_2[k][k1]['unknown']
+    print(result_dict_2)
+    for k,v in result_dict_2.items():
+        for k1,v1 in v.items():
+            print(k,k1,v1)
+    sat_count = 0
+    sat_time = 0
+    unsat_count = 0
+    unsat_time = 0
+    unknown_count = 0
+    unknown_time = 0
+    var_count = load_dictionary('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/var_count.txt')
+    for k,v in solve_dict.items():
+        if len(var_count[k]) > 5:
+            if v[0] == 'sat':
+                sat_count += 1
+                sat_time += v[1]
+            elif v[0] == 'unsat':
+                unsat_count += 1
+                unsat_time += v[1]
+            elif v[0] == 'unknown':
+                unknown_count += 1
+                unknown_time += v[1]
+    print(f"Total Count: {len(solve_dict)}, SAT Count: {sat_count}, UNSAT Count: {unsat_count}, UNKNOWN Count: {unknown_count}")
+    print(f"SAT Time: {sat_time}, UNSAT Time: {unsat_time}, UNKNOWN Time: {unknown_time}")
+    print(f"SAT Time Avg: {sat_time/sat_count if sat_count > 0 else 0}, UNSAT Time Avg: {unsat_time/unsat_count if unsat_count > 0 else 0}, UNKNOWN Time Avg: {unknown_time/unknown_count if unknown_count > 0 else 0}")
+    print(
+        f"failed Time Avg: {(unsat_time+unknown_time) / (unsat_count + unknown_count) if (unsat_count + unknown_count) > 0 else 0}")
+    print(f"sat+unknown Time Avg: {(sat_time + unknown_time) / (sat_count + unknown_count) if (sat_count + unknown_count) > 0 else 0}")
+    print(f"all time {sat_time + unsat_time + unknown_time} all time avg {(sat_time + unsat_time + unknown_time) / (sat_count + unsat_count + unknown_count) if (sat_count + unsat_count + unknown_count) > 0 else 0}")
+    # 修改求解时间,求解时间大于1200s的测试数据记为unknown
+    # with open('result_dict_z3solver.txt', 'w') as file:
+    #     json.dump(result_dict_2, file, indent=4)
+def resolve_time_dict_300s(data_dict):
+
+    result_dict = {}
+    result_dict_2 = {}
+    #收集每个类别下的求解时间
+
+    for k,v in data_dict.items():
+        k_list = k.split('/')
+        if k_list[5] not in result_dict.keys():
+            result_dict[k_list[5]]= {}
+        if k_list[-2] not in result_dict[k_list[5]].keys():
+            result_dict[k_list[5]][k_list[-2]] = {}
+            result_dict[k_list[5]][k_list[-2]][k] = v
+        else:
+            result_dict[k_list[5]][k_list[-2]][k] = v
+    # print(result_dict)
+    for k,v in result_dict.items():
+        result_dict_2[k] = {}
+        for k1,v1 in v.items():
+            result_dict_2[k][k1] = {}
+
+            result_dict_2[k][k1]['sat'] = 0
+            result_dict_2[k][k1]['unsat'] = 0
+            result_dict_2[k][k1]['unknown'] = 0
+            result_dict_2[k][k1]['sat_time'] = 0
+            result_dict_2[k][k1]['unsat_time'] = 0
+            result_dict_2[k][k1]['unknown_time'] = 0
+            result_dict_2[k][k1]['sat+unknown_time'] = 0
+            result_dict_2[k][k1]['sat_time_avg'] = 0
+            result_dict_2[k][k1]['unsat_time_avg'] = 0
+            result_dict_2[k][k1]['unknown_time_avg'] = 0
+            result_dict_2[k][k1]['sat+unknown_time_avg'] = 0
+
+            result_dict_2[k][k1]['all_time'] = 0
+            result_dict_2[k][k1]['avg'] = 0
+
+            result_dict_2[k][k1]['sat_list'] = []
+            #unsat数据
+
+
+
+            for k2, v2 in v1.items():
+                print(k2,v2)
+                if v2[0] == 'sat':
+                    result_dict_2[k][k1]['sat'] += 1
+                    result_dict_2[k][k1]['sat_time'] += v2[1]
+                    result_dict_2[k][k1]['all_time'] += v2[1]
+                    result_dict_2[k][k1]['sat+unknown_time'] += v2[1]
+                    #统计时间
+                    result_dict_2[k][k1]['sat_list'].append(v2[1])
+                elif v2[0] == 'unknown':
+                    result_dict_2[k][k1]['unknown'] += 1
+                    result_dict_2[k][k1]['unknown_time'] += v2[1]
+                    result_dict_2[k][k1]['all_time'] += v2[1]
+                    result_dict_2[k][k1]['sat+unknown_time'] += v2[1]
+                elif v2[0] == 'unsat':
+                    result_dict_2[k][k1]['unsat'] += 1
+                    result_dict_2[k][k1]['unsat_time'] += v2[1]
+                    result_dict_2[k][k1]['all_time'] += v2[1]
+            if result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] + result_dict_2[k][k1]['unsat']> 0:
+                result_dict_2[k][k1]['avg'] = result_dict_2[k][k1]['all_time'] / (result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] + result_dict_2[k][k1]['unsat'])
+            if result_dict_2[k][k1]['sat'] > 0:
+                result_dict_2[k][k1]['sat_time_avg'] = result_dict_2[k][k1]['sat_time'] / result_dict_2[k][k1]['sat']
+            if result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] > 0:
+                result_dict_2[k][k1]['sat+unknown_time_avg'] = result_dict_2[k][k1]['sat+unknown_time'] / (result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'])
+            if result_dict_2[k][k1]['unsat'] > 0:
+                result_dict_2[k][k1]['unsat_time_avg'] = result_dict_2[k][k1]['unsat_time'] / result_dict_2[k][k1]['unsat']
+            if result_dict_2[k][k1]['unknown'] > 0:
+                result_dict_2[k][k1]['unknown_time_avg'] = result_dict_2[k][k1]['unknown_time'] / result_dict_2[k][k1]['unknown']
+    print(result_dict_2)
+    for k,v in result_dict_2.items():
+        for k1,v1 in v.items():
+            print(k,k1,v1)
+    return result_dict_2
+    # with open('result_dict_z3solver_300s.txt', 'w') as file:
+    #     json.dump(result_dict_2, file, indent=4)
+def resolve_time_dict_300s_RL_LLM(data_dict):
+    var_count = load_dictionary('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/var_count.txt')
+    with open('/home/lz/sibyl_3/src/networks/info_dict_rl.txt', 'r') as file:
+        rl_dict = json.load(file)
+    result_dict = {}
+    result_dict_2 = {}
+    #收集每个类别下的求解时间
+
+    for k,v in data_dict.items():
+        if (v[0] == "sat" or v[0] == "unknown") and v[1] > 300 and k in rl_dict.keys() and len(var_count[k]) > 5:
+            k_list = k.split('/')
+            if k_list[5] not in result_dict.keys():
+                result_dict[k_list[5]]= {}
+            if k_list[-2] not in result_dict[k_list[5]].keys():
+                result_dict[k_list[5]][k_list[-2]] = {}
+                result_dict[k_list[5]][k_list[-2]][k] = v
+            else:
+                result_dict[k_list[5]][k_list[-2]][k] = v
+    # print(result_dict)
+    for k,v in result_dict.items():
+        result_dict_2[k] = {}
+        for k1,v1 in v.items():
+            result_dict_2[k][k1] = {}
+
+            result_dict_2[k][k1]['sat'] = 0
+            result_dict_2[k][k1]['unsat'] = 0
+            result_dict_2[k][k1]['unknown'] = 0
+            result_dict_2[k][k1]['sat_time'] = 0
+            result_dict_2[k][k1]['unsat_time'] = 0
+            result_dict_2[k][k1]['unknown_time'] = 0
+            result_dict_2[k][k1]['sat+unknown_time'] = 0
+            result_dict_2[k][k1]['sat_time_avg'] = 0
+            result_dict_2[k][k1]['unsat_time_avg'] = 0
+            result_dict_2[k][k1]['unknown_time_avg'] = 0
+            result_dict_2[k][k1]['sat+unknown_time_avg'] = 0
+
+            result_dict_2[k][k1]['all_time'] = 0
+            result_dict_2[k][k1]['avg'] = 0
+
+            result_dict_2[k][k1]['sat_list'] = []
+            #unsat数据
+
+
+
+            for k2, v2 in v1.items():
+                print(k2,v2)
+                if v2[4] == 'succeed':
+                    result_dict_2[k][k1]['sat'] += 1
+                    result_dict_2[k][k1]['sat_time'] += v2[3]
+                    result_dict_2[k][k1]['all_time'] += v2[3]
+                    result_dict_2[k][k1]['sat+unknown_time'] += v2[3]
+                    #统计时间
+                    result_dict_2[k][k1]['sat_list'].append(v2[3])
+                elif v2[4] == 'failed':
+                    result_dict_2[k][k1]['unknown'] += 1
+                    result_dict_2[k][k1]['unknown_time'] += v2[3]
+                    result_dict_2[k][k1]['all_time'] += v2[3]
+                    result_dict_2[k][k1]['sat+unknown_time'] += v2[3]
+                # elif v2[0] == 'unsat':
+                #     result_dict_2[k][k1]['unsat'] += 1
+                #     result_dict_2[k][k1]['unsat_time'] += v2[1]
+                #     result_dict_2[k][k1]['all_time'] += v2[1]
+            if result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] + result_dict_2[k][k1]['unsat']> 0:
+                result_dict_2[k][k1]['avg'] = result_dict_2[k][k1]['all_time'] / (result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] + result_dict_2[k][k1]['unsat'])
+            if result_dict_2[k][k1]['sat'] > 0:
+                result_dict_2[k][k1]['sat_time_avg'] = result_dict_2[k][k1]['sat_time'] / result_dict_2[k][k1]['sat']
+            if result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'] > 0:
+                result_dict_2[k][k1]['sat+unknown_time_avg'] = result_dict_2[k][k1]['sat+unknown_time'] / (result_dict_2[k][k1]['sat'] + result_dict_2[k][k1]['unknown'])
+            if result_dict_2[k][k1]['unsat'] > 0:
+                result_dict_2[k][k1]['unsat_time_avg'] = result_dict_2[k][k1]['unsat_time'] / result_dict_2[k][k1]['unsat']
+            if result_dict_2[k][k1]['unknown'] > 0:
+                result_dict_2[k][k1]['unknown_time_avg'] = result_dict_2[k][k1]['unknown_time'] / result_dict_2[k][k1]['unknown']
+    print(result_dict_2)
+    for k,v in result_dict_2.items():
+        for k1,v1 in v.items():
+            print(k,k1,v1)
+    return result_dict_2
+    # with open('result_dict_z3solver_300s.txt', 'w') as file:
+    #     json.dump(result_dict_2, file, indent=4)
+#smt-timer
+def resolve_dataset_by_var_count():
+    result_dict = {}
+    result_dict_2 = {}
+    with open('/home/lz/sibyl_3/src/networks/info_dict_rl.txt', 'r') as file:
+        rl_dict = json.load(file)
+    solve_dict = load_dictionary('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt')
+    for k, v in solve_dict.items():
+        if v[0] =='sat' and v[1] > 1200:
+            solve_dict[k][0] = 'unknown'
+            solve_dict[k][1] = 1200
+        if v[0] == 'unknown' and v[1] > 1200:
+            # solve_dict[k][0] = 'unknown'
+            solve_dict[k][1] = 1200
+    for k,v in solve_dict.items():
+        list1 = v
+        if list1[0] == "sat" or list1[0] == "unknown":
+            if list1[1] > 300 and k in rl_dict.keys():
+                # if '/who/who86404' in key:
+                print(k, v)
+                file_path = k
+                with open(file_path, 'r') as file:
+                    # 读取文件所有内容到一个字符串
+                    smtlib_str = file.read()
+                # 解析字符串
+                try:
+                    # 将JSON字符串转换为字典
+                    dict_obj = json.loads(smtlib_str)
+                    # print("转换后的字典：", dict_obj)
+                except json.JSONDecodeError as e:
+                    print("解析错误：", e)
+                #
+                if 'smt-comp' in file_path:
+                    smtlib_str = dict_obj['smt_script']
+                else:
+                    smtlib_str = dict_obj['script']
+                if file_path not in result_dict.keys():
+                    print(type(smtlib_str))
+                    smtlib_str, var_dict, constant_list = normalize_smt_str(smtlib_str)
+                    print(var_dict)
+                    result_dict[file_path] = var_dict
+                    with open('var_count.txt', 'w') as file:
+                        json.dump(result_dict, file, indent=4)
+
+
 if __name__ == '__main__':
     # test_group()
     # test_group_1()
@@ -604,12 +1619,171 @@ if __name__ == '__main__':
     # test_group_1_no_save()
     # test_group_1_llm()
     # something()
+    #z3结果smtimer
+    # resolve_dataset_cvc5_smtimer('/home/lz/PycharmProjects/Pearl/test_rl/test_cvc5/z3_smtimer_results.json')
+    #cvc5结果smtimer
+    resolve_dataset_cvc5_smtimer()
+    #mathsat结果smtimer
+    # resolve_dataset_cvc5_smtimer('/home/lz/PycharmProjects/Pearl/test_rl/test_cvc5/mathsat5_smtimer_results.json')
+    # QF_NIA llama3.1
+    # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/NIA/NIA.json'
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_0503_pre_llm_llama3.1:70b_1200s_QF_NIA.txt'
+    # # result_dict_1 = test_group_2_no_save(solve_name,info_name)
+    # result_dict_2, time_dict, time_dict_2, info_dict = test_group_2_no_save_QF_IDL_0429(solve_name, info_name)
 
+    #QF_LIA llama3.1
+    # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_smt_comp.txt'
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1118_pre_llm_llama3.1:70b_1200s_QF_LIA.txt'
+    # # result_dict_1 = test_group_2_no_save(solve_name,info_name)
+    # result_dict_2,time_dict,time_dict_2,info_dict =test_group_2_no_save_QF_IDL_0429(solve_name, info_name)
+
+    # #deepseekr1:70b 70b
+    # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt'
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_0107_pre_SMTimer_deepseek-r1:70b_1200s_info_dict_rl.txt'
+    # # result_dict_1 = test_group_2_no_save(solve_name,info_name)
+    # result_dict_2,time_dict,time_dict_2,info_dict =test_group_2_no_save_1207(solve_name, info_name)
+
+    # #llama3.3 70b
+    # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt'
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_0107_pre_SMTimer_llama3.3:70b_1200s_info_dict_rl.txt'
+    # # result_dict_1 = test_group_2_no_save(solve_name,info_name)
+    # result_dict_2,time_dict,time_dict_2,info_dict =test_group_2_no_save_1207(solve_name, info_name)
+
+    # RL+LLM CVC5
     # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt'
     # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1110_pre_SMTimer_llama3.1:70b_1200s_info_dict_rl.txt'
+    # new_solver = '/home/lz/PycharmProjects/Pearl/test_rl/test_cvc5/cvc5_smtimer_results.json'
+    # result_dict_2, time_dict, time_dict_2, info_dict = test_group_2_no_save_0607_cvc5(solve_name, info_name, new_solver)
+    #RL+LLM
+    # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt'
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1110_pre_SMTimer_llama3.1:70b_1200s_info_dict_rl.txt'
+    # # result_dict_1 = test_group_2_no_save(solve_name,info_name)
+    # result_dict_2,time_dict,time_dict_2,info_dict =test_group_2_no_save_1207(solve_name, info_name)
+    # # with open('time_dict_z3solver_106.txt', 'w') as file:
+    # #     json.dump(time_dict, file, indent=4)
+    # # with open('time_dict_RL+LLM_106.txt', 'w') as file:
+    # #     json.dump(time_dict_2, file, indent=4)
+    # result_dict = resolve_time_dict_300s_RL_LLM(info_dict)
+    # with open('result_dict_RL+LLM_108.txt', 'w') as file:
+    #     json.dump(result_dict, file, indent=4)
+    # new_dict, result_dict = spilt_class(time_dict_2)
+
+    # #统计z3求解个数
+    # sat_count = 0
+    # unknown_count = 0
+    # sat_time = 0
+    # unknown_time = 0
+    # for k,v in time_dict.items():
+    #     if v>0：
+    #        sat_count += 1
+    #        sat_time += v
+    #     else:
+    #         unknown_count += 1
+    # print(sat_count,unknown_count)
+    # print(sat_time,sat_time/sat_count)
+
+    #计算z3与RL+LLM的求解区别
+    # list1 = []
+    # for k,v in time_dict.items():
+    #     if v>0:
+    #         list1.append(k)
+    # list2 = []
+    # for k,v in time_dict_2.items():
+    #     if v>0:
+    #         list2.append(k)
+    #
+    # set1 = set(list1)
+    # set2 = set(list2)
+    # unique_to_set1 = set1 - set2
+    # print(len(unique_to_set1))
+    # print(unique_to_set1)
+    # unique_to_set2 = set2 - set1
+    # print(len(unique_to_set2))
+    # print(unique_to_set2)
+    # set1_dict={}
+    # set2_dict={}
+    # for i in unique_to_set1:
+    #     i_list = i.split('/')
+    #     print(i_list)
+    #     if i_list[-2] not in set1_dict.keys():
+    #         set1_dict[i_list[-2]] =[]
+    #     set1_dict[i_list[-2]].append(i)
+    #
+    # for i in unique_to_set2:
+    #     i_list = i.split('/')
+    #     print(i_list)
+    #     if i_list[-2] not in set2_dict.keys():
+    #         set2_dict[i_list[-2]] =[]
+    #     set2_dict[i_list[-2]].append(i)
+    # # print(set1_dict)
+    # # print(set2_dict)
+    # for k,v in set1_dict.items():
+    #     print(k,v)
+    # print('-------------------')
+    # for k,v in set2_dict.items():
+    #     print(k,v)
+    # Random+LLM
+    # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt'
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1217_pre_SMTimer_llama3.1:70b_1200s_info_dict_rl_random.txt'
+    # # result_dict_1 = test_group_2_no_save(solve_name,info_name)
+    # result_dict_2,time_dict,time_dict_2,info_dict =test_group_2_no_save_1207(solve_name, info_name)
+    # print(result_dict_2)
+    # result_dict = resolve_time_dict_300s(info_dict)
+    # with open('result_dict_RL+LLM_108.txt', 'w') as file:
+    #     json.dump(result_dict, file, indent=4)
+    # # print(time_dict)
+    # # new_dict,result_dict = spilt_class(time_dict)
+    # # # for k,v in result_dict.items():
+    # # #     print(k,v)
+    # # # print(new_dict,result_dict)
+    # with open('time_dict_Random+LLM_106.txt', 'w') as file:
+    #     json.dump(time_dict_2, file, indent=4)
+    # print(len(new_dict))
+    # print(result_dict)
+    # for k,v in result_dict.items():
+    #     print(k,v)
+
+    # set1 = set(result_dict_1['succeed'])
+    # set2 = set(result_dict_2['succeed'])
+    # unique_to_set1 = set1 - set2
+    # print(unique_to_set1)
+    # resolve_dataset()
+
+
+    # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_smt_comp.txt'
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1118_pre_llm_llama3.1:70b_1200s_QF_LIA.txt'
     # test_group_2_no_save(solve_name,info_name)
 
+    #使用同一个rl agent
+    # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt'
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1111_pre_SMTimer_save_docker_llama_3.1:70b_1200s_info_dict_rl.txt'
+    # test_group_2_save_1208(solve_name,info_name)
+    # 只使用llm的结果 LLM
+    # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt'
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1210_pre_SMTimer_llama3.1:70b_1200s_info_dict_rl_llm_only.txt'
+    # result_dict, time_dict= test_group_2_no_save_1207_only_llm(solve_name,info_name)
+    # with open('time_dict_LLM_106.txt', 'w') as file:
+    #     json.dump(time_dict, file, indent=4)
 
-    solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_smt_comp.txt'
-    info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1118_pre_llm_llama3.1:70b_1200s_QF_LIA.txt'
-    test_group_2_no_save(solve_name,info_name)
+    # 全部随机的结果 Random+Random
+    # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt'
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1217_pre_SMTimer_llama3.1:70b_1200s_info_dict_all_random.txt'
+    # # result_dict_1 = test_group_2_no_save(solve_name,info_name)
+    # result_dict_2,time_dict,time_dict_2,info_dict =test_group_2_no_save_1207(solve_name, info_name)
+    # # print(time_dict_2)
+    # with open('time_dict_Random+Random_106.txt', 'w') as file:
+    #     json.dump(time_dict_2, file, indent=4)
+
+    # 全部随机的结果 RL+Random
+    # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt'
+    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_1223_pre_SMTimer_llama3.1:70b_1200s_info_dict_rl_random_1223.txt'
+    # # result_dict_1 = test_group_2_no_save(solve_name,info_name)
+    # result_dict_2,time_dict,time_dict_2,info_dict =test_group_2_no_save_1207(solve_name, info_name)
+    # # print(time_dict_2)
+    # with open('time_dict_RL+Random_106.txt', 'w') as file:
+    #     json.dump(time_dict_2, file, indent=4)
+
+    # resolve_dataset_by_var_count()
+
+    #处理数据库
+    # resolve_dataset_300s()

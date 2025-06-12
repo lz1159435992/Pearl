@@ -5,34 +5,53 @@
 # LICENSE file in the root directory of this source tree.
 #
 # pyre-ignore-all-errors
-import os
+import signal
 import sys
+
+from test_rl.test_script.time import selected_int
+from test_rl.test_script.utils import MyException, timeout_handler, repalce_veriable, setup_logger
+import os
+
+
 os.environ['ALL_PROXY'] = ''
 os.environ['all_proxy'] = ''
-import json
-import math
-import re
+
+
 import copy
-import traceback
-from decimal import Decimal, getcontext
-import torch
-import z3
-from openai import OpenAI
-from torch.nn.parameter import Parameter
+
+
 
 from z3.z3 import Solver, parse_smt2_string,sat,unknown,unsat
+from openai import OpenAI
 
-import embedding_util
-from pearl.SMTimer.KNN_Predictor import Predictor
+from tqdm import tqdm
 from pearl.api import Space
-from test_rl.test_script.db_search_lz_alue import fetch_data_as_dict
-from test_rl.test_script.utils import find_var_declaration_in_string, split_at_check_sat, load_dictionary, \
-    find_assertions_related_to_var_name, find_assertions_related_to_var_names_optimized, repalce_veriable, \
-    normalize_smt_str_without_replace, \
-    solve_assertion_get_range, MyException, setup_logger
-from test_rl.predictor.smt_comp_QF_IDL.test_group_get_dis_smt_comp_llm import process_embeding
-from loguru import logger
+
+from test_rl.test_script.utils import find_var_declaration_in_string, split_at_check_sat, normalize_smt_str_without_replace, \
+    solve_assertion_get_range
 from ollama import Client
+import json
+import re
+import time
+
+from z3 import *
+
+from pearl.utils.functional_utils.experimentation.set_seed import set_seed
+
+
+import torch
+
+
+# from test_code_bert_4 import CodeEmbedder, CodeEmbedder_normalize
+from bert_embedder_test import CodeEmbedder_normalize
+from test_rl.bert_predictor_2_mask import EnhancedEightClassModel
+from test_rl.bert_predictor_mask import SimpleClassifier
+from test_rl.test_script.utils import parse_smt2_in_parts, process_smt_lib_string, fetch_data_as_dict, \
+    solve_and_measure_time, model_to_dict, load_dictionary, extract_variables_from_smt2_content, normalize_variables, \
+    normalize_smt_str
+from test_rl.test_script.online_learning_break import online_learning
+from loguru import logger
+import ollama
 # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 device = torch.device("cuda:0")
 
@@ -45,21 +64,18 @@ from pearl.utils.instantiations.spaces.discrete_action import DiscreteActionSpac
 import datetime
 from bert_predictor_mask import SimpleClassifier
 from bert_predictor_2_mask import EnhancedEightClassModel
-import sys
-sys.path.append('/home/nju/PycharmProjects/Pearl/test_rl')
 
-setup_logger()
+# sys.path.append('/home/nju/PycharmProjects/Pearl/test_rl')
 def is_number(s):
     # 匹配整数、小数和分数
     pattern = r'^(\d+|\d+\.\d+|\d+\/\d+)$'
     return re.match(pattern, s) is not None
-class ConstraintSimplificationEnv_test(Environment):
+class LLM_no_rl:
 
-    def __init__(self, embedder, z3ast, model, model_time, smtlib_str, file_path, var_dict, state):
+    def __init__(self, embedder, z3ast, model, model_time, smtlib_str, file_path, var_dict, constant_list):
         self.range_count = 10000
         self.var_dict = var_dict
-        logger.info(self.var_dict)
-        # self.constant_list = constant_list
+        self.constant_list = constant_list
         self.step_count = 0
         self.file_path = file_path
         self.actions_v = None
@@ -68,12 +84,8 @@ class ConstraintSimplificationEnv_test(Environment):
         self.z3ast_original = copy.deepcopy(z3ast)
         self.smtlib_str = smtlib_str
         self.smtlib_str_original = copy.deepcopy(smtlib_str)
-        #或者是values
-
-        self.variables = sorted(list(self.var_dict.values()), key=lambda x: int(x.split('VAR')[1]))
-        # self.variables = normalize_smt_str_without_replace(self.smtlib_str)
-        # self.state_original = self.embedder.get_max_pooling_embedding(self.smtlib_str, self.variables)
-        self.state_original = state
+        self.variables = normalize_smt_str_without_replace(self.smtlib_str)
+        self.state_original = self.embedder.get_max_pooling_embedding(self.smtlib_str, self.variables)
         self.state = None
 
         self.actions = []
@@ -96,16 +108,19 @@ class ConstraintSimplificationEnv_test(Environment):
         self.range_init()
         # 直接使用字典字面量来初始化
         self.time_dict = {
-            0: 1,
-            1: 20,
-            2: 50,
-            3: 100,
-            4: 200,
-            5: 500,
-            6: 1200,
-            7: 20,#对于无法求解的约束，简单设置一个时间进行尝试
+            0: 20,  #对于无法求解的约束，简单设置一个时间进行尝试
+            1: 1,
+            2: 20,
+            3: 50,
+            4: 100,
+            5: 200,
+            6: 500,
+            7: 1000,
 
         }
+        self.llm_action = 0
+        self.reset()
+
     def range_init(self):
         for variable in self.variables:
             print(self.file_path)
@@ -164,18 +179,20 @@ class ConstraintSimplificationEnv_test(Environment):
         print('action_space')
         print(self.action_space)
         print(self.actions.shape)
+        self.new_constraint_list = []
+        self.new_constraint_dict = {}
         del self.actions
         torch.cuda.empty_cache()
         return self.state, self.action_space
 
-    def handle_satisfiable(self,solver, time_out, reward, performance):
+    def handle_satisfiable(self, solver, time_out, reward, performance):
         reward += int(1 / time_out * 500 * 1000)
         performance += 1
         stats = solver.statistics()
         print("求解时间:", stats.get_key_value('time'))
         return reward, performance, True
 
-    def handle_unknown(self,solver, time_out, reward, performance, smtlib_str):
+    def handle_unknown(self, solver, time_out, reward, performance, smtlib_str):
         reward += -int(time_out / 10000) / 2
         # 表现重新计算
         # performance = 0
@@ -188,9 +205,10 @@ class ConstraintSimplificationEnv_test(Environment):
             return self.handle_unknown(solver, time_out, reward, performance, self.smtlib_str)
         else:
             return self.handle_unsatisfiable(time_out, reward, performance)
+
     def handle_unsatisfiable(self, time_out, reward, performance):
         reward += -int(time_out / 10000)
-        #表现重新计算
+        # 表现重新计算
         # performance = 0
         return reward, performance, False
 
@@ -198,6 +216,54 @@ class ConstraintSimplificationEnv_test(Environment):
         """Returns the action space of the environment."""
         pass
 
+
+    def process_text(self,text_ce, text_smt):
+
+
+        os.environ['ALL_PROXY'] = ''
+        os.environ['all_proxy'] = ''
+        sys.path.append('/home/lz/PycharmProjects/Pearl')
+
+        client = OpenAI(
+            base_url='http://210.28.135.117:33043/v1/',
+            api_key='ollama'
+
+        )
+
+        # Split the text into chunks of 4096 characters
+        text = "Here is the  counterexamples of failed solution assignments previously chosen in json formats:\n" + text_ce + "\n" \
+               + 'Here is the SMT file content:\n' + text_smt
+        text_limit = 12000
+        responses = []
+        chunks = [text[i:i + text_limit] for i in range(0, len(text), text_limit)]
+
+        # '以上是我通过分段的方式给你的smt文本，你需要对其进行分析，然后为了使其求解加速得到sat结果，给出一个或者多个具体的变量名(VAR1,VAR2...)和其应该赋值的具体值。/n',
+        for chunk in chunks:
+            chat_completion = client.chat.completions.create(
+                messages=[
+                    # system_message,  # Including the system role message here
+                    {
+                        "role": "user",
+                        "content": chunk + """This is the The variable values from the previous failed SAT solving attempt and SMT 
+                        text given to you in segments; analyze it. To speed up the solution and obtain a SAT result, and identify the 
+                        variable assignments that satisfy all constraint conditions. Your task is to select one set of variables and their corresponding specific values from the SMT file so that the SMT file 
+                        can be solved as satisfiable (SAT). The variables and their corresponding specific values should conform to the JSON format."""
+                    },
+                ],
+                # model="gpt-3.5-turbo",
+                # model="gpt-4o-mini",
+                model='llama3.1:70b_no_rl',
+                # model='gemma2:27b_no_rl',
+                # max_tokens = 10,
+                # temperature=0.8,
+
+            )
+            # Correct way to get the assistant's message
+            # print(chat_completion.choices[0].message.content)
+            responses.append(chat_completion.choices[0].message.content)
+
+        print(responses)
+        return responses[-1]
     def process_text_python(self,text,variable_pred):
         variables = self.variables
         print(','.join(variables))
@@ -217,7 +283,7 @@ class ConstraintSimplificationEnv_test(Environment):
                     }
 
 
-        client = Client(host='http://172.29.7.221:32903')
+        client = Client(host='http://210.28.135.117:33043')
         response = client.chat(
             model='llama3.1:70b',
             messages=[system_message,user_message],
@@ -235,168 +301,151 @@ class ConstraintSimplificationEnv_test(Environment):
             print(chunk['message']['content'], end='', flush=True)
         return responses
         # return ''.join(responses)
-    def step(self, action):
-        # print(action)
-        self.step_count += 1
-        try:
-            reward = 0
-            # variable_pred = self.variables[action]
-            # action = self.action_space.
-            action = self.action_space.actions_batch[action]
-            print('当前动作:******************')
-            print(action)
-            action_v = action[0]
-
-            variable_pred = self.variables[int(action_v.item())]
-
-            print(variable_pred)
-
-            # 在一次执行过程中，action不能重复
-            if self.concrete_count == 0:
-                if len(self.counterexamples_list) > 0 and len(self.counterexamples_list[-1]) == 0:
-                    pass
-                else:
-                    self.counterexamples_list.append([])
-
-            # 如果选择了第一个数，随机选择一个值
-            ce_json = json.dumps(self.counterexamples_list)
+    def process_action(self, action_v1, action_n1, reward):
+        # action_v1 and action_n1 handling
+        if action_v1 not in self.variables:
+            self.llm_action += 1
+            reward['finish'] = True
+            return reward
+        elif int(action_n1)< self.var_range_dict[action_v1][0][0] or int(action_n1) > self.var_range_dict[action_v1][0][1]:
+            reward['finish'] = True
+            return reward
+        variable_pred_1 = action_v1
+        selected_int_1 = action_n1
+        type_info_1 = find_var_declaration_in_string(self.smtlib_str_original, variable_pred_1)
+        if 'BitVec' in type_info_1:
+            type_scale_1 = type_info_1.split(' ')[-1]
+            # print(type_scale)
+            new_constraint_1 = "(assert (= {} (_ bv{} {})))\n".format(variable_pred_1, str(selected_int_1),
+                                                                      type_scale_1)
+        elif type_info_1 in ['Int', 'Real']:
+            new_constraint_1 = "(assert (= {} {}))\n".format(variable_pred_1, str(selected_int_1))
+        self.new_constraint_list.append(new_constraint_1)
+        self.new_constraint_dict[variable_pred_1] = [new_constraint_1]
 
 
-            index = 0
-            responses = ['not a value']
-            # while index == 0 and is_number(responses[index]) == False:
+        self.counterexamples_list[-1].append([variable_pred_1, selected_int_1])
+        smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
+        # new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
+        smtlib_str = smtlib_str_before + self.new_constraint_dict[variable_pred_1][0] + smtlib_str_after
+        self.new_constraint_dict[variable_pred_1].append(smtlib_str)
+        return reward
 
-            text = "Here is the  counterexamples of failed solution assignments previously chosen in json formats:\n" + ce_json + "\n" \
-                   + 'Here is the SMT file content:\n' + self.smtlib_str
 
-            # responses = self.process_text(text,variable_pred)
-            responses = self.process_text_python(text, variable_pred)
-            print(responses)
-            index = len(responses) - 1
-            while index > 0 and is_number(responses[index]) == False:
-                index -= 1
-            selected_int = responses[index]
-            # with open('example.txt', 'a', encoding='utf-8') as file:
-            #     # 将字符串写入文件
-            #     file.write(ce_json +'\n' + self.smtlib_str + '\n' + selected_int + '\n')
+    def step(self):
+        # self.reset()
+        reward = 0
+        self.smtlib_str = self.smtlib_str_original
 
-            print('llm挑选的具体值')
-            print(selected_int)
-            #选择的值不正确，reset重新选择，同时将反例添加进去
-            if int(selected_int) < self.var_range_dict[variable_pred][0][0] or int(selected_int) > \
-                    self.var_range_dict[variable_pred][0][1]:
-                self.counterexamples_list[-1].append([variable_pred, selected_int])
-                self.reset()
+        variable_pred = random.choice(self.variables)
 
-            type_info = find_var_declaration_in_string(self.smtlib_str_original, variable_pred)
-            print(type_info)
-            print(type(type_info))
-            if 'BitVec' in type_info:
-                type_scale = type_info.split(' ')[-1]
-                print(type_scale)
-                new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, str(selected_int), type_scale)
-            elif type_info in ['Int', 'Real']:
-                new_constraint = "(assert (= {} {}))\n".format(variable_pred, str(selected_int))
-                type_scale = 0
-            related_assertions = self.v_related_assertions[variable_pred]
-            count = 0
-            if len(related_assertions) > 0:
+        print(variable_pred)
 
-                # related_assertions = find_assertions_related_to_var_name(assertions, variable_pred)
-
-                for a in related_assertions:
-                    solver_related = Solver()
-                    solver_related.add(a)
-                    smtlib_str_before, smtlib_str_after = split_at_check_sat(solver_related.to_smt2())
-
-                    new_smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
-                    solver_related = Solver()
-                    assertions = parse_smt2_string(new_smtlib_str)
-                    for a in assertions:
-                        solver_related.add(a)
-                    time_out = 10000
-                    solver_related.set("timeout", time_out)
-                    r = solver_related.check()
-                    if sat == r:
-                        count += 1
-                        reward += 5
-
-                    # elif z3.unknown == r:
-                    #     reward += int(1 / time_out * 1000)
-                    #     self.used_variables.append(variable_pred)
-                    #     self.concrete_count += 1
-                    # else:
-                    #     reward += -int(time_out / 10000)
-                    #     self.used_variables.append(variable_pred)
-                    #     self.concrete_count += 1
-            print("约束个数和通过的个数")
-            print(count, len(related_assertions))
-            if count == len(related_assertions):
-                if variable_pred not in self.used_variables:
-                    self.used_variables.append(variable_pred)
-                    self.concrete_count += 1
-                    self.counterexamples_list[-1].append([variable_pred, selected_int])
-                    smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
-                    # new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
-                    self.smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
-                else:
-                    for index, value in enumerate(self.counterexamples_list[-1]):
-                        if value[0] == variable_pred:  # 假设我们要根据某个条件来更新元素
-                            last_ce = copy.deepcopy(self.counterexamples_list[-1])
-                            last_ce[index] = [variable_pred, selected_int]
-                            self.counterexamples_list.append(last_ce)
-                    # 此次具体化不记入，而是更新
-                    # self.concrete_count -= 1
-                    # if type_info in ['BV']:
-                    self.smtlib_str = repalce_veriable(self.smtlib_str, variable_pred, selected_int, type_scale, type_info)
-                    # elif type_info in ['Int']:
-                    #     new_constraint = "(assert (= {} {}))\n".format(variable_pred, str(selected_int))
-
-                assertions = parse_smt2_string(self.smtlib_str)
-                solver = Solver()
-                for a in assertions:
-                    solver.add(a)
-                reward += self.calculate_reward(solver)
-                self.z3ast = solver.assertions()
-                self.state = process_embeding(solver.to_smt2()).unsqueeze(0)
-                # var_list = normalize_smt_str_without_replace(solver.to_smt2())
-                # self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2(), var_list)
-
-                #考虑需要修改的逻辑
-                # if self.concrete_count == len(self.variables):
-                #     self.concrete_finish = True
-                #     self.reset()
+        # 在一次执行过程中，action不能重复
+        if self.concrete_count == 0:
+            if len(self.counterexamples_list) > 0 and len(self.counterexamples_list[-1]) == 0:
+                pass
             else:
-                return ActionResult(
-                    observation=self.state,
-                    reward=float(reward),
-                    terminated=self.finish,
-                    truncated=self.finish,
-                    info={},
-                    available_action_space=self.action_space, )
+                self.counterexamples_list.append([])
 
-            # 清除内存
-            del action
-            del action_v
+        # ce_json = json.dumps(self.counterexamples_list)
+        #
+        # text = "Here is the  counterexamples of failed solution assignments previously chosen in json formats:\n" + ce_json + "\n" \
+        #        + 'Here is the SMT file content:\n' + self.smtlib_str
+        # responses = self.process_text_python(text, variable_pred)
+        # print(responses)
+        # index = len(responses) - 1
+        # while index > 0 and is_number(responses[index]) == False:
+        #     index -= 1
+        # selected_int = responses[index]
+        #
+        # print('llm挑选的具体值')
+        selected_int = random.randint(self.var_range_dict[variable_pred][0][0] + 1, self.var_range_dict[variable_pred][0][1] - 1)
+        print(selected_int)
+        # 选择的值不正确，reset重新选择，同时将反例添加进去
+        if int(selected_int) < self.var_range_dict[variable_pred][0][0] or int(selected_int) > \
+                self.var_range_dict[variable_pred][0][1]:
+            self.counterexamples_list[-1].append([variable_pred, selected_int])
+            self.reset()
+
+        type_info = find_var_declaration_in_string(self.smtlib_str_original, variable_pred)
+        print(type_info)
+        print(type(type_info))
+        if 'BitVec' in type_info:
+            type_scale = type_info.split(' ')[-1]
+            print(type_scale)
+            new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, str(selected_int), type_scale)
+        elif type_info in ['Int', 'Real']:
+            new_constraint = "(assert (= {} {}))\n".format(variable_pred, str(selected_int))
+            type_scale = 0
+        related_assertions = self.v_related_assertions[variable_pred]
+        count = 0
+        if len(related_assertions) > 0:
+
+            # related_assertions = find_assertions_related_to_var_name(assertions, variable_pred)
+
+            for a in related_assertions:
+                solver_related = Solver()
+                solver_related.add(a)
+                smtlib_str_before, smtlib_str_after = split_at_check_sat(solver_related.to_smt2())
+
+                new_smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
+                solver_related = Solver()
+                assertions = parse_smt2_string(new_smtlib_str)
+                for a in assertions:
+                    solver_related.add(a)
+                time_out = 10000
+                solver_related.set("timeout", time_out)
+                r = solver_related.check()
+                if sat == r:
+                    count += 1
+                    reward += 5
+
+                # elif z3.unknown == r:
+                #     reward += int(1 / time_out * 1000)
+                #     self.used_variables.append(variable_pred)
+                #     self.concrete_count += 1
+                # else:
+                #     reward += -int(time_out / 10000)
+                #     self.used_variables.append(variable_pred)
+                #     self.concrete_count += 1
+        print("约束个数和通过的个数")
+        print(count, len(related_assertions))
+        if count == len(related_assertions):
+            if variable_pred not in self.used_variables:
+                self.used_variables.append(variable_pred)
+                self.concrete_count += 1
+                self.counterexamples_list[-1].append([variable_pred, selected_int])
+                smtlib_str_before, smtlib_str_after = split_at_check_sat(self.smtlib_str)
+                # new_constraint = "(assert (= {} (_ bv{} {})))\n".format(variable_pred, selected_int, type_scale)
+                self.smtlib_str = smtlib_str_before + new_constraint + smtlib_str_after
+            else:
+                for index, value in enumerate(self.counterexamples_list[-1]):
+                    if value[0] == variable_pred:  # 假设我们要根据某个条件来更新元素
+                        last_ce = copy.deepcopy(self.counterexamples_list[-1])
+                        last_ce[index] = [variable_pred, selected_int]
+                        self.counterexamples_list.append(last_ce)
+                # 此次具体化不记入，而是更新
+                # self.concrete_count -= 1
+                # if type_info in ['BV']:
+                self.smtlib_str = repalce_veriable(self.smtlib_str, variable_pred, selected_int, type_scale, type_info)
+                # elif type_info in ['Int']:
+                #     new_constraint = "(assert (= {} {}))\n".format(variable_pred, str(selected_int))
+
+            assertions = parse_smt2_string(self.smtlib_str)
+            solver = Solver()
+            for a in assertions:
+                solver.add(a)
+            reward += self.calculate_reward(solver)
+            self.z3ast = solver.assertions()
+            # var_list = normalize_smt_str_without_replace(solver.to_smt2())
+            # self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2(), var_list)
             torch.cuda.empty_cache()
-        except MyException as e:
-            raise MyException("Timeout!")
-        except Exception as e:
-            print(e)
-            print('some problems are triggered')
-            traceback.print_exc()
-            # print(self.smtlib_str)
-            self.state = self.state_original.clone().detach()
-            reward = 0
-        if self.step_count > 50000000000:
-            self.finish = True
-        return ActionResult(
-            observation=self.state,
-            reward=float(reward),
-            terminated=self.finish,
-            truncated=self.finish,
-            info={},
-            available_action_space=self.action_space, )
+
+        return reward
+
+
+
 
     @staticmethod
     def strings_to_onehot(string_list):
@@ -461,28 +510,28 @@ class ConstraintSimplificationEnv_test(Environment):
         # solver.set("timeout", 60000)
         # 判断新产生的序列和之前有没有重复
         # 判断是否存在反例
-        if len(self.counterexamples_list) > 1:
-            if self.counterexamples_list[-1] in self.counterexamples_list[:len(self.counterexamples_list) - 1]:
-                reward += -10
-                self.counterexamples_list.pop()
-                #出现反例
-                return reward
-            else:
-                last_joined = ' '.join(
-                    ' '.join(str(item) for item in inner_list) for inner_list in self.counterexamples_list[-1])
-                for i in range(len(self.counterexamples_list) - 1):
-                    current_joined = ' '.join(
-                        ' '.join(str(item) for item in inner_list) for inner_list in self.counterexamples_list[i])
-                    if last_joined in current_joined:
-                        count += 1
-                reward += self.counter_reward_function(len(self.counterexamples_list) - 1,
-                                                       len(self.counterexamples_list) - 1 - count)
-                # print(self.counterexamples_list)
-                # print(len(self.counterexamples_list))
-                # for i in self.counterexamples_list:
-                #     print(len(i))
-                # 后续实现一些子集求解
-                # 注释掉提高速度
+        # if len(self.counterexamples_list) > 1:
+        #     if self.counterexamples_list[-1] in self.counterexamples_list[:len(self.counterexamples_list) - 1]:
+        #         reward += -10
+        #         self.counterexamples_list.pop()
+        #         # 出现反例
+        #         return reward
+        #     else:
+        #         last_joined = ' '.join(
+        #             ' '.join(str(item) for item in inner_list) for inner_list in self.counterexamples_list[-1])
+        #         for i in range(len(self.counterexamples_list) - 1):
+        #             current_joined = ' '.join(
+        #                 ' '.join(str(item) for item in inner_list) for inner_list in self.counterexamples_list[i])
+        #             if last_joined in current_joined:
+        #                 count += 1
+        #         reward += self.counter_reward_function(len(self.counterexamples_list) - 1,
+        #                                                len(self.counterexamples_list) - 1 - count)
+        #         # print(self.counterexamples_list)
+        #         # print(len(self.counterexamples_list))
+        #         # for i in self.counterexamples_list:
+        #         #     print(len(i))
+        #         # 后续实现一些子集求解
+        #         # 注释掉提高速度
         solver_part = Solver()
         assertions = solver.assertions()
 
@@ -497,9 +546,8 @@ class ConstraintSimplificationEnv_test(Environment):
         # res = random.sample(assertions_list, int(len(assertions) * 0.6))
         for r in res:
             solver_part.add(r)
-        new_state = process_embeding(solver_part.to_smt2()).unsqueeze(0)
-        # var_list = normalize_smt_str_without_replace(solver_part.to_smt2())
-        # new_state = self.embedder.get_max_pooling_embedding(solver_part.to_smt2(), var_list)
+        var_list = normalize_smt_str_without_replace(solver_part.to_smt2())
+        new_state = self.embedder.get_max_pooling_embedding(solver_part.to_smt2(), var_list)
         output = self.predictor(new_state)
         predicted_solvability__part = (output > 0.5).int().item()
         if predicted_solvability__part == 1:
@@ -514,18 +562,15 @@ class ConstraintSimplificationEnv_test(Environment):
             solver_part.set("timeout", time_out)
             r = solver_part.check()
             reward, performance, finish = self.handle_case(r, solver_part, time_out, reward, performance)
-        #即使预测不可解，也要继续
-        new_state = process_embeding(solver_part.to_smt2()).unsqueeze(0)
-        # var_list = normalize_smt_str_without_replace(self.smtlib_str)
-        # new_state = self.embedder.get_max_pooling_embedding(self.smtlib_str, var_list)
+        # 即使预测不可解，也要继续
+        var_list = normalize_smt_str_without_replace(self.smtlib_str)
+        new_state = self.embedder.get_max_pooling_embedding(self.smtlib_str, var_list)
         output = self.predictor(new_state)
         predicted_solvability = (output > 0.5).int().item()
         if predicted_solvability == 1:
             reward += 5
             performance += 1
-        #即使预测不可解，也要继续
-        logger.info(new_state.shape)
-        logger.info(type(new_state))
+        # 即使预测不可解，也要继续
         output_time = self.predictor_time(new_state)
         _, predicted_time = torch.max(output_time, 1)
         print(int(predicted_time.item()))
@@ -730,7 +775,6 @@ class ConstraintSimplificationEnv_test(Environment):
         """Returns the observation space of the environment."""
         pass
 
-
 def visit(expr, variables):
     if is_const(expr) and expr.decl().kind() == Z3_OP_UNINTERPRETED:
         # Add only uninterpreted functions (which represent variables)
@@ -760,7 +804,7 @@ def get_actions(tensor_1d_1):
     return result_tensor
 
 
-import re
+# import re
 
 
 def extract_variables_from_smt2_content(content):
@@ -790,3 +834,132 @@ def extract_variables_from_smt2_content(content):
                 variables.append(var_name.replace('|', ''))
 
     return variables
+if __name__ == '__main__':
+    setup_logger()
+    with open('/home/lz/sibyl_3/src/networks/info_dict_rl.txt', 'r') as file:
+        rl_dict = json.load(file)
+
+    info_name = 'info_dict_gai_6_normal_1217_pre_SMTimer_llama3.1:70b_1200s_info_dict_all_random.txt'
+    if not os.path.exists(info_name):
+        # 文件不存在时，创建文件
+        info_dict = {}
+        with open(info_name, 'w') as file:
+            json.dump(info_dict, file, indent=4)
+        print(f'文件{info_name} 已创建。')
+    else:
+        info_dict = load_dictionary(info_name)
+        print(f'文件已存在。')
+    with open('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_bingxing.txt', 'r') as file:
+    # with open('/home/lz/PycharmProjects/Pearl/test_rl/info_dict_normal_1103_llm_no_rl_direct_solve_docker_llama3.1:70b_1set.txt', 'r') as file:
+    # with open('/home/lz/sibyl_3/src/networks/info_dict_rl.txt', 'r') as file:
+    # with open('/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_109_2_SMTimer.txt', 'r') as file:
+    # with open('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict.txt', 'r') as file:
+        result_dict = json.load(file)
+    # items = list(result_dict.items())
+    # random.shuffle(items)
+    # result_dict = dict(items)
+    for key, value in result_dict.items():
+        list1 = value
+        if list1[0] == "sat" or list1[0] == "unknown":
+            if list1[1] > 300 and key in rl_dict.keys():
+                # if '/who/who86404' in key:
+                print(key, value)
+                file_path = key
+                if file_path not in info_dict.keys():
+                    # 跳过无法处理的文件
+                    if 'gnu_angr.tar.gz/single_test/cat/cat43772' in file_path:
+                        continue
+                    with open(file_path, 'r') as file:
+                        # 读取文件所有内容到一个字符串
+                        smtlib_str = file.read()
+                    # 解析字符串
+                    try:
+                        # 将JSON字符串转换为字典
+                        dict_obj = json.loads(smtlib_str)
+                        # print("转换后的字典：", dict_obj)
+                    except json.JSONDecodeError as e:
+                        print("解析错误：", e)
+                    #
+                    if 'smt-comp' in file_path:
+                        smtlib_str = dict_obj['smt_script']
+                    else:
+                        smtlib_str = dict_obj['script']
+                    if file_path not in info_dict.keys():
+
+                        print(type(smtlib_str))
+                        smtlib_str, var_dict, constant_list = normalize_smt_str(smtlib_str)
+                        # if len(var_dict) > 20:
+                        #     continue
+                        assertions = parse_smt2_string(smtlib_str)
+                        solver = Solver()
+                        for a in assertions:
+                            solver.add(a)
+
+                        result_list = [list1[0], list1[1], list1[2]]
+                        # if list1[0] == "sat":
+                        #     result_list.append(list1[3])
+                        # else:
+                        #     result_list.append(None)
+
+                        # # 先取消求解，使用原始文件中的求解结果
+                        # timeout = 999999999
+                        # # timeout = 10
+                        # result, model, time_taken = solve_and_measure_time(solver, timeout)
+                        #
+                        # print(result, time_taken)
+                        # if result == 'unsat' or time_taken < 300:
+                        #     continue
+                        #
+                        # result_list = []
+                        # result_list.append(result,time_taken)
+                        # if model:
+                        #     result_list.append(model_to_dict(model))
+                        # else:
+                        #     result_list.append(None)
+                        # print(result_list[-1])
+                        start_time = time.time()
+
+                        signal.alarm(60*20)
+                        signal.signal(signal.SIGALRM, timeout_handler)
+                        try:
+                            logger.info('开始执行')
+                            logger.info(file_path)
+                            embedder = CodeEmbedder_normalize()
+                            set_seed(0)
+                            # device = torch.device("cpu")
+                            # 更改了预测器
+                            model = SimpleClassifier()
+                            model_path = 'bert_predictor_mask_best.pth'  # 或者 'bert_predictor_mask_final.pth'
+                            state_dict = torch.load(model_path)
+                            model.load_state_dict(state_dict)
+                            model.eval()
+                            model_time = EnhancedEightClassModel()
+                            model_time.load_state_dict(torch.load('bert_predictor_2_mask_best_model.pth'))
+                            model_time.eval()
+                            env = LLM_no_rl(embedder, assertions, model, model_time, smtlib_str,
+                                                                   file_path, var_dict, constant_list)
+                            for i in tqdm(range(50000000000)):
+                                reward = env.step()
+                                # if env.llm_action > 10:
+                                #     break
+                                if env.finish:
+                                    break
+                        except MyException as e:
+                            print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+                            print("time out")
+
+
+                        signal.alarm(0)
+                        end_time = time.time()
+                        result_list.append(end_time - start_time)
+                        if env.solve_time == 0:
+                            result_list.append('failed')
+                        else:
+                            result_list.append('succeed')
+                            result_list.append(env.solve_time)
+                            result_list.append(env.counterexamples_list[-1])
+                        result_list.append(env.counterexamples_list)
+
+                        info_dict[file_path] = result_list
+                        with open(info_name, 'w') as file:
+                            json.dump(info_dict, file, indent=4)

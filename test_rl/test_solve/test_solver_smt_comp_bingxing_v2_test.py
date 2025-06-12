@@ -3,50 +3,33 @@ import os
 from multiprocessing import Pool
 from z3 import *
 from z3.z3 import parse_smt2_string, Solver
-from test_rl.test_script.utils import solve_and_measure_time, model_to_dict, load_dictionary, setup_logger
+from test_rl.test_script.utils import solve_and_measure_time, model_to_dict, load_dictionary
 import re
-from loguru import logger
-
 def process_file(file_path, info_dict, info_name, smtlib_str):
-    logger.info(f'Processing file: {file_path},:文件路径：{info_name}')
     print(file_path)
-    if not os.path.exists(info_name):
-        # 文件不存在时，创建文件
-        info_dict = {}
-        # with open(info_name, 'w') as file:
-        #     json.dump(info_dict, file, indent=4)
-        # print(f'文件{info_name} 已创建。')
-    # else:
-    #     info_dict = load_dictionary(info_name)
-    #     print(f'文件已存在。')
-    # process_dict = {}
-        assertions = parse_smt2_string(smtlib_str)
-        solver = Solver()
-        for a in assertions:
-            solver.add(a)
-        timeout = 1200000
-        # timeout = 1200
-        result, model, time_taken = solve_and_measure_time(solver, timeout)
-        print(result, time_taken)
-        result_list = [result, time_taken, timeout]
-        if model:
-            result_list.append(model_to_dict(model))
-        else:
-            result_list.append('No model')
-        # print(result_list[-1])
-        info_dict[file_path] = result_list
-        # print(process_dict)
-        with open(info_name, 'w') as file:
-            json.dump(info_dict, file, indent=4)
+    process_dict = {}
+    assertions = parse_smt2_string(smtlib_str)
+    solver = Solver()
+    for a in assertions:
+        solver.add(a)
+    timeout = 1200000
+    # timeout = 1200
+    result, model, time_taken = solve_and_measure_time(solver, timeout)
+    print(result, time_taken)
+    result_list = [result, time_taken, timeout]
+    if model:
+        result_list.append(model_to_dict(model))
     else:
-        return None
-    return None
+        result_list.append('No model')
+    # print(result_list[-1])
+    process_dict[file_path] = result_list
+    print(process_dict)
+    return process_dict
 
 def test_group():
-    NIA_dict = load_dictionary('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/QF_LRA/QF_LRA.json')
     tasks = []
-    setup_logger()
-    info_name = 'info_dict_smt_comp_QF_LRA.txt'
+
+    info_name = 'info_dict_smt_comp_QF_NIA.txt'
     if not os.path.exists(info_name):
         # 文件不存在时，创建文件
         info_dict = {}
@@ -56,15 +39,16 @@ def test_group():
     else:
         info_dict = load_dictionary(info_name)
         print(f'文件已存在。')
+    NIA_dict = load_dictionary('/home/lz/PycharmProjects/Pearl/test_rl/test_solve/NIA/NIA.json')
     test_path = []
     directory = '/home/lz/Downloads/non-incremental_Hierarchy/non-incremental'
     test_path.append(directory)
     # directory = '/home/lz/Downloads/incremental_Hierarchy/incremental'
     # test_path.append(directory)
     search_list = [
-        # 'QF_IDL',
+        'QF_IDL',
         # 'QF_LIA',
-        'QF_LRA',
+        # 'QF_LRA',
         # 'QF_NIA',
         # 'QF_NRA',
         # 'QF_RDL',
@@ -119,18 +103,23 @@ def test_group():
                             return None
                         if file_path not in info_dict.keys() and status != 'unsat':
                             count += 1
+                            if 'QF_NIA/20170427-VeryMax/ITS/16367539/From_T2__fun9.t2__p1455_edge_closing_0.smt2' in file_path:
+                                print(count)
+                                final_count = count
                             if file_path not in NIA_dict.keys():
-                                tasks.append((file_path, info_dict, os.path.join('/home/lz/new_disk/QF_LRA',str(count)+ '_' + info_name), smtlib_str))
-
-    with Pool(processes=10) as pool:
-        pool.starmap(process_file, tasks)
+                                # info_dict[file_path] = []
+                                tasks.append((file_path, info_dict, info_name, smtlib_str))
+    print(len(tasks))
+    # print(final_count)
+    with Pool() as pool:
+        results = pool.starmap(process_file, tasks)
 
     # Combine all results into a single dictionary
-    # for result in results:
-    #     info_dict.update(result)
-    #
-    # with open(info_name, 'w') as file:
-    #     json.dump(info_dict, file, indent=4)
+    for result in results:
+        info_dict.update(result)
+
+    with open(info_name, 'w') as file:
+        json.dump(info_dict, file, indent=4)
 
 if __name__ == '__main__':
     test_group()

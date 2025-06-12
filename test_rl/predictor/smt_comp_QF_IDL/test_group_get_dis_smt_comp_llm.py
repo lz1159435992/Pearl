@@ -912,7 +912,7 @@ def test_group_bert_normalize_1by1_smt_name():
 
 def process_embeding(text):
 
-    client = Client(host='http://210.28.135.117:33043')
+    client = Client(host='http://172.29.7.221:32903')
     response = client.embeddings(
         model='llama3.1:70b',
         prompt=text,

@@ -8,7 +8,7 @@ import json
 import random
 import re
 import time
-from loguru import logger
+
 from z3 import *
 from z3.z3 import parse_smt2_string, Solver
 
@@ -21,11 +21,11 @@ from pearl.history_summarization_modules.lstm_history_summarization_module impor
 from pearl.history_summarization_modules.stacking_history_summarization_module import StackingHistorySummarizationModule
 # from pearl.utils.functional_utils.train_and_eval.online_learning import online_learning, online_learning_with_break
 from pearl.pearl_agent import PearlAgent
-
+from loguru import logger
 import torch
 import matplotlib.pyplot as plt
 import numpy as np
-from env_gai_6_llm_add_ce_predictor_docker import ConstraintSimplificationEnv_test
+from env_gai_6_llm_add_ce_predictor_random import ConstraintSimplificationEnv_test
 
 # from test_code_bert_4 import CodeEmbedder, CodeEmbedder_normalize
 from bert_embedder_test import CodeEmbedder_normalize
@@ -40,11 +40,10 @@ start = time.time()
 
 def test_group():
     setup_logger()
-
     with open('/home/lz/sibyl_3/src/networks/info_dict_rl.txt', 'r') as file:
         rl_dict = json.load(file)
 
-    info_name = 'info_dict_gai_6_normal_0107_pre_SMTimer_deepseek-r1:70b_1200s_info_dict_rl.txt'
+    info_name = 'info_dict_gai_6_normal_1223_pre_SMTimer_llama3.1:70b_1200s_info_dict_rl_random_1223.txt'
     if not os.path.exists(info_name):
         # 文件不存在时，创建文件
         info_dict = {}
@@ -132,7 +131,8 @@ def test_group():
                         signal.alarm(60*20)
                         signal.signal(signal.SIGALRM, timeout_handler)
                         try:
-                            logger.info(f'开始执行: {file_path}')
+                            logger.info('开始执行')
+                            logger.info(file_path)
                             embedder = CodeEmbedder_normalize()
                             set_seed(0)
                             # device = torch.device("cpu")
@@ -197,7 +197,7 @@ def test_group():
                                 # learn_after_episode=True,
                             )
                         except MyException as e:
-                            logger.info(f'执行结束: {file_path}')
+                            print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
                             print("time out")
 
 

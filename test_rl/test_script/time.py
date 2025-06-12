@@ -1,7 +1,7 @@
 import json
 import random
 import re
-from z3 import *
+from z3.z3 import Solver, parse_smt2_string,sat,unknown,unsat
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from z3 import *
