@@ -29,9 +29,7 @@ from test_rl.test_script.db_search_lz_alue import fetch_data_as_dict
 from test_rl.test_script.utils import find_var_declaration_in_string, split_at_check_sat, load_dictionary, \
     find_assertions_related_to_var_name, find_assertions_related_to_var_names_optimized, repalce_veriable, \
     normalize_smt_str_without_replace, \
-    solve_assertion_get_range, MyException, setup_logger
-from test_rl.predictor.smt_comp_QF_IDL.test_group_get_dis_smt_comp_llm import process_embeding
-from loguru import logger
+    solve_assertion_get_range,MyException
 from ollama import Client
 # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 device = torch.device("cuda:0")
@@ -47,19 +45,16 @@ from bert_predictor_mask import SimpleClassifier
 from bert_predictor_2_mask import EnhancedEightClassModel
 import sys
 sys.path.append('/home/nju/PycharmProjects/Pearl/test_rl')
-
-setup_logger()
 def is_number(s):
     # 匹配整数、小数和分数
     pattern = r'^(\d+|\d+\.\d+|\d+\/\d+)$'
     return re.match(pattern, s) is not None
 class ConstraintSimplificationEnv_test(Environment):
 
-    def __init__(self, embedder, z3ast, model, model_time, smtlib_str, file_path, var_dict, state):
+    def __init__(self, embedder, z3ast, model, model_time, smtlib_str, file_path, var_dict, constant_list):
         self.range_count = 10000
         self.var_dict = var_dict
-        logger.info(self.var_dict)
-        # self.constant_list = constant_list
+        self.constant_list = constant_list
         self.step_count = 0
         self.file_path = file_path
         self.actions_v = None
@@ -68,12 +63,8 @@ class ConstraintSimplificationEnv_test(Environment):
         self.z3ast_original = copy.deepcopy(z3ast)
         self.smtlib_str = smtlib_str
         self.smtlib_str_original = copy.deepcopy(smtlib_str)
-        #或者是values
-
-        self.variables = sorted(list(self.var_dict.values()), key=lambda x: int(x.split('VAR')[1]))
-        # self.variables = normalize_smt_str_without_replace(self.smtlib_str)
-        # self.state_original = self.embedder.get_max_pooling_embedding(self.smtlib_str, self.variables)
-        self.state_original = state
+        self.variables = normalize_smt_str_without_replace(self.smtlib_str)
+        self.state_original = self.embedder.get_max_pooling_embedding(self.smtlib_str, self.variables)
         self.state = None
 
         self.actions = []
@@ -96,16 +87,17 @@ class ConstraintSimplificationEnv_test(Environment):
         self.range_init()
         # 直接使用字典字面量来初始化
         self.time_dict = {
-            0: 1,
-            1: 20,
-            2: 50,
-            3: 100,
-            4: 200,
-            5: 500,
-            6: 1200,
-            7: 20,#对于无法求解的约束，简单设置一个时间进行尝试
+            0: 20,  #对于无法求解的约束，简单设置一个时间进行尝试
+            1: 1,
+            2: 20,
+            3: 50,
+            4: 100,
+            5: 200,
+            6: 500,
+            7: 1000,
 
         }
+
     def range_init(self):
         for variable in self.variables:
             print(self.file_path)
@@ -198,6 +190,45 @@ class ConstraintSimplificationEnv_test(Environment):
         """Returns the action space of the environment."""
         pass
 
+    def process_text(self, text,variable_pred):
+        text_limit = 12000
+        client = OpenAI(
+            base_url='http://localhost:11434/v1/',
+            # base_url='http://210.28.135.117:33043/v1/',
+            api_key='ollama'
+        )
+        # Split the text into chunks of 4096 characters
+        responses = []
+
+        # # Add 'system' role message before the loop
+        # system_message = {
+        #     "role": "system",
+        #     "content": "You are an advanced SAT/SMT solver, focusing on the optimization and resolution of logical constraint problems. Your input consists of two parts: first, the counterexamples of failed solution assignments previously chosen, and second, the strings in SMT-LIB format that needs to be solved. You should analyze these inputs, using logical reasoning and heuristic methods to determine which variable assignments led to the failure of the solution, and identify the variable assignments that satisfy all constraint conditions. The output should be a set of specific variable assignments that can satisfy all the constraints defined in the `.smt2` file. Your task is to find the specific values that should be assigned to the variables provided in the prompt to ensure that the entire constraint system is satisfiable.You should output only the numeric value, with an example as follows: <value> . Do not output any other text, explanations, or symbols. "
+        # }
+
+        chunks = [text[i:i + text_limit] for i in range(0, len(text), text_limit)]
+
+        # '以上是我通过分段的方式给你的smt文本，你需要对其进行分析，然后为了使其求解加速得到sat结果，给出一个或者多个具体的变量名(VAR1,VAR2...)和其应该赋值的具体值。/n',
+        for chunk in chunks:
+            chat_completion = client.chat.completions.create(
+                messages=[
+                    # system_message,  # Including the system role message here
+                    {
+                        "role": "user",
+                        "content": chunk + f'This is the The variable values from the previous failed SAT solving attempt and SMT text given to you in segments; analyze it. To speed up the solution and obtain a SAT result, provide a specific number that {variable_pred} should be assigned to. However, do not choose the values that have already failed to solve. Output only the numeric value. Do not output any other text, explanations, or symbols. The output must be a single number.'
+                    },
+                ],
+                # model="gpt-3.5-turbo",
+                model='llama3.1_rl',
+                max_tokens = 5,
+
+            )
+            # Correct way to get the assistant's message
+            # print(chat_completion.choices[0].message.content)
+            responses.append(chat_completion.choices[0].message.content)
+
+        print(responses)
+        return responses
     def process_text_python(self,text,variable_pred):
         variables = self.variables
         print(','.join(variables))
@@ -217,7 +248,7 @@ class ConstraintSimplificationEnv_test(Environment):
                     }
 
 
-        client = Client(host='http://172.29.7.221:32903')
+        client = Client(host='http://210.28.135.117:33043')
         response = client.chat(
             model='llama3.1:70b',
             messages=[system_message,user_message],
@@ -258,29 +289,8 @@ class ConstraintSimplificationEnv_test(Environment):
                 else:
                     self.counterexamples_list.append([])
 
-            # 如果选择了第一个数，随机选择一个值
-            ce_json = json.dumps(self.counterexamples_list)
-
-
-            index = 0
-            responses = ['not a value']
-            # while index == 0 and is_number(responses[index]) == False:
-
-            text = "Here is the  counterexamples of failed solution assignments previously chosen in json formats:\n" + ce_json + "\n" \
-                   + 'Here is the SMT file content:\n' + self.smtlib_str
-
-            # responses = self.process_text(text,variable_pred)
-            responses = self.process_text_python(text, variable_pred)
-            print(responses)
-            index = len(responses) - 1
-            while index > 0 and is_number(responses[index]) == False:
-                index -= 1
-            selected_int = responses[index]
-            # with open('example.txt', 'a', encoding='utf-8') as file:
-            #     # 将字符串写入文件
-            #     file.write(ce_json +'\n' + self.smtlib_str + '\n' + selected_int + '\n')
-
-            print('llm挑选的具体值')
+            selected_int = random.randint(self.var_range_dict[variable_pred][0][0] + 1,
+                                          self.var_range_dict[variable_pred][0][1] - 1)
             print(selected_int)
             #选择的值不正确，reset重新选择，同时将反例添加进去
             if int(selected_int) < self.var_range_dict[variable_pred][0][0] or int(selected_int) > \
@@ -358,9 +368,8 @@ class ConstraintSimplificationEnv_test(Environment):
                     solver.add(a)
                 reward += self.calculate_reward(solver)
                 self.z3ast = solver.assertions()
-                self.state = process_embeding(solver.to_smt2()).unsqueeze(0)
-                # var_list = normalize_smt_str_without_replace(solver.to_smt2())
-                # self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2(), var_list)
+                var_list = normalize_smt_str_without_replace(solver.to_smt2())
+                self.state = self.embedder.get_max_pooling_embedding(solver.to_smt2(), var_list)
 
                 #考虑需要修改的逻辑
                 # if self.concrete_count == len(self.variables):
@@ -497,9 +506,8 @@ class ConstraintSimplificationEnv_test(Environment):
         # res = random.sample(assertions_list, int(len(assertions) * 0.6))
         for r in res:
             solver_part.add(r)
-        new_state = process_embeding(solver_part.to_smt2()).unsqueeze(0)
-        # var_list = normalize_smt_str_without_replace(solver_part.to_smt2())
-        # new_state = self.embedder.get_max_pooling_embedding(solver_part.to_smt2(), var_list)
+        var_list = normalize_smt_str_without_replace(solver_part.to_smt2())
+        new_state = self.embedder.get_max_pooling_embedding(solver_part.to_smt2(), var_list)
         output = self.predictor(new_state)
         predicted_solvability__part = (output > 0.5).int().item()
         if predicted_solvability__part == 1:
@@ -515,17 +523,14 @@ class ConstraintSimplificationEnv_test(Environment):
             r = solver_part.check()
             reward, performance, finish = self.handle_case(r, solver_part, time_out, reward, performance)
         #即使预测不可解，也要继续
-        new_state = process_embeding(solver_part.to_smt2()).unsqueeze(0)
-        # var_list = normalize_smt_str_without_replace(self.smtlib_str)
-        # new_state = self.embedder.get_max_pooling_embedding(self.smtlib_str, var_list)
+        var_list = normalize_smt_str_without_replace(self.smtlib_str)
+        new_state = self.embedder.get_max_pooling_embedding(self.smtlib_str, var_list)
         output = self.predictor(new_state)
         predicted_solvability = (output > 0.5).int().item()
         if predicted_solvability == 1:
             reward += 5
             performance += 1
         #即使预测不可解，也要继续
-        logger.info(new_state.shape)
-        logger.info(type(new_state))
         output_time = self.predictor_time(new_state)
         _, predicted_time = torch.max(output_time, 1)
         print(int(predicted_time.item()))

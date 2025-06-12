@@ -306,5 +306,5 @@ def spilt_files():
         json.dump(test_set, file, indent=4)
 if __name__ == '__main__':
     # train()
-    # test()
-    spilt_files()
+    test()
+    # spilt_files()

@@ -22,8 +22,8 @@ from torch.nn.parameter import Parameter
 
 from z3.z3 import Solver, parse_smt2_string,sat,unknown,unsat
 
-import embedding_util
-from pearl.SMTimer.KNN_Predictor import Predictor
+# import embedding_util
+# from pearl.SMTimer.KNN_Predictor import Predictor
 from pearl.api import Space
 from test_rl.test_script.db_search_lz_alue import fetch_data_as_dict
 from test_rl.test_script.utils import find_var_declaration_in_string, split_at_check_sat, load_dictionary, \
@@ -248,7 +248,7 @@ class ConstraintSimplificationEnv_test(Environment):
                     }
 
 
-        client = Client(host='http://210.28.135.117:33043')
+        client = Client(host='http://172.29.7.221:32903')
         response = client.chat(
             model='llama3.1:70b',
             messages=[system_message,user_message],
@@ -307,9 +307,9 @@ class ConstraintSimplificationEnv_test(Environment):
             while index > 0 and is_number(responses[index]) == False:
                 index -= 1
             selected_int = responses[index]
-            with open('example.txt', 'a', encoding='utf-8') as file:
-                # 将字符串写入文件
-                file.write(ce_json +'\n' + self.smtlib_str + '\n' + selected_int + '\n')
+            # with open('example.txt', 'a', encoding='utf-8') as file:
+            #     # 将字符串写入文件
+            #     file.write(ce_json +'\n' + self.smtlib_str + '\n' + selected_int + '\n')
 
             print('llm挑选的具体值')
             print(selected_int)
