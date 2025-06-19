@@ -418,13 +418,13 @@ def get_CVC5_result():
 def get_CVC5_result_all():
     file_paths = []
     setup_logger()
-    info_name = '/home/lz/sibyl_3/src/networks/info_dict_rl.txt'
+    info_name = '/home/lz/sibyl_3/src/networks/info_dict_predictor.txt'
     info_dict = load_dictionary(info_name)
     file_paths = info_dict.keys()
     solver_name = "CVC5"
     solver = CVC5Solver()
     timeout = 1200  # 设置超时时间为1200秒
-    json_path = f"{solver_name.lower()}_smtimer_results_all.json"
+    json_path = f"{solver_name.lower()}_smtimer_results_predictor.json"
 
     # 1. 读取已有结果
     result_dict = load_result_dict(json_path)

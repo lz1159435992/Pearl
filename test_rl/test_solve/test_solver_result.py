@@ -1621,15 +1621,15 @@ if __name__ == '__main__':
     # something()
     #z3结果smtimer
     # resolve_dataset_cvc5_smtimer('/home/lz/PycharmProjects/Pearl/test_rl/test_cvc5/z3_smtimer_results.json')
-    #cvc5结果smtimer
-    resolve_dataset_cvc5_smtimer()
+    # #cvc5结果smtimer
+    # resolve_dataset_cvc5_smtimer()
     #mathsat结果smtimer
     # resolve_dataset_cvc5_smtimer('/home/lz/PycharmProjects/Pearl/test_rl/test_cvc5/mathsat5_smtimer_results.json')
     # QF_NIA llama3.1
-    # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/NIA/NIA.json'
-    # info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_0503_pre_llm_llama3.1:70b_1200s_QF_NIA.txt'
-    # # result_dict_1 = test_group_2_no_save(solve_name,info_name)
-    # result_dict_2, time_dict, time_dict_2, info_dict = test_group_2_no_save_QF_IDL_0429(solve_name, info_name)
+    solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/NIA/NIA.json'
+    info_name = '/home/lz/PycharmProjects/Pearl/test_rl/info_dict_gai_6_normal_0503_pre_llm_llama3.1:70b_1200s_QF_NIA.txt'
+    # result_dict_1 = test_group_2_no_save(solve_name,info_name)
+    result_dict_2, time_dict, time_dict_2, info_dict = test_group_2_no_save_QF_IDL_0429(solve_name, info_name)
 
     #QF_LIA llama3.1
     # solve_name = '/home/lz/PycharmProjects/Pearl/test_rl/test_solve/info_dict_smt_comp.txt'
