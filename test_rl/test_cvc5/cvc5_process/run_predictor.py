@@ -161,28 +161,6 @@ class ConstraintSimplificationEnv_test(Environment):
             self.total_solve_time += solver_result.solve_time  # 累加求解时间
             return reward, performance, False
 
-    def process_text(self, text, variable_pred):
-        text_limit = 12000
-        client = OpenAI(
-            base_url='http://localhost:11434/v1/',
-            api_key='ollama'
-        )
-        responses = []
-        chunks = [text[i:i + text_limit] for i in range(0, len(text), text_limit)]
-        
-        for chunk in chunks:
-            chat_completion = client.chat.completions.create(
-                messages=[
-                    {
-                        "role": "user",
-                        "content": chunk + f'This is the The variable values from the previous failed SAT solving attempt and SMT text given to you in segments; analyze it. To speed up the solution and obtain a SAT result, provide a specific number that {variable_pred} should be assigned to. However, do not choose the values that have already failed to solve. Output only the numeric value. Do not output any other text, explanations, or symbols. The output must be a single number.'
-                    },
-                ],
-                model='llama3.1_rl',
-                max_tokens=5,
-            )
-            responses.append(chat_completion.choices[0].message.content)
-        return responses
 
     def process_text_python(self, text, variable_pred):
         variables = self.variables
