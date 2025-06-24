@@ -762,12 +762,12 @@ def process_single_file_with_timeout(file_path, list1, info_dict, args):
         p.join()
         
         # 设置超时结果，但使用已收集的环境数据
-        result_list = list1.copy()  # 使用原始结果作为基础
+        result_list = [list1[0], list1[1], list1[2]]# 使用原始结果作为基础
         result_list.append(args.timeout)  # 总执行时间为超时时间
         result_list.append(env_data['total_solve_time'])  # 使用收集到的总求解时间
         result_list.append(env_data['final_solve_time'])  # 使用收集到的最终求解时间
         result_list.append(env_data['llm_time'])  # 使用收集到的LLM时间
-        result_list.append('timeout')  # 求解状态
+        result_list.append('failed')  # 超时也标记为失败
         
         # 使用收集到的最后一组反例作为最终赋值（如果有）
         if env_data['counterexamples_list'] and len(env_data['counterexamples_list']) > 0:
@@ -982,12 +982,13 @@ def _process_worker(file_path, list1, result_dict, env_data_queue, args):
         total_execution_time = end_time - start_time
         
         # 更新结果列表，添加总执行时间、总求解时间、最终求解时间和LLM总时间
+        # 确保只添加基本类型的值，不添加字典等复杂类型
         result_list.append(total_execution_time)
         result_list.append(total_solve_time)  # 添加求解器总时间
         result_list.append(final_solve_time)  # 添加最终成功求解时间
         result_list.append(llm_total_time)    # 添加LLM总时间
         
-        # 添加求解状态
+        # 添加求解状态，只使用'succeed'或'failed'
         try:
             result_list.append('succeed' if env and env.finish else 'failed')
         except (AttributeError, TypeError):
@@ -1012,8 +1013,8 @@ def _process_worker(file_path, list1, result_dict, env_data_queue, args):
     except Exception as e:
         logger.error(f"子进程处理出错: {str(e)}")
         traceback.print_exc()
-        # 确保即使出错也返回一个结果
-        result_dict['result'] = [list1[0], list1[1], list1[2], 0, 0, 0, 0, 'error', [], [[]]]
+        # 确保即使出错也返回一个结果，使用'failed'状态
+        result_dict['result'] = [list1[0], list1[1], list1[2], 0, 0, 0, 0, 'failed', [], [[]]]
 
 def process_single_file(file_path, list1, info_dict, args):
     """
