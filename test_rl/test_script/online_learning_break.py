@@ -83,6 +83,7 @@ def online_learning(
     print_every_x_steps: Optional[int] = None,
     seed: Optional[int] = None,
     record_period: int = 1,
+    callback = None,
 ) -> Dict[str, Any]:
     """
     Performs online learning for a number of episodes.
@@ -99,6 +100,8 @@ def online_learning(
         If number_of_episodes is used, report every record_period episodes.
         If number_of_steps is used, report every record_period steps
         Episodic statistics collected within this period are averaged and then recorded.
+        callback (callable, optional): 回调函数，接收环境、当前回合数和步数作为参数，
+                                      返回布尔值表示是否继续训练。
     """
 
     assert (number_of_episodes is None and number_of_steps is not None) or (
@@ -110,6 +113,10 @@ def online_learning(
     info_period = {}
     while True:
         try:
+            if callback is not None and callable(callback):
+                if callback(env, total_episodes, total_steps):
+                    break
+                    
             if number_of_episodes is not None and total_episodes >= number_of_episodes:
                 break
             if number_of_steps is not None and total_steps >= number_of_steps:
@@ -126,6 +133,7 @@ def online_learning(
                 learn_every_k_steps=learn_every_k_steps,
                 total_steps=old_total_steps,
                 seed=seed,
+                callback=callback,
             )
             if number_of_steps is not None and episode_total_steps > record_period:
                 print(
@@ -164,6 +172,10 @@ def online_learning(
                 for key in info_period:
                     info.setdefault(key, []).append(np.mean(info_period[key]))
                 info_period = {}
+                
+            if callback is not None and callable(callback):
+                if callback(env, total_episodes, total_steps):
+                    break
         except MyException as e:
             print("Time out! Bye!")
             raise e
@@ -244,6 +256,7 @@ def run_episode(
     learn_every_k_steps: int = 1,
     total_steps: int = 0,
     seed: Optional[int] = None,
+    callback = None,
 ) -> Tuple[Dict[str, Any], int]:
     """
     Runs one episode and returns an info dict and number of steps taken.
@@ -258,6 +271,8 @@ def run_episode(
         learn_every_k_steps (int, optional): asks the agent to learn every k steps.
         total_steps (int, optional): the total number of steps taken so far. Defaults to 0.
         seed (int, optional): the seed for the environment. Defaults to None.
+        callback (callable, optional): 回调函数，接收环境、当前回合数和步数作为参数，
+                                      返回布尔值表示是否继续训练。
     Returns:
         Tuple[Dict[str, Any], int]: the return of the episode and the number of steps taken.
     """
@@ -273,6 +288,10 @@ def run_episode(
     episode_steps = 0
     num_risky_sa = 0
     while not done:
+        if callback is not None and callable(callback):
+            if callback(env, -1, episode_steps):
+                break
+                
         action = agent.act(exploit=exploit)
         action = (
             action.cpu() if isinstance(action, torch.Tensor) else action
@@ -304,6 +323,10 @@ def run_episode(
                 assert learn_every_k_steps > 0, "learn_every_k_steps must be positive"
                 if (total_steps + episode_steps) % learn_every_k_steps == 0:
                     agent.learn()
+        
+        if callback is not None and callable(callback):
+            if callback(env, -1, episode_steps):
+                break
 
     info = {"return": cum_reward}
     if num_risky_sa is not None:

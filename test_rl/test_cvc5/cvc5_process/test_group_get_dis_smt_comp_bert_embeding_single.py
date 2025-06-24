@@ -346,11 +346,55 @@ def test_group_bert_normalize_1by1_smt_name():
         with open('embeding_QF_LIA.json', 'w', encoding='utf-8') as file:
             json.dump(embeding_dict, file, ensure_ascii=False, indent=4)
 
+def convert_timeout_to_unknown(solve_dict):
+    """
+    将solve_dict中每个value的第一个值如果是'timeout'则改为'unknown'
+    
+    Args:
+        solve_dict: 原始字典
+    
+    Returns:
+        修改后的字典
+    """
+    modified_dict = {}
+    for key, value in solve_dict.items():
+        if value[0] == 'timeout':
+            # 创建新的value列表，第一个元素改为'unknown'，其他保持不变
+            new_value = ['unknown'] + value[1:]
+            modified_dict[key] = new_value
+        else:
+            modified_dict[key] = value
+    return modified_dict
+
 def test_group_get_label_and_time(file_path='result_dict_time_pre.txt',solve_path='/home/lz/PycharmProjects/Pearl/test_rl/test_cvc5/cvc5_smtimer_results_rl.json'):
     with open(file_path, 'r') as file:
         result_dict = json.load(file)
     with open(solve_path, 'r') as file:
         solve_dict = json.load(file)
+        
+    # 转换timeout为unknown
+    solve_dict = convert_timeout_to_unknown(solve_dict)
+        
+    # 创建新的字典来存储替换后的路径
+    # new_result_dict = {}
+    # for key in result_dict:
+    #     if '/home/lz/baidudisk/' in key:
+    #         new_key = key.replace('/home/lz/baidudisk/', '/home/nju/Downloads/')
+    #         new_result_dict[new_key] = result_dict[key]
+    #     else:
+    #         new_result_dict[key] = result_dict[key]
+    # result_dict = new_result_dict
+    #
+    # # 同样替换solve_dict中的路径
+    # new_solve_dict = {}
+    # for key in solve_dict:
+    #     if '/home/lz/baidudisk/' in key:
+    #         new_key = key.replace('/home/lz/baidudisk/', '/home/nju/Downloads/')
+    #         new_solve_dict[new_key] = solve_dict[key]
+    #     else:
+    #         new_solve_dict[key] = solve_dict[key]
+    # solve_dict = new_solve_dict
+
     stats = {
         'sat': {'count': 0, 'percentage': 0},
         'unsat': {'count': 0, 'percentage': 0},
@@ -440,19 +484,104 @@ def test_group_get_label_and_time(file_path='result_dict_time_pre.txt',solve_pat
     for time_key, data in stats['times'].items():
         print(f"  Time <= {time_key}: Count = {data['count']}, Percentage = {data['percentage']:.2f}%")
 
-
     labels_array = np.array(labels_list)
     time_array = np.array(time_list)
     # 保存特征和标签数组到文件
     np.save('labels.npy', labels_array)
     np.save('time.npy', time_array)
+
+def run_complete_process(info_dict_path, solve_dict_path, features_dir='features', model_save_dir='models'):
+    """
+    运行完整的数据处理和模型训练流程
+    
+    Args:
+        info_dict_path: 信息字典文件路径
+        solve_dict_path: 求解结果字典文件路径
+        features_dir: 特征文件保存目录
+        model_save_dir: 模型保存目录
+    """
+    import os
+    
+    # 创建必要的目录
+    os.makedirs(features_dir, exist_ok=True)
+    os.makedirs(model_save_dir, exist_ok=True)
+    
+    print("=== 第一步：处理数据集，生成特征和标签 ===")
+    # 处理数据并生成标签
+    test_group_get_label_and_time(info_dict_path, solve_dict_path)
+    print("特征和标签生成完成！")
+    
+    print("\n=== 第二步：训练二分类模型 ===")
+    from train_predictor import train_binary_classifier
+    binary_save_path = os.path.join(model_save_dir, 'binary_classifier.pth')
+    train_binary_classifier(
+        features_dir=features_dir,
+        labels_path='labels.npy',
+        save_path=binary_save_path
+    )
+    print(f"二分类模型已保存到：{binary_save_path}")
+    
+    print("\n=== 第三步：训练八分类模型 ===")
+    from train_predictor import train_eight_class_model
+    eight_class_save_path = os.path.join(model_save_dir, 'eight_class_model.pth')
+    train_eight_class_model(
+        features_dir=features_dir,
+        time_labels_path='time.npy',
+        save_path=eight_class_save_path
+    )
+    print(f"八分类模型已保存到：{eight_class_save_path}")
+    
+    print("\n=== 所有处理完成！===")
+    print(f"- 特征文件保存在：{features_dir}/")
+    print(f"- 标签文件：labels.npy 和 time.npy")
+    print(f"- 模型文件保存在：{model_save_dir}/")
+
 if __name__ == '__main__':
-    # test_group_bert_normalize_1by1_smt_name()
-    # smtimer 数据集使用 获取特征
-    # test_group_bert_normalize_1by1('/home/lz/constraint_solve_file/info_dict_predictor.txt')
-    #获取时间和标签
-    test_group_get_label_and_time('/home/lz/constraint_solve_file/info_dict_predictor.txt',
-                                  '/test_rl/test_cvc5/cvc5_smtimer_results_predictor.json')
+    # 示例：运行完整处理流程
+    run_complete_process(
+        info_dict_path='/home/lz/constraint_solve_file/info_dict_predictor.txt',
+        solve_dict_path='/home/lz/PycharmProjects/Pearl/test_rl/test_cvc5/cvc5_smtimer_results_predictor.json',
+        features_dir='/home/lz/PycharmProjects/Pearl/test_rl/features',
+        model_save_dir='models'
+    )
+    
+    # 或者单独运行数据处理
+    # test_group_get_label_and_time('/home/nju/constraint_solve_file/info_dict_predictor.txt',
+    #                               '/home/nju/PycharmProjects/Pearl/test_rl/test_cvc5/smtimer_710/mathsat5_smtimer_results_predictor.json')
+
+    """
+    完整执行示例：
+
+    1. 在Python代码中运行完整流程：
+    from test_group_get_dis_smt_comp_bert_embeding_single import run_complete_process
+    
+    run_complete_process(
+        info_dict_path='/path/to/info_dict_predictor.txt',
+        solve_dict_path='/path/to/mathsat5_smtimer_results_predictor.json',
+        features_dir='features',
+        model_save_dir='models'
+    )
+
+    2. 或通过命令行分步执行：
+
+    # 处理数据集，生成特征和标签：
+    python test_group_get_dis_smt_comp_bert_embeding_single.py
+
+    # 训练二分类模型：
+    python train_predictor.py --model_type binary --features_dir features/ --save_path models/binary_classifier.pth
+
+    # 训练八分类模型：
+    python train_predictor.py --model_type eight_class --features_dir features/ --save_path models/eight_class_model.pth
+
+    注意事项：
+    1. 确保数据文件路径正确
+    2. 特征文件会保存在features/目录下
+    3. 模型文件会保存在models/目录下
+    4. 执行前确保已安装所有必要的Python包：
+       - torch
+       - numpy
+       - tqdm
+    """
 
     # loaded_features = np.load('features.npy')
     # loaded_labels = np.load('labels.npy')
