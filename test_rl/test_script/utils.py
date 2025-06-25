@@ -37,9 +37,10 @@ from datetime import datetime
 import os
 
 
-def setup_logger(log_folder_name='log'):
+def setup_logger_original(log_folder_name='log'):
     """
-    设置日志记录器，日志文件将被保存在指定的文件夹中。
+    原始的日志记录器设置函数，仅输出到文件。
+    日志文件将被保存在指定的文件夹中。
     如果文件夹不存在，则创建它。
 
     参数:
@@ -65,6 +66,75 @@ def setup_logger(log_folder_name='log'):
 
     # 设置logger的文件名
     logger.add(full_log_file_path)
+
+def setup_logger(log_folder_name='log'):
+    """
+    设置日志记录器，日志文件将被保存在指定的文件夹中。
+    如果文件夹不存在，则创建它。
+    支持多进程安全的日志记录。
+
+    参数:
+    log_folder_name (str): 存放日志文件的文件夹名称，默认为 'log'。
+    """
+    import sys
+    from loguru import logger
+    
+    # 移除所有现有的处理程序
+    logger.remove()
+    
+    # 获取调用此函数的文件名
+    frame = inspect.stack()[1]
+    calling_file = os.path.splitext(os.path.basename(frame.filename))[0]
+
+    # 获取当前时间，格式化为字符串
+    current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+    # 拼接日志文件名
+    log_file_name = f"{calling_file}_{current_time}.log"
+
+    # 检查是否存在指定的文件夹
+    if not os.path.exists(log_folder_name):
+        # 如果文件夹不存在，则创建
+        os.makedirs(log_folder_name)
+
+    # 设置完整的日志文件路径
+    full_log_file_path = os.path.join(log_folder_name, log_file_name)
+
+    # 定义日志格式
+    # log_format = "{time:YYYY-MM-DD HH:mm:ss} | {process} | {level} | {name}:{function}:{line} | {message}"
+
+    try:
+        # 添加文件处理程序，确保多进程安全
+        logger.add(
+            full_log_file_path,
+            # format=log_format,
+            level="INFO",
+            # rotation="100 MB",
+            enqueue=True,  # 启用进程安全的队列
+            backtrace=True,
+            diagnose=True,
+            encoding='utf-8',
+            mode='a',  # 追加模式
+            serialize=True,  # 序列化记录以确保多进程安全
+        )
+        
+        # 添加控制台处理程序
+        logger.add(
+            sys.stdout,
+            # format=log_format,
+            level="INFO",
+            enqueue=True,  # 启用进程安全的队列
+            backtrace=True,
+            diagnose=True,
+        )
+        
+        logger.info(f"日志记录器初始化成功: {full_log_file_path}")
+    except Exception as e:
+        print(f"设置日志记录器时出错: {str(e)}")
+        raise
+
+    return logger
+
 def preprocess_list(value_list):
     # Replace NaN values with None
     processed_list = []
@@ -843,7 +913,7 @@ class ASTBuilder(IdentityDagWalker):
             key = self._get_key(s, **kwargs)
             if key not in self.memoization:
                 self.stack.append((False, s))
-            # 一个约束只判断一次
+        # # 一个约束只判断一次
         # # 一个约束只判断一次  去掉这部分内容
         # if len(formula.args()) == 2:
         #     left, right = formula.arg(0), formula.arg(1)
@@ -1080,7 +1150,9 @@ def normalize_smt_str_without_replace(smtlib_str):
 class MyException(Exception):
     def __init__(self, value):
         self.value = value
-        # current_process = ctypes.windll.kernel32.GetCurrentProcess()
-        # ctypes.windll.kernel32.TerminateProcess(current_process, -1)
+        # 确保在抛出异常时也记录日志
+        logger.error(f"MyException: {value}")
+
 def timeout_handler(signum, frame):
+    logger.warning("操作超时")
     raise MyException("Timeout!")
