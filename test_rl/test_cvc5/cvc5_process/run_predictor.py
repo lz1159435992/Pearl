@@ -180,25 +180,21 @@ class ConstraintSimplificationEnv_test(Environment):
     def handle_satisfiable(self, solver_result, time_out, reward, performance):
         reward += int(1 / time_out * 500 * 1000)
         performance += 1
-        self.total_solve_time += solver_result.solve_time
         # 记录日志
-        logger.info(f"求解结果: sat, 本次求解耗时: {solver_result.solve_time:.3f}秒，当前累计求解时间: {self.total_solve_time:.3f}秒")
+        logger.info(f"求解结果: sat, 本次求解耗时: {solver_result.solve_time:.3f}秒")
         return reward, performance, True
         
     def handle_unknown(self, solver_result, time_out, reward, performance):
         reward += -int(time_out / 10000) / 2
-        self.total_solve_time += solver_result.solve_time
         # 记录日志
-        logger.info(f"求解结果: unknown, 本次求解耗时: {solver_result.solve_time:.3f}秒，当前累计求解时间: {self.total_solve_time:.3f}秒")
+        logger.info(f"求解结果: unknown, 本次求解耗时: {solver_result.solve_time:.3f}秒")
         return reward, performance, False
         
     def handle_unsatisfiable(self, time_out, reward, performance, solver_result=None):
         reward += -int(time_out / 10000)
-        # 对于不可满足的情况也累计求解时间
+        # 记录日志
         if solver_result is not None:
-            self.total_solve_time += solver_result.solve_time
-            # 记录日志
-            logger.info(f"求解结果: unsat, 本次求解耗时: {solver_result.solve_time:.3f}秒，当前累计求解时间: {self.total_solve_time:.3f}秒")
+            logger.info(f"求解结果: unsat, 本次求解耗时: {solver_result.solve_time:.3f}秒")
         return reward, performance, False
 
     def process_text_python(self, text, variable_pred):
@@ -723,7 +719,8 @@ def process_single_file_with_timeout(file_path, list1, info_dict, args):
         'total_solve_time': 0,
         'final_solve_time': 0,
         'llm_time': 0,
-        'counterexamples_list': [[]]
+        'counterexamples_list': [[]],
+        'start_time': time.time()  # 添加开始时间
     }
     
     # 每1秒检查一次环境数据队列，获取最新数据
@@ -733,17 +730,26 @@ def process_single_file_with_timeout(file_path, list1, info_dict, args):
         if not p.is_alive():
             break
         
+        current_time = time.time()
+        elapsed = current_time - env_data['start_time']
+        
         # 不阻塞地检查队列
         try:
             while not env_data_queue.empty():
                 new_env_data = env_data_queue.get_nowait()
+                # 保持开始时间不变
+                start_time = env_data['start_time']
                 env_data.update(new_env_data)
-                logger.info(f"收到环境数据更新: LLM时间={env_data['llm_time']:.3f}秒, 反例数量={len(env_data['counterexamples_list'])}")
+                env_data['start_time'] = start_time
+                logger.info(f"收到环境数据更新: 总求解时间={env_data['total_solve_time']:.3f}秒, "
+                          f"最终求解时间={env_data['final_solve_time']:.3f}秒, "
+                          f"LLM时间={env_data['llm_time']:.3f}秒, "
+                          f"反例数量={len(env_data['counterexamples_list'])}, "
+                          f"已执行时间={elapsed:.3f}秒")
         except Exception as e:
             logger.warning(f"获取环境数据时出错: {str(e)}")
         
         time.sleep(check_interval)
-        elapsed += check_interval
     
     # 检查进程是否仍在运行
     if p.is_alive():
@@ -820,12 +826,14 @@ def _process_worker(file_path, list1, result_dict, env_data_queue, args):
         args: 命令行参数
     """
     try:
+        # 在子进程中重新初始化日志记录器
+        setup_logger()
+        
         logger.info(f'子进程开始处理: {file_path}')
         
         # 设置子进程的设备
         if torch.cuda.is_available():
-            # 在子进程中重新设置CUDA设备
-            torch.cuda.set_device(0)  # 使用第一个GPU
+            torch.cuda.set_device(0)
             logger.info(f"子进程使用CUDA设备: {torch.cuda.get_device_name(0)}")
         else:
             logger.info("子进程使用CPU")
@@ -1098,7 +1106,7 @@ def main():
                         default='/home/lz/sibyl_3/src/networks/info_dict_rl.txt',
                         help='RL字典文件路径')
     parser.add_argument('--info_dict_path', type=str, 
-                        default='info_dict_SMTimer_llama3.1:70b_1200s_info_dict_rl_cvc5.txt',
+                        default='info_dict_SMTimer_llama3.1:70b_1200s_info_dict_rl_cvc5_0626.txt',
                         help='信息字典文件路径')
     parser.add_argument('--result_dict_path', type=str, 
                         default='/home/lz/PycharmProjects/Pearl/test_rl/test_cvc5/cvc5_smtimer_results_rl.json',
