@@ -609,11 +609,15 @@ def run_predictor(args):
     """
     运行预测器的主函数
     """
-    setup_logger()
+    # 初始化主进程的日志记录器，获取batch_id
+    logger, batch_id = setup_logger()
     logger.info("=" * 80)
     logger.info(f"SMT约束求解预测器启动 - {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     logger.info(f"使用求解器: {args.solver}, LLM模型: {args.llm_model}, LLM服务器: {args.llm_host}")
     logger.info("=" * 80)
+
+    # 将batch_id添加到args中，以便传递给子进程
+    args.batch_id = batch_id
 
     # 加载RL字典
     with open(args.rl_dict_path, 'r') as file:
@@ -823,17 +827,10 @@ def process_single_file_with_timeout(file_path, list1, info_dict, args):
 def _process_worker(file_path, list1, result_dict, env_data_queue, args):
     """
     实际处理文件的工作函数，在子进程中运行
-    
-    Args:
-        file_path: SMT文件路径
-        list1: 结果列表
-        result_dict: 共享结果字典
-        env_data_queue: 共享队列，用于传递环境数据
-        args: 命令行参数
     """
     try:
-        # 在子进程中重新初始化日志记录器
-        setup_logger()
+        # 在子进程中重新初始化日志记录器，使用相同的batch_id
+        logger, _ = setup_logger(batch_id=args.batch_id)
         
         logger.info(f'子进程开始处理: {file_path}')
         

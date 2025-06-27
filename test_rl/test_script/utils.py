@@ -67,7 +67,7 @@ def setup_logger_original(log_folder_name='log'):
     # 设置logger的文件名
     logger.add(full_log_file_path)
 
-def setup_logger(log_folder_name='log'):
+def setup_logger(log_folder_name='log', batch_id=None):
     """
     设置日志记录器，日志文件将被保存在指定的文件夹中。
     如果文件夹不存在，则创建它。
@@ -77,6 +77,7 @@ def setup_logger(log_folder_name='log'):
 
     参数:
     log_folder_name (str): 存放日志文件的文件夹名称，默认为 'log'。
+    batch_id (str): 可选的批次ID，如果提供则使用该ID，否则创建新的。
     """
     import sys
     from loguru import logger
@@ -88,8 +89,9 @@ def setup_logger(log_folder_name='log'):
     frame = inspect.stack()[1]
     calling_file = os.path.splitext(os.path.basename(frame.filename))[0]
 
-    # 获取当前时间，格式化为字符串（作为执行批次ID）
-    batch_id = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    # 如果没有提供batch_id，则创建新的
+    if batch_id is None:
+        batch_id = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     
     # 创建该批次的日志子文件夹
     batch_log_folder = os.path.join(log_folder_name, f"run_{batch_id}")
@@ -125,7 +127,7 @@ def setup_logger(log_folder_name='log'):
         )
         
         logger.info(f"日志记录器初始化成功")
-        logger.info(f"本次执行的日志文件将保存在: {batch_log_folder}")
+        logger.info(f"日志文件将保存在: {batch_log_folder}")
         logger.info(f"日志文件将在达到100MB时自动轮转，所有日志文件都会被保留")
 
         # 为了方便查找最新的日志，创建或更新一个符号链接
@@ -141,7 +143,7 @@ def setup_logger(log_folder_name='log'):
         print(f"设置日志记录器时出错: {str(e)}")
         raise
 
-    return logger
+    return logger, batch_id
 
 def preprocess_list(value_list):
     # Replace NaN values with None
