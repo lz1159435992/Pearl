@@ -646,7 +646,13 @@ def run_predictor(args):
     logger.info(f"总共需要处理 {total_files} 个文件")
     logger.info("=" * 80)
     
-    for key, value in result_dict.items():
+    # 创建键的列表并随机打乱顺序
+    result_dict_keys = list(result_dict.keys())
+    random.shuffle(result_dict_keys)
+    
+    # 使用打乱后的键列表来遍历字典
+    for key in result_dict_keys:
+        value = result_dict[key]
         list1 = value
         if list1[0] in ["sat", "unknown"] and list1[1] > args.time_threshold and key in rl_dict.keys() and key not in info_dict.keys():
             file_count += 1

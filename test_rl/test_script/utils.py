@@ -72,6 +72,8 @@ def setup_logger(log_folder_name='log'):
     设置日志记录器，日志文件将被保存在指定的文件夹中。
     如果文件夹不存在，则创建它。
     支持多进程安全的日志记录。
+    每个日志文件达到100MB时会自动轮转。
+    同一次执行过程中的所有日志文件会被保存在以时间戳命名的子文件夹中。
 
     参数:
     log_folder_name (str): 存放日志文件的文件夹名称，默认为 'log'。
@@ -86,49 +88,55 @@ def setup_logger(log_folder_name='log'):
     frame = inspect.stack()[1]
     calling_file = os.path.splitext(os.path.basename(frame.filename))[0]
 
-    # 获取当前时间，格式化为字符串
-    current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    # 获取当前时间，格式化为字符串（作为执行批次ID）
+    batch_id = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    
+    # 创建该批次的日志子文件夹
+    batch_log_folder = os.path.join(log_folder_name, f"run_{batch_id}")
+    if not os.path.exists(batch_log_folder):
+        os.makedirs(batch_log_folder)
 
-    # 拼接日志文件名
-    log_file_name = f"{calling_file}_{current_time}.log"
-
-    # 检查是否存在指定的文件夹
-    if not os.path.exists(log_folder_name):
-        # 如果文件夹不存在，则创建
-        os.makedirs(log_folder_name)
-
-    # 设置完整的日志文件路径
-    full_log_file_path = os.path.join(log_folder_name, log_file_name)
-
-    # 定义日志格式
-    # log_format = "{time:YYYY-MM-DD HH:mm:ss} | {process} | {level} | {name}:{function}:{line} | {message}"
+    # 设置日志文件路径模式，包含序号占位符
+    log_file_pattern = os.path.join(batch_log_folder, f"{calling_file}.log")
 
     try:
-        # 添加文件处理程序，确保多进程安全
+        # 添加文件处理程序，确保多进程安全，并设置轮转
         logger.add(
-            full_log_file_path,
-            # format=log_format,
+            log_file_pattern,
             level="INFO",
-            # rotation="100 MB",
-            enqueue=True,  # 启用进程安全的队列
+            rotation="100 MB",  # 每100MB轮转一次
+            retention=None,     # 不删除任何日志文件
+            compression="zip",  # 压缩旧的日志文件
+            enqueue=True,      # 启用进程安全的队列
             backtrace=True,
             diagnose=True,
             encoding='utf-8',
-            mode='a',  # 追加模式
-            serialize=True,  # 序列化记录以确保多进程安全
+            mode='a',          # 追加模式
+            serialize=True,    # 序列化记录以确保多进程安全
         )
         
         # 添加控制台处理程序
         logger.add(
             sys.stdout,
-            # format=log_format,
             level="INFO",
-            enqueue=True,  # 启用进程安全的队列
+            enqueue=True,      # 启用进程安全的队列
             backtrace=True,
             diagnose=True,
         )
         
-        logger.info(f"日志记录器初始化成功: {full_log_file_path}")
+        logger.info(f"日志记录器初始化成功")
+        logger.info(f"本次执行的日志文件将保存在: {batch_log_folder}")
+        logger.info(f"日志文件将在达到100MB时自动轮转，所有日志文件都会被保留")
+
+        # 为了方便查找最新的日志，创建或更新一个符号链接
+        latest_link = os.path.join(log_folder_name, "latest")
+        try:
+            if os.path.exists(latest_link):
+                os.unlink(latest_link)
+            os.symlink(batch_log_folder, latest_link)
+        except Exception as e:
+            logger.warning(f"创建符号链接失败: {str(e)}")
+
     except Exception as e:
         print(f"设置日志记录器时出错: {str(e)}")
         raise
