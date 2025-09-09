@@ -1,0 +1,82 @@
+2025-05-03 23:08:43.732 | INFO     | __main__:train:57 - Epoch 1/400, Loss: 2.744475461187817
+2025-05-03 23:08:44.024 | INFO     | __main__:validate:108 - Validation Loss: 1.5747503004968166, Accuracy: 0.5196615231458437
+2025-05-03 23:08:45.639 | INFO     | __main__:train:57 - Epoch 2/400, Loss: 1.680870342822302
+2025-05-03 23:08:45.837 | INFO     | __main__:validate:108 - Validation Loss: 1.4199631810188293, Accuracy: 0.5251368840219014
+2025-05-03 23:08:48.044 | INFO     | __main__:train:57 - Epoch 3/400, Loss: 1.5951477005368186
+2025-05-03 23:08:48.201 | INFO     | __main__:validate:108 - Validation Loss: 1.4463939666748047, Accuracy: 0.5579890492782479
+2025-05-03 23:08:49.597 | INFO     | __main__:train:57 - Epoch 4/400, Loss: 1.5141758653852675
+2025-05-03 23:08:49.780 | INFO     | __main__:validate:108 - Validation Loss: 1.42391037940979, Accuracy: 0.5345943255350921
+2025-05-03 23:08:51.434 | INFO     | __main__:train:57 - Epoch 5/400, Loss: 1.5327242215474446
+2025-05-03 23:08:51.547 | INFO     | __main__:validate:108 - Validation Loss: 1.6270853728055954, Accuracy: 0.5744151319064211
+2025-05-03 23:08:52.953 | INFO     | __main__:train:57 - Epoch 6/400, Loss: 1.408001248798673
+2025-05-03 23:08:53.110 | INFO     | __main__:validate:108 - Validation Loss: 1.4647196996957064, Accuracy: 0.566948730711797
+2025-05-03 23:08:54.362 | INFO     | __main__:train:57 - Epoch 7/400, Loss: 1.632474659454255
+2025-05-03 23:08:54.503 | INFO     | __main__:validate:108 - Validation Loss: 1.5975261889398098, Accuracy: 0.5221503235440518
+2025-05-03 23:08:56.053 | INFO     | __main__:train:57 - Epoch 8/400, Loss: 1.5865827822496021
+2025-05-03 23:08:56.245 | INFO     | __main__:validate:108 - Validation Loss: 1.9144549332559109, Accuracy: 0.47336983573917374
+2025-05-03 23:08:57.522 | INFO     | __main__:train:57 - Epoch 9/400, Loss: 1.0830388499630823
+2025-05-03 23:08:57.701 | INFO     | __main__:validate:108 - Validation Loss: 1.1852259915322065, Accuracy: 0.5853658536585366
+2025-05-03 23:08:59.700 | INFO     | __main__:train:57 - Epoch 10/400, Loss: 1.0280494510181366
+2025-05-03 23:08:59.888 | INFO     | __main__:validate:108 - Validation Loss: 1.164335886016488, Accuracy: 0.5893479342956695
+2025-05-03 23:09:01.146 | INFO     | __main__:train:57 - Epoch 11/400, Loss: 1.0171632913369981
+2025-05-03 23:09:01.226 | INFO     | __main__:validate:108 - Validation Loss: 1.1821518428623676, Accuracy: 0.5808860129417621
+2025-05-03 23:09:02.391 | INFO     | __main__:train:57 - Epoch 12/400, Loss: 1.0218473365382543
+2025-05-03 23:09:02.466 | INFO     | __main__:validate:108 - Validation Loss: 1.1737300902605057, Accuracy: 0.5793927327028372
+2025-05-03 23:09:03.814 | INFO     | __main__:train:57 - Epoch 13/400, Loss: 1.0098757209285858
+2025-05-03 23:09:03.959 | INFO     | __main__:validate:108 - Validation Loss: 1.1655254755169153, Accuracy: 0.5749128919860628
+2025-05-03 23:09:05.197 | INFO     | __main__:train:57 - Epoch 14/400, Loss: 1.0071312752034929
+2025-05-03 23:09:05.315 | INFO     | __main__:validate:108 - Validation Loss: 1.1696809884160757, Accuracy: 0.569437531110005
+2025-05-03 23:09:06.693 | INFO     | __main__:train:57 - Epoch 15/400, Loss: 1.0092416136037736
+2025-05-03 23:09:06.819 | INFO     | __main__:validate:108 - Validation Loss: 1.1731191333383322, Accuracy: 0.5808860129417621
+2025-05-03 23:09:08.018 | INFO     | __main__:train:57 - Epoch 16/400, Loss: 1.0013498867314958
+2025-05-03 23:09:08.190 | INFO     | __main__:validate:108 - Validation Loss: 1.1602019742131233, Accuracy: 0.5739173718267795
+2025-05-03 23:09:10.066 | INFO     | __main__:train:57 - Epoch 17/400, Loss: 0.9957667016793811
+2025-05-03 23:09:10.219 | INFO     | __main__:validate:108 - Validation Loss: 1.1750712413340807, Accuracy: 0.5868591338974615
+2025-05-03 23:09:11.465 | INFO     | __main__:train:57 - Epoch 18/400, Loss: 1.002588041718044
+2025-05-03 23:09:11.537 | INFO     | __main__:validate:108 - Validation Loss: 1.1667216140776873, Accuracy: 0.5903434544549527
+2025-05-03 23:09:12.432 | INFO     | __main__:train:57 - Epoch 19/400, Loss: 1.0021137817511483
+2025-05-03 23:09:12.581 | INFO     | __main__:validate:108 - Validation Loss: 1.168887484818697, Accuracy: 0.5933300149328024
+2025-05-03 23:09:13.832 | INFO     | __main__:train:57 - Epoch 20/400, Loss: 0.9897340536117554
+2025-05-03 23:09:14.020 | INFO     | __main__:validate:108 - Validation Loss: 1.130844909697771, Accuracy: 0.5988053758088602
+2025-05-03 23:09:15.903 | INFO     | __main__:train:57 - Epoch 21/400, Loss: 0.9801838043190184
+2025-05-03 23:09:16.106 | INFO     | __main__:validate:108 - Validation Loss: 1.1330671813338995, Accuracy: 0.5993031358885017
+2025-05-03 23:09:17.246 | INFO     | __main__:train:57 - Epoch 22/400, Loss: 0.978565585991693
+2025-05-03 23:09:17.361 | INFO     | __main__:validate:108 - Validation Loss: 1.2030824329704046, Accuracy: 0.5699352911896466
+2025-05-03 23:09:18.664 | INFO     | __main__:train:57 - Epoch 23/400, Loss: 0.9882596981903863
+2025-05-03 23:09:18.773 | INFO     | __main__:validate:108 - Validation Loss: 1.1347784288227558, Accuracy: 0.5993031358885017
+2025-05-03 23:09:19.989 | INFO     | __main__:train:57 - Epoch 24/400, Loss: 0.9744852365009369
+2025-05-03 23:09:20.082 | INFO     | __main__:validate:108 - Validation Loss: 1.1380368638783693, Accuracy: 0.5973120955699353
+2025-05-03 23:09:21.437 | INFO     | __main__:train:57 - Epoch 25/400, Loss: 0.9824273922140636
+2025-05-03 23:09:21.598 | INFO     | __main__:validate:108 - Validation Loss: 1.2016061712056398, Accuracy: 0.5983076157292185
+2025-05-03 23:09:22.863 | INFO     | __main__:train:57 - Epoch 26/400, Loss: 0.9725030783622984
+2025-05-03 23:09:22.974 | INFO     | __main__:validate:108 - Validation Loss: 1.1613388806581497, Accuracy: 0.5978098556495769
+2025-05-03 23:09:23.988 | INFO     | __main__:train:57 - Epoch 27/400, Loss: 0.9278689622879028
+2025-05-03 23:09:24.164 | INFO     | __main__:validate:108 - Validation Loss: 1.1083769425749779, Accuracy: 0.6007964161274266
+2025-05-03 23:09:26.081 | INFO     | __main__:train:57 - Epoch 28/400, Loss: 0.9168296328612736
+2025-05-03 23:09:26.254 | INFO     | __main__:validate:108 - Validation Loss: 1.100214732810855, Accuracy: 0.5998008959681433
+2025-05-03 23:09:27.688 | INFO     | __main__:train:57 - Epoch 29/400, Loss: 0.9157215101378304
+2025-05-03 23:09:27.845 | INFO     | __main__:validate:108 - Validation Loss: 1.0992205683141947, Accuracy: 0.5978098556495769
+2025-05-03 23:09:29.483 | INFO     | __main__:train:57 - Epoch 30/400, Loss: 0.9112771134527903
+2025-05-03 23:09:29.652 | INFO     | __main__:validate:108 - Validation Loss: 1.1135157998651266, Accuracy: 0.6017919362867098
+2025-05-03 23:09:31.138 | INFO     | __main__:train:57 - Epoch 31/400, Loss: 0.908630633164966
+2025-05-03 23:09:31.222 | INFO     | __main__:validate:108 - Validation Loss: 1.0933258906006813, Accuracy: 0.6017919362867098
+2025-05-03 23:09:33.038 | INFO     | __main__:train:57 - Epoch 32/400, Loss: 0.908217320839564
+2025-05-03 23:09:33.221 | INFO     | __main__:validate:108 - Validation Loss: 1.1025749649852514, Accuracy: 0.6037829766052762
+2025-05-03 23:09:34.573 | INFO     | __main__:train:57 - Epoch 33/400, Loss: 0.9064421913926564
+2025-05-03 23:09:34.699 | INFO     | __main__:validate:108 - Validation Loss: 1.104459224268794, Accuracy: 0.605276256844201
+2025-05-03 23:09:36.319 | INFO     | __main__:train:57 - Epoch 34/400, Loss: 0.9048389489688571
+2025-05-03 23:09:36.416 | INFO     | __main__:validate:108 - Validation Loss: 1.1012554466724396, Accuracy: 0.6022896963663514
+2025-05-03 23:09:37.284 | INFO     | __main__:train:57 - Epoch 35/400, Loss: 0.9040815787655967
+2025-05-03 23:09:37.356 | INFO     | __main__:validate:108 - Validation Loss: 1.0985834654420614, Accuracy: 0.6022896963663514
+2025-05-03 23:09:38.806 | INFO     | __main__:train:57 - Epoch 36/400, Loss: 0.9038887714582776
+2025-05-03 23:09:39.000 | INFO     | __main__:validate:108 - Validation Loss: 1.1018950659781694, Accuracy: 0.6032852165256346
+2025-05-03 23:09:40.063 | INFO     | __main__:train:57 - Epoch 37/400, Loss: 0.899017240792986
+2025-05-03 23:09:40.177 | INFO     | __main__:validate:108 - Validation Loss: 1.1048322785645723, Accuracy: 0.6012941762070682
+2025-05-03 23:09:41.205 | INFO     | __main__:train:57 - Epoch 38/400, Loss: 0.8939091695679559
+2025-05-03 23:09:41.303 | INFO     | __main__:validate:108 - Validation Loss: 1.0989142935723066, Accuracy: 0.6042807366849179
+2025-05-03 23:09:42.766 | INFO     | __main__:train:57 - Epoch 39/400, Loss: 0.8895782284320347
+2025-05-03 23:09:42.921 | INFO     | __main__:validate:108 - Validation Loss: 1.096570234745741, Accuracy: 0.6022896963663514
+2025-05-03 23:09:44.153 | INFO     | __main__:train:57 - Epoch 40/400, Loss: 0.8899539340110052
+2025-05-03 23:09:44.251 | INFO     | __main__:validate:108 - Validation Loss: 1.0968648977577686, Accuracy: 0.6022896963663514
+2025-05-03 23:09:45.453 | INFO     | __main__:train:57 - Epoch 41/400, Loss: 0.8941171396346319
+2025-05-03 23:09:45.567 | INFO     | __main__:validate:108 - Validation Loss: 1.0977332089096308, Accuracy: 0.6027874564459931

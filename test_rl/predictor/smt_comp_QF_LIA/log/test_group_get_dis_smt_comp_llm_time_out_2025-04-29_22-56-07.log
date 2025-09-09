@@ -1,0 +1,4 @@
+2025-04-29 22:56:12.926 | INFO     | __main__:test_group_bert_normalize_1by1_smt_name_2:987 - 开始处理文件:/home/lz/Downloads/non-incremental_Hierarchy/non-incremental/QF_NIA/20170427-VeryMax/ITS/16358312/From_T2__slayer-4-filtered.t2__p22536_terminationG_0.smt2
+2025-04-29 22:56:12.927 | INFO     | __main__:test_group_bert_normalize_1by1_smt_name_2:999 - 开始归一化约束文件1745938572.927096
+2025-04-29 22:56:23.095 | INFO     | __main__:test_group_bert_normalize_1by1_smt_name_2:1010 - 结束归一化约束文件10.168197393417358
+2025-04-29 22:56:23.095 | INFO     | __main__:test_group_bert_normalize_1by1_smt_name_2:1018 - 开始embedding1745938583.0959034

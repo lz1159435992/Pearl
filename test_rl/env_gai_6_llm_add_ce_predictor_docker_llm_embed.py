@@ -276,9 +276,9 @@ class ConstraintSimplificationEnv_test(Environment):
             while index > 0 and is_number(responses[index]) == False:
                 index -= 1
             selected_int = responses[index]
-            # with open('example.txt', 'a', encoding='utf-8') as file:
-            #     # 将字符串写入文件
-            #     file.write(ce_json +'\n' + self.smtlib_str + '\n' + selected_int + '\n')
+            with open('example.txt', 'a', encoding='utf-8') as file:
+                # 将字符串写入文件
+                file.write(ce_json +'\n' + self.smtlib_str + '\n' + selected_int + '\n')
 
             print('llm挑选的具体值')
             print(selected_int)

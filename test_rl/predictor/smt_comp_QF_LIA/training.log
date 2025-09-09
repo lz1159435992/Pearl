@@ -1,0 +1,1003 @@
+2025-05-03 23:31:38.093 | INFO     | __main__:train:84 - Using device: cuda
+2025-05-03 23:31:47.799 | INFO     | __main__:train:143 - Epoch [1/100], Loss: 0.854713487956259
+2025-05-03 23:31:48.025 | INFO     | __main__:train:159 - Test Accuracy: 72.42%
+2025-05-03 23:31:49.613 | INFO     | __main__:train:143 - Epoch [2/100], Loss: 0.5241831900581481
+2025-05-03 23:31:49.703 | INFO     | __main__:train:159 - Test Accuracy: 77.55%
+2025-05-03 23:31:51.358 | INFO     | __main__:train:143 - Epoch [3/100], Loss: 0.4967271957605604
+2025-05-03 23:31:51.438 | INFO     | __main__:train:159 - Test Accuracy: 74.46%
+2025-05-03 23:31:53.266 | INFO     | __main__:train:143 - Epoch [4/100], Loss: 0.4630125328188851
+2025-05-03 23:31:53.415 | INFO     | __main__:train:159 - Test Accuracy: 76.90%
+2025-05-03 23:31:55.735 | INFO     | __main__:train:143 - Epoch [5/100], Loss: 0.44543457882744925
+2025-05-03 23:31:55.810 | INFO     | __main__:train:159 - Test Accuracy: 79.99%
+2025-05-03 23:31:57.913 | INFO     | __main__:train:143 - Epoch [6/100], Loss: 0.43014631881600335
+2025-05-03 23:31:57.985 | INFO     | __main__:train:159 - Test Accuracy: 81.53%
+2025-05-03 23:31:59.577 | INFO     | __main__:train:143 - Epoch [7/100], Loss: 0.4301856268966009
+2025-05-03 23:31:59.708 | INFO     | __main__:train:159 - Test Accuracy: 82.03%
+2025-05-03 23:32:01.346 | INFO     | __main__:train:143 - Epoch [8/100], Loss: 0.4357023210752578
+2025-05-03 23:32:01.493 | INFO     | __main__:train:159 - Test Accuracy: 80.44%
+2025-05-03 23:32:02.946 | INFO     | __main__:train:143 - Epoch [9/100], Loss: 0.41421257077701507
+2025-05-03 23:32:03.093 | INFO     | __main__:train:159 - Test Accuracy: 80.69%
+2025-05-03 23:32:04.587 | INFO     | __main__:train:143 - Epoch [10/100], Loss: 0.4045958338039262
+2025-05-03 23:32:04.688 | INFO     | __main__:train:159 - Test Accuracy: 82.38%
+2025-05-03 23:32:06.457 | INFO     | __main__:train:143 - Epoch [11/100], Loss: 0.3984080297606332
+2025-05-03 23:32:06.527 | INFO     | __main__:train:159 - Test Accuracy: 80.19%
+2025-05-03 23:32:08.355 | INFO     | __main__:train:143 - Epoch [12/100], Loss: 0.39130691356129116
+2025-05-03 23:32:08.505 | INFO     | __main__:train:159 - Test Accuracy: 82.88%
+2025-05-03 23:32:10.047 | INFO     | __main__:train:143 - Epoch [13/100], Loss: 0.38619604612153674
+2025-05-03 23:32:10.125 | INFO     | __main__:train:159 - Test Accuracy: 82.43%
+2025-05-03 23:32:12.084 | INFO     | __main__:train:143 - Epoch [14/100], Loss: 0.3950369961204983
+2025-05-03 23:32:12.178 | INFO     | __main__:train:159 - Test Accuracy: 81.09%
+2025-05-03 23:32:13.560 | INFO     | __main__:train:143 - Epoch [15/100], Loss: 0.37786422906413913
+2025-05-03 23:32:13.665 | INFO     | __main__:train:159 - Test Accuracy: 79.59%
+2025-05-03 23:32:15.207 | INFO     | __main__:train:143 - Epoch [16/100], Loss: 0.3967604991935548
+2025-05-03 23:32:15.378 | INFO     | __main__:train:159 - Test Accuracy: 81.68%
+2025-05-03 23:32:17.351 | INFO     | __main__:train:143 - Epoch [17/100], Loss: 0.3819773393490958
+2025-05-03 23:32:17.482 | INFO     | __main__:train:159 - Test Accuracy: 82.33%
+2025-05-03 23:32:19.156 | INFO     | __main__:train:143 - Epoch [18/100], Loss: 0.3792303774564985
+2025-05-03 23:32:19.233 | INFO     | __main__:train:159 - Test Accuracy: 81.93%
+2025-05-03 23:32:20.667 | INFO     | __main__:train:143 - Epoch [19/100], Loss: 0.3661651122901175
+2025-05-03 23:32:20.856 | INFO     | __main__:train:159 - Test Accuracy: 82.73%
+2025-05-03 23:32:22.784 | INFO     | __main__:train:143 - Epoch [20/100], Loss: 0.3649757189883126
+2025-05-03 23:32:22.902 | INFO     | __main__:train:159 - Test Accuracy: 77.70%
+2025-05-03 23:32:24.632 | INFO     | __main__:train:143 - Epoch [21/100], Loss: 0.36666615319157403
+2025-05-03 23:32:24.698 | INFO     | __main__:train:159 - Test Accuracy: 82.33%
+2025-05-03 23:32:26.424 | INFO     | __main__:train:143 - Epoch [22/100], Loss: 0.38270794020758736
+2025-05-03 23:32:26.599 | INFO     | __main__:train:159 - Test Accuracy: 82.03%
+2025-05-03 23:32:28.091 | INFO     | __main__:train:143 - Epoch [23/100], Loss: 0.37147397441523416
+2025-05-03 23:32:28.213 | INFO     | __main__:train:159 - Test Accuracy: 72.87%
+2025-05-03 23:32:29.762 | INFO     | __main__:train:143 - Epoch [24/100], Loss: 0.3717834793386005
+2025-05-03 23:32:29.898 | INFO     | __main__:train:159 - Test Accuracy: 82.43%
+2025-05-03 23:32:31.658 | INFO     | __main__:train:143 - Epoch [25/100], Loss: 0.3612122561723467
+2025-05-03 23:32:31.727 | INFO     | __main__:train:159 - Test Accuracy: 83.13%
+2025-05-03 23:32:33.225 | INFO     | __main__:train:143 - Epoch [26/100], Loss: 0.3600456015694709
+2025-05-03 23:32:33.299 | INFO     | __main__:train:159 - Test Accuracy: 82.83%
+2025-05-03 23:32:34.725 | INFO     | __main__:train:143 - Epoch [27/100], Loss: 0.35166323882719824
+2025-05-03 23:32:34.783 | INFO     | __main__:train:159 - Test Accuracy: 81.58%
+2025-05-03 23:32:37.559 | INFO     | __main__:train:143 - Epoch [28/100], Loss: 0.36978118074318717
+2025-05-03 23:32:37.682 | INFO     | __main__:train:159 - Test Accuracy: 82.98%
+2025-05-03 23:32:39.570 | INFO     | __main__:train:143 - Epoch [29/100], Loss: 0.36089162954262327
+2025-05-03 23:32:39.747 | INFO     | __main__:train:159 - Test Accuracy: 83.18%
+2025-05-03 23:32:41.716 | INFO     | __main__:train:143 - Epoch [30/100], Loss: 0.35010039688102784
+2025-05-03 23:32:41.893 | INFO     | __main__:train:159 - Test Accuracy: 83.08%
+2025-05-03 23:32:43.924 | INFO     | __main__:train:143 - Epoch [31/100], Loss: 0.35415069806197336
+2025-05-03 23:32:44.001 | INFO     | __main__:train:159 - Test Accuracy: 79.89%
+2025-05-03 23:32:45.133 | INFO     | __main__:train:143 - Epoch [32/100], Loss: 0.35427529814224396
+2025-05-03 23:32:45.280 | INFO     | __main__:train:159 - Test Accuracy: 82.18%
+2025-05-03 23:32:46.867 | INFO     | __main__:train:143 - Epoch [33/100], Loss: 0.3498341628010311
+2025-05-03 23:32:47.030 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-03 23:32:48.514 | INFO     | __main__:train:143 - Epoch [34/100], Loss: 0.34853906953145586
+2025-05-03 23:32:48.589 | INFO     | __main__:train:159 - Test Accuracy: 83.08%
+2025-05-03 23:32:49.959 | INFO     | __main__:train:143 - Epoch [35/100], Loss: 0.34461319056295214
+2025-05-03 23:32:50.034 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-03 23:32:51.486 | INFO     | __main__:train:143 - Epoch [36/100], Loss: 0.33756566887337064
+2025-05-03 23:32:51.570 | INFO     | __main__:train:159 - Test Accuracy: 83.52%
+2025-05-03 23:32:53.083 | INFO     | __main__:train:143 - Epoch [37/100], Loss: 0.350678812416773
+2025-05-03 23:32:53.160 | INFO     | __main__:train:159 - Test Accuracy: 82.33%
+2025-05-03 23:32:54.286 | INFO     | __main__:train:143 - Epoch [38/100], Loss: 0.3402916695626955
+2025-05-03 23:32:54.359 | INFO     | __main__:train:159 - Test Accuracy: 82.68%
+2025-05-03 23:32:55.452 | INFO     | __main__:train:143 - Epoch [39/100], Loss: 0.3404844221141603
+2025-05-03 23:32:55.532 | INFO     | __main__:train:159 - Test Accuracy: 83.37%
+2025-05-03 23:32:57.006 | INFO     | __main__:train:143 - Epoch [40/100], Loss: 0.3340541041559643
+2025-05-03 23:32:57.082 | INFO     | __main__:train:159 - Test Accuracy: 83.23%
+2025-05-03 23:32:58.509 | INFO     | __main__:train:143 - Epoch [41/100], Loss: 0.3365583633856168
+2025-05-03 23:32:58.583 | INFO     | __main__:train:159 - Test Accuracy: 83.37%
+2025-05-03 23:32:59.725 | INFO     | __main__:train:143 - Epoch [42/100], Loss: 0.3349502588075305
+2025-05-03 23:32:59.797 | INFO     | __main__:train:159 - Test Accuracy: 82.23%
+2025-05-03 23:33:00.924 | INFO     | __main__:train:143 - Epoch [43/100], Loss: 0.33533861121487996
+2025-05-03 23:33:01.012 | INFO     | __main__:train:159 - Test Accuracy: 74.17%
+2025-05-03 23:33:02.208 | INFO     | __main__:train:143 - Epoch [44/100], Loss: 0.3394375873936547
+2025-05-03 23:33:02.308 | INFO     | __main__:train:159 - Test Accuracy: 81.63%
+2025-05-03 23:33:03.554 | INFO     | __main__:train:143 - Epoch [45/100], Loss: 0.33917779475450516
+2025-05-03 23:33:03.637 | INFO     | __main__:train:159 - Test Accuracy: 82.18%
+2025-05-03 23:33:04.817 | INFO     | __main__:train:143 - Epoch [46/100], Loss: 0.3274944099405455
+2025-05-03 23:33:04.902 | INFO     | __main__:train:159 - Test Accuracy: 83.13%
+2025-05-03 23:33:06.527 | INFO     | __main__:train:143 - Epoch [47/100], Loss: 0.32418923801372923
+2025-05-03 23:33:06.630 | INFO     | __main__:train:159 - Test Accuracy: 80.29%
+2025-05-03 23:33:08.109 | INFO     | __main__:train:143 - Epoch [48/100], Loss: 0.3396641497337629
+2025-05-03 23:33:08.199 | INFO     | __main__:train:159 - Test Accuracy: 81.58%
+2025-05-03 23:33:09.424 | INFO     | __main__:train:143 - Epoch [49/100], Loss: 0.3405242418012922
+2025-05-03 23:33:09.510 | INFO     | __main__:train:159 - Test Accuracy: 83.18%
+2025-05-03 23:33:10.754 | INFO     | __main__:train:143 - Epoch [50/100], Loss: 0.3340276803762194
+2025-05-03 23:33:10.857 | INFO     | __main__:train:159 - Test Accuracy: 83.28%
+2025-05-03 23:33:12.154 | INFO     | __main__:train:143 - Epoch [51/100], Loss: 0.3213068401766202
+2025-05-03 23:33:12.247 | INFO     | __main__:train:159 - Test Accuracy: 82.38%
+2025-05-03 23:33:13.664 | INFO     | __main__:train:143 - Epoch [52/100], Loss: 0.3258954502996944
+2025-05-03 23:33:13.744 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:33:14.873 | INFO     | __main__:train:143 - Epoch [53/100], Loss: 0.33184802153753856
+2025-05-03 23:33:14.952 | INFO     | __main__:train:159 - Test Accuracy: 83.18%
+2025-05-03 23:33:16.133 | INFO     | __main__:train:143 - Epoch [54/100], Loss: 0.3190608145225616
+2025-05-03 23:33:16.224 | INFO     | __main__:train:159 - Test Accuracy: 80.24%
+2025-05-03 23:33:17.686 | INFO     | __main__:train:143 - Epoch [55/100], Loss: 0.35642565443875296
+2025-05-03 23:33:17.762 | INFO     | __main__:train:159 - Test Accuracy: 82.73%
+2025-05-03 23:33:18.879 | INFO     | __main__:train:143 - Epoch [56/100], Loss: 0.348001477500749
+2025-05-03 23:33:18.953 | INFO     | __main__:train:159 - Test Accuracy: 82.98%
+2025-05-03 23:33:20.066 | INFO     | __main__:train:143 - Epoch [57/100], Loss: 0.32890594466811135
+2025-05-03 23:33:20.144 | INFO     | __main__:train:159 - Test Accuracy: 81.13%
+2025-05-03 23:33:21.344 | INFO     | __main__:train:143 - Epoch [58/100], Loss: 0.3367524174234224
+2025-05-03 23:33:21.429 | INFO     | __main__:train:159 - Test Accuracy: 83.03%
+2025-05-03 23:33:22.573 | INFO     | __main__:train:143 - Epoch [59/100], Loss: 0.3304646408983639
+2025-05-03 23:33:22.651 | INFO     | __main__:train:159 - Test Accuracy: 83.92%
+2025-05-03 23:33:23.797 | INFO     | __main__:train:143 - Epoch [60/100], Loss: 0.31591591901249355
+2025-05-03 23:33:23.873 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-03 23:33:25.319 | INFO     | __main__:train:143 - Epoch [61/100], Loss: 0.32678805019647356
+2025-05-03 23:33:25.410 | INFO     | __main__:train:159 - Test Accuracy: 83.08%
+2025-05-03 23:33:26.685 | INFO     | __main__:train:143 - Epoch [62/100], Loss: 0.3232629697710749
+2025-05-03 23:33:26.773 | INFO     | __main__:train:159 - Test Accuracy: 83.42%
+2025-05-03 23:33:27.952 | INFO     | __main__:train:143 - Epoch [63/100], Loss: 0.3107706184188525
+2025-05-03 23:33:28.036 | INFO     | __main__:train:159 - Test Accuracy: 83.42%
+2025-05-03 23:33:29.420 | INFO     | __main__:train:143 - Epoch [64/100], Loss: 0.3159167373937274
+2025-05-03 23:33:29.495 | INFO     | __main__:train:159 - Test Accuracy: 83.08%
+2025-05-03 23:33:30.657 | INFO     | __main__:train:143 - Epoch [65/100], Loss: 0.3113658364330019
+2025-05-03 23:33:30.751 | INFO     | __main__:train:159 - Test Accuracy: 83.03%
+2025-05-03 23:33:31.955 | INFO     | __main__:train:143 - Epoch [66/100], Loss: 0.3176774312815969
+2025-05-03 23:33:32.034 | INFO     | __main__:train:159 - Test Accuracy: 82.58%
+2025-05-03 23:33:33.267 | INFO     | __main__:train:143 - Epoch [67/100], Loss: 0.31922408536313074
+2025-05-03 23:33:33.343 | INFO     | __main__:train:159 - Test Accuracy: 82.43%
+2025-05-03 23:33:34.468 | INFO     | __main__:train:143 - Epoch [68/100], Loss: 0.3200238978578931
+2025-05-03 23:33:34.545 | INFO     | __main__:train:159 - Test Accuracy: 81.88%
+2025-05-03 23:33:35.727 | INFO     | __main__:train:143 - Epoch [69/100], Loss: 0.31042151117608663
+2025-05-03 23:33:35.820 | INFO     | __main__:train:159 - Test Accuracy: 83.92%
+2025-05-03 23:33:37.247 | INFO     | __main__:train:143 - Epoch [70/100], Loss: 0.31123443066127715
+2025-05-03 23:33:37.369 | INFO     | __main__:train:159 - Test Accuracy: 82.38%
+2025-05-03 23:33:38.555 | INFO     | __main__:train:143 - Epoch [71/100], Loss: 0.313046648270554
+2025-05-03 23:33:38.634 | INFO     | __main__:train:159 - Test Accuracy: 83.62%
+2025-05-03 23:33:39.840 | INFO     | __main__:train:143 - Epoch [72/100], Loss: 0.30948212435321204
+2025-05-03 23:33:39.980 | INFO     | __main__:train:159 - Test Accuracy: 82.08%
+2025-05-03 23:33:41.580 | INFO     | __main__:train:143 - Epoch [73/100], Loss: 0.3014221458681046
+2025-05-03 23:33:41.665 | INFO     | __main__:train:159 - Test Accuracy: 79.99%
+2025-05-03 23:33:43.038 | INFO     | __main__:train:143 - Epoch [74/100], Loss: 0.3145303003608234
+2025-05-03 23:33:43.109 | INFO     | __main__:train:159 - Test Accuracy: 83.42%
+2025-05-03 23:33:44.198 | INFO     | __main__:train:143 - Epoch [75/100], Loss: 0.30742364849836107
+2025-05-03 23:33:44.272 | INFO     | __main__:train:159 - Test Accuracy: 81.93%
+2025-05-03 23:33:45.369 | INFO     | __main__:train:143 - Epoch [76/100], Loss: 0.30728750829658813
+2025-05-03 23:33:45.455 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:33:46.634 | INFO     | __main__:train:143 - Epoch [77/100], Loss: 0.3124765405460956
+2025-05-03 23:33:46.717 | INFO     | __main__:train:159 - Test Accuracy: 82.13%
+2025-05-03 23:33:47.820 | INFO     | __main__:train:143 - Epoch [78/100], Loss: 0.29987096337098923
+2025-05-03 23:33:47.896 | INFO     | __main__:train:159 - Test Accuracy: 81.98%
+2025-05-03 23:33:49.286 | INFO     | __main__:train:143 - Epoch [79/100], Loss: 0.31349691559397985
+2025-05-03 23:33:49.364 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-03 23:33:50.522 | INFO     | __main__:train:143 - Epoch [80/100], Loss: 0.2967176288366318
+2025-05-03 23:33:50.610 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-03 23:33:52.249 | INFO     | __main__:train:143 - Epoch [81/100], Loss: 0.28982677381663097
+2025-05-03 23:33:52.324 | INFO     | __main__:train:159 - Test Accuracy: 83.62%
+2025-05-03 23:33:54.053 | INFO     | __main__:train:143 - Epoch [82/100], Loss: 0.30602239687291405
+2025-05-03 23:33:54.127 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-03 23:33:55.218 | INFO     | __main__:train:143 - Epoch [83/100], Loss: 0.30087318649840733
+2025-05-03 23:33:55.300 | INFO     | __main__:train:159 - Test Accuracy: 83.87%
+2025-05-03 23:33:56.499 | INFO     | __main__:train:143 - Epoch [84/100], Loss: 0.3118901303599751
+2025-05-03 23:33:56.580 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-03 23:33:57.703 | INFO     | __main__:train:143 - Epoch [85/100], Loss: 0.2983966760692142
+2025-05-03 23:33:57.774 | INFO     | __main__:train:159 - Test Accuracy: 83.92%
+2025-05-03 23:33:58.878 | INFO     | __main__:train:143 - Epoch [86/100], Loss: 0.2873962570040945
+2025-05-03 23:33:58.951 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-03 23:34:00.412 | INFO     | __main__:train:143 - Epoch [87/100], Loss: 0.2965869180976398
+2025-05-03 23:34:00.521 | INFO     | __main__:train:159 - Test Accuracy: 83.97%
+2025-05-03 23:34:01.806 | INFO     | __main__:train:143 - Epoch [88/100], Loss: 0.3442478985303924
+2025-05-03 23:34:01.893 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-03 23:34:03.058 | INFO     | __main__:train:143 - Epoch [89/100], Loss: 0.3176698953149811
+2025-05-03 23:34:03.136 | INFO     | __main__:train:159 - Test Accuracy: 83.62%
+2025-05-03 23:34:04.277 | INFO     | __main__:train:143 - Epoch [90/100], Loss: 0.32331155772720066
+2025-05-03 23:34:04.354 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-03 23:34:05.543 | INFO     | __main__:train:143 - Epoch [91/100], Loss: 0.3164190205316695
+2025-05-03 23:34:05.638 | INFO     | __main__:train:159 - Test Accuracy: 82.63%
+2025-05-03 23:34:06.883 | INFO     | __main__:train:143 - Epoch [92/100], Loss: 0.3106477766756027
+2025-05-03 23:34:06.968 | INFO     | __main__:train:159 - Test Accuracy: 83.28%
+2025-05-03 23:34:08.121 | INFO     | __main__:train:143 - Epoch [93/100], Loss: 0.2776050308039264
+2025-05-03 23:34:08.202 | INFO     | __main__:train:159 - Test Accuracy: 83.97%
+2025-05-03 23:34:09.651 | INFO     | __main__:train:143 - Epoch [94/100], Loss: 0.27335761818620896
+2025-05-03 23:34:09.723 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-03 23:34:11.308 | INFO     | __main__:train:143 - Epoch [95/100], Loss: 0.2720853201453648
+2025-05-03 23:34:11.387 | INFO     | __main__:train:159 - Test Accuracy: 83.52%
+2025-05-03 23:34:12.754 | INFO     | __main__:train:143 - Epoch [96/100], Loss: 0.2701541799164954
+2025-05-03 23:34:12.826 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-03 23:34:14.278 | INFO     | __main__:train:143 - Epoch [97/100], Loss: 0.2707208417474277
+2025-05-03 23:34:14.365 | INFO     | __main__:train:159 - Test Accuracy: 83.97%
+2025-05-03 23:34:15.969 | INFO     | __main__:train:143 - Epoch [98/100], Loss: 0.2702495563952696
+2025-05-03 23:34:16.056 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-03 23:34:17.200 | INFO     | __main__:train:143 - Epoch [99/100], Loss: 0.27001769308532986
+2025-05-03 23:34:17.274 | INFO     | __main__:train:159 - Test Accuracy: 84.07%
+2025-05-03 23:34:18.674 | INFO     | __main__:train:143 - Epoch [100/100], Loss: 0.26892345386838157
+2025-05-03 23:34:18.752 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-03 23:54:07.317 | INFO     | __main__:train:84 - Using device: cuda
+2025-05-03 23:54:13.903 | INFO     | __main__:train:143 - Epoch [1/200], Loss: 0.9054434666084865
+2025-05-03 23:54:14.006 | INFO     | __main__:train:159 - Test Accuracy: 70.03%
+2025-05-03 23:54:15.476 | INFO     | __main__:train:143 - Epoch [2/200], Loss: 0.5353642900784811
+2025-05-03 23:54:15.549 | INFO     | __main__:train:159 - Test Accuracy: 73.22%
+2025-05-03 23:54:17.038 | INFO     | __main__:train:143 - Epoch [3/200], Loss: 0.48681962135292234
+2025-05-03 23:54:17.129 | INFO     | __main__:train:159 - Test Accuracy: 72.18%
+2025-05-03 23:54:18.603 | INFO     | __main__:train:143 - Epoch [4/200], Loss: 0.46510195684811423
+2025-05-03 23:54:18.686 | INFO     | __main__:train:159 - Test Accuracy: 78.75%
+2025-05-03 23:54:19.952 | INFO     | __main__:train:143 - Epoch [5/200], Loss: 0.43992747579302105
+2025-05-03 23:54:20.020 | INFO     | __main__:train:159 - Test Accuracy: 79.84%
+2025-05-03 23:54:21.692 | INFO     | __main__:train:143 - Epoch [6/200], Loss: 0.4411622543656637
+2025-05-03 23:54:21.777 | INFO     | __main__:train:159 - Test Accuracy: 80.69%
+2025-05-03 23:54:23.210 | INFO     | __main__:train:143 - Epoch [7/200], Loss: 0.4228001991434703
+2025-05-03 23:54:23.297 | INFO     | __main__:train:159 - Test Accuracy: 77.35%
+2025-05-03 23:54:24.653 | INFO     | __main__:train:143 - Epoch [8/200], Loss: 0.41790658022676197
+2025-05-03 23:54:24.723 | INFO     | __main__:train:159 - Test Accuracy: 80.94%
+2025-05-03 23:54:26.111 | INFO     | __main__:train:143 - Epoch [9/200], Loss: 0.4094463593903042
+2025-05-03 23:54:26.183 | INFO     | __main__:train:159 - Test Accuracy: 81.13%
+2025-05-03 23:54:27.699 | INFO     | __main__:train:143 - Epoch [10/200], Loss: 0.3909254301161993
+2025-05-03 23:54:27.787 | INFO     | __main__:train:159 - Test Accuracy: 78.60%
+2025-05-03 23:54:29.329 | INFO     | __main__:train:143 - Epoch [11/200], Loss: 0.41239077006540603
+2025-05-03 23:54:29.410 | INFO     | __main__:train:159 - Test Accuracy: 73.97%
+2025-05-03 23:54:30.722 | INFO     | __main__:train:143 - Epoch [12/200], Loss: 0.41697798669338226
+2025-05-03 23:54:30.796 | INFO     | __main__:train:159 - Test Accuracy: 77.70%
+2025-05-03 23:54:31.942 | INFO     | __main__:train:143 - Epoch [13/200], Loss: 0.3906348320463347
+2025-05-03 23:54:32.027 | INFO     | __main__:train:159 - Test Accuracy: 81.23%
+2025-05-03 23:54:33.654 | INFO     | __main__:train:143 - Epoch [14/200], Loss: 0.37881474622658323
+2025-05-03 23:54:33.728 | INFO     | __main__:train:159 - Test Accuracy: 81.98%
+2025-05-03 23:54:35.282 | INFO     | __main__:train:143 - Epoch [15/200], Loss: 0.38303448011477786
+2025-05-03 23:54:35.367 | INFO     | __main__:train:159 - Test Accuracy: 81.48%
+2025-05-03 23:54:36.482 | INFO     | __main__:train:143 - Epoch [16/200], Loss: 0.37427170834844076
+2025-05-03 23:54:36.569 | INFO     | __main__:train:159 - Test Accuracy: 81.28%
+2025-05-03 23:54:38.725 | INFO     | __main__:train:143 - Epoch [17/200], Loss: 0.36667040924704264
+2025-05-03 23:54:38.800 | INFO     | __main__:train:159 - Test Accuracy: 73.92%
+2025-05-03 23:54:40.450 | INFO     | __main__:train:143 - Epoch [18/200], Loss: 0.3689325799544652
+2025-05-03 23:54:40.527 | INFO     | __main__:train:159 - Test Accuracy: 81.04%
+2025-05-03 23:54:41.627 | INFO     | __main__:train:143 - Epoch [19/200], Loss: 0.37484709161614616
+2025-05-03 23:54:41.715 | INFO     | __main__:train:159 - Test Accuracy: 77.55%
+2025-05-03 23:54:42.866 | INFO     | __main__:train:143 - Epoch [20/200], Loss: 0.3825973045258295
+2025-05-03 23:54:42.961 | INFO     | __main__:train:159 - Test Accuracy: 82.03%
+2025-05-03 23:54:44.549 | INFO     | __main__:train:143 - Epoch [21/200], Loss: 0.3868463007467134
+2025-05-03 23:54:44.671 | INFO     | __main__:train:159 - Test Accuracy: 80.29%
+2025-05-03 23:54:45.738 | INFO     | __main__:train:143 - Epoch [22/200], Loss: 0.37270583531686236
+2025-05-03 23:54:45.810 | INFO     | __main__:train:159 - Test Accuracy: 82.38%
+2025-05-03 23:54:47.206 | INFO     | __main__:train:143 - Epoch [23/200], Loss: 0.37072576121205375
+2025-05-03 23:54:47.302 | INFO     | __main__:train:159 - Test Accuracy: 82.33%
+2025-05-03 23:54:48.541 | INFO     | __main__:train:143 - Epoch [24/200], Loss: 0.336243694736844
+2025-05-03 23:54:48.620 | INFO     | __main__:train:159 - Test Accuracy: 82.88%
+2025-05-03 23:54:49.952 | INFO     | __main__:train:143 - Epoch [25/200], Loss: 0.3334868708773265
+2025-05-03 23:54:50.026 | INFO     | __main__:train:159 - Test Accuracy: 82.73%
+2025-05-03 23:54:51.390 | INFO     | __main__:train:143 - Epoch [26/200], Loss: 0.3312605262275726
+2025-05-03 23:54:51.567 | INFO     | __main__:train:159 - Test Accuracy: 82.93%
+2025-05-03 23:54:53.012 | INFO     | __main__:train:143 - Epoch [27/200], Loss: 0.3288181700876781
+2025-05-03 23:54:53.083 | INFO     | __main__:train:159 - Test Accuracy: 82.73%
+2025-05-03 23:54:54.652 | INFO     | __main__:train:143 - Epoch [28/200], Loss: 0.328402228062115
+2025-05-03 23:54:54.724 | INFO     | __main__:train:159 - Test Accuracy: 83.08%
+2025-05-03 23:54:56.032 | INFO     | __main__:train:143 - Epoch [29/200], Loss: 0.32695350240147303
+2025-05-03 23:54:56.105 | INFO     | __main__:train:159 - Test Accuracy: 82.78%
+2025-05-03 23:54:57.829 | INFO     | __main__:train:143 - Epoch [30/200], Loss: 0.3258425212568707
+2025-05-03 23:54:57.911 | INFO     | __main__:train:159 - Test Accuracy: 82.93%
+2025-05-03 23:54:59.261 | INFO     | __main__:train:143 - Epoch [31/200], Loss: 0.3267143971863247
+2025-05-03 23:54:59.333 | INFO     | __main__:train:159 - Test Accuracy: 83.08%
+2025-05-03 23:55:00.468 | INFO     | __main__:train:143 - Epoch [32/200], Loss: 0.3262432056760031
+2025-05-03 23:55:00.545 | INFO     | __main__:train:159 - Test Accuracy: 83.08%
+2025-05-03 23:55:01.729 | INFO     | __main__:train:143 - Epoch [33/200], Loss: 0.32392736134074984
+2025-05-03 23:55:01.816 | INFO     | __main__:train:159 - Test Accuracy: 83.37%
+2025-05-03 23:55:03.211 | INFO     | __main__:train:143 - Epoch [34/200], Loss: 0.32388337181201055
+2025-05-03 23:55:03.281 | INFO     | __main__:train:159 - Test Accuracy: 83.13%
+2025-05-03 23:55:04.617 | INFO     | __main__:train:143 - Epoch [35/200], Loss: 0.3236293765524077
+2025-05-03 23:55:04.689 | INFO     | __main__:train:159 - Test Accuracy: 83.03%
+2025-05-03 23:55:06.328 | INFO     | __main__:train:143 - Epoch [36/200], Loss: 0.32233900896140505
+2025-05-03 23:55:06.414 | INFO     | __main__:train:159 - Test Accuracy: 83.03%
+2025-05-03 23:55:07.886 | INFO     | __main__:train:143 - Epoch [37/200], Loss: 0.3212059349531219
+2025-05-03 23:55:08.073 | INFO     | __main__:train:159 - Test Accuracy: 83.03%
+2025-05-03 23:55:09.837 | INFO     | __main__:train:143 - Epoch [38/200], Loss: 0.32498429242580656
+2025-05-03 23:55:09.910 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-03 23:55:11.370 | INFO     | __main__:train:143 - Epoch [39/200], Loss: 0.32095014741496436
+2025-05-03 23:55:11.455 | INFO     | __main__:train:159 - Test Accuracy: 83.08%
+2025-05-03 23:55:12.940 | INFO     | __main__:train:143 - Epoch [40/200], Loss: 0.32041120399085304
+2025-05-03 23:55:13.014 | INFO     | __main__:train:159 - Test Accuracy: 83.13%
+2025-05-03 23:55:14.483 | INFO     | __main__:train:143 - Epoch [41/200], Loss: 0.31948315257590915
+2025-05-03 23:55:14.555 | INFO     | __main__:train:159 - Test Accuracy: 82.88%
+2025-05-03 23:55:16.272 | INFO     | __main__:train:143 - Epoch [42/200], Loss: 0.32208757540063254
+2025-05-03 23:55:16.344 | INFO     | __main__:train:159 - Test Accuracy: 83.42%
+2025-05-03 23:55:17.522 | INFO     | __main__:train:143 - Epoch [43/200], Loss: 0.3200096521112654
+2025-05-03 23:55:17.599 | INFO     | __main__:train:159 - Test Accuracy: 83.23%
+2025-05-03 23:55:18.879 | INFO     | __main__:train:143 - Epoch [44/200], Loss: 0.31931583157607485
+2025-05-03 23:55:19.048 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-03 23:55:20.561 | INFO     | __main__:train:143 - Epoch [45/200], Loss: 0.31941610610201243
+2025-05-03 23:55:20.641 | INFO     | __main__:train:159 - Test Accuracy: 82.68%
+2025-05-03 23:55:21.841 | INFO     | __main__:train:143 - Epoch [46/200], Loss: 0.3188470591391836
+2025-05-03 23:55:21.926 | INFO     | __main__:train:159 - Test Accuracy: 83.18%
+2025-05-03 23:55:23.435 | INFO     | __main__:train:143 - Epoch [47/200], Loss: 0.3179666009687242
+2025-05-03 23:55:23.511 | INFO     | __main__:train:159 - Test Accuracy: 82.98%
+2025-05-03 23:55:24.846 | INFO     | __main__:train:143 - Epoch [48/200], Loss: 0.31789550764693153
+2025-05-03 23:55:24.981 | INFO     | __main__:train:159 - Test Accuracy: 82.88%
+2025-05-03 23:55:26.385 | INFO     | __main__:train:143 - Epoch [49/200], Loss: 0.3168513009709025
+2025-05-03 23:55:26.471 | INFO     | __main__:train:159 - Test Accuracy: 83.23%
+2025-05-03 23:55:27.926 | INFO     | __main__:train:143 - Epoch [50/200], Loss: 0.3142996218705934
+2025-05-03 23:55:28.010 | INFO     | __main__:train:159 - Test Accuracy: 83.18%
+2025-05-03 23:55:29.331 | INFO     | __main__:train:143 - Epoch [51/200], Loss: 0.3178988043514509
+2025-05-03 23:55:29.406 | INFO     | __main__:train:159 - Test Accuracy: 83.37%
+2025-05-03 23:55:30.501 | INFO     | __main__:train:143 - Epoch [52/200], Loss: 0.3139550067366116
+2025-05-03 23:55:30.575 | INFO     | __main__:train:159 - Test Accuracy: 83.52%
+2025-05-03 23:55:32.159 | INFO     | __main__:train:143 - Epoch [53/200], Loss: 0.3131308560333555
+2025-05-03 23:55:32.260 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:55:33.775 | INFO     | __main__:train:143 - Epoch [54/200], Loss: 0.3142240213023292
+2025-05-03 23:55:33.869 | INFO     | __main__:train:159 - Test Accuracy: 83.28%
+2025-05-03 23:55:35.051 | INFO     | __main__:train:143 - Epoch [55/200], Loss: 0.31264371803355595
+2025-05-03 23:55:35.124 | INFO     | __main__:train:159 - Test Accuracy: 83.28%
+2025-05-03 23:55:36.610 | INFO     | __main__:train:143 - Epoch [56/200], Loss: 0.3096033820793742
+2025-05-03 23:55:36.693 | INFO     | __main__:train:159 - Test Accuracy: 83.42%
+2025-05-03 23:55:38.089 | INFO     | __main__:train:143 - Epoch [57/200], Loss: 0.31338279221266035
+2025-05-03 23:55:38.158 | INFO     | __main__:train:159 - Test Accuracy: 83.18%
+2025-05-03 23:55:39.232 | INFO     | __main__:train:143 - Epoch [58/200], Loss: 0.3096215020096491
+2025-05-03 23:55:39.306 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-03 23:55:40.425 | INFO     | __main__:train:143 - Epoch [59/200], Loss: 0.3090268528414151
+2025-05-03 23:55:40.500 | INFO     | __main__:train:159 - Test Accuracy: 83.23%
+2025-05-03 23:55:42.560 | INFO     | __main__:train:143 - Epoch [60/200], Loss: 0.31473120692230405
+2025-05-03 23:55:42.686 | INFO     | __main__:train:159 - Test Accuracy: 83.18%
+2025-05-03 23:55:43.905 | INFO     | __main__:train:143 - Epoch [61/200], Loss: 0.3086243576946713
+2025-05-03 23:55:44.011 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:55:45.472 | INFO     | __main__:train:143 - Epoch [62/200], Loss: 0.3075213949122126
+2025-05-03 23:55:45.544 | INFO     | __main__:train:159 - Test Accuracy: 83.42%
+2025-05-03 23:55:46.907 | INFO     | __main__:train:143 - Epoch [63/200], Loss: 0.30572496602932614
+2025-05-03 23:55:47.003 | INFO     | __main__:train:159 - Test Accuracy: 81.73%
+2025-05-03 23:55:48.508 | INFO     | __main__:train:143 - Epoch [64/200], Loss: 0.31001946247286266
+2025-05-03 23:55:48.584 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:55:49.683 | INFO     | __main__:train:143 - Epoch [65/200], Loss: 0.3055312441928046
+2025-05-03 23:55:49.853 | INFO     | __main__:train:159 - Test Accuracy: 82.73%
+2025-05-03 23:55:51.217 | INFO     | __main__:train:143 - Epoch [66/200], Loss: 0.3059694380277679
+2025-05-03 23:55:51.294 | INFO     | __main__:train:159 - Test Accuracy: 82.48%
+2025-05-03 23:55:52.598 | INFO     | __main__:train:143 - Epoch [67/200], Loss: 0.3065888086954753
+2025-05-03 23:55:52.677 | INFO     | __main__:train:159 - Test Accuracy: 83.28%
+2025-05-03 23:55:53.743 | INFO     | __main__:train:143 - Epoch [68/200], Loss: 0.3032237947696731
+2025-05-03 23:55:53.816 | INFO     | __main__:train:159 - Test Accuracy: 82.83%
+2025-05-03 23:55:55.713 | INFO     | __main__:train:143 - Epoch [69/200], Loss: 0.3049119773601729
+2025-05-03 23:55:55.783 | INFO     | __main__:train:159 - Test Accuracy: 83.23%
+2025-05-03 23:55:56.894 | INFO     | __main__:train:143 - Epoch [70/200], Loss: 0.302785190857119
+2025-05-03 23:55:56.973 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-03 23:55:58.577 | INFO     | __main__:train:143 - Epoch [71/200], Loss: 0.3041427055048564
+2025-05-03 23:55:58.650 | INFO     | __main__:train:159 - Test Accuracy: 82.68%
+2025-05-03 23:55:59.735 | INFO     | __main__:train:143 - Epoch [72/200], Loss: 0.30342004400870154
+2025-05-03 23:55:59.805 | INFO     | __main__:train:159 - Test Accuracy: 83.28%
+2025-05-03 23:56:00.872 | INFO     | __main__:train:143 - Epoch [73/200], Loss: 0.3014812927160944
+2025-05-03 23:56:00.945 | INFO     | __main__:train:159 - Test Accuracy: 83.23%
+2025-05-03 23:56:02.668 | INFO     | __main__:train:143 - Epoch [74/200], Loss: 0.2993808367422649
+2025-05-03 23:56:02.742 | INFO     | __main__:train:159 - Test Accuracy: 83.18%
+2025-05-03 23:56:04.200 | INFO     | __main__:train:143 - Epoch [75/200], Loss: 0.2980653826324713
+2025-05-03 23:56:04.319 | INFO     | __main__:train:159 - Test Accuracy: 82.38%
+2025-05-03 23:56:05.614 | INFO     | __main__:train:143 - Epoch [76/200], Loss: 0.2995015641763097
+2025-05-03 23:56:05.681 | INFO     | __main__:train:159 - Test Accuracy: 83.42%
+2025-05-03 23:56:06.760 | INFO     | __main__:train:143 - Epoch [77/200], Loss: 0.29974173494274653
+2025-05-03 23:56:06.844 | INFO     | __main__:train:159 - Test Accuracy: 82.33%
+2025-05-03 23:56:07.987 | INFO     | __main__:train:143 - Epoch [78/200], Loss: 0.29897202811543905
+2025-05-03 23:56:08.057 | INFO     | __main__:train:159 - Test Accuracy: 82.93%
+2025-05-03 23:56:09.107 | INFO     | __main__:train:143 - Epoch [79/200], Loss: 0.29624188738682916
+2025-05-03 23:56:09.176 | INFO     | __main__:train:159 - Test Accuracy: 83.37%
+2025-05-03 23:56:10.511 | INFO     | __main__:train:143 - Epoch [80/200], Loss: 0.3022821100931319
+2025-05-03 23:56:10.582 | INFO     | __main__:train:159 - Test Accuracy: 83.57%
+2025-05-03 23:56:11.762 | INFO     | __main__:train:143 - Epoch [81/200], Loss: 0.2948042499640631
+2025-05-03 23:56:11.847 | INFO     | __main__:train:159 - Test Accuracy: 83.13%
+2025-05-03 23:56:13.314 | INFO     | __main__:train:143 - Epoch [82/200], Loss: 0.29798926826980376
+2025-05-03 23:56:13.390 | INFO     | __main__:train:159 - Test Accuracy: 83.03%
+2025-05-03 23:56:14.532 | INFO     | __main__:train:143 - Epoch [83/200], Loss: 0.2969316613106501
+2025-05-03 23:56:14.608 | INFO     | __main__:train:159 - Test Accuracy: 83.03%
+2025-05-03 23:56:15.744 | INFO     | __main__:train:143 - Epoch [84/200], Loss: 0.29533786314820487
+2025-05-03 23:56:15.823 | INFO     | __main__:train:159 - Test Accuracy: 82.53%
+2025-05-03 23:56:17.027 | INFO     | __main__:train:143 - Epoch [85/200], Loss: 0.29319935516705586
+2025-05-03 23:56:17.119 | INFO     | __main__:train:159 - Test Accuracy: 83.52%
+2025-05-03 23:56:18.573 | INFO     | __main__:train:143 - Epoch [86/200], Loss: 0.29340626630518174
+2025-05-03 23:56:18.641 | INFO     | __main__:train:159 - Test Accuracy: 83.08%
+2025-05-03 23:56:19.682 | INFO     | __main__:train:143 - Epoch [87/200], Loss: 0.29220702026098494
+2025-05-03 23:56:19.753 | INFO     | __main__:train:159 - Test Accuracy: 83.08%
+2025-05-03 23:56:21.029 | INFO     | __main__:train:143 - Epoch [88/200], Loss: 0.29257343532074065
+2025-05-03 23:56:21.098 | INFO     | __main__:train:159 - Test Accuracy: 83.18%
+2025-05-03 23:56:22.242 | INFO     | __main__:train:143 - Epoch [89/200], Loss: 0.2926870650715298
+2025-05-03 23:56:22.365 | INFO     | __main__:train:159 - Test Accuracy: 83.28%
+2025-05-03 23:56:23.444 | INFO     | __main__:train:143 - Epoch [90/200], Loss: 0.28890365622346365
+2025-05-03 23:56:23.518 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:56:24.918 | INFO     | __main__:train:143 - Epoch [91/200], Loss: 0.2905770885565924
+2025-05-03 23:56:24.997 | INFO     | __main__:train:159 - Test Accuracy: 83.52%
+2025-05-03 23:56:26.151 | INFO     | __main__:train:143 - Epoch [92/200], Loss: 0.30213487881516654
+2025-05-03 23:56:26.228 | INFO     | __main__:train:159 - Test Accuracy: 83.23%
+2025-05-03 23:56:27.470 | INFO     | __main__:train:143 - Epoch [93/200], Loss: 0.2895245099114993
+2025-05-03 23:56:27.631 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:56:29.030 | INFO     | __main__:train:143 - Epoch [94/200], Loss: 0.28951255563232636
+2025-05-03 23:56:29.110 | INFO     | __main__:train:159 - Test Accuracy: 83.37%
+2025-05-03 23:56:30.243 | INFO     | __main__:train:143 - Epoch [95/200], Loss: 0.2906207458840476
+2025-05-03 23:56:30.320 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:56:31.895 | INFO     | __main__:train:143 - Epoch [96/200], Loss: 0.28841457870744525
+2025-05-03 23:56:32.066 | INFO     | __main__:train:159 - Test Accuracy: 83.28%
+2025-05-03 23:56:33.474 | INFO     | __main__:train:143 - Epoch [97/200], Loss: 0.28821959488448645
+2025-05-03 23:56:33.543 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:56:35.175 | INFO     | __main__:train:143 - Epoch [98/200], Loss: 0.28422531710257604
+2025-05-03 23:56:35.257 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:56:36.852 | INFO     | __main__:train:143 - Epoch [99/200], Loss: 0.28975812570443227
+2025-05-03 23:56:36.951 | INFO     | __main__:train:159 - Test Accuracy: 83.57%
+2025-05-03 23:56:38.220 | INFO     | __main__:train:143 - Epoch [100/200], Loss: 0.28971838241531733
+2025-05-03 23:56:38.300 | INFO     | __main__:train:159 - Test Accuracy: 82.93%
+2025-05-03 23:56:39.509 | INFO     | __main__:train:143 - Epoch [101/200], Loss: 0.28416248813034994
+2025-05-03 23:56:39.593 | INFO     | __main__:train:159 - Test Accuracy: 83.28%
+2025-05-03 23:56:41.056 | INFO     | __main__:train:143 - Epoch [102/200], Loss: 0.28327773109314935
+2025-05-03 23:56:41.141 | INFO     | __main__:train:159 - Test Accuracy: 83.08%
+2025-05-03 23:56:42.736 | INFO     | __main__:train:143 - Epoch [103/200], Loss: 0.28121947437997846
+2025-05-03 23:56:42.828 | INFO     | __main__:train:159 - Test Accuracy: 83.52%
+2025-05-03 23:56:44.389 | INFO     | __main__:train:143 - Epoch [104/200], Loss: 0.28010045512328074
+2025-05-03 23:56:44.463 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-03 23:56:45.749 | INFO     | __main__:train:143 - Epoch [105/200], Loss: 0.2801013652767454
+2025-05-03 23:56:45.819 | INFO     | __main__:train:159 - Test Accuracy: 83.23%
+2025-05-03 23:56:46.943 | INFO     | __main__:train:143 - Epoch [106/200], Loss: 0.2833428242731662
+2025-05-03 23:56:47.026 | INFO     | __main__:train:159 - Test Accuracy: 83.37%
+2025-05-03 23:56:48.187 | INFO     | __main__:train:143 - Epoch [107/200], Loss: 0.2799909169238711
+2025-05-03 23:56:48.259 | INFO     | __main__:train:159 - Test Accuracy: 83.97%
+2025-05-03 23:56:49.543 | INFO     | __main__:train:143 - Epoch [108/200], Loss: 0.2784423878978169
+2025-05-03 23:56:49.617 | INFO     | __main__:train:159 - Test Accuracy: 83.57%
+2025-05-03 23:56:50.989 | INFO     | __main__:train:143 - Epoch [109/200], Loss: 0.2762921644108636
+2025-05-03 23:56:51.063 | INFO     | __main__:train:159 - Test Accuracy: 83.62%
+2025-05-03 23:56:52.447 | INFO     | __main__:train:143 - Epoch [110/200], Loss: 0.2804845990169616
+2025-05-03 23:56:52.527 | INFO     | __main__:train:159 - Test Accuracy: 83.52%
+2025-05-03 23:56:53.635 | INFO     | __main__:train:143 - Epoch [111/200], Loss: 0.27309003850770375
+2025-05-03 23:56:53.705 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-03 23:56:55.147 | INFO     | __main__:train:143 - Epoch [112/200], Loss: 0.27672798174714286
+2025-05-03 23:56:55.221 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-03 23:56:56.318 | INFO     | __main__:train:143 - Epoch [113/200], Loss: 0.28017686354735544
+2025-05-03 23:56:56.394 | INFO     | __main__:train:159 - Test Accuracy: 83.18%
+2025-05-03 23:56:57.587 | INFO     | __main__:train:143 - Epoch [114/200], Loss: 0.27750432550434084
+2025-05-03 23:56:57.667 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-03 23:56:58.764 | INFO     | __main__:train:143 - Epoch [115/200], Loss: 0.27444743767144186
+2025-05-03 23:56:58.839 | INFO     | __main__:train:159 - Test Accuracy: 82.98%
+2025-05-03 23:56:59.960 | INFO     | __main__:train:143 - Epoch [116/200], Loss: 0.2747286504932812
+2025-05-03 23:57:00.034 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:57:01.123 | INFO     | __main__:train:143 - Epoch [117/200], Loss: 0.28045006486631574
+2025-05-03 23:57:01.200 | INFO     | __main__:train:159 - Test Accuracy: 82.88%
+2025-05-03 23:57:02.400 | INFO     | __main__:train:143 - Epoch [118/200], Loss: 0.2665964530573951
+2025-05-03 23:57:02.481 | INFO     | __main__:train:159 - Test Accuracy: 83.62%
+2025-05-03 23:57:03.857 | INFO     | __main__:train:143 - Epoch [119/200], Loss: 0.26174564612290213
+2025-05-03 23:57:03.929 | INFO     | __main__:train:159 - Test Accuracy: 83.42%
+2025-05-03 23:57:05.247 | INFO     | __main__:train:143 - Epoch [120/200], Loss: 0.260529173508523
+2025-05-03 23:57:05.318 | INFO     | __main__:train:159 - Test Accuracy: 83.62%
+2025-05-03 23:57:06.695 | INFO     | __main__:train:143 - Epoch [121/200], Loss: 0.2583289687477407
+2025-05-03 23:57:06.778 | INFO     | __main__:train:159 - Test Accuracy: 83.72%
+2025-05-03 23:57:08.233 | INFO     | __main__:train:143 - Epoch [122/200], Loss: 0.2583212967193316
+2025-05-03 23:57:08.307 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-03 23:57:09.684 | INFO     | __main__:train:143 - Epoch [123/200], Loss: 0.2572066367618621
+2025-05-03 23:57:09.756 | INFO     | __main__:train:159 - Test Accuracy: 83.57%
+2025-05-03 23:57:11.426 | INFO     | __main__:train:143 - Epoch [124/200], Loss: 0.25687288161781097
+2025-05-03 23:57:11.513 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-03 23:57:13.061 | INFO     | __main__:train:143 - Epoch [125/200], Loss: 0.256167953922635
+2025-05-03 23:57:13.137 | INFO     | __main__:train:159 - Test Accuracy: 83.87%
+2025-05-03 23:57:14.521 | INFO     | __main__:train:143 - Epoch [126/200], Loss: 0.2557318209419175
+2025-05-03 23:57:14.593 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-03 23:57:15.910 | INFO     | __main__:train:143 - Epoch [127/200], Loss: 0.2552764628614698
+2025-05-03 23:57:15.978 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-03 23:57:17.622 | INFO     | __main__:train:143 - Epoch [128/200], Loss: 0.254824192987548
+2025-05-03 23:57:17.710 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:57:19.139 | INFO     | __main__:train:143 - Epoch [129/200], Loss: 0.2552498362603642
+2025-05-03 23:57:19.218 | INFO     | __main__:train:159 - Test Accuracy: 83.72%
+2025-05-03 23:57:20.398 | INFO     | __main__:train:143 - Epoch [130/200], Loss: 0.25398763742238756
+2025-05-03 23:57:20.479 | INFO     | __main__:train:159 - Test Accuracy: 83.42%
+2025-05-03 23:57:21.980 | INFO     | __main__:train:143 - Epoch [131/200], Loss: 0.2537027702681602
+2025-05-03 23:57:22.166 | INFO     | __main__:train:159 - Test Accuracy: 83.92%
+2025-05-03 23:57:23.640 | INFO     | __main__:train:143 - Epoch [132/200], Loss: 0.25270664295743384
+2025-05-03 23:57:23.720 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-03 23:57:25.023 | INFO     | __main__:train:143 - Epoch [133/200], Loss: 0.25323536554499276
+2025-05-03 23:57:25.095 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-03 23:57:26.167 | INFO     | __main__:train:143 - Epoch [134/200], Loss: 0.2539043075272015
+2025-05-03 23:57:26.241 | INFO     | __main__:train:159 - Test Accuracy: 83.72%
+2025-05-03 23:57:27.400 | INFO     | __main__:train:143 - Epoch [135/200], Loss: 0.25255102865279666
+2025-05-03 23:57:27.475 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-03 23:57:28.974 | INFO     | __main__:train:143 - Epoch [136/200], Loss: 0.25170549088054234
+2025-05-03 23:57:29.043 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-03 23:57:30.562 | INFO     | __main__:train:143 - Epoch [137/200], Loss: 0.25174278269211453
+2025-05-03 23:57:30.628 | INFO     | __main__:train:159 - Test Accuracy: 83.72%
+2025-05-03 23:57:31.946 | INFO     | __main__:train:143 - Epoch [138/200], Loss: 0.2514231149402876
+2025-05-03 23:57:32.033 | INFO     | __main__:train:159 - Test Accuracy: 83.87%
+2025-05-03 23:57:33.447 | INFO     | __main__:train:143 - Epoch [139/200], Loss: 0.25006105325051714
+2025-05-03 23:57:33.520 | INFO     | __main__:train:159 - Test Accuracy: 83.42%
+2025-05-03 23:57:35.141 | INFO     | __main__:train:143 - Epoch [140/200], Loss: 0.2500698193907738
+2025-05-03 23:57:35.223 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:57:36.397 | INFO     | __main__:train:143 - Epoch [141/200], Loss: 0.2499993789408888
+2025-05-03 23:57:36.477 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-03 23:57:38.005 | INFO     | __main__:train:143 - Epoch [142/200], Loss: 0.2499053572851514
+2025-05-03 23:57:38.094 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-03 23:57:39.653 | INFO     | __main__:train:143 - Epoch [143/200], Loss: 0.24897177600198322
+2025-05-03 23:57:39.742 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-03 23:57:41.097 | INFO     | __main__:train:143 - Epoch [144/200], Loss: 0.2490542327600812
+2025-05-03 23:57:41.176 | INFO     | __main__:train:159 - Test Accuracy: 83.92%
+2025-05-03 23:57:42.347 | INFO     | __main__:train:143 - Epoch [145/200], Loss: 0.248672316708262
+2025-05-03 23:57:42.428 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-03 23:57:43.832 | INFO     | __main__:train:143 - Epoch [146/200], Loss: 0.24868252494978527
+2025-05-03 23:57:43.910 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-03 23:57:45.018 | INFO     | __main__:train:143 - Epoch [147/200], Loss: 0.24768135306381045
+2025-05-03 23:57:45.106 | INFO     | __main__:train:159 - Test Accuracy: 83.57%
+2025-05-03 23:57:46.546 | INFO     | __main__:train:143 - Epoch [148/200], Loss: 0.2469245624684152
+2025-05-03 23:57:46.643 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-03 23:57:48.256 | INFO     | __main__:train:143 - Epoch [149/200], Loss: 0.24707579955695166
+2025-05-03 23:57:48.345 | INFO     | __main__:train:159 - Test Accuracy: 84.07%
+2025-05-03 23:57:49.550 | INFO     | __main__:train:143 - Epoch [150/200], Loss: 0.24714900624184383
+2025-05-03 23:57:49.637 | INFO     | __main__:train:159 - Test Accuracy: 83.42%
+2025-05-03 23:57:50.857 | INFO     | __main__:train:143 - Epoch [151/200], Loss: 0.2461411753698947
+2025-05-03 23:57:50.944 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-03 23:57:52.678 | INFO     | __main__:train:143 - Epoch [152/200], Loss: 0.24631964604532908
+2025-05-03 23:57:52.761 | INFO     | __main__:train:159 - Test Accuracy: 83.57%
+2025-05-03 23:57:53.885 | INFO     | __main__:train:143 - Epoch [153/200], Loss: 0.24458426520937965
+2025-05-03 23:57:53.965 | INFO     | __main__:train:159 - Test Accuracy: 83.62%
+2025-05-03 23:57:55.305 | INFO     | __main__:train:143 - Epoch [154/200], Loss: 0.24541215054572574
+2025-05-03 23:57:55.380 | INFO     | __main__:train:159 - Test Accuracy: 83.57%
+2025-05-03 23:57:56.507 | INFO     | __main__:train:143 - Epoch [155/200], Loss: 0.24457643216564542
+2025-05-03 23:57:56.597 | INFO     | __main__:train:159 - Test Accuracy: 83.72%
+2025-05-03 23:57:58.319 | INFO     | __main__:train:143 - Epoch [156/200], Loss: 0.24391626046290474
+2025-05-03 23:57:58.396 | INFO     | __main__:train:159 - Test Accuracy: 83.97%
+2025-05-03 23:57:59.784 | INFO     | __main__:train:143 - Epoch [157/200], Loss: 0.2440473810429611
+2025-05-03 23:57:59.860 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:58:00.973 | INFO     | __main__:train:143 - Epoch [158/200], Loss: 0.2448125086606495
+2025-05-03 23:58:01.052 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-03 23:58:02.231 | INFO     | __main__:train:143 - Epoch [159/200], Loss: 0.24347238065231414
+2025-05-03 23:58:02.322 | INFO     | __main__:train:159 - Test Accuracy: 83.57%
+2025-05-03 23:58:03.819 | INFO     | __main__:train:143 - Epoch [160/200], Loss: 0.24277363622945453
+2025-05-03 23:58:03.909 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-03 23:58:05.639 | INFO     | __main__:train:143 - Epoch [161/200], Loss: 0.24277378246188164
+2025-05-03 23:58:05.725 | INFO     | __main__:train:159 - Test Accuracy: 83.62%
+2025-05-03 23:58:07.023 | INFO     | __main__:train:143 - Epoch [162/200], Loss: 0.24249840569165018
+2025-05-03 23:58:07.127 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-03 23:58:09.008 | INFO     | __main__:train:143 - Epoch [163/200], Loss: 0.24241262544242162
+2025-05-03 23:58:09.085 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-03 23:58:10.406 | INFO     | __main__:train:143 - Epoch [164/200], Loss: 0.24151796084784327
+2025-05-03 23:58:10.479 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-03 23:58:12.199 | INFO     | __main__:train:143 - Epoch [165/200], Loss: 0.24113237408418503
+2025-05-03 23:58:12.283 | INFO     | __main__:train:159 - Test Accuracy: 83.72%
+2025-05-03 23:58:13.671 | INFO     | __main__:train:143 - Epoch [166/200], Loss: 0.24147862834589823
+2025-05-03 23:58:13.744 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-03 23:58:15.078 | INFO     | __main__:train:143 - Epoch [167/200], Loss: 0.24085638234539639
+2025-05-03 23:58:15.155 | INFO     | __main__:train:159 - Test Accuracy: 83.72%
+2025-05-03 23:58:16.513 | INFO     | __main__:train:143 - Epoch [168/200], Loss: 0.24026365968443097
+2025-05-03 23:58:16.600 | INFO     | __main__:train:159 - Test Accuracy: 83.62%
+2025-05-03 23:58:18.166 | INFO     | __main__:train:143 - Epoch [169/200], Loss: 0.24085620122532997
+2025-05-03 23:58:18.245 | INFO     | __main__:train:159 - Test Accuracy: 83.72%
+2025-05-03 23:58:19.448 | INFO     | __main__:train:143 - Epoch [170/200], Loss: 0.2393647517476763
+2025-05-03 23:58:19.538 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-03 23:58:21.242 | INFO     | __main__:train:143 - Epoch [171/200], Loss: 0.23933204062401303
+2025-05-03 23:58:21.319 | INFO     | __main__:train:159 - Test Accuracy: 83.72%
+2025-05-03 23:58:22.980 | INFO     | __main__:train:143 - Epoch [172/200], Loss: 0.23879028697099006
+2025-05-03 23:58:23.068 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-03 23:58:24.495 | INFO     | __main__:train:143 - Epoch [173/200], Loss: 0.2392801194791756
+2025-05-03 23:58:24.578 | INFO     | __main__:train:159 - Test Accuracy: 83.28%
+2025-05-03 23:58:25.764 | INFO     | __main__:train:143 - Epoch [174/200], Loss: 0.23849878501560953
+2025-05-03 23:58:25.850 | INFO     | __main__:train:159 - Test Accuracy: 83.72%
+2025-05-03 23:58:27.585 | INFO     | __main__:train:143 - Epoch [175/200], Loss: 0.2379825979707733
+2025-05-03 23:58:27.681 | INFO     | __main__:train:159 - Test Accuracy: 83.62%
+2025-05-03 23:58:29.186 | INFO     | __main__:train:143 - Epoch [176/200], Loss: 0.23878991899509278
+2025-05-03 23:58:29.258 | INFO     | __main__:train:159 - Test Accuracy: 83.92%
+2025-05-03 23:58:30.628 | INFO     | __main__:train:143 - Epoch [177/200], Loss: 0.23686628747317526
+2025-05-03 23:58:30.704 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-03 23:58:32.081 | INFO     | __main__:train:143 - Epoch [178/200], Loss: 0.238139646275649
+2025-05-03 23:58:32.154 | INFO     | __main__:train:159 - Test Accuracy: 83.57%
+2025-05-03 23:58:33.334 | INFO     | __main__:train:143 - Epoch [179/200], Loss: 0.23746541118811046
+2025-05-03 23:58:33.418 | INFO     | __main__:train:159 - Test Accuracy: 83.62%
+2025-05-03 23:58:34.539 | INFO     | __main__:train:143 - Epoch [180/200], Loss: 0.237208272611338
+2025-05-03 23:58:34.615 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-03 23:58:35.723 | INFO     | __main__:train:143 - Epoch [181/200], Loss: 0.2356081059764302
+2025-05-03 23:58:35.799 | INFO     | __main__:train:159 - Test Accuracy: 83.28%
+2025-05-03 23:58:37.215 | INFO     | __main__:train:143 - Epoch [182/200], Loss: 0.23544634896374883
+2025-05-03 23:58:37.294 | INFO     | __main__:train:159 - Test Accuracy: 83.52%
+2025-05-03 23:58:38.715 | INFO     | __main__:train:143 - Epoch [183/200], Loss: 0.2361624220179187
+2025-05-03 23:58:38.845 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-03 23:58:40.173 | INFO     | __main__:train:143 - Epoch [184/200], Loss: 0.234768188543736
+2025-05-03 23:58:40.258 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-03 23:58:41.655 | INFO     | __main__:train:143 - Epoch [185/200], Loss: 0.23566747096086305
+2025-05-03 23:58:41.755 | INFO     | __main__:train:159 - Test Accuracy: 83.37%
+2025-05-03 23:58:42.979 | INFO     | __main__:train:143 - Epoch [186/200], Loss: 0.23457127206382297
+2025-05-03 23:58:43.063 | INFO     | __main__:train:159 - Test Accuracy: 83.52%
+2025-05-03 23:58:44.800 | INFO     | __main__:train:143 - Epoch [187/200], Loss: 0.23461614980820625
+2025-05-03 23:58:44.873 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:58:46.021 | INFO     | __main__:train:143 - Epoch [188/200], Loss: 0.23545334216148134
+2025-05-03 23:58:46.110 | INFO     | __main__:train:159 - Test Accuracy: 83.23%
+2025-05-03 23:58:47.300 | INFO     | __main__:train:143 - Epoch [189/200], Loss: 0.23301586284050865
+2025-05-03 23:58:47.398 | INFO     | __main__:train:159 - Test Accuracy: 83.57%
+2025-05-03 23:58:49.042 | INFO     | __main__:train:143 - Epoch [190/200], Loss: 0.23402719921062862
+2025-05-03 23:58:49.124 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-03 23:58:50.296 | INFO     | __main__:train:143 - Epoch [191/200], Loss: 0.23243122825783397
+2025-05-03 23:58:50.373 | INFO     | __main__:train:159 - Test Accuracy: 83.37%
+2025-05-03 23:58:51.723 | INFO     | __main__:train:143 - Epoch [192/200], Loss: 0.2330203117240989
+2025-05-03 23:58:51.795 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:58:52.918 | INFO     | __main__:train:143 - Epoch [193/200], Loss: 0.23238803328029692
+2025-05-03 23:58:52.992 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:58:54.787 | INFO     | __main__:train:143 - Epoch [194/200], Loss: 0.2316957867098233
+2025-05-03 23:58:54.871 | INFO     | __main__:train:159 - Test Accuracy: 83.62%
+2025-05-03 23:58:56.239 | INFO     | __main__:train:143 - Epoch [195/200], Loss: 0.23186010684049319
+2025-05-03 23:58:56.312 | INFO     | __main__:train:159 - Test Accuracy: 83.57%
+2025-05-03 23:58:57.403 | INFO     | __main__:train:143 - Epoch [196/200], Loss: 0.23087488233097017
+2025-05-03 23:58:57.476 | INFO     | __main__:train:159 - Test Accuracy: 83.72%
+2025-05-03 23:58:59.005 | INFO     | __main__:train:143 - Epoch [197/200], Loss: 0.23283372440981487
+2025-05-03 23:58:59.092 | INFO     | __main__:train:159 - Test Accuracy: 83.52%
+2025-05-03 23:59:00.244 | INFO     | __main__:train:143 - Epoch [198/200], Loss: 0.23013400794967773
+2025-05-03 23:59:00.317 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-03 23:59:01.820 | INFO     | __main__:train:143 - Epoch [199/200], Loss: 0.23096214784752755
+2025-05-03 23:59:01.896 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:59:02.997 | INFO     | __main__:train:143 - Epoch [200/200], Loss: 0.23008203317248632
+2025-05-03 23:59:03.072 | INFO     | __main__:train:159 - Test Accuracy: 83.47%
+2025-05-03 23:59:39.226 | INFO     | __main__:train:84 - Using device: cuda
+2025-05-03 23:59:45.613 | INFO     | __main__:train:143 - Epoch [1/200], Loss: 0.7789993898736106
+2025-05-03 23:59:45.736 | INFO     | __main__:train:159 - Test Accuracy: 73.67%
+2025-05-03 23:59:46.983 | INFO     | __main__:train:143 - Epoch [2/200], Loss: 0.5105718518533404
+2025-05-03 23:59:47.058 | INFO     | __main__:train:159 - Test Accuracy: 79.59%
+2025-05-03 23:59:48.505 | INFO     | __main__:train:143 - Epoch [3/200], Loss: 0.4983425700948352
+2025-05-03 23:59:48.585 | INFO     | __main__:train:159 - Test Accuracy: 79.34%
+2025-05-03 23:59:49.938 | INFO     | __main__:train:143 - Epoch [4/200], Loss: 0.4868607565997139
+2025-05-03 23:59:50.024 | INFO     | __main__:train:159 - Test Accuracy: 75.11%
+2025-05-03 23:59:51.470 | INFO     | __main__:train:143 - Epoch [5/200], Loss: 0.4460267672936122
+2025-05-03 23:59:51.549 | INFO     | __main__:train:159 - Test Accuracy: 79.84%
+2025-05-03 23:59:53.498 | INFO     | __main__:train:143 - Epoch [6/200], Loss: 0.4322010347294429
+2025-05-03 23:59:53.671 | INFO     | __main__:train:159 - Test Accuracy: 81.23%
+2025-05-03 23:59:55.281 | INFO     | __main__:train:143 - Epoch [7/200], Loss: 0.43136889499331277
+2025-05-03 23:59:55.365 | INFO     | __main__:train:159 - Test Accuracy: 81.93%
+2025-05-03 23:59:57.007 | INFO     | __main__:train:143 - Epoch [8/200], Loss: 0.4230710111913227
+2025-05-03 23:59:57.141 | INFO     | __main__:train:159 - Test Accuracy: 82.38%
+2025-05-03 23:59:58.581 | INFO     | __main__:train:143 - Epoch [9/200], Loss: 0.40374267739909037
+2025-05-03 23:59:58.653 | INFO     | __main__:train:159 - Test Accuracy: 81.63%
+2025-05-04 00:00:00.380 | INFO     | __main__:train:143 - Epoch [10/200], Loss: 0.4030104686343481
+2025-05-04 00:00:00.461 | INFO     | __main__:train:159 - Test Accuracy: 82.78%
+2025-05-04 00:00:01.852 | INFO     | __main__:train:143 - Epoch [11/200], Loss: 0.40649816145499545
+2025-05-04 00:00:01.929 | INFO     | __main__:train:159 - Test Accuracy: 82.93%
+2025-05-04 00:00:03.007 | INFO     | __main__:train:143 - Epoch [12/200], Loss: 0.40463188219638097
+2025-05-04 00:00:03.080 | INFO     | __main__:train:159 - Test Accuracy: 79.69%
+2025-05-04 00:00:04.152 | INFO     | __main__:train:143 - Epoch [13/200], Loss: 0.3988117897321308
+2025-05-04 00:00:04.224 | INFO     | __main__:train:159 - Test Accuracy: 80.84%
+2025-05-04 00:00:05.647 | INFO     | __main__:train:143 - Epoch [14/200], Loss: 0.4110247004363272
+2025-05-04 00:00:05.723 | INFO     | __main__:train:159 - Test Accuracy: 82.33%
+2025-05-04 00:00:06.816 | INFO     | __main__:train:143 - Epoch [15/200], Loss: 0.38630144392687177
+2025-05-04 00:00:06.888 | INFO     | __main__:train:159 - Test Accuracy: 83.92%
+2025-05-04 00:00:08.339 | INFO     | __main__:train:143 - Epoch [16/200], Loss: 0.3799714333717785
+2025-05-04 00:00:08.410 | INFO     | __main__:train:159 - Test Accuracy: 82.88%
+2025-05-04 00:00:10.176 | INFO     | __main__:train:143 - Epoch [17/200], Loss: 0.385443251284342
+2025-05-04 00:00:10.257 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-04 00:00:11.467 | INFO     | __main__:train:143 - Epoch [18/200], Loss: 0.379615175109061
+2025-05-04 00:00:11.663 | INFO     | __main__:train:159 - Test Accuracy: 81.18%
+2025-05-04 00:00:13.063 | INFO     | __main__:train:143 - Epoch [19/200], Loss: 0.37920265621136107
+2025-05-04 00:00:13.132 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-04 00:00:14.556 | INFO     | __main__:train:143 - Epoch [20/200], Loss: 0.36301407040584655
+2025-05-04 00:00:14.636 | INFO     | __main__:train:159 - Test Accuracy: 80.59%
+2025-05-04 00:00:16.119 | INFO     | __main__:train:143 - Epoch [21/200], Loss: 0.38133747733774637
+2025-05-04 00:00:16.207 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-04 00:00:17.470 | INFO     | __main__:train:143 - Epoch [22/200], Loss: 0.3601336069996395
+2025-05-04 00:00:17.545 | INFO     | __main__:train:159 - Test Accuracy: 83.28%
+2025-05-04 00:00:18.867 | INFO     | __main__:train:143 - Epoch [23/200], Loss: 0.3750701252193678
+2025-05-04 00:00:18.942 | INFO     | __main__:train:159 - Test Accuracy: 83.33%
+2025-05-04 00:00:20.131 | INFO     | __main__:train:143 - Epoch [24/200], Loss: 0.3642818544592176
+2025-05-04 00:00:20.219 | INFO     | __main__:train:159 - Test Accuracy: 83.62%
+2025-05-04 00:00:21.480 | INFO     | __main__:train:143 - Epoch [25/200], Loss: 0.3614557443393601
+2025-05-04 00:00:21.586 | INFO     | __main__:train:159 - Test Accuracy: 84.82%
+2025-05-04 00:00:22.744 | INFO     | __main__:train:143 - Epoch [26/200], Loss: 0.34199974437554675
+2025-05-04 00:00:22.840 | INFO     | __main__:train:159 - Test Accuracy: 84.62%
+2025-05-04 00:00:24.322 | INFO     | __main__:train:143 - Epoch [27/200], Loss: 0.36004564426248037
+2025-05-04 00:00:24.453 | INFO     | __main__:train:159 - Test Accuracy: 79.54%
+2025-05-04 00:00:25.842 | INFO     | __main__:train:143 - Epoch [28/200], Loss: 0.35363126770844533
+2025-05-04 00:00:25.938 | INFO     | __main__:train:159 - Test Accuracy: 83.57%
+2025-05-04 00:00:27.218 | INFO     | __main__:train:143 - Epoch [29/200], Loss: 0.3456870322189634
+2025-05-04 00:00:27.301 | INFO     | __main__:train:159 - Test Accuracy: 83.87%
+2025-05-04 00:00:28.493 | INFO     | __main__:train:143 - Epoch [30/200], Loss: 0.345335143426108
+2025-05-04 00:00:28.577 | INFO     | __main__:train:159 - Test Accuracy: 84.22%
+2025-05-04 00:00:29.792 | INFO     | __main__:train:143 - Epoch [31/200], Loss: 0.34139528161003474
+2025-05-04 00:00:29.910 | INFO     | __main__:train:159 - Test Accuracy: 84.52%
+2025-05-04 00:00:31.348 | INFO     | __main__:train:143 - Epoch [32/200], Loss: 0.33983364571181557
+2025-05-04 00:00:31.434 | INFO     | __main__:train:159 - Test Accuracy: 83.67%
+2025-05-04 00:00:32.856 | INFO     | __main__:train:143 - Epoch [33/200], Loss: 0.3513031303882599
+2025-05-04 00:00:32.932 | INFO     | __main__:train:159 - Test Accuracy: 83.82%
+2025-05-04 00:00:34.083 | INFO     | __main__:train:143 - Epoch [34/200], Loss: 0.3503510458838372
+2025-05-04 00:00:34.255 | INFO     | __main__:train:159 - Test Accuracy: 82.03%
+2025-05-04 00:00:35.500 | INFO     | __main__:train:143 - Epoch [35/200], Loss: 0.3480844666797017
+2025-05-04 00:00:35.587 | INFO     | __main__:train:159 - Test Accuracy: 83.72%
+2025-05-04 00:00:36.913 | INFO     | __main__:train:143 - Epoch [36/200], Loss: 0.33714689101491657
+2025-05-04 00:00:37.054 | INFO     | __main__:train:159 - Test Accuracy: 84.07%
+2025-05-04 00:00:38.558 | INFO     | __main__:train:143 - Epoch [37/200], Loss: 0.3446845187554284
+2025-05-04 00:00:38.637 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:00:39.826 | INFO     | __main__:train:143 - Epoch [38/200], Loss: 0.33313587662719546
+2025-05-04 00:00:39.910 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:00:41.797 | INFO     | __main__:train:143 - Epoch [39/200], Loss: 0.3468665277201032
+2025-05-04 00:00:41.887 | INFO     | __main__:train:159 - Test Accuracy: 77.55%
+2025-05-04 00:00:43.224 | INFO     | __main__:train:143 - Epoch [40/200], Loss: 0.3541657426764095
+2025-05-04 00:00:43.300 | INFO     | __main__:train:159 - Test Accuracy: 83.87%
+2025-05-04 00:00:44.433 | INFO     | __main__:train:143 - Epoch [41/200], Loss: 0.3347416345089201
+2025-05-04 00:00:44.514 | INFO     | __main__:train:159 - Test Accuracy: 83.77%
+2025-05-04 00:00:45.667 | INFO     | __main__:train:143 - Epoch [42/200], Loss: 0.33488353637475815
+2025-05-04 00:00:45.759 | INFO     | __main__:train:159 - Test Accuracy: 84.57%
+2025-05-04 00:00:47.005 | INFO     | __main__:train:143 - Epoch [43/200], Loss: 0.3349478183284638
+2025-05-04 00:00:47.093 | INFO     | __main__:train:159 - Test Accuracy: 84.42%
+2025-05-04 00:00:48.226 | INFO     | __main__:train:143 - Epoch [44/200], Loss: 0.3345141707668229
+2025-05-04 00:00:48.301 | INFO     | __main__:train:159 - Test Accuracy: 84.42%
+2025-05-04 00:00:49.451 | INFO     | __main__:train:143 - Epoch [45/200], Loss: 0.308620362054734
+2025-05-04 00:00:49.530 | INFO     | __main__:train:159 - Test Accuracy: 84.82%
+2025-05-04 00:00:51.161 | INFO     | __main__:train:143 - Epoch [46/200], Loss: 0.30310823685593075
+2025-05-04 00:00:51.243 | INFO     | __main__:train:159 - Test Accuracy: 84.82%
+2025-05-04 00:00:52.642 | INFO     | __main__:train:143 - Epoch [47/200], Loss: 0.3026813222538857
+2025-05-04 00:00:52.712 | INFO     | __main__:train:159 - Test Accuracy: 84.57%
+2025-05-04 00:00:54.192 | INFO     | __main__:train:143 - Epoch [48/200], Loss: 0.3012265101784751
+2025-05-04 00:00:54.273 | INFO     | __main__:train:159 - Test Accuracy: 84.57%
+2025-05-04 00:00:55.575 | INFO     | __main__:train:143 - Epoch [49/200], Loss: 0.2994988974597719
+2025-05-04 00:00:55.654 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:00:57.663 | INFO     | __main__:train:143 - Epoch [50/200], Loss: 0.2987991515842695
+2025-05-04 00:00:57.739 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:00:59.188 | INFO     | __main__:train:143 - Epoch [51/200], Loss: 0.2973310300518596
+2025-05-04 00:00:59.256 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:01:00.661 | INFO     | __main__:train:143 - Epoch [52/200], Loss: 0.2985045001620338
+2025-05-04 00:01:00.742 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:01:01.894 | INFO     | __main__:train:143 - Epoch [53/200], Loss: 0.29992163985494585
+2025-05-04 00:01:01.968 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:01:03.104 | INFO     | __main__:train:143 - Epoch [54/200], Loss: 0.29888578516150277
+2025-05-04 00:01:03.174 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:01:04.250 | INFO     | __main__:train:143 - Epoch [55/200], Loss: 0.2971859003106753
+2025-05-04 00:01:04.323 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:01:06.208 | INFO     | __main__:train:143 - Epoch [56/200], Loss: 0.296529384477744
+2025-05-04 00:01:06.287 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:01:07.706 | INFO     | __main__:train:143 - Epoch [57/200], Loss: 0.2956584855204537
+2025-05-04 00:01:07.796 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:01:09.109 | INFO     | __main__:train:143 - Epoch [58/200], Loss: 0.29619709201275357
+2025-05-04 00:01:09.177 | INFO     | __main__:train:159 - Test Accuracy: 84.57%
+2025-05-04 00:01:10.255 | INFO     | __main__:train:143 - Epoch [59/200], Loss: 0.29405109040320865
+2025-05-04 00:01:10.328 | INFO     | __main__:train:159 - Test Accuracy: 84.82%
+2025-05-04 00:01:11.774 | INFO     | __main__:train:143 - Epoch [60/200], Loss: 0.29515085239259026
+2025-05-04 00:01:11.868 | INFO     | __main__:train:159 - Test Accuracy: 85.02%
+2025-05-04 00:01:13.106 | INFO     | __main__:train:143 - Epoch [61/200], Loss: 0.29258194601251963
+2025-05-04 00:01:13.190 | INFO     | __main__:train:159 - Test Accuracy: 84.82%
+2025-05-04 00:01:14.495 | INFO     | __main__:train:143 - Epoch [62/200], Loss: 0.2941674217581749
+2025-05-04 00:01:14.566 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:01:15.646 | INFO     | __main__:train:143 - Epoch [63/200], Loss: 0.2923511638054772
+2025-05-04 00:01:15.720 | INFO     | __main__:train:159 - Test Accuracy: 84.57%
+2025-05-04 00:01:17.075 | INFO     | __main__:train:143 - Epoch [64/200], Loss: 0.2915137664429725
+2025-05-04 00:01:17.160 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:01:18.759 | INFO     | __main__:train:143 - Epoch [65/200], Loss: 0.2918427301541207
+2025-05-04 00:01:18.920 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:01:20.015 | INFO     | __main__:train:143 - Epoch [66/200], Loss: 0.2936923276810419
+2025-05-04 00:01:20.086 | INFO     | __main__:train:159 - Test Accuracy: 84.97%
+2025-05-04 00:01:21.194 | INFO     | __main__:train:143 - Epoch [67/200], Loss: 0.2903756190623556
+2025-05-04 00:01:21.270 | INFO     | __main__:train:159 - Test Accuracy: 84.57%
+2025-05-04 00:01:22.713 | INFO     | __main__:train:143 - Epoch [68/200], Loss: 0.2919953427617512
+2025-05-04 00:01:22.805 | INFO     | __main__:train:159 - Test Accuracy: 84.52%
+2025-05-04 00:01:24.079 | INFO     | __main__:train:143 - Epoch [69/200], Loss: 0.2879873535462788
+2025-05-04 00:01:24.168 | INFO     | __main__:train:159 - Test Accuracy: 84.62%
+2025-05-04 00:01:25.821 | INFO     | __main__:train:143 - Epoch [70/200], Loss: 0.2912337070419675
+2025-05-04 00:01:25.902 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:01:27.080 | INFO     | __main__:train:143 - Epoch [71/200], Loss: 0.2894218351159777
+2025-05-04 00:01:27.160 | INFO     | __main__:train:159 - Test Accuracy: 85.02%
+2025-05-04 00:01:28.379 | INFO     | __main__:train:143 - Epoch [72/200], Loss: 0.28679835003992865
+2025-05-04 00:01:28.472 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:01:29.903 | INFO     | __main__:train:143 - Epoch [73/200], Loss: 0.29028256568643784
+2025-05-04 00:01:29.984 | INFO     | __main__:train:159 - Test Accuracy: 84.02%
+2025-05-04 00:01:31.153 | INFO     | __main__:train:143 - Epoch [74/200], Loss: 0.2882205947997078
+2025-05-04 00:01:31.230 | INFO     | __main__:train:159 - Test Accuracy: 84.92%
+2025-05-04 00:01:32.394 | INFO     | __main__:train:143 - Epoch [75/200], Loss: 0.2858106790790482
+2025-05-04 00:01:32.480 | INFO     | __main__:train:159 - Test Accuracy: 85.12%
+2025-05-04 00:01:33.864 | INFO     | __main__:train:143 - Epoch [76/200], Loss: 0.2871666746953177
+2025-05-04 00:01:33.938 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:01:35.025 | INFO     | __main__:train:143 - Epoch [77/200], Loss: 0.2877397018056067
+2025-05-04 00:01:35.098 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:01:36.163 | INFO     | __main__:train:143 - Epoch [78/200], Loss: 0.2838959035182756
+2025-05-04 00:01:36.234 | INFO     | __main__:train:159 - Test Accuracy: 84.92%
+2025-05-04 00:01:37.780 | INFO     | __main__:train:143 - Epoch [79/200], Loss: 0.2838966789699736
+2025-05-04 00:01:37.868 | INFO     | __main__:train:159 - Test Accuracy: 85.12%
+2025-05-04 00:01:39.038 | INFO     | __main__:train:143 - Epoch [80/200], Loss: 0.28460430531274705
+2025-05-04 00:01:39.115 | INFO     | __main__:train:159 - Test Accuracy: 85.12%
+2025-05-04 00:01:40.201 | INFO     | __main__:train:143 - Epoch [81/200], Loss: 0.2836744467180873
+2025-05-04 00:01:40.270 | INFO     | __main__:train:159 - Test Accuracy: 84.42%
+2025-05-04 00:01:41.618 | INFO     | __main__:train:143 - Epoch [82/200], Loss: 0.2843928798323586
+2025-05-04 00:01:41.693 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:01:42.812 | INFO     | __main__:train:143 - Epoch [83/200], Loss: 0.2829608575455726
+2025-05-04 00:01:42.896 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:01:44.483 | INFO     | __main__:train:143 - Epoch [84/200], Loss: 0.28160675887077574
+2025-05-04 00:01:44.554 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:01:46.046 | INFO     | __main__:train:143 - Epoch [85/200], Loss: 0.28218275568788015
+2025-05-04 00:01:46.119 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:01:47.176 | INFO     | __main__:train:143 - Epoch [86/200], Loss: 0.28006745378176373
+2025-05-04 00:01:47.245 | INFO     | __main__:train:159 - Test Accuracy: 85.02%
+2025-05-04 00:01:48.662 | INFO     | __main__:train:143 - Epoch [87/200], Loss: 0.28112997859716415
+2025-05-04 00:01:48.739 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:01:50.019 | INFO     | __main__:train:143 - Epoch [88/200], Loss: 0.2793337832840662
+2025-05-04 00:01:50.097 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:01:51.688 | INFO     | __main__:train:143 - Epoch [89/200], Loss: 0.2813644864492946
+2025-05-04 00:01:51.755 | INFO     | __main__:train:159 - Test Accuracy: 84.97%
+2025-05-04 00:01:52.847 | INFO     | __main__:train:143 - Epoch [90/200], Loss: 0.2799911266044965
+2025-05-04 00:01:52.931 | INFO     | __main__:train:159 - Test Accuracy: 84.97%
+2025-05-04 00:01:54.095 | INFO     | __main__:train:143 - Epoch [91/200], Loss: 0.28495449549148955
+2025-05-04 00:01:54.174 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:01:55.255 | INFO     | __main__:train:143 - Epoch [92/200], Loss: 0.2782285159069394
+2025-05-04 00:01:55.326 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:01:56.710 | INFO     | __main__:train:143 - Epoch [93/200], Loss: 0.277312057358878
+2025-05-04 00:01:56.786 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:01:58.173 | INFO     | __main__:train:143 - Epoch [94/200], Loss: 0.27889111921900794
+2025-05-04 00:01:58.259 | INFO     | __main__:train:159 - Test Accuracy: 84.02%
+2025-05-04 00:01:59.518 | INFO     | __main__:train:143 - Epoch [95/200], Loss: 0.2762890965456054
+2025-05-04 00:01:59.616 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:02:01.615 | INFO     | __main__:train:143 - Epoch [96/200], Loss: 0.27993758105569416
+2025-05-04 00:02:01.738 | INFO     | __main__:train:159 - Test Accuracy: 84.92%
+2025-05-04 00:02:03.012 | INFO     | __main__:train:143 - Epoch [97/200], Loss: 0.2773189062163943
+2025-05-04 00:02:03.146 | INFO     | __main__:train:159 - Test Accuracy: 85.02%
+2025-05-04 00:02:04.270 | INFO     | __main__:train:143 - Epoch [98/200], Loss: 0.2778970515207639
+2025-05-04 00:02:04.344 | INFO     | __main__:train:159 - Test Accuracy: 85.42%
+2025-05-04 00:02:05.517 | INFO     | __main__:train:143 - Epoch [99/200], Loss: 0.2764857599423045
+2025-05-04 00:02:05.604 | INFO     | __main__:train:159 - Test Accuracy: 85.07%
+2025-05-04 00:02:06.807 | INFO     | __main__:train:143 - Epoch [100/200], Loss: 0.2760271421737141
+2025-05-04 00:02:06.886 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:02:08.275 | INFO     | __main__:train:143 - Epoch [101/200], Loss: 0.27158924984553506
+2025-05-04 00:02:08.351 | INFO     | __main__:train:159 - Test Accuracy: 84.47%
+2025-05-04 00:02:09.782 | INFO     | __main__:train:143 - Epoch [102/200], Loss: 0.27477822582873085
+2025-05-04 00:02:09.857 | INFO     | __main__:train:159 - Test Accuracy: 84.82%
+2025-05-04 00:02:11.012 | INFO     | __main__:train:143 - Epoch [103/200], Loss: 0.27318162766713944
+2025-05-04 00:02:11.096 | INFO     | __main__:train:159 - Test Accuracy: 84.47%
+2025-05-04 00:02:12.244 | INFO     | __main__:train:143 - Epoch [104/200], Loss: 0.27269079145931063
+2025-05-04 00:02:12.322 | INFO     | __main__:train:159 - Test Accuracy: 84.22%
+2025-05-04 00:02:13.402 | INFO     | __main__:train:143 - Epoch [105/200], Loss: 0.27453530426063233
+2025-05-04 00:02:13.472 | INFO     | __main__:train:159 - Test Accuracy: 84.82%
+2025-05-04 00:02:14.532 | INFO     | __main__:train:143 - Epoch [106/200], Loss: 0.2703670830953689
+2025-05-04 00:02:14.637 | INFO     | __main__:train:159 - Test Accuracy: 84.52%
+2025-05-04 00:02:16.248 | INFO     | __main__:train:143 - Epoch [107/200], Loss: 0.27119186390486977
+2025-05-04 00:02:16.335 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:02:17.533 | INFO     | __main__:train:143 - Epoch [108/200], Loss: 0.27035103489955264
+2025-05-04 00:02:17.602 | INFO     | __main__:train:159 - Test Accuracy: 84.97%
+2025-05-04 00:02:18.967 | INFO     | __main__:train:143 - Epoch [109/200], Loss: 0.2691344086612974
+2025-05-04 00:02:19.041 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:02:20.399 | INFO     | __main__:train:143 - Epoch [110/200], Loss: 0.2696045807429722
+2025-05-04 00:02:20.471 | INFO     | __main__:train:159 - Test Accuracy: 85.22%
+2025-05-04 00:02:21.629 | INFO     | __main__:train:143 - Epoch [111/200], Loss: 0.2688115978288272
+2025-05-04 00:02:21.706 | INFO     | __main__:train:159 - Test Accuracy: 85.32%
+2025-05-04 00:02:23.239 | INFO     | __main__:train:143 - Epoch [112/200], Loss: 0.2723239084321355
+2025-05-04 00:02:23.312 | INFO     | __main__:train:159 - Test Accuracy: 85.02%
+2025-05-04 00:02:24.514 | INFO     | __main__:train:143 - Epoch [113/200], Loss: 0.2677247882598922
+2025-05-04 00:02:24.590 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:02:25.986 | INFO     | __main__:train:143 - Epoch [114/200], Loss: 0.26866757302057176
+2025-05-04 00:02:26.074 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:02:27.251 | INFO     | __main__:train:143 - Epoch [115/200], Loss: 0.26851230907061746
+2025-05-04 00:02:27.332 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:02:28.439 | INFO     | __main__:train:143 - Epoch [116/200], Loss: 0.2672417639266877
+2025-05-04 00:02:28.510 | INFO     | __main__:train:159 - Test Accuracy: 84.97%
+2025-05-04 00:02:29.920 | INFO     | __main__:train:143 - Epoch [117/200], Loss: 0.26796854470693876
+2025-05-04 00:02:30.002 | INFO     | __main__:train:159 - Test Accuracy: 85.32%
+2025-05-04 00:02:31.239 | INFO     | __main__:train:143 - Epoch [118/200], Loss: 0.2648564429273681
+2025-05-04 00:02:31.338 | INFO     | __main__:train:159 - Test Accuracy: 85.17%
+2025-05-04 00:02:33.046 | INFO     | __main__:train:143 - Epoch [119/200], Loss: 0.26435624642504585
+2025-05-04 00:02:33.123 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:02:34.508 | INFO     | __main__:train:143 - Epoch [120/200], Loss: 0.26471409627369474
+2025-05-04 00:02:34.586 | INFO     | __main__:train:159 - Test Accuracy: 84.97%
+2025-05-04 00:02:35.716 | INFO     | __main__:train:143 - Epoch [121/200], Loss: 0.2628992113565642
+2025-05-04 00:02:35.807 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:02:37.313 | INFO     | __main__:train:143 - Epoch [122/200], Loss: 0.263035318385514
+2025-05-04 00:02:37.392 | INFO     | __main__:train:159 - Test Accuracy: 85.17%
+2025-05-04 00:02:38.510 | INFO     | __main__:train:143 - Epoch [123/200], Loss: 0.26509020962412394
+2025-05-04 00:02:38.589 | INFO     | __main__:train:159 - Test Accuracy: 84.57%
+2025-05-04 00:02:39.715 | INFO     | __main__:train:143 - Epoch [124/200], Loss: 0.26435972123392043
+2025-05-04 00:02:39.794 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:02:40.901 | INFO     | __main__:train:143 - Epoch [125/200], Loss: 0.2633911416171089
+2025-05-04 00:02:40.987 | INFO     | __main__:train:159 - Test Accuracy: 84.17%
+2025-05-04 00:02:42.136 | INFO     | __main__:train:143 - Epoch [126/200], Loss: 0.2616009854726375
+2025-05-04 00:02:42.214 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:02:43.679 | INFO     | __main__:train:143 - Epoch [127/200], Loss: 0.26002553424664904
+2025-05-04 00:02:43.770 | INFO     | __main__:train:159 - Test Accuracy: 85.17%
+2025-05-04 00:02:45.359 | INFO     | __main__:train:143 - Epoch [128/200], Loss: 0.2604350409810505
+2025-05-04 00:02:45.435 | INFO     | __main__:train:159 - Test Accuracy: 85.17%
+2025-05-04 00:02:46.625 | INFO     | __main__:train:143 - Epoch [129/200], Loss: 0.2553352162478462
+2025-05-04 00:02:46.710 | INFO     | __main__:train:159 - Test Accuracy: 84.12%
+2025-05-04 00:02:48.108 | INFO     | __main__:train:143 - Epoch [130/200], Loss: 0.2582297766255954
+2025-05-04 00:02:48.183 | INFO     | __main__:train:159 - Test Accuracy: 85.07%
+2025-05-04 00:02:49.288 | INFO     | __main__:train:143 - Epoch [131/200], Loss: 0.2588111223682525
+2025-05-04 00:02:49.363 | INFO     | __main__:train:159 - Test Accuracy: 84.57%
+2025-05-04 00:02:50.487 | INFO     | __main__:train:143 - Epoch [132/200], Loss: 0.25607716392666574
+2025-05-04 00:02:50.562 | INFO     | __main__:train:159 - Test Accuracy: 85.27%
+2025-05-04 00:02:51.746 | INFO     | __main__:train:143 - Epoch [133/200], Loss: 0.25763219311123803
+2025-05-04 00:02:51.830 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:02:53.030 | INFO     | __main__:train:143 - Epoch [134/200], Loss: 0.2581102626900824
+2025-05-04 00:02:53.111 | INFO     | __main__:train:159 - Test Accuracy: 84.92%
+2025-05-04 00:02:54.274 | INFO     | __main__:train:143 - Epoch [135/200], Loss: 0.25844456693009726
+2025-05-04 00:02:54.352 | INFO     | __main__:train:159 - Test Accuracy: 85.22%
+2025-05-04 00:02:55.468 | INFO     | __main__:train:143 - Epoch [136/200], Loss: 0.25076617265031453
+2025-05-04 00:02:55.542 | INFO     | __main__:train:159 - Test Accuracy: 85.07%
+2025-05-04 00:02:56.953 | INFO     | __main__:train:143 - Epoch [137/200], Loss: 0.24449529013936483
+2025-05-04 00:02:57.035 | INFO     | __main__:train:159 - Test Accuracy: 84.92%
+2025-05-04 00:02:58.558 | INFO     | __main__:train:143 - Epoch [138/200], Loss: 0.2434413462640747
+2025-05-04 00:02:58.682 | INFO     | __main__:train:159 - Test Accuracy: 85.02%
+2025-05-04 00:03:00.086 | INFO     | __main__:train:143 - Epoch [139/200], Loss: 0.24337620997712725
+2025-05-04 00:03:00.159 | INFO     | __main__:train:159 - Test Accuracy: 84.92%
+2025-05-04 00:03:01.648 | INFO     | __main__:train:143 - Epoch [140/200], Loss: 0.24270505942995585
+2025-05-04 00:03:01.754 | INFO     | __main__:train:159 - Test Accuracy: 85.07%
+2025-05-04 00:03:03.173 | INFO     | __main__:train:143 - Epoch [141/200], Loss: 0.24226517525930252
+2025-05-04 00:03:03.263 | INFO     | __main__:train:159 - Test Accuracy: 85.07%
+2025-05-04 00:03:05.371 | INFO     | __main__:train:143 - Epoch [142/200], Loss: 0.24227606185844966
+2025-05-04 00:03:05.449 | INFO     | __main__:train:159 - Test Accuracy: 84.97%
+2025-05-04 00:03:06.582 | INFO     | __main__:train:143 - Epoch [143/200], Loss: 0.2415232052287412
+2025-05-04 00:03:06.657 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:03:08.039 | INFO     | __main__:train:143 - Epoch [144/200], Loss: 0.2411964646880589
+2025-05-04 00:03:08.117 | INFO     | __main__:train:159 - Test Accuracy: 85.17%
+2025-05-04 00:03:10.007 | INFO     | __main__:train:143 - Epoch [145/200], Loss: 0.24109812719481333
+2025-05-04 00:03:10.088 | INFO     | __main__:train:159 - Test Accuracy: 85.12%
+2025-05-04 00:03:11.446 | INFO     | __main__:train:143 - Epoch [146/200], Loss: 0.24111513107542007
+2025-05-04 00:03:11.517 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:03:12.659 | INFO     | __main__:train:143 - Epoch [147/200], Loss: 0.24027730554105745
+2025-05-04 00:03:12.738 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:03:14.343 | INFO     | __main__:train:143 - Epoch [148/200], Loss: 0.24064511924035967
+2025-05-04 00:03:14.442 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:03:15.662 | INFO     | __main__:train:143 - Epoch [149/200], Loss: 0.23949439953716975
+2025-05-04 00:03:15.742 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:03:17.246 | INFO     | __main__:train:143 - Epoch [150/200], Loss: 0.2407388405667411
+2025-05-04 00:03:17.322 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:03:18.431 | INFO     | __main__:train:143 - Epoch [151/200], Loss: 0.23993580421758076
+2025-05-04 00:03:18.511 | INFO     | __main__:train:159 - Test Accuracy: 85.02%
+2025-05-04 00:03:19.690 | INFO     | __main__:train:143 - Epoch [152/200], Loss: 0.2387536276309263
+2025-05-04 00:03:19.778 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:03:21.234 | INFO     | __main__:train:143 - Epoch [153/200], Loss: 0.23838698911288428
+2025-05-04 00:03:21.310 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:03:22.679 | INFO     | __main__:train:143 - Epoch [154/200], Loss: 0.23882278936013343
+2025-05-04 00:03:22.762 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:03:23.843 | INFO     | __main__:train:143 - Epoch [155/200], Loss: 0.23861905270152622
+2025-05-04 00:03:24.026 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:03:25.174 | INFO     | __main__:train:143 - Epoch [156/200], Loss: 0.2382521706204566
+2025-05-04 00:03:25.262 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:03:26.715 | INFO     | __main__:train:143 - Epoch [157/200], Loss: 0.23800351044961385
+2025-05-04 00:03:26.790 | INFO     | __main__:train:159 - Test Accuracy: 84.82%
+2025-05-04 00:03:28.406 | INFO     | __main__:train:143 - Epoch [158/200], Loss: 0.23803504532764827
+2025-05-04 00:03:28.488 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:03:29.668 | INFO     | __main__:train:143 - Epoch [159/200], Loss: 0.23809367512899732
+2025-05-04 00:03:29.870 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:03:31.105 | INFO     | __main__:train:143 - Epoch [160/200], Loss: 0.23717651043146376
+2025-05-04 00:03:31.285 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:03:32.950 | INFO     | __main__:train:143 - Epoch [161/200], Loss: 0.23714395754394077
+2025-05-04 00:03:33.027 | INFO     | __main__:train:159 - Test Accuracy: 84.82%
+2025-05-04 00:03:34.417 | INFO     | __main__:train:143 - Epoch [162/200], Loss: 0.2368236689103974
+2025-05-04 00:03:34.496 | INFO     | __main__:train:159 - Test Accuracy: 84.92%
+2025-05-04 00:03:35.923 | INFO     | __main__:train:143 - Epoch [163/200], Loss: 0.23600000462361745
+2025-05-04 00:03:36.003 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:03:37.532 | INFO     | __main__:train:143 - Epoch [164/200], Loss: 0.2366273132345033
+2025-05-04 00:03:37.648 | INFO     | __main__:train:159 - Test Accuracy: 84.47%
+2025-05-04 00:03:38.887 | INFO     | __main__:train:143 - Epoch [165/200], Loss: 0.23641914478133594
+2025-05-04 00:03:38.978 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:03:40.254 | INFO     | __main__:train:143 - Epoch [166/200], Loss: 0.23637230564204473
+2025-05-04 00:03:40.357 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:03:41.706 | INFO     | __main__:train:143 - Epoch [167/200], Loss: 0.2357785057217356
+2025-05-04 00:03:41.806 | INFO     | __main__:train:159 - Test Accuracy: 84.52%
+2025-05-04 00:03:43.371 | INFO     | __main__:train:143 - Epoch [168/200], Loss: 0.2352909203323107
+2025-05-04 00:03:43.459 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:03:45.061 | INFO     | __main__:train:143 - Epoch [169/200], Loss: 0.23510002947988964
+2025-05-04 00:03:45.144 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:03:46.532 | INFO     | __main__:train:143 - Epoch [170/200], Loss: 0.2351299865496537
+2025-05-04 00:03:46.611 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:03:47.835 | INFO     | __main__:train:143 - Epoch [171/200], Loss: 0.23521179983776713
+2025-05-04 00:03:47.919 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:03:49.061 | INFO     | __main__:train:143 - Epoch [172/200], Loss: 0.2347742657931078
+2025-05-04 00:03:49.139 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:03:50.719 | INFO     | __main__:train:143 - Epoch [173/200], Loss: 0.23407264467742708
+2025-05-04 00:03:50.813 | INFO     | __main__:train:159 - Test Accuracy: 84.47%
+2025-05-04 00:03:52.481 | INFO     | __main__:train:143 - Epoch [174/200], Loss: 0.23397994159706056
+2025-05-04 00:03:52.585 | INFO     | __main__:train:159 - Test Accuracy: 84.47%
+2025-05-04 00:03:54.175 | INFO     | __main__:train:143 - Epoch [175/200], Loss: 0.2338847661065677
+2025-05-04 00:03:54.249 | INFO     | __main__:train:159 - Test Accuracy: 84.57%
+2025-05-04 00:03:55.825 | INFO     | __main__:train:143 - Epoch [176/200], Loss: 0.2334872329873698
+2025-05-04 00:03:55.899 | INFO     | __main__:train:159 - Test Accuracy: 84.62%
+2025-05-04 00:03:57.366 | INFO     | __main__:train:143 - Epoch [177/200], Loss: 0.23401836648819938
+2025-05-04 00:03:57.454 | INFO     | __main__:train:159 - Test Accuracy: 84.87%
+2025-05-04 00:03:58.766 | INFO     | __main__:train:143 - Epoch [178/200], Loss: 0.2330174103734039
+2025-05-04 00:03:58.873 | INFO     | __main__:train:159 - Test Accuracy: 84.52%
+2025-05-04 00:04:00.395 | INFO     | __main__:train:143 - Epoch [179/200], Loss: 0.23321970717774498
+2025-05-04 00:04:00.479 | INFO     | __main__:train:159 - Test Accuracy: 84.52%
+2025-05-04 00:04:01.672 | INFO     | __main__:train:143 - Epoch [180/200], Loss: 0.23275695758916082
+2025-05-04 00:04:01.757 | INFO     | __main__:train:159 - Test Accuracy: 84.82%
+2025-05-04 00:04:03.230 | INFO     | __main__:train:143 - Epoch [181/200], Loss: 0.2325330868599907
+2025-05-04 00:04:03.316 | INFO     | __main__:train:159 - Test Accuracy: 84.77%
+2025-05-04 00:04:04.703 | INFO     | __main__:train:143 - Epoch [182/200], Loss: 0.23264731200678007
+2025-05-04 00:04:04.790 | INFO     | __main__:train:159 - Test Accuracy: 84.57%
+2025-05-04 00:04:05.969 | INFO     | __main__:train:143 - Epoch [183/200], Loss: 0.23305139465937538
+2025-05-04 00:04:06.054 | INFO     | __main__:train:159 - Test Accuracy: 84.47%
+2025-05-04 00:04:07.271 | INFO     | __main__:train:143 - Epoch [184/200], Loss: 0.2317388846524178
+2025-05-04 00:04:07.396 | INFO     | __main__:train:159 - Test Accuracy: 84.62%
+2025-05-04 00:04:09.287 | INFO     | __main__:train:143 - Epoch [185/200], Loss: 0.23234978684830287
+2025-05-04 00:04:09.363 | INFO     | __main__:train:159 - Test Accuracy: 84.47%
+2025-05-04 00:04:10.442 | INFO     | __main__:train:143 - Epoch [186/200], Loss: 0.23168049776364888
+2025-05-04 00:04:10.517 | INFO     | __main__:train:159 - Test Accuracy: 84.52%
+2025-05-04 00:04:11.876 | INFO     | __main__:train:143 - Epoch [187/200], Loss: 0.2318996481360897
+2025-05-04 00:04:11.975 | INFO     | __main__:train:159 - Test Accuracy: 84.72%
+2025-05-04 00:04:13.086 | INFO     | __main__:train:143 - Epoch [188/200], Loss: 0.23084973035350678
+2025-05-04 00:04:13.168 | INFO     | __main__:train:159 - Test Accuracy: 84.62%
+2025-05-04 00:04:14.682 | INFO     | __main__:train:143 - Epoch [189/200], Loss: 0.2305077404256851
+2025-05-04 00:04:14.764 | INFO     | __main__:train:159 - Test Accuracy: 84.62%
+2025-05-04 00:04:16.184 | INFO     | __main__:train:143 - Epoch [190/200], Loss: 0.23111286380934337
+2025-05-04 00:04:16.257 | INFO     | __main__:train:159 - Test Accuracy: 84.37%
+2025-05-04 00:04:17.376 | INFO     | __main__:train:143 - Epoch [191/200], Loss: 0.23077092260595353
+2025-05-04 00:04:17.466 | INFO     | __main__:train:159 - Test Accuracy: 84.82%
+2025-05-04 00:04:18.625 | INFO     | __main__:train:143 - Epoch [192/200], Loss: 0.2304785539588285
+2025-05-04 00:04:18.711 | INFO     | __main__:train:159 - Test Accuracy: 84.52%
+2025-05-04 00:04:20.279 | INFO     | __main__:train:143 - Epoch [193/200], Loss: 0.2306516438959137
+2025-05-04 00:04:20.359 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:04:21.547 | INFO     | __main__:train:143 - Epoch [194/200], Loss: 0.2297899057822568
+2025-05-04 00:04:21.630 | INFO     | __main__:train:159 - Test Accuracy: 84.57%
+2025-05-04 00:04:22.994 | INFO     | __main__:train:143 - Epoch [195/200], Loss: 0.22993834967178012
+2025-05-04 00:04:23.067 | INFO     | __main__:train:159 - Test Accuracy: 84.62%
+2025-05-04 00:04:24.171 | INFO     | __main__:train:143 - Epoch [196/200], Loss: 0.22937971288486134
+2025-05-04 00:04:24.245 | INFO     | __main__:train:159 - Test Accuracy: 84.52%
+2025-05-04 00:04:25.595 | INFO     | __main__:train:143 - Epoch [197/200], Loss: 0.22920819011235993
+2025-05-04 00:04:25.672 | INFO     | __main__:train:159 - Test Accuracy: 84.67%
+2025-05-04 00:04:27.099 | INFO     | __main__:train:143 - Epoch [198/200], Loss: 0.22980961960459512
+2025-05-04 00:04:27.178 | INFO     | __main__:train:159 - Test Accuracy: 84.62%
+2025-05-04 00:04:28.289 | INFO     | __main__:train:143 - Epoch [199/200], Loss: 0.22865896198957686
+2025-05-04 00:04:28.363 | INFO     | __main__:train:159 - Test Accuracy: 84.42%
+2025-05-04 00:04:30.125 | INFO     | __main__:train:143 - Epoch [200/200], Loss: 0.22872572735188498
+2025-05-04 00:04:30.198 | INFO     | __main__:train:159 - Test Accuracy: 84.67%

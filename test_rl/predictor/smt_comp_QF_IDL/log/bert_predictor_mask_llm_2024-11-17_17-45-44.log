@@ -1,0 +1,71 @@
+2024-11-17 17:47:25.475 | INFO     | __main__:train:117 - feature len:575,label len:575,time len:575
+2024-11-17 17:47:37.884 | INFO     | __main__:train:197 - Epoch [1/100], Loss: 1.088455207645893
+2024-11-17 17:47:38.494 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 79.1304347826087 %
+2024-11-17 17:47:49.232 | INFO     | __main__:train:197 - Epoch [2/100], Loss: 0.5319112874567509
+2024-11-17 17:47:49.415 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 79.1304347826087 %
+2024-11-17 17:47:50.423 | INFO     | __main__:train:197 - Epoch [3/100], Loss: 0.5076666548848152
+2024-11-17 17:47:51.052 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 79.1304347826087 %
+2024-11-17 17:47:58.007 | INFO     | __main__:train:197 - Epoch [4/100], Loss: 0.4336334094405174
+2024-11-17 17:47:58.462 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 79.1304347826087 %
+2024-11-17 17:48:11.973 | INFO     | __main__:train:197 - Epoch [5/100], Loss: 0.3690175600349903
+2024-11-17 17:48:12.865 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 79.1304347826087 %
+2024-11-17 17:48:24.270 | INFO     | __main__:train:197 - Epoch [6/100], Loss: 0.33200847543776035
+2024-11-17 17:48:25.274 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:48:38.988 | INFO     | __main__:train:197 - Epoch [7/100], Loss: 0.34374762140214443
+2024-11-17 17:48:39.172 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:48:45.334 | INFO     | __main__:train:197 - Epoch [8/100], Loss: 0.3088442552834749
+2024-11-17 17:48:45.689 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:48:53.722 | INFO     | __main__:train:197 - Epoch [9/100], Loss: 0.2760490570217371
+2024-11-17 17:48:54.431 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 84.34782608695652 %
+2024-11-17 17:49:02.369 | INFO     | __main__:train:197 - Epoch [10/100], Loss: 0.25719913095235825
+2024-11-17 17:49:02.577 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 80.8695652173913 %
+2024-11-17 17:49:08.434 | INFO     | __main__:train:197 - Epoch [11/100], Loss: 0.25419806875288486
+2024-11-17 17:49:09.513 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 86.08695652173913 %
+2024-11-17 17:49:20.469 | INFO     | __main__:train:197 - Epoch [12/100], Loss: 0.28002776578068733
+2024-11-17 17:49:20.880 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 79.1304347826087 %
+2024-11-17 17:49:29.189 | INFO     | __main__:train:197 - Epoch [13/100], Loss: 0.3240407928824425
+2024-11-17 17:49:29.684 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 79.1304347826087 %
+2024-11-17 17:49:38.293 | INFO     | __main__:train:197 - Epoch [14/100], Loss: 0.29582968540489674
+2024-11-17 17:49:38.786 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:49:50.948 | INFO     | __main__:train:197 - Epoch [15/100], Loss: 0.26587346382439137
+2024-11-17 17:49:51.592 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:49:59.598 | INFO     | __main__:train:197 - Epoch [16/100], Loss: 0.2477946300059557
+2024-11-17 17:50:00.626 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:50:10.044 | INFO     | __main__:train:197 - Epoch [17/100], Loss: 0.2971814814954996
+2024-11-17 17:50:10.435 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:50:18.858 | INFO     | __main__:train:197 - Epoch [18/100], Loss: 0.27467853017151356
+2024-11-17 17:50:19.292 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:50:30.545 | INFO     | __main__:train:197 - Epoch [19/100], Loss: 0.24211224354803562
+2024-11-17 17:50:31.153 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 83.47826086956522 %
+2024-11-17 17:50:40.918 | INFO     | __main__:train:197 - Epoch [20/100], Loss: 0.24509028159081936
+2024-11-17 17:50:41.324 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:50:49.451 | INFO     | __main__:train:197 - Epoch [21/100], Loss: 0.26782824099063873
+2024-11-17 17:50:49.536 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:50:51.437 | INFO     | __main__:train:197 - Epoch [22/100], Loss: 0.24736886844038963
+2024-11-17 17:50:51.477 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:50:52.470 | INFO     | __main__:train:197 - Epoch [23/100], Loss: 0.24242262914776802
+2024-11-17 17:50:52.504 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 84.34782608695652 %
+2024-11-17 17:50:55.181 | INFO     | __main__:train:197 - Epoch [24/100], Loss: 0.24746638536453247
+2024-11-17 17:50:55.382 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 84.34782608695652 %
+2024-11-17 17:51:03.882 | INFO     | __main__:train:197 - Epoch [25/100], Loss: 0.20986937452107668
+2024-11-17 17:51:04.862 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 84.34782608695652 %
+2024-11-17 17:51:15.269 | INFO     | __main__:train:197 - Epoch [26/100], Loss: 0.28963519260287285
+2024-11-17 17:51:15.654 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 84.34782608695652 %
+2024-11-17 17:51:27.294 | INFO     | __main__:train:197 - Epoch [27/100], Loss: 0.23920727334916592
+2024-11-17 17:51:27.740 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 84.34782608695652 %
+2024-11-17 17:51:37.497 | INFO     | __main__:train:197 - Epoch [28/100], Loss: 0.35598029382526875
+2024-11-17 17:51:37.722 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:51:43.494 | INFO     | __main__:train:197 - Epoch [29/100], Loss: 0.3448462411761284
+2024-11-17 17:51:43.777 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 79.1304347826087 %
+2024-11-17 17:51:53.631 | INFO     | __main__:train:197 - Epoch [30/100], Loss: 0.25321886222809553
+2024-11-17 17:51:54.084 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 80.0 %
+2024-11-17 17:52:04.966 | INFO     | __main__:train:197 - Epoch [31/100], Loss: 0.29960873164236546
+2024-11-17 17:52:05.230 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:52:17.411 | INFO     | __main__:train:197 - Epoch [32/100], Loss: 0.24040029104799032
+2024-11-17 17:52:18.059 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:52:30.929 | INFO     | __main__:train:197 - Epoch [33/100], Loss: 0.2304258905351162
+2024-11-17 17:52:31.538 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 85.21739130434783 %
+2024-11-17 17:52:43.839 | INFO     | __main__:train:197 - Epoch [34/100], Loss: 0.2101008682511747
+2024-11-17 17:52:44.328 | INFO     | __main__:train:224 - Accuracy of the model on the test images: 84.34782608695652 %
+2024-11-17 17:52:52.749 | INFO     | __main__:train:197 - Epoch [35/100], Loss: 0.23387758247554302
+2024-11-17 17:53:46.131 | INFO     | __main__:test:303 - 最终结果: Accuracy of the model on the test images: 84.72222222222223 %

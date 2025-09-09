@@ -45,7 +45,7 @@ def run_single_file(file_path, value, state, solve_info, q):
             smtlib_str = file.read()
 
         signal.signal(signal.SIGALRM, timeout_handler)
-        signal.alarm(300)
+        signal.alarm(30)
         try:
             smtlib_str, var_dict, constant_list = normalize_smt_str(smtlib_str)
         except MyException:
