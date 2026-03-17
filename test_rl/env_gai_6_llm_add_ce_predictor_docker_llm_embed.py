@@ -22,7 +22,7 @@ from torch.nn.parameter import Parameter
 
 from z3.z3 import Solver, parse_smt2_string,sat,unknown,unsat
 
-import embedding_util
+# import embedding_util  # 未使用的导入，已注释避免ModuleNotFoundError
 from pearl.SMTimer.KNN_Predictor import Predictor
 from pearl.api import Space
 from test_rl.test_script.db_search_lz_alue import fetch_data_as_dict
@@ -43,8 +43,8 @@ from pearl.api.action_result import ActionResult
 from pearl.api.environment import Environment
 from pearl.utils.instantiations.spaces.discrete_action import DiscreteActionSpace
 import datetime
-from bert_predictor_mask import SimpleClassifier
-from bert_predictor_2_mask import EnhancedEightClassModel
+# from bert_predictor_mask import SimpleClassifier  # 未使用，已注释
+# from bert_predictor_2_mask import EnhancedEightClassModel  # 未使用，已注释
 import sys
 sys.path.append('/home/nju/PycharmProjects/Pearl/test_rl')
 
@@ -55,7 +55,8 @@ def is_number(s):
     return re.match(pattern, s) is not None
 class ConstraintSimplificationEnv_test(Environment):
 
-    def __init__(self, embedder, z3ast, model, model_time, smtlib_str, file_path, var_dict, state):
+    def __init__(self, embedder, z3ast, model, model_time, smtlib_str, file_path, var_dict, state, 
+                 llm_host='http://172.29.7.221:32773', llm_model='llama3.1:70b'):
         self.range_count = 10000
         self.var_dict = var_dict
         logger.info(self.var_dict)
@@ -68,6 +69,10 @@ class ConstraintSimplificationEnv_test(Environment):
         self.z3ast_original = copy.deepcopy(z3ast)
         self.smtlib_str = smtlib_str
         self.smtlib_str_original = copy.deepcopy(smtlib_str)
+        # LLM配置
+        self.llm_host = llm_host
+        self.llm_model = llm_model
+        logger.info(f'环境初始化 - LLM配置: {llm_host} / {llm_model}')
         #或者是values
 
         self.variables = sorted(list(self.var_dict.values()), key=lambda x: int(x.split('VAR')[1]))
@@ -208,18 +213,18 @@ class ConstraintSimplificationEnv_test(Environment):
             "content": """ You are an advanced SAT/SMT solver, focusing on the optimization and resolution of logical constraint problems. 
             Your input consists of two parts: first, the counterexamples of failed solution assignments previously chosen, and second, the strings in SMT-LIB format that needs to be solved.
             You should analyze these inputs, using logical reasoning and heuristic methods to determine which variable assignments led to the failure of the solution,
-            and identify the variable assignments that satisfy all constraint conditions. The output should be a set of specific variable assignments that can satisfy all the constraints defined in the strings.
+            and identify the variable assignments that satisfy all constraint conditions. The output should be a specific value assignment for the target variable that can satisfy all the constraints defined in the strings.
             Your task is to find the specific values that should be assigned to the variables provided in the prompt to ensure that the entire constraint system is satisfiable.You should output only the numeric value,
             with an example as follows: <value> . Do not output any other text, explanations, or symbols.""" }
         user_message = {
                         "role": "user",
-                        "content": text + f'This is the The variable values from the previous failed SAT solving attempt and SMT text given to you in segments; analyze it. To speed up the solution and obtain a SAT result, provide a specific number that {variable_pred} should be assigned to. However, do not choose the values that have already failed to solve. Output only the numeric value. Do not output any other text, explanations, or symbols. The output must be a single number.'
+                        "content": text + f'This is the variable values from the previous failed SAT solving attempt and SMT text given to you in segments; analyze it. To speed up the solution and obtain a SAT result, provide a specific number that {variable_pred} should be assigned to. However, do not choose the values that have already failed to solve. Output only the numeric value. Do not output any other text, explanations, or symbols. The output must be a single number.'
                     }
 
 
-        client = Client(host='http://172.29.7.221:32903')
+        client = Client(host=self.llm_host)
         response = client.chat(
-            model='llama3.1:70b',
+            model=self.llm_model,
             messages=[system_message,user_message],
             # messages=[user_message],
             options={"temperature": 1,  # 模型温度

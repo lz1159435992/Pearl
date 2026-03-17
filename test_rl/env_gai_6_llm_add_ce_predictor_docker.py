@@ -203,7 +203,7 @@ class ConstraintSimplificationEnv_test(Environment):
         # # Add 'system' role message before the loop
         # system_message = {
         #     "role": "system",
-        #     "content": "You are an advanced SAT/SMT solver, focusing on the optimization and resolution of logical constraint problems. Your input consists of two parts: first, the counterexamples of failed solution assignments previously chosen, and second, the strings in SMT-LIB format that needs to be solved. You should analyze these inputs, using logical reasoning and heuristic methods to determine which variable assignments led to the failure of the solution, and identify the variable assignments that satisfy all constraint conditions. The output should be a set of specific variable assignments that can satisfy all the constraints defined in the `.smt2` file. Your task is to find the specific values that should be assigned to the variables provided in the prompt to ensure that the entire constraint system is satisfiable.You should output only the numeric value, with an example as follows: <value> . Do not output any other text, explanations, or symbols. "
+        #     "content": "You are an advanced SAT/SMT solver, focusing on the optimization and resolution of logical constraint problems. Your input consists of two parts: first, the counterexamples of failed solution assignments previously chosen, and second, the strings in SMT-LIB format that needs to be solved. You should analyze these inputs, using logical reasoning and heuristic methods to determine which variable assignments led to the failure of the solution, and identify the variable assignments that satisfy all constraint conditions. The output should be a specific value assignment for the target variable that can satisfy all the constraints defined in the `.smt2` file. Your task is to find the specific values that should be assigned to the variables provided in the prompt to ensure that the entire constraint system is satisfiable.You should output only the numeric value, with an example as follows: <value> . Do not output any other text, explanations, or symbols. "
         # }
 
         chunks = [text[i:i + text_limit] for i in range(0, len(text), text_limit)]
@@ -215,7 +215,7 @@ class ConstraintSimplificationEnv_test(Environment):
                     # system_message,  # Including the system role message here
                     {
                         "role": "user",
-                        "content": chunk + f'This is the The variable values from the previous failed SAT solving attempt and SMT text given to you in segments; analyze it. To speed up the solution and obtain a SAT result, provide a specific number that {variable_pred} should be assigned to. However, do not choose the values that have already failed to solve. Output only the numeric value. Do not output any other text, explanations, or symbols. The output must be a single number.'
+                        "content": chunk + f'This is the variable values from the previous failed SAT solving attempt and SMT text given to you in segments; analyze it. To speed up the solution and obtain a SAT result, provide a specific number that {variable_pred} should be assigned to. However, do not choose the values that have already failed to solve. Output only the numeric value. Do not output any other text, explanations, or symbols. The output must be a single number.'
                     },
                 ],
                 # model="gpt-3.5-turbo",
@@ -239,12 +239,12 @@ class ConstraintSimplificationEnv_test(Environment):
             "content": """ You are an advanced SAT/SMT solver, focusing on the optimization and resolution of logical constraint problems. 
             Your input consists of two parts: first, the counterexamples of failed solution assignments previously chosen, and second, the strings in SMT-LIB format that needs to be solved.
             You should analyze these inputs, using logical reasoning and heuristic methods to determine which variable assignments led to the failure of the solution,
-            and identify the variable assignments that satisfy all constraint conditions. The output should be a set of specific variable assignments that can satisfy all the constraints defined in the strings.
+            and identify the variable assignments that satisfy all constraint conditions. The output should be a specific value assignment for the target variable that can satisfy all the constraints defined in the strings.
             Your task is to find the specific values that should be assigned to the variables provided in the prompt to ensure that the entire constraint system is satisfiable.You should output only the numeric value,
             with an example as follows: <value> . Do not output any other text, explanations, or symbols.""" }
         user_message = {
                         "role": "user",
-                        "content": text + f'This is the The variable values from the previous failed SAT solving attempt and SMT text given to you in segments; analyze it. To speed up the solution and obtain a SAT result, provide a specific number that {variable_pred} should be assigned to. However, do not choose the values that have already failed to solve. Output only the numeric value. Do not output any other text, explanations, or symbols. The output must be a single number.'
+                        "content": text + f'This is the variable values from the previous failed SAT solving attempt and SMT text given to you in segments; analyze it. To speed up the solution and obtain a SAT result, provide a specific number that {variable_pred} should be assigned to. However, do not choose the values that have already failed to solve. Output only the numeric value. Do not output any other text, explanations, or symbols. The output must be a single number.'
                     }
 
 

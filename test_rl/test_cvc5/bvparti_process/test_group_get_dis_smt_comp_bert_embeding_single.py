@@ -356,15 +356,88 @@ def convert_timeout_to_unknown(solve_dict):
     Returns:
         修改后的字典
     """
+    # 新格式：{ "metadata": ..., "results": { key: {"result": ..., ...} } }
+    if isinstance(solve_dict, dict) and "metadata" in solve_dict and "results" in solve_dict:
+        modified_dict = dict(solve_dict)
+        modified_results = {}
+        for key, value in solve_dict.get("results", {}).items():
+            if not isinstance(value, dict):
+                modified_results[key] = value
+                continue
+
+            result = value.get("result")
+            if result in {"timeout", "error"}:
+                modified_value = dict(value)
+                modified_value["result"] = "unknown"
+                modified_results[key] = modified_value
+            else:
+                modified_results[key] = value
+
+        modified_dict["results"] = modified_results
+        return modified_dict
+
+    # 旧格式：{ key: [result, time, ...] }
     modified_dict = {}
     for key, value in solve_dict.items():
-        if value[0] == 'timeout':
+        if isinstance(value, (list, tuple)) and len(value) > 0 and value[0] == 'timeout':
             # 创建新的value列表，第一个元素改为'unknown'，其他保持不变
-            new_value = ['unknown'] + value[1:]
+            new_value = ['unknown'] + list(value[1:])
             modified_dict[key] = new_value
         else:
             modified_dict[key] = value
     return modified_dict
+
+
+def get_solve_result_and_time(solve_dict, key):
+    """从solve_dict中获取结果和时间，兼容新旧两种格式。
+
+    Args:
+        solve_dict: 求解结果字典（旧格式或包含results的新格式）
+        key: 文件路径键
+
+    Returns:
+        tuple[str, float]: (category, time_value)
+    """
+    # 新格式：metadata/results
+    if isinstance(solve_dict, dict) and "metadata" in solve_dict and "results" in solve_dict:
+        entry = solve_dict.get("results", {}).get(key, {})
+        if not isinstance(entry, dict):
+            return "unknown", 0.0
+
+        category = entry.get("result", "unknown")
+        if category in {"timeout", "error"}:
+            category = "unknown"
+
+        solve_time = entry.get("solve_time", 0.0)
+        try:
+            solve_time = float(solve_time)
+        except (TypeError, ValueError):
+            solve_time = 0.0
+
+        # 部分错误记录可能会用 -1 标识无效时间
+        if solve_time < 0:
+            solve_time = 0.0
+
+        return category, solve_time
+
+    # 旧格式：key -> [category, time, ...]
+    value = solve_dict.get(key)
+    if not isinstance(value, (list, tuple)) or len(value) < 2:
+        return "unknown", 0.0
+
+    category = value[0]
+    if category in {"timeout", "error"}:
+        category = "unknown"
+
+    try:
+        time_value = float(value[1])
+    except (TypeError, ValueError):
+        time_value = 0.0
+
+    if time_value < 0:
+        time_value = 0.0
+
+    return category, time_value
 
 def test_group_get_label_and_time(file_path='result_dict_time_pre.txt',solve_path='/home/lz/PycharmProjects/Pearl/test_rl/test_cvc5/cvc5_smtimer_results_rl.json'):
     with open(file_path, 'r') as file:

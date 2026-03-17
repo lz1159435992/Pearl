@@ -1091,6 +1091,4 @@ if __name__ == '__main__':
     print(count)
     # test_group_bert_normalize()
 
-    # loaded_features = np.load('features.npy')
-    # loaded_labels = np.load('labels.npy')
-    # print(loaded_features.shape)
+

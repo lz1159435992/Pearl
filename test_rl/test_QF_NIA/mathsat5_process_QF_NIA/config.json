@@ -1,0 +1,75 @@
+{
+  "experiment": {
+    "name": "QF_NIA_MathSAT5_Experiment",
+    "description": "使用MathSAT5求解器与强化学习进行QF_NIA实验（除求解器外逻辑与cvc5版一致）",
+    "version": "1.0.0"
+  },
+  "data": {
+    "source": "/home/lz/PycharmProjects/Pearl/test_rl/test_QF_NIA/mathsat5_QF_NIA.json",
+    "logic": "QF_NIA",
+    "train_ratio": 0.8,
+    "max_variables": 1000
+  },
+  "embedding": {
+    "method": "llm",
+    "model": "llama3.1:70b",
+    "host": "http://172.29.7.221:32793",
+    "dimension": 8192,
+    "timeout": 30
+  },
+  "predictor": {
+    "binary_classifier": {
+      "input_dim": 8192,
+      "hidden_dims": [2048, 512, 128],
+      "dropout": 0.5,
+      "learning_rate": 0.001,
+      "batch_size": 32,
+      "epochs": 100,
+      "early_stopping_patience": 15
+    },
+    "time_classifier": {
+      "input_dim": 8192,
+      "hidden_dims": [256, 128, 64],
+      "num_classes": 8,
+      "dropout": 0.5,
+      "learning_rate": 0.001,
+      "batch_size": 32,
+      "epochs": 100,
+      "early_stopping_patience": 20
+    }
+  },
+  "time_bins": {
+    "0": 1,
+    "1": 20,
+    "2": 50,
+    "3": 100,
+    "4": 200,
+    "5": 500,
+    "6": 1200,
+    "7": 20
+  },
+  "rl": {
+    "algorithm": "SAC",
+    "state_dim": 8192,
+    "actor_hidden_dims": [1024, 512, 128],
+    "critic_hidden_dims": [1024, 512, 128],
+    "history_summarization": "LSTM",
+    "lstm_hidden_dim": 8192,
+    "replay_buffer_size": 10,
+    "number_of_episodes": 1
+  },
+  "solver": {
+    "name": "mathsat",
+    "timeout": 1200,
+    "options": []
+  },
+  "paths": {
+    "features_dir": "features/QF_NIA_llm_embeddings",
+    "models_dir": "models",
+    "log_dir": "log",
+    "output_dir": "supervenn_output",
+    "train_json": "QF_NIA_train.json",
+    "test_json": "QF_NIA_test.json",
+    "embedding_dict": "embeding_QF_NIA.json"
+  }
+}
